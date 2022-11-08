@@ -1,4 +1,4 @@
-package com.example.teachingAccounting;
+package me.anisimov.teachingAccounting;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

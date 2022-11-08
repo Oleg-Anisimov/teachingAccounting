@@ -1,4 +1,4 @@
-package com.example.teachingAccounting.config;
+package me.anisimov.teachingAccounting.config;
 
 import org.springframework.context.annotation.Configuration;
 

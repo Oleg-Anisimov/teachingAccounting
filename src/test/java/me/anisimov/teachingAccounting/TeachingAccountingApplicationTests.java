@@ -1,4 +1,4 @@
-package com.example.teachingAccounting;
+package me.anisimov.teachingAccounting;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.example.teachingAccounting.domain;
+package me.anisimov.teachingAccounting.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

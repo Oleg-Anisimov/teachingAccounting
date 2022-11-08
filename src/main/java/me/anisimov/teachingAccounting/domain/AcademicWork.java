@@ -1,4 +1,4 @@
-package com.example.teachingAccounting.domain;
+package me.anisimov.teachingAccounting.domain;
 
 
 import lombok.AllArgsConstructor;
@@ -31,7 +31,7 @@ public class AcademicWork {
     @Column(name = "quality_results")
     private Float qualityResults;
 
-    @OneToOne(targetEntity = Specialization.class)
+    @ManyToOne(targetEntity = Specialization.class)
     @JoinColumn(name="specialization_id", nullable=false)
     private Specialization specialization;
 

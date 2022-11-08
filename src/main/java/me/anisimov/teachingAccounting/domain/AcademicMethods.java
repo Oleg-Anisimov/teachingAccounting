@@ -1,4 +1,4 @@
-package com.example.teachingAccounting.domain;
+package me.anisimov.teachingAccounting.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,9 +25,9 @@ public class AcademicMethods {
     @Column(name = "complete_info")
     private String completeInfo;
 
-    //@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(name = "activity_type")
-    private String activityType;
+    private ActivityType activityType;
 
     @OneToOne(targetEntity = Specialization.class)
     @JoinColumn(name="specialization_id", nullable=false)

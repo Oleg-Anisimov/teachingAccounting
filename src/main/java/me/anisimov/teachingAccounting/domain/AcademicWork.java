@@ -17,7 +17,7 @@ public class AcademicWork {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="academic_work_seq")
-    private long id;
+    private Long id;
 
     @Column(name = "group_name")
     private String groupName;
@@ -31,6 +31,15 @@ public class AcademicWork {
     @Column(name = "quality_results")
     private Float qualityResults;
 
+    @Column(name = "first_semester")
+    private PlanAndFact firstSemester;
+
+    @Column(name = "second_semester")
+    private PlanAndFact secondSemester;
+
+    @Column(name = "academic_year")
+    private PlanAndFact academicYear;
+
     @ManyToOne(targetEntity = Specialization.class)
     @JoinColumn(name="specialization_id", nullable=false)
     private Specialization specialization;
@@ -38,9 +47,5 @@ public class AcademicWork {
     @ManyToOne(targetEntity = AcademicDiscipline.class)
     @JoinColumn(name="academic_discipline_id", nullable=false)
     private AcademicDiscipline academicDiscipline;
-
-
-
-
 
 }

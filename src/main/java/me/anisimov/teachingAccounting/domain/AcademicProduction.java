@@ -26,9 +26,8 @@ public class AcademicProduction {
     @Column(name = "result")
     private String result;
 
-    // ama - Academic Method Activity
-    @Column(name = "ama_form")
-    private String amaForm;
+    @Column(name = "academic_method_activity_form")
+    private String academicMethodActivityForm;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "cabinet_type")

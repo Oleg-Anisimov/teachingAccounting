@@ -1,12 +1,10 @@
 package me.anisimov.teachingAccounting.controller;
 
 import me.anisimov.teachingAccounting.domain.Department;
-import me.anisimov.teachingAccounting.domain.Teacher;
 import me.anisimov.teachingAccounting.dto.TeacherDto;
 import me.anisimov.teachingAccounting.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

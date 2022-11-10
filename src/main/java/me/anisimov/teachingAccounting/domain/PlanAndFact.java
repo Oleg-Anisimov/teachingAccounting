@@ -9,19 +9,11 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name ="plan_and_fact")
-@SequenceGenerator(name = "plan_and_fact_seq_gen", sequenceName = "plan_and_fact_seq", allocationSize = 1)
+@Embeddable
 public class PlanAndFact {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "plan_and_fact_seq")
-    private Long id;
-
-    @Column(name = "plan")
     private String plan;
 
-    @Column(name = "fact")
     private String fact;
 
 }

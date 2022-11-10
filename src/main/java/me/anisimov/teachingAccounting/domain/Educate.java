@@ -3,6 +3,9 @@ package me.anisimov.teachingAccounting.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import me.anisimov.teachingAccounting.domain.Enums.ActivityType;
+import me.anisimov.teachingAccounting.domain.Enums.EventLevel;
+import me.anisimov.teachingAccounting.domain.Enums.WorkVector;
 
 import javax.persistence.*;
 import java.time.LocalDate;

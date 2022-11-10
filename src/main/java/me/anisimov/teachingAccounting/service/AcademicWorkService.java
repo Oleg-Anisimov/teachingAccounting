@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class AcademicWorkService {
     @Autowired
-    AcademicWorkRepository academicWorkRepository;
+    private AcademicWorkRepository academicWorkRepository;
     @Autowired
-    DozerBeanMapper mapper;
+    private DozerBeanMapper mapper;
 
     public AcademicWorkDto createAcademicWork(AcademicWorkDto academicWorkDto){
         AcademicWork academicWork = new AcademicWork();

@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 public class AcademicMethodsService {
 
     @Autowired
-    AcademicMethodsRepository academicMethodsRepository;
+    private AcademicMethodsRepository academicMethodsRepository;
     @Autowired
-    DozerBeanMapper mapper;
+    private DozerBeanMapper mapper;
 
     public AcademicMethodsDto createAcademicMethods(AcademicMethodsDto academicMethodsDto) {
         AcademicMethods academicMethods = new AcademicMethods();

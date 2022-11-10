@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 public class AcademicProductionService {
 
     @Autowired
-    AcademicProductionRepository academicProductionRepository;
+    private AcademicProductionRepository academicProductionRepository;
     @Autowired
-    DozerBeanMapper mapper;
+    private DozerBeanMapper mapper;
 
     public AcademicProductionDto createAcademicProduction(AcademicProductionDto academicProductionDto){
         AcademicProduction academicProduction = new AcademicProduction();

@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class AcademicDisciplineService {
     @Autowired
-    AcademicDisciplineRepository academicDisciplineRepository;
+    private AcademicDisciplineRepository academicDisciplineRepository;
     @Autowired
-    DozerBeanMapper mapper;
+    private DozerBeanMapper mapper;
 
     public AcademicDisciplineDto createAcademicDiscipline(AcademicDisciplineDto academicDisciplineDto){
         AcademicDiscipline academicDiscipline = new AcademicDiscipline();

@@ -3,6 +3,8 @@ package me.anisimov.teachingAccounting.controller;
 import me.anisimov.teachingAccounting.dto.AcademicWorkDto;
 import me.anisimov.teachingAccounting.service.AcademicWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AcademicWorkController {
 
     @Autowired
-    AcademicWorkService academicWorkService;
+    private AcademicWorkService academicWorkService;
 
     @GetMapping("/create")
     public AcademicWorkDto create() {
@@ -20,13 +22,13 @@ public class AcademicWorkController {
         return academicWorkService.createAcademicWork(academicWorkDto);
     }
     @GetMapping("/delete")
-    public String delete() {
+    public ResponseEntity delete() {
         academicWorkService.deleteAcademicWork(202L);
-        return "Поле удаленно";
+        return ResponseEntity.ok().build();
     }
     @GetMapping("/update")
-    public String update() {
+    public ResponseEntity update() {
         academicWorkService.updateAcademicWork(academicWorkService.getById(153L));
-        return "Поле обновлено";
+        return ResponseEntity.ok().build();
     }
 }

@@ -3,6 +3,7 @@ package me.anisimov.teachingAccounting.controller;
 import me.anisimov.teachingAccounting.dto.AcademicMethodsDto;
 import me.anisimov.teachingAccounting.service.AcademicMethodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/methods")
 public class AcademicMethodsController {
     @Autowired
-    AcademicMethodsService academicMethodsService;
+    private AcademicMethodsService academicMethodsService;
 
     @GetMapping("/create")
     public AcademicMethodsDto create() {
@@ -19,13 +20,13 @@ public class AcademicMethodsController {
         return academicMethodsService.createAcademicMethods(academicMethodsDto);
     }
     @GetMapping("/delete")
-    public String delete() {
+    public ResponseEntity delete() {
         academicMethodsService.deleteAcademicMethods(202L);
-        return "Поле удаленно";
+        return ResponseEntity.ok().build();
     }
     @GetMapping("/update")
-    public String update() {
+    public ResponseEntity update() {
         academicMethodsService.updateAcademicMethods(academicMethodsService.getById(153L));
-        return "Поле обновлено";
+        return ResponseEntity.ok().build();
     }
 }

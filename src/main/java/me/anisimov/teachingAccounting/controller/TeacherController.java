@@ -4,6 +4,7 @@ import me.anisimov.teachingAccounting.domain.Department;
 import me.anisimov.teachingAccounting.dto.TeacherDto;
 import me.anisimov.teachingAccounting.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,14 +25,14 @@ public class TeacherController {
         return teacherService.createTeacher(teacherDto);
     }
     @GetMapping("/delete")
-    public String delete() {
+    public ResponseEntity delete() {
         teacherService.deleteTeacher(202L);
-        return "Поле удаленно";
+        return ResponseEntity.ok().build();
     }
     @GetMapping("/update")
-    public String update() {
+    public ResponseEntity update() {
         teacherService.updateTeacher(teacherService.getById(153L));
-        return "Поле обновлено";
+        return ResponseEntity.ok().build();
     }
 
 }

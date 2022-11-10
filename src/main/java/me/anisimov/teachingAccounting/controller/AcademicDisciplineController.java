@@ -3,6 +3,7 @@ package me.anisimov.teachingAccounting.controller;
 import me.anisimov.teachingAccounting.dto.AcademicDisciplineDto;
 import me.anisimov.teachingAccounting.service.AcademicDisciplineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AcademicDisciplineController {
 
     @Autowired
-    AcademicDisciplineService academicDisciplineService;
+    private AcademicDisciplineService academicDisciplineService;
 
     @GetMapping("/create")
     public AcademicDisciplineDto create() {
@@ -20,13 +21,13 @@ public class AcademicDisciplineController {
         return academicDisciplineService.createAcademicDiscipline(academicDisciplineDto);
     }
     @GetMapping("/delete")
-    public String delete() {
+    public ResponseEntity delete() {
         academicDisciplineService.deleteAcademicDiscipline(202L);
-        return "Поле удаленно";
+        return ResponseEntity.ok().build();
     }
     @GetMapping("/update")
-    public String update() {
+    public ResponseEntity update() {
         academicDisciplineService.updateAcademicDiscipline(academicDisciplineService.getById(153L));
-        return "Поле обновлено";
+        return ResponseEntity.ok().build();
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/operate")
 public class OperationController {
     @Autowired
-    OperationService operationService;
+    private OperationService operationService;
     @GetMapping("/")
     public Teacher test() {
         return operationService.test();

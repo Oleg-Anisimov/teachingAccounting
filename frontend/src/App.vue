@@ -1,10 +1,16 @@
 <script setup>
+import Header from "./components/Header.vue";
+import Navbar from "./components/Navbar.vue";
 </script>
 
 <template>
-    <h1>Hi</h1>
+  <div class="wrapper">
+    <Header></Header>
+    <Navbar></Navbar>
+    <RouterView/>
+  </div>
 </template>
 
-<style scoped>
+<style scoped lang="stylus">
 
 </style>

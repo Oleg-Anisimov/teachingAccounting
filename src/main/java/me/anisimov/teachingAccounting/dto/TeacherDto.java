@@ -3,12 +3,11 @@ package me.anisimov.teachingAccounting.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import me.anisimov.teachingAccounting.domain.Category;
+import me.anisimov.teachingAccounting.domain.Enums.Category;
 import me.anisimov.teachingAccounting.domain.Department;
-import me.anisimov.teachingAccounting.domain.EmploymentType;
-import me.anisimov.teachingAccounting.domain.Position;
+import me.anisimov.teachingAccounting.domain.Enums.EmploymentType;
+import me.anisimov.teachingAccounting.domain.Enums.Position;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data

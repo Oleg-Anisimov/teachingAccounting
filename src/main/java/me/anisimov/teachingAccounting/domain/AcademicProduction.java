@@ -3,9 +3,11 @@ package me.anisimov.teachingAccounting.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import me.anisimov.teachingAccounting.domain.Enums.AcademicProductionActivityForm;
+import me.anisimov.teachingAccounting.domain.Enums.ActivityType;
+import me.anisimov.teachingAccounting.domain.Enums.CabinetType;
 
 import javax.persistence.*;
-import javax.print.attribute.standard.MediaSize;
 import java.time.LocalDate;
 
 @Data
@@ -26,10 +28,6 @@ public class AcademicProduction {
     @Column(name = "result")
     private String result;
 
-    // ama - Academic Method Activity
-    @Column(name = "ama_form")
-    private String amaForm;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "cabinet_type")
     private CabinetType cabinetType;
@@ -40,6 +38,10 @@ public class AcademicProduction {
     @Enumerated(EnumType.STRING)
     @Column(name = "activity_type")
     private ActivityType activityType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "academic_production_activity_form")
+    private AcademicProductionActivityForm academicProductionActivityForm;
 
     @OneToOne(targetEntity = Specialization.class)
     @JoinColumn(name="specialization_id", nullable=false)

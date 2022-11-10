@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/methods")
 public class AcademicMethodsController {
     @Autowired
-    AcademicMethodsService academicMethodsService;
+    private AcademicMethodsService academicMethodsService;
 
     @GetMapping("/create")
     public AcademicMethodsDto create() {

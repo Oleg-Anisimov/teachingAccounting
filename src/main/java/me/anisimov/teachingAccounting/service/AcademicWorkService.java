@@ -16,7 +16,7 @@ public class AcademicWorkService {
     @Autowired
     private DozerBeanMapper mapper;
 
-    public AcademicWorkDto createAcademicWork(AcademicWorkDto academicWorkDto){
+    public AcademicWorkDto createAcademicWork(AcademicWorkDto academicWorkDto) {
         AcademicWork academicWork = new AcademicWork();
         academicWork.setId(academicWorkDto.getId());
         academicWork.setGroupName(academicWorkDto.getGroupName());
@@ -29,16 +29,18 @@ public class AcademicWorkService {
         academicWork.setQualityResults(academicWorkDto.getQualityResults());
         academicWork.setIncompleteReason(academicWorkDto.getIncompleteReason());
         academicWorkRepository.save(academicWork);
-        return mapper.map(academicWork,AcademicWorkDto.class);
+        return mapper.map(academicWork, AcademicWorkDto.class);
     }
-    public void deleteAcademicWork(Long id){
+
+    public void deleteAcademicWork(Long id) {
         academicWorkRepository.deleteById(id);
     }
-    public void updateAcademicWork(AcademicWork academicWork){
+
+    public void updateAcademicWork(AcademicWork academicWork) {
         academicWorkRepository.save(academicWork);
     }
 
-    public AcademicWork getById(Long id){
+    public AcademicWork getById(Long id) {
         return academicWorkRepository.getReferenceById(id);
     }
 

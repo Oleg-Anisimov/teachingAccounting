@@ -17,7 +17,7 @@ public class AcademicProductionService {
     @Autowired
     private DozerBeanMapper mapper;
 
-    public AcademicProductionDto createAcademicProduction(AcademicProductionDto academicProductionDto){
+    public AcademicProductionDto createAcademicProduction(AcademicProductionDto academicProductionDto) {
         AcademicProduction academicProduction = new AcademicProduction();
         academicProduction.setId(academicProductionDto.getId());
         academicProduction.setDate(academicProductionDto.getDate());
@@ -28,17 +28,18 @@ public class AcademicProductionService {
         academicProduction.setCabinetType(academicProductionDto.getCabinetType());
         academicProduction.setCabinetName(academicProductionDto.getCabinetName());
         academicProductionRepository.save(academicProduction);
-        return mapper.map(academicProduction,AcademicProductionDto.class);
+        return mapper.map(academicProduction, AcademicProductionDto.class);
     }
 
-    public void deleteAcademicProduction(Long id){
+    public void deleteAcademicProduction(Long id) {
         academicProductionRepository.deleteById(id);
     }
-    public void updateAcademicProduction(AcademicProduction academicProduction){
+
+    public void updateAcademicProduction(AcademicProduction academicProduction) {
         academicProductionRepository.save(academicProduction);
     }
 
-    public AcademicProduction getById(Long id){
+    public AcademicProduction getById(Long id) {
         return academicProductionRepository.getReferenceById(id);
     }
 }

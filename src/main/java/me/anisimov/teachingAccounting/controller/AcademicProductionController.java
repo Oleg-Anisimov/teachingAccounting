@@ -20,11 +20,13 @@ public class AcademicProductionController {
         AcademicProductionDto academicProductionDto = new AcademicProductionDto();
         return academicProductionService.createAcademicProduction(academicProductionDto);
     }
+
     @GetMapping("/delete")
     public ResponseEntity delete() {
         academicProductionService.deleteAcademicProduction(202L);
         return ResponseEntity.ok().build();
     }
+
     @GetMapping("/update")
     public ResponseEntity update() {
         academicProductionService.updateAcademicProduction(academicProductionService.getById(153L));

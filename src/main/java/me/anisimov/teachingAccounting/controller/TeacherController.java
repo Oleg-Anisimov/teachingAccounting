@@ -15,7 +15,7 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
-    @GetMapping ("/create")
+    @GetMapping("/create")
     public TeacherDto create() {
         TeacherDto teacherDto = new TeacherDto();
         Department department = new Department();
@@ -24,11 +24,13 @@ public class TeacherController {
         teacherDto.setDepartment(department);
         return teacherService.createTeacher(teacherDto);
     }
+
     @GetMapping("/delete")
     public ResponseEntity delete() {
         teacherService.deleteTeacher(202L);
         return ResponseEntity.ok().build();
     }
+
     @GetMapping("/update")
     public ResponseEntity update() {
         teacherService.updateTeacher(teacherService.getById(153L));

@@ -19,11 +19,13 @@ public class AcademicMethodsController {
         AcademicMethodsDto academicMethodsDto = new AcademicMethodsDto();
         return academicMethodsService.createAcademicMethods(academicMethodsDto);
     }
+
     @GetMapping("/delete")
     public ResponseEntity delete() {
         academicMethodsService.deleteAcademicMethods(202L);
         return ResponseEntity.ok().build();
     }
+
     @GetMapping("/update")
     public ResponseEntity update() {
         academicMethodsService.updateAcademicMethods(academicMethodsService.getById(153L));

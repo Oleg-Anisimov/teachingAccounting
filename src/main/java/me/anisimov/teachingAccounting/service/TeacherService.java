@@ -29,14 +29,16 @@ public class TeacherService {
         teacherRepository.save(teacher);
         return mapper.map(teacher, TeacherDto.class);
     }
-    public void deleteTeacher(Long id){
+
+    public void deleteTeacher(Long id) {
         teacherRepository.deleteById(id);
     }
-    public void updateTeacher(Teacher teacher){
+
+    public void updateTeacher(Teacher teacher) {
         teacherRepository.save(teacher);
     }
 
-    public Teacher getById(Long id){
+    public Teacher getById(Long id) {
         return teacherRepository.getReferenceById(id);
     }
 }

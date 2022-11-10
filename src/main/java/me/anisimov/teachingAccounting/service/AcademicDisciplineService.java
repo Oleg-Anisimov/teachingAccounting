@@ -16,24 +16,24 @@ public class AcademicDisciplineService {
     @Autowired
     private DozerBeanMapper mapper;
 
-    public AcademicDisciplineDto createAcademicDiscipline(AcademicDisciplineDto academicDisciplineDto){
+    public AcademicDisciplineDto createAcademicDiscipline(AcademicDisciplineDto academicDisciplineDto) {
         AcademicDiscipline academicDiscipline = new AcademicDiscipline();
         academicDiscipline.setId(academicDisciplineDto.getId());
         academicDiscipline.setDisciplineNumber(academicDiscipline.getDisciplineNumber());
         academicDiscipline.setName(academicDisciplineDto.getName());
         academicDisciplineRepository.save(academicDiscipline);
-        return mapper.map(academicDiscipline,AcademicDisciplineDto.class);
+        return mapper.map(academicDiscipline, AcademicDisciplineDto.class);
     }
 
-    public void deleteAcademicDiscipline(Long id){
+    public void deleteAcademicDiscipline(Long id) {
         academicDisciplineRepository.deleteById(id);
     }
 
-    public void updateAcademicDiscipline(AcademicDiscipline academicDiscipline){
+    public void updateAcademicDiscipline(AcademicDiscipline academicDiscipline) {
         academicDisciplineRepository.save(academicDiscipline);
     }
 
-    public AcademicDiscipline getById(Long id){
+    public AcademicDiscipline getById(Long id) {
         return academicDisciplineRepository.getReferenceById(id);
     }
 }

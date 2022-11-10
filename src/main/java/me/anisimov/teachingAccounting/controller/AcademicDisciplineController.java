@@ -20,11 +20,13 @@ public class AcademicDisciplineController {
         AcademicDisciplineDto academicDisciplineDto = new AcademicDisciplineDto();
         return academicDisciplineService.createAcademicDiscipline(academicDisciplineDto);
     }
+
     @GetMapping("/delete")
     public ResponseEntity delete() {
         academicDisciplineService.deleteAcademicDiscipline(202L);
         return ResponseEntity.ok().build();
     }
+
     @GetMapping("/update")
     public ResponseEntity update() {
         academicDisciplineService.updateAcademicDiscipline(academicDisciplineService.getById(153L));

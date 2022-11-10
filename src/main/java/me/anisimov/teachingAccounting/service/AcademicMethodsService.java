@@ -30,15 +30,17 @@ public class AcademicMethodsService {
         academicMethodsRepository.save(academicMethods);
         return mapper.map(academicMethods, AcademicMethodsDto.class);
     }
-        public void deleteAcademicMethods(Long id){
-            academicMethodsRepository.deleteById(id);
-        }
-        public void updateAcademicMethods(AcademicMethods academicMethods){
-            academicMethodsRepository.save(academicMethods);
-        }
 
-        public AcademicMethods getById(Long id){
-            return academicMethodsRepository.getReferenceById(id);
-        }
+    public void deleteAcademicMethods(Long id) {
+        academicMethodsRepository.deleteById(id);
     }
+
+    public void updateAcademicMethods(AcademicMethods academicMethods) {
+        academicMethodsRepository.save(academicMethods);
+    }
+
+    public AcademicMethods getById(Long id) {
+        return academicMethodsRepository.getReferenceById(id);
+    }
+}
 

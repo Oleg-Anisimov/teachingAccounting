@@ -21,11 +21,13 @@ public class AcademicWorkController {
         AcademicWorkDto academicWorkDto = new AcademicWorkDto();
         return academicWorkService.createAcademicWork(academicWorkDto);
     }
+
     @GetMapping("/delete")
     public ResponseEntity delete() {
         academicWorkService.deleteAcademicWork(202L);
         return ResponseEntity.ok().build();
     }
+
     @GetMapping("/update")
     public ResponseEntity update() {
         academicWorkService.updateAcademicWork(academicWorkService.getById(153L));

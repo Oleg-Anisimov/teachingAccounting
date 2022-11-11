@@ -31,13 +31,25 @@ public class AcademicWork {
     @Column(name = "quality_results")
     private Float qualityResults;
 
-    @Column(name = "first_semester")
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "plan",column = @Column(name = "first_semestr_plan")),
+            @AttributeOverride(name = "fact",column = @Column(name = "first_semestr_fact"))
+    })
     private PlanAndFact firstSemester;
 
-    @Column(name = "second_semester")
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "plan",column = @Column(name = "second_semestr_plan")),
+            @AttributeOverride(name = "fact",column = @Column(name = "second_semestr_fact"))
+    })
     private PlanAndFact secondSemester;
 
-    @Column(name = "academic_year")
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "plan",column = @Column(name = "academic_year_semestr_plan")),
+            @AttributeOverride(name = "fact",column = @Column(name = "academic_year_semestr_fact"))
+    })
     private PlanAndFact academicYear;
 
     @ManyToOne(targetEntity = Specialization.class)

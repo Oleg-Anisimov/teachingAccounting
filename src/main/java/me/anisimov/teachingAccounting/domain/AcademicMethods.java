@@ -26,12 +26,11 @@ public class AcademicMethods {
     @Column(name = "complete_info")
     private String completeInfo;
 
-    // ama - Academic Method Activity
-    @Column(name = "ama_type")
-    private String amaType;
+    @Column(name = "academic_method_activity_type")
+    private String academicMethodActivityType;
 
-    @Column(name = "ama_form")
-    private String amaForm;
+    @Column(name = "academic_method_activity_form")
+    private String academicMethodActivityForm;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "activity_type")

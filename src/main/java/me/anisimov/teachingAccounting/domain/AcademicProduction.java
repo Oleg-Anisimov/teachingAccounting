@@ -28,12 +28,15 @@ public class AcademicProduction {
     @Column(name = "result")
     private String result;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "cabinet_type")
-    private CabinetType cabinetType;
+    @Column(name = "academic_method_activity_form")
+    private String academicMethodActivityForm;
 
     @Column(name = "cabinet_name")
     private  String cabinetName;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "cabinet_type")
+    private CabinetType cabinetType;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "activity_type")

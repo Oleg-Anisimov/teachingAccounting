@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import me.anisimov.teachingAccounting.domain.AcademicDiscipline;
-import me.anisimov.teachingAccounting.domain.ActivityType;
+import me.anisimov.teachingAccounting.domain.Enums.ActivityType;
 import me.anisimov.teachingAccounting.domain.Specialization;
 
 import java.time.LocalDate;

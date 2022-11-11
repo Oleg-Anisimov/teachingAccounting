@@ -3,8 +3,8 @@ package me.anisimov.teachingAccounting.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import me.anisimov.teachingAccounting.domain.ActivityType;
-import me.anisimov.teachingAccounting.domain.CabinetType;
+import me.anisimov.teachingAccounting.domain.Enums.ActivityType;
+import me.anisimov.teachingAccounting.domain.Enums.CabinetType;
 import me.anisimov.teachingAccounting.domain.Specialization;
 
 import java.time.LocalDate;

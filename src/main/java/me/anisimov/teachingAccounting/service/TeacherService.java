@@ -8,6 +8,8 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class TeacherService {
@@ -40,5 +42,9 @@ public class TeacherService {
 
     public Teacher getById(Long id) {
         return teacherRepository.getReferenceById(id);
+    }
+
+    public List<Teacher> getAll(){
+        return teacherRepository.findAll();
     }
 }

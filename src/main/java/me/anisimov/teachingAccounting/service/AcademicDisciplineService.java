@@ -21,7 +21,7 @@ public class AcademicDisciplineService {
     public AcademicDisciplineDto createAcademicDiscipline(AcademicDisciplineDto academicDisciplineDto) {
         AcademicDiscipline academicDiscipline = new AcademicDiscipline();
         academicDiscipline.setId(academicDisciplineDto.getId());
-        academicDiscipline.setDisciplineNumber(academicDiscipline.getDisciplineNumber());
+        academicDiscipline.setDisciplineNumber(academicDisciplineDto.getDisciplineNumber());
         academicDiscipline.setName(academicDisciplineDto.getName());
         academicDisciplineRepository.save(academicDiscipline);
         return mapper.map(academicDiscipline, AcademicDisciplineDto.class);

@@ -5,10 +5,7 @@ import me.anisimov.teachingAccounting.dto.AcademicMethodsDto;
 import me.anisimov.teachingAccounting.service.AcademicMethodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class AcademicMethodsController {
     private AcademicMethodsService academicMethodsService;
 
     @PostMapping("/create")
-    public AcademicMethodsDto create(AcademicMethodsDto academicMethodsDto) {
+    public AcademicMethodsDto create(@RequestBody AcademicMethodsDto academicMethodsDto) {
         return academicMethodsService.createAcademicMethods(academicMethodsDto);
     }
 
@@ -30,7 +27,7 @@ public class AcademicMethodsController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity update(AcademicMethods academicMethods) {
+    public ResponseEntity update(@RequestBody AcademicMethods academicMethods) {
         academicMethodsService.updateAcademicMethods(academicMethods);
         return ResponseEntity.ok().build();
     }

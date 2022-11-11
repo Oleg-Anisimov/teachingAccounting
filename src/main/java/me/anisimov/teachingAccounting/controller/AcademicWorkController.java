@@ -5,10 +5,7 @@ import me.anisimov.teachingAccounting.dto.AcademicWorkDto;
 import me.anisimov.teachingAccounting.service.AcademicWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +17,7 @@ public class AcademicWorkController {
     private AcademicWorkService academicWorkService;
 
     @PostMapping("/create")
-    public AcademicWorkDto create(AcademicWorkDto academicWorkDto) {
+    public AcademicWorkDto create(@RequestBody AcademicWorkDto academicWorkDto) {
         return academicWorkService.createAcademicWork(academicWorkDto);
     }
 
@@ -31,7 +28,7 @@ public class AcademicWorkController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity update(AcademicWork academicWork) {
+    public ResponseEntity update(@RequestBody AcademicWork academicWork) {
         academicWorkService.updateAcademicWork(academicWork);
         return ResponseEntity.ok().build();
     }

@@ -28,9 +28,6 @@ public class AcademicProduction {
     @Column(name = "result")
     private String result;
 
-    @Column(name = "academic_method_activity_form")
-    private String academicMethodActivityForm;
-
     @Column(name = "cabinet_name")
     private  String cabinetName;
 

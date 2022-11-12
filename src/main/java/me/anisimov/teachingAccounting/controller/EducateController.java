@@ -14,7 +14,7 @@ import java.util.List;
 public class EducateController {
 
     @Autowired
-    EducateService educateService;
+    private EducateService educateService;
 
     @PostMapping("/create")
     public EducateDto create(@RequestBody EducateDto departmentDto){

@@ -14,7 +14,7 @@ import java.util.List;
 public class OrganizedMethodsController {
 
     @Autowired
-    OrganizedMethodsService organizedMethodsService;
+    private OrganizedMethodsService organizedMethodsService;
 
     @PostMapping("/create")
     public OrganizedMethodsDto create(@RequestBody OrganizedMethodsDto organizedMethodsDto) {

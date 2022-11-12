@@ -14,7 +14,7 @@ import java.util.List;
 public class SpecializationController {
 
     @Autowired
-    SpecializationService specializationService;
+    private SpecializationService specializationService;
 
     @PostMapping("/create")
     public SpecializationDto create(@RequestBody SpecializationDto specializationDto) {

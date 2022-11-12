@@ -14,7 +14,7 @@ import java.util.List;
 public class DepartmentController {
 
     @Autowired
-    DepartmentService departmentService;
+    private DepartmentService departmentService;
 
     @PostMapping("/create")
     public DepartmentDto create(@RequestBody DepartmentDto departmentDto){

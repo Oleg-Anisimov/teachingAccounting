@@ -14,7 +14,7 @@ import java.util.List;
 public class PromotionQualificationLevelController {
 
     @Autowired
-    PromotionQualificationLevelService promotionQualificationLevelService;
+    private PromotionQualificationLevelService promotionQualificationLevelService;
 
     @PostMapping("/create")
     public PromotionQualificationLevelDto create(@RequestBody PromotionQualificationLevelDto promotionQualificationLevelDto) {

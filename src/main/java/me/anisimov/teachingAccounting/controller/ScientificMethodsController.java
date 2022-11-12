@@ -14,7 +14,7 @@ import java.util.List;
 public class ScientificMethodsController {
 
     @Autowired
-    ScientificMethodsService scientificMethodsService;
+    private ScientificMethodsService scientificMethodsService;
 
     @PostMapping("/create")
     public ScientificMethodsDto create(@RequestBody ScientificMethodsDto scientificMethods) {

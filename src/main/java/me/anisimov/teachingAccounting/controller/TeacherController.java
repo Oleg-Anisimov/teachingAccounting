@@ -5,10 +5,7 @@ import me.anisimov.teachingAccounting.dto.TeacherDto;
 import me.anisimov.teachingAccounting.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class TeacherController {
     private TeacherService teacherService;
 
     @PostMapping("/create")
-    public TeacherDto create(TeacherDto teacherDto) {
+    public TeacherDto create(@RequestBody TeacherDto teacherDto) {
         return teacherService.createTeacher(teacherDto);
     }
 
@@ -30,7 +27,7 @@ public class TeacherController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity update(Teacher teacher) {
+    public ResponseEntity update(@RequestBody Teacher teacher) {
         teacherService.updateTeacher(teacher);
         return ResponseEntity.ok().build();
     }

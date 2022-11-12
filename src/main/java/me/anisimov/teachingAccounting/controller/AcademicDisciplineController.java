@@ -5,10 +5,7 @@ import me.anisimov.teachingAccounting.dto.AcademicDisciplineDto;
 import me.anisimov.teachingAccounting.service.AcademicDisciplineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +17,7 @@ public class AcademicDisciplineController {
     private AcademicDisciplineService academicDisciplineService;
 
     @PostMapping("/create")
-    public AcademicDisciplineDto create(AcademicDisciplineDto academicDisciplineDto) {
+    public AcademicDisciplineDto create(@RequestBody AcademicDisciplineDto academicDisciplineDto) {
         return academicDisciplineService.createAcademicDiscipline(academicDisciplineDto);
     }
 
@@ -31,7 +28,7 @@ public class AcademicDisciplineController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity update(AcademicDiscipline academicDiscipline) {
+    public ResponseEntity update(@RequestBody AcademicDiscipline academicDiscipline) {
         academicDisciplineService.updateAcademicDiscipline(academicDiscipline);
         return ResponseEntity.ok().build();
     }

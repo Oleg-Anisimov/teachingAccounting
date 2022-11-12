@@ -1,7 +1,8 @@
 <template>
   <header class="global_header">
     <h1>
-      ГБПОУ ОК "Юго-Запад"
+      Государственное бюджетное профессиональное образовательное учреждение города Москвы <br> 
+      «Образовательный комплекс «Юго-Запад» <br> Индивидуальный план педагогического работника
     </h1>
   </header>
 </template>
@@ -12,10 +13,18 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-  .global_header
-    height 100px;
-    background-color royalblue;
-    color #f2f2f2;
-    font-size 2em;
+<style scoped>
+  .global_header{
+    height: 120px;
+    background-color: royalblue;
+    color: #f2f2f2;
+    font-size: 1.4em;
+    text-align: center;
+    justify-content: center;
+ }   
+ .global_header h1{
+  line-height: 1.4em;
+  padding: 0 10em;
+  text-align: center;
+ }
 </style>

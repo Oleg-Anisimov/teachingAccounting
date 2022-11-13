@@ -24,7 +24,7 @@ public class AcademicProductionService {
         academicProduction.setId(academicProductionDto.getId());
         academicProduction.setDate(academicProductionDto.getDate());
         academicProduction.setResult(academicProductionDto.getResult());
-        academicProduction.setAcademicMethodActivityForm(academicProductionDto.getAcademicMethodActivityForm());
+        academicProduction.setAcademicProductionActivityForm(academicProductionDto.getAcademicProductionActivityForm());
         academicProduction.setSpecialization(academicProductionDto.getSpecialization());
         academicProduction.setActivityType(academicProductionDto.getActivityType());
         academicProduction.setCabinetType(academicProductionDto.getCabinetType());

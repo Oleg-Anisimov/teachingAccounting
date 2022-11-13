@@ -17,13 +17,14 @@ public class DepartmentService {
     @Autowired
     DepartmentRepository departmentRepository;
     @Autowired
+    TeacherService teacherService;
+    @Autowired
     DozerBeanMapper mapper;
 
     public DepartmentDto createDepartment(DepartmentDto departmentDto) {
         Department department = new Department();
         department.setId(departmentDto.getId());
         department.setName(departmentDto.getName());
-        department.setTeachers(departmentDto.getTeachers());
         departmentRepository.save(department);
         return mapper.map(department, DepartmentDto.class);
     }

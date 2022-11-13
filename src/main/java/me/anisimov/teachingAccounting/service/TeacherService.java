@@ -3,6 +3,7 @@ package me.anisimov.teachingAccounting.service;
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.Teacher;
 import me.anisimov.teachingAccounting.dto.TeacherDto;
+import me.anisimov.teachingAccounting.repository.DepartmentRepository;
 import me.anisimov.teachingAccounting.repository.TeacherRepository;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,15 @@ public class TeacherService {
     @Autowired
     private TeacherRepository teacherRepository;
     @Autowired
+    private DepartmentRepository departmentRepository;
+    @Autowired
     private DozerBeanMapper mapper;
 
     public TeacherDto createTeacher(TeacherDto teacherDto) {
         Teacher teacher = new Teacher();
         teacher.setId(teacherDto.getId());
         teacher.setCategory(teacherDto.getCategory());
-        teacher.setDepartment(teacherDto.getDepartment());
+        teacher.setDepartment(departmentRepository.getReferenceById(teacherDto.getDepartmentId()));
         teacher.setFirstName(teacherDto.getFirstName());
         teacher.setMiddleName(teacherDto.getMiddleName());
         teacher.setLastName(teacher.getLastName());

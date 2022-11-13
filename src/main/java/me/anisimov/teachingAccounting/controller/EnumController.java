@@ -1,5 +1,6 @@
 package me.anisimov.teachingAccounting.controller;
 
+import io.swagger.annotations.Api;
 import me.anisimov.teachingAccounting.service.EnumsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/enum")
+@Api(value = "TeacherController",tags = {"Методы для работы с Enums"})
 public class EnumController {
 
     @Autowired

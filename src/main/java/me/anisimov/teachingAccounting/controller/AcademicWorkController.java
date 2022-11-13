@@ -1,5 +1,6 @@
 package me.anisimov.teachingAccounting.controller;
 
+import io.swagger.annotations.Api;
 import me.anisimov.teachingAccounting.domain.AcademicWork;
 import me.anisimov.teachingAccounting.dto.AcademicWorkDto;
 import me.anisimov.teachingAccounting.service.AcademicWorkService;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/work")
+@Api(value = "TeacherController",tags = {"Методы для работы с учебной работой"})
 public class AcademicWorkController {
 
     @Autowired

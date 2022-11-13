@@ -22,5 +22,5 @@ public class TeacherDto {
     private EmploymentType employmentType;
     private Position position;
     private Category category;
-    private Department department;
+    private Long departmentId;
 }

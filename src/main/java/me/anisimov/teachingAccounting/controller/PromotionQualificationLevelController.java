@@ -1,5 +1,6 @@
 package me.anisimov.teachingAccounting.controller;
 
+import io.swagger.annotations.Api;
 import me.anisimov.teachingAccounting.domain.PromotionQualificationLevel;
 import me.anisimov.teachingAccounting.dto.PromotionQualificationLevelDto;
 import me.anisimov.teachingAccounting.service.PromotionQualificationLevelService;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/promotion")
+@Api(value = "TeacherController",tags = {"Методы для работы с повышением уровня квалификации"})
 public class PromotionQualificationLevelController {
 
     @Autowired

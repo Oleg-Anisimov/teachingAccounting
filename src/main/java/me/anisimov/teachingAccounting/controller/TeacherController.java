@@ -1,5 +1,8 @@
 package me.anisimov.teachingAccounting.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Tag;
 import me.anisimov.teachingAccounting.domain.Teacher;
 import me.anisimov.teachingAccounting.dto.TeacherDto;
 import me.anisimov.teachingAccounting.service.TeacherService;
@@ -11,11 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/teacher")
+@Api(value = "TeacherController",tags = {"Методы для работы с преподователями"})
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
     @PostMapping("/create")
+
     public TeacherDto create(@RequestBody TeacherDto teacherDto) {
         return teacherService.createTeacher(teacherDto);
     }

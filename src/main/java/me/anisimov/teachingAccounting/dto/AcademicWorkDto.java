@@ -19,6 +19,6 @@ public class AcademicWorkDto {
     private PlanAndFact firstSemester;
     private PlanAndFact secondSemester;
     private PlanAndFact academicYear;
-    private Specialization specialization;
-    private AcademicDiscipline academicDiscipline;
+    private Long specializationId;
+    private Long academicDisciplineId;
 }

@@ -17,6 +17,8 @@ public class AcademicProductionService {
     @Autowired
     private AcademicProductionRepository academicProductionRepository;
     @Autowired
+    private SpecializationService specializationService;
+    @Autowired
     private DozerBeanMapper mapper;
 
     public AcademicProductionDto createAcademicProduction(AcademicProductionDto academicProductionDto) {
@@ -25,7 +27,7 @@ public class AcademicProductionService {
         academicProduction.setDate(academicProductionDto.getDate());
         academicProduction.setResult(academicProductionDto.getResult());
         academicProduction.setAcademicProductionActivityForm(academicProductionDto.getAcademicProductionActivityForm());
-        academicProduction.setSpecialization(academicProductionDto.getSpecialization());
+        academicProduction.setSpecialization(specializationService.getById(academicProductionDto.getSpecializationId()));
         academicProduction.setActivityType(academicProductionDto.getActivityType());
         academicProduction.setCabinetType(academicProductionDto.getCabinetType());
         academicProduction.setCabinetName(academicProductionDto.getCabinetName());

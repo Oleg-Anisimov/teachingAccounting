@@ -17,15 +17,19 @@ public class AcademicMethodsService {
     @Autowired
     private AcademicMethodsRepository academicMethodsRepository;
     @Autowired
+    private SpecializationService specializationService;
+    @Autowired
+    private AcademicDisciplineService academicDisciplineService;
+    @Autowired
     private DozerBeanMapper mapper;
 
     public AcademicMethodsDto createAcademicMethods(AcademicMethodsDto academicMethodsDto) {
         AcademicMethods academicMethods = new AcademicMethods();
         academicMethods.setId(academicMethodsDto.getId());
-        academicMethods.setAcademicDiscipline(academicMethodsDto.getAcademicDiscipline());
+        academicMethods.setAcademicDiscipline(academicDisciplineService.getById(academicMethodsDto.getAcademicDisciplineId()));
         academicMethods.setAcademicMethodActivityForm(academicMethodsDto.getAcademicMethodActivityForm());
         academicMethods.setAcademicMethodActivityType(academicMethodsDto.getAcademicMethodActivityType());
-        academicMethods.setSpecialization(academicMethodsDto.getSpecialization());
+        academicMethods.setSpecialization(specializationService.getById(academicMethodsDto.getSpecializationId()));
         academicMethods.setActivityType(academicMethodsDto.getActivityType());
         academicMethods.setDeadLine(academicMethodsDto.getDeadLine());
         academicMethods.setCompleteInfo(academicMethodsDto.getCompleteInfo());

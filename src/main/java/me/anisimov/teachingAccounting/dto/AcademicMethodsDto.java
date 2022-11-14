@@ -19,6 +19,6 @@ public class AcademicMethodsDto {
     private String academicMethodActivityType;
     private String academicMethodActivityForm;
     private ActivityType activityType;
-    private Specialization specialization;
-    private AcademicDiscipline academicDiscipline;
+    private Long specializationId;
+    private Long academicDisciplineId;
 }

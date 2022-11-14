@@ -16,6 +16,10 @@ public class AcademicWorkService {
     @Autowired
     private AcademicWorkRepository academicWorkRepository;
     @Autowired
+    private SpecializationService specializationService;
+    @Autowired
+    private AcademicDisciplineService academicDisciplineService;
+    @Autowired
     private DozerBeanMapper mapper;
 
     public AcademicWorkDto createAcademicWork(AcademicWorkDto academicWorkDto) {
@@ -25,8 +29,8 @@ public class AcademicWorkService {
         academicWork.setAcademicYear(academicWorkDto.getAcademicYear());
         academicWork.setFirstSemester(academicWorkDto.getFirstSemester());
         academicWork.setSecondSemester(academicWorkDto.getSecondSemester());
-        academicWork.setAcademicDiscipline(academicWorkDto.getAcademicDiscipline());
-        academicWork.setSpecialization(academicWorkDto.getSpecialization());
+        academicWork.setAcademicDiscipline(academicDisciplineService.getById(academicWorkDto.getAcademicDisciplineId()));
+        academicWork.setSpecialization(specializationService.getById(academicWorkDto.getSpecializationId()));
         academicWork.setAbsoluteResults(academicWorkDto.getAbsoluteResults());
         academicWork.setQualityResults(academicWorkDto.getQualityResults());
         academicWork.setIncompleteReason(academicWorkDto.getIncompleteReason());

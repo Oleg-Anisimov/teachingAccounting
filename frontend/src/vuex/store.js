@@ -2,7 +2,6 @@ import Teacher from "../model/teacher";
 import {createStore} from "vuex";
 import axios from "axios";
 
-
 let store = createStore({
     state: {
         teacher: new Teacher('Рамзия', 'Маняхина', 'Накиповна'),
@@ -14,10 +13,11 @@ let store = createStore({
     },
     actions: {
         LOAD_ENUMS({commit}) {
-            let url = 'http://localhost:8080/enum'
+            let url = '/api/enum'
             return axios(url, { method: 'GET'})
                 .then((enums) => {
-                    commit('SET_ENUMS', enums)
+                    commit('SET_ENUMS', enums.data)
+                    return enums
                 })
                 .catch((error) => { console.log(error) })
         }

@@ -95,7 +95,7 @@ public class DataBaseInitializer {
 
     private List<OrganizedMethods> getOrganizedMethods() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("OrganizedMethods.json.json").getFile());
+        File resource = new File(this.getClass().getClassLoader().getResource("OrganizedMethods.json").getFile());
         String json = new String(Files.readAllBytes(resource.toPath()));
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
@@ -179,7 +179,7 @@ public class DataBaseInitializer {
 
     private List<AcademicDiscipline> getAcademicDisciplines() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("AcademicDiscipline.json.json").getFile());
+        File resource = new File(this.getClass().getClassLoader().getResource("AcademicDiscipline.json").getFile());
         String json = new String(Files.readAllBytes(resource.toPath()));
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();

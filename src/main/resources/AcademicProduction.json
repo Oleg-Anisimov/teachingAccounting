@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2022-11-15",
+    "result": "Cool",
+    "academicProductionActivityForm": "Che-to, poka hz",
+    "cabinetType": "CABINET",
+    "cabinetName": "316",
+    "activityType": "DEVELOPMENT",
+    "specializationId": 0
+  },
+  {
+    "date": "2022-11-13",
+    "result": "Cool",
+    "academicProductionActivityForm": "Che-to, poka hz",
+    "cabinetType": "LABORATORY",
+    "cabinetName": "Breaking Bad",
+    "activityType": "REALIZATION",
+    "specializationId": 2
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "groupName": "ИС-31д",
+    "incompleteReason": null,
+    "absoluteResults": 5.0,
+    "qualityResults": 5.0,
+    "firstSemester": ["Che-to","Che-to 2"],
+    "secondSemester": ["Che-to 3","Che-to 4"],
+    "academicYear": "Che-to v celom",
+    "specializationId": 0,
+    "academicDisciplineId": 0
+  },
+  {
+    "groupName": "ИС-31-1",
+    "incompleteReason": "Мало времени",
+    "absoluteResults": 5.0,
+    "qualityResults": 3.5,
+    "firstSemester": ["Che-to","Che-to 2"],
+    "secondSemester": ["Che-to 3","Che-to 4"],
+    "academicYear": "Hz chto v celom",
+    "specializationId": 1,
+    "academicDisciplineId": 1
+  }
+]

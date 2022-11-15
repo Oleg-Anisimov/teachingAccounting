@@ -1,0 +1,20 @@
+[
+  {
+    "date": "2022-11-15",
+    "result": "Good",
+    "eventType": "VICTORINE",
+    "eventName": "The loop B",
+    "studentInformation": null,
+    "eventLevel": "COLLEGE",
+    "activityType": "PARTICIPATION"
+  },
+  {
+    "date": "2022-11-01",
+    "result": "Bad",
+    "eventType": "MEETING",
+    "eventName": "Assembler",
+    "studentInformation": null,
+    "eventLevel": "NATIONAL",
+    "activityType": "PARTICIPATION"
+  }
+]

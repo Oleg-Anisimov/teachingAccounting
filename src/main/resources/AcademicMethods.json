@@ -1,0 +1,20 @@
+[
+  {
+    "deadLine": "2022-12-01",
+    "completeInfo": "https://youtu.be/OPkjnRIdQXQ",
+    "academicMethodActivityType": null,
+    "academicMethodActivityForm": null,
+    "activityType": "PARTICIPATION",
+    "specializationId": 0,
+    "academicDisciplineId": 0
+  },
+  {
+    "deadLine": "2023-02-05",
+    "completeInfo": "https://youtu.be/OPkjnRIdQXQ",
+    "academicMethodActivityType": null,
+    "academicMethodActivityForm": null,
+    "activityType": "PARTICIPATION_PREPARE",
+    "specializationId": 1,
+    "academicDisciplineId": 1
+  }
+]

@@ -21,7 +21,7 @@ create table if not exists academic_methods
         constraint fkfvfon5jaw36leq4n4th07i2ql
             references specialization
 );
-create table academic_production
+create table if not exists academic_production
 (
     id                                bigint not null
         primary key,
@@ -35,7 +35,7 @@ create table academic_production
         constraint fksn2cxxywymmauyosah8jqpwew
             references specialization
 );
-create sequence academic_production_seq
+create sequence if not exists academic_production_seq
     increment by 50;
 create sequence if not exists methods_work_seq
     increment by 50;

@@ -21,6 +21,22 @@ create table if not exists academic_methods
         constraint fkfvfon5jaw36leq4n4th07i2ql
             references specialization
 );
+create table academic_production
+(
+    id                                bigint not null
+        primary key,
+    academic_production_activity_form varchar(255),
+    activity_type                     varchar(255),
+    cabinet_name                      varchar(255),
+    cabinet_type                      varchar(255),
+    date                              date,
+    result                            varchar(255),
+    specialization_id                 bigint not null
+        constraint fksn2cxxywymmauyosah8jqpwew
+            references specialization
+);
+create sequence academic_production_seq
+    increment by 50;
 create sequence if not exists methods_work_seq
     increment by 50;
 create table if not exists academic_work
@@ -47,6 +63,63 @@ create table if not exists department
     name varchar(255)
 );
 create sequence if not exists department_seq
+    increment by 50;
+create table if not exists educate
+(
+    id                  bigint not null
+        primary key,
+    activity_type       varchar(255),
+    date                date,
+    event_level         varchar(255),
+    event_name          varchar(255),
+    event_type          varchar(255),
+    result              varchar(255),
+    student_information varchar(255),
+    work_vector         varchar(255)
+);
+create sequence if not exists educate_seq
+    increment by 50;
+create table if not exists organized_methods
+(
+    id                  bigint not null
+        primary key,
+    activity_type       varchar(255),
+    date                date,
+    event_level         varchar(255),
+    event_name          varchar(255),
+    event_type          varchar(255),
+    result              varchar(255),
+    student_information varchar(255)
+);
+create sequence if not exists organized_methods_seq
+    increment by 50;
+create table if not exists promotion_qualification_level
+(
+    id                 bigint not null
+        primary key,
+    date               date,
+    document_or_result varchar(255),
+    place              varchar(255),
+    promotion_form     varchar(255),
+    topic              varchar(255)
+);
+create sequence if not exists promotion_qualification_level_seq
+    increment by 50;
+create table if not exists scientific_methods
+(
+    id                  bigint not null
+        primary key,
+    activity_type       varchar(255),
+    date                date,
+    event_level         varchar(255),
+    event_name          varchar(255),
+    event_type          varchar(255),
+    participation_type  varchar(255),
+    place               varchar(255),
+    result              varchar(255),
+    student_information varchar(255)
+);
+create sequence if not exists scientific_methods_seq
     increment by 50;
 create table if not exists specialization
 (

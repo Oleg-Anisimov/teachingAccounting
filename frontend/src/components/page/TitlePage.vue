@@ -20,37 +20,26 @@
         <div class="ui-input">
           <label for="input-last-name">Тип сотрудника</label>
           <select class="ui-select" name="select-XcA1">
-            <option value="option0" selected disabled>Отсутсвует</option>
-            <option value="option1">option 1</option>
-            <option value="option2">option 2</option>
-            <option value="option3">option 3</option>
+            <option v-for="employmentType in GET_EMPLOYMENT_TYPES()" :key="employmentType" :value="employmentType">{{employmentType}}</option>
           </select>
         </div>
         <div class="ui-input">
           <label for="input-last-name">Отделение</label>
           <select class="ui-select" name="select-XcA1">
-            <option value="option0" selected disabled>Отсутсвует</option>
-            <option value="option1">option 1</option>
-            <option value="option2">option 2</option>
-            <option value="option3">option 3</option>
+            <option v-for="departament in GET_ALL_DEPARTAMENTS()" :value="departament" :key="departament.id">{{departament.name}}</option>
+            <!-- <option v-for="name in GET_DEPARTAMENT_NAMES()" :value="name" :key="name">{{name}}</option> -->
           </select>
         </div>
         <div class="ui-input">
           <label for="input-last-name">Должность</label>
           <select class="ui-select" name="select-XcA1">
-            <option value="option0" selected disabled>Отсутсвует</option>
-            <option value="option1">option 1</option>
-            <option value="option2">option 2</option>
-            <option value="option3">option 3</option>
+            <option v-for="position in GET_POSITIONS()" :key="position" :value="position">{{position}}</option>
           </select>
         </div>
         <div class="ui-input">
           <label for="input-last-name">Категория</label>
           <select class="ui-select" name="select-XcA1">
-            <option value="option0" selected disabled>Без категории</option>
-            <option value="option1">option 1</option>
-            <option value="option2">option 2</option>
-            <option value="option3">option 3</option>
+            <option v-for="category in GET_TEACHER_CATEGORIES()" :key="category" :value="category">{{category}}</option>
           </select>
         </div>
         <!-- DATE -->
@@ -68,11 +57,31 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
   name: "TitlePage",
   props: [
-      'teacher'
-  ]
+      'teacher',
+  ],  
+  methods: {
+    ...mapActions([
+      'LOAD_ENUMS',
+      'LOAD_DEPARTAMENTS'
+    ]),
+    ...mapGetters([
+      'GET_ENUMS',
+      'GET_TEACHER_CATEGORIES',
+      'GET_EMPLOYMENT_TYPES',
+      'GET_POSITIONS',
+      'GET_ALL_DEPARTAMENTS',
+      // 'GET_DEPARTAMENT_NAMES'
+    ]),
+  },
+  mounted(){
+    this.LOAD_ENUMS()
+    this.LOAD_DEPARTAMENTS()
+  },
 }
 </script>
 

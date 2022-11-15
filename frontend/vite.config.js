@@ -8,11 +8,13 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://stg.alov.dev',
+        target: 'https://stg.alov.dev',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       },
     },
+    port: 82,
+    host: "localhost",
   },
   plugins: [vue()],
   resolve: {

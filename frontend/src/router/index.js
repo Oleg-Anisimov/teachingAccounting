@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import TitlePage from "../components/page/TitlePage.vue";
 import HomePage from "../components/page/HomePage.vue";
+import AcademicWorkPage from "../components/page/AcademicWorkPage.vue";
 import store from "../vuex/store";
 import Teacher from "../model/teacher";
 
@@ -22,6 +23,11 @@ const router = createRouter({
         teacher: store.getters.GET_TEACHER
       }
     },
+    {
+      path: '/academic-work',
+      name: 'academic-work',
+      component: AcademicWorkPage,
+    }
   ]
 })
 

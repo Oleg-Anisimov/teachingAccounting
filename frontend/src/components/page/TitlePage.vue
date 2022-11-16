@@ -1,4 +1,3 @@
-
 <template>
   <div class="title_page">
     <h1>Титульная страница</h1>

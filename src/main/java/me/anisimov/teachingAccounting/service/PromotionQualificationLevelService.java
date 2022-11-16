@@ -5,6 +5,7 @@ import me.anisimov.teachingAccounting.domain.PromotionQualificationLevel;
 import me.anisimov.teachingAccounting.dto.PromotionQualificationLevelDto;
 import me.anisimov.teachingAccounting.repository.PromotionQualificationLevelRepository;
 import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,9 @@ import java.util.List;
 public class PromotionQualificationLevelService {
 
     @Autowired
-    PromotionQualificationLevelRepository promotionQualificationLevelRepository;
+    private PromotionQualificationLevelRepository promotionQualificationLevelRepository;
     @Autowired
-    DozerBeanMapper mapper;
+    private ModelMapper mapper;
 
     public PromotionQualificationLevelDto createPromotionQualificationLevel(PromotionQualificationLevelDto promotionQualificationLevelDto) {
         PromotionQualificationLevel promotionQualificationLevel = new PromotionQualificationLevel();

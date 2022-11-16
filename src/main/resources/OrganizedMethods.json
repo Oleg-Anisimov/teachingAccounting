@@ -1,0 +1,20 @@
+[
+  {
+    "date": "",
+    "result": "Good",
+    "eventType": "VICTORINE",
+    "eventName": "The loop B",
+    "studentInformation": null,
+    "eventLevel": "COLLEGE",
+    "activityType": "PARTICIPATION"
+  },
+  {
+    "date": "",
+    "result": "Bad",
+    "eventType": "MEETING",
+    "eventName": "Assembler",
+    "studentInformation": null,
+    "eventLevel": "NATIONAL",
+    "activityType": "PARTICIPATION"
+  }
+]

@@ -3,7 +3,7 @@ package me.anisimov.teachingAccounting.domain.Enums;
 public enum EventLevel {
 
     INTERNATIONAL,
-    ALL_RUSSIAN,
+    NATIONAL,
     REGIONAL,
     URBAN,
     UNIVERSITY,

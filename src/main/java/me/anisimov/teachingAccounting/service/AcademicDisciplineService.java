@@ -5,6 +5,7 @@ import me.anisimov.teachingAccounting.domain.AcademicDiscipline;
 import me.anisimov.teachingAccounting.dto.AcademicDisciplineDto;
 import me.anisimov.teachingAccounting.repository.AcademicDisciplineRepository;
 import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class AcademicDisciplineService {
     @Autowired
     private AcademicDisciplineRepository academicDisciplineRepository;
     @Autowired
-    private DozerBeanMapper mapper;
+    private ModelMapper mapper;
 
     public AcademicDisciplineDto createAcademicDiscipline(AcademicDisciplineDto academicDisciplineDto) {
         AcademicDiscipline academicDiscipline = new AcademicDiscipline();

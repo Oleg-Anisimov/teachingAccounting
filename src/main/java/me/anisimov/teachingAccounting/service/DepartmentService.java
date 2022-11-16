@@ -5,6 +5,7 @@ import me.anisimov.teachingAccounting.domain.Department;
 import me.anisimov.teachingAccounting.dto.DepartmentDto;
 import me.anisimov.teachingAccounting.repository.DepartmentRepository;
 import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +16,11 @@ import java.util.List;
 public class DepartmentService {
 
     @Autowired
-    DepartmentRepository departmentRepository;
+    private DepartmentRepository departmentRepository;
     @Autowired
-    TeacherService teacherService;
+    private TeacherService teacherService;
     @Autowired
-    DozerBeanMapper mapper;
+    private ModelMapper mapper;
 
     public DepartmentDto createDepartment(DepartmentDto departmentDto) {
         Department department = new Department();

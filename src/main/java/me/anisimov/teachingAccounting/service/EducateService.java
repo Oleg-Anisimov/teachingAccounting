@@ -5,6 +5,7 @@ import me.anisimov.teachingAccounting.domain.Educate;
 import me.anisimov.teachingAccounting.dto.EducateDto;
 import me.anisimov.teachingAccounting.repository.EducateRepository;
 import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,9 @@ import java.util.List;
 public class EducateService {
 
     @Autowired
-    EducateRepository educateRepository;
+    private EducateRepository educateRepository;
     @Autowired
-    DozerBeanMapper mapper;
+    private ModelMapper mapper;
 
     public EducateDto createEducate(EducateDto educateDto) {
         Educate educate = new Educate();

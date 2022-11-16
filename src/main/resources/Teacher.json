@@ -1,0 +1,22 @@
+[
+  {
+    "firstName": "Андрей",
+    "lastName": "Андреевич",
+    "middleName": "Андреев",
+    "certificationDate": "2022-11-15",
+    "employmentType": "INNER_REGULAR_PART_TIME_WORKER",
+    "position": "TEACHER",
+    "category": "FIRST_CATEGORY",
+    "departmentId": 1
+  },
+  {
+    "firstName": "Елена",
+    "lastName": "Олеговна",
+    "middleName": "Еленова",
+    "certificationDate": "2020-03-10",
+    "employmentType": "REGULAR",
+    "position": "DIRECTOR",
+    "category": "HIGHEST_CATEGORY",
+    "departmentId": 2
+  }
+]

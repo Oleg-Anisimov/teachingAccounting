@@ -9,6 +9,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      alias: '/manual',
       name: 'home',
       component: HomePage
 
@@ -20,7 +21,7 @@ const router = createRouter({
       props: {
         teacher: store.getters.GET_TEACHER
       }
-    }
+    },
   ]
 })
 

@@ -1,6 +1,5 @@
 <template>
   <div class="header_nav">
-    <p><router-link to="/">Home</router-link></p>
     <p><router-link to="/title">Титульный лист</router-link></p>
     <p><a href="/#">Учебная работа</a></p>
     <p><a href="/#">Учебно-методическая работа</a></p>

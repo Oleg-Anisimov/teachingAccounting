@@ -5,6 +5,7 @@ import me.anisimov.teachingAccounting.domain.AcademicMethods;
 import me.anisimov.teachingAccounting.dto.AcademicMethodsDto;
 import me.anisimov.teachingAccounting.repository.AcademicMethodsRepository;
 import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class AcademicMethodsService {
     @Autowired
     private AcademicDisciplineService academicDisciplineService;
     @Autowired
-    private DozerBeanMapper mapper;
+    private ModelMapper mapper;
 
     public AcademicMethodsDto createAcademicMethods(AcademicMethodsDto academicMethodsDto) {
         AcademicMethods academicMethods = new AcademicMethods();

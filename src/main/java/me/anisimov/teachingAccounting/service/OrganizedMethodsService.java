@@ -6,6 +6,7 @@ import me.anisimov.teachingAccounting.domain.Teacher;
 import me.anisimov.teachingAccounting.dto.OrganizedMethodsDto;
 import me.anisimov.teachingAccounting.repository.OrganizedMethodsRepository;
 import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,9 @@ import java.util.List;
 public class OrganizedMethodsService {
 
     @Autowired
-    OrganizedMethodsRepository organizedMethodsRepository;
+    private OrganizedMethodsRepository organizedMethodsRepository;
     @Autowired
-    DozerBeanMapper mapper;
+    private ModelMapper mapper;
 
     public OrganizedMethodsDto createOrganizedMethods(OrganizedMethodsDto organizedMethodsDto) {
         OrganizedMethods organizedMethods = new OrganizedMethods();

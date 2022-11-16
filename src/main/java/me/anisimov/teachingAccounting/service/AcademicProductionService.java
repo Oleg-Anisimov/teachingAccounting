@@ -5,6 +5,7 @@ import me.anisimov.teachingAccounting.domain.AcademicProduction;
 import me.anisimov.teachingAccounting.dto.AcademicProductionDto;
 import me.anisimov.teachingAccounting.repository.AcademicProductionRepository;
 import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class AcademicProductionService {
     @Autowired
     private SpecializationService specializationService;
     @Autowired
-    private DozerBeanMapper mapper;
+    private ModelMapper mapper;
 
     public AcademicProductionDto createAcademicProduction(AcademicProductionDto academicProductionDto) {
         AcademicProduction academicProduction = new AcademicProduction();

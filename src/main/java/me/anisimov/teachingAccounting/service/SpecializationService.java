@@ -5,6 +5,7 @@ import me.anisimov.teachingAccounting.domain.Specialization;
 import me.anisimov.teachingAccounting.dto.SpecializationDto;
 import me.anisimov.teachingAccounting.repository.SpecializationRepository;
 import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,9 @@ import java.util.List;
 public class SpecializationService {
 
     @Autowired
-    SpecializationRepository specializationRepository;
+    private SpecializationRepository specializationRepository;
     @Autowired
-    DozerBeanMapper mapper;
+    private ModelMapper mapper;
 
     public SpecializationDto createSpecialization(SpecializationDto specializationDto){
         Specialization specialization = new Specialization();

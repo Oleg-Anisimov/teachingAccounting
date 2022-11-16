@@ -5,6 +5,7 @@ import me.anisimov.teachingAccounting.domain.ScientificMethods;
 import me.anisimov.teachingAccounting.dto.ScientificMethodsDto;
 import me.anisimov.teachingAccounting.repository.ScientificMethodsRepository;
 import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,9 @@ import java.util.List;
 public class ScientificMethodsService {
 
     @Autowired
-    ScientificMethodsRepository scientificMethodsRepository;
+    private ScientificMethodsRepository scientificMethodsRepository;
     @Autowired
-    DozerBeanMapper mapper;
+    private ModelMapper mapper;
 
     public ScientificMethodsDto createScientificMethods(ScientificMethodsDto scientificMethodsDto) {
         ScientificMethods scientificMethods = new ScientificMethods();

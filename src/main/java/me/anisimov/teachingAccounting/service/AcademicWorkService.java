@@ -5,6 +5,7 @@ import me.anisimov.teachingAccounting.domain.AcademicWork;
 import me.anisimov.teachingAccounting.dto.AcademicWorkDto;
 import me.anisimov.teachingAccounting.repository.AcademicWorkRepository;
 import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class AcademicWorkService {
     @Autowired
     private AcademicDisciplineService academicDisciplineService;
     @Autowired
-    private DozerBeanMapper mapper;
+    private ModelMapper mapper;
 
     public AcademicWorkDto createAcademicWork(AcademicWorkDto academicWorkDto) {
         AcademicWork academicWork = new AcademicWork();

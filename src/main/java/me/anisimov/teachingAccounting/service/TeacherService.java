@@ -6,7 +6,9 @@ import me.anisimov.teachingAccounting.dto.TeacherDto;
 import me.anisimov.teachingAccounting.repository.DepartmentRepository;
 import me.anisimov.teachingAccounting.repository.TeacherRepository;
 import org.dozer.DozerBeanMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class TeacherService {
     @Autowired
     private DepartmentRepository departmentRepository;
     @Autowired
-    private DozerBeanMapper mapper;
+    private ModelMapper mapper;
 
     public TeacherDto createTeacher(TeacherDto teacherDto) {
         Teacher teacher = new Teacher();
@@ -28,9 +30,10 @@ public class TeacherService {
         teacher.setDepartment(departmentRepository.getReferenceById(teacherDto.getDepartmentId()));
         teacher.setFirstName(teacherDto.getFirstName());
         teacher.setMiddleName(teacherDto.getMiddleName());
-        teacher.setLastName(teacher.getLastName());
+        teacher.setLastName(teacherDto.getLastName());
         teacher.setPosition(teacherDto.getPosition());
         teacher.setEmploymentType(teacherDto.getEmploymentType());
+        teacher.setCertificationDate(teacherDto.getCertificationDate());
         teacherRepository.save(teacher);
         return mapper.map(teacher, TeacherDto.class);
     }

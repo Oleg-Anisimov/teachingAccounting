@@ -66,6 +66,7 @@ export default {
   name: "TitlePage",
   props: [
       'teacher',
+      'enums'
   ],
   methods: {
     ...mapActions([

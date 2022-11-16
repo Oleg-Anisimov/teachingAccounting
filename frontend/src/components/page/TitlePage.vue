@@ -63,7 +63,8 @@ export default {
   name: "TitlePage",
   props: [
       'teacher',
-  ],  
+      'enums'
+  ],
   methods: {
     ...mapActions([
       'LOAD_ENUMS',
@@ -92,7 +93,7 @@ export default {
 .title_page{
   padding: 0.5em 1em;
   height: 42em;
-  background-color: rgb(225, 225, 225);
+  background-color: #ececec;
 }
 .title_page h1{
   font-size: 1.5em;

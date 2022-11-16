@@ -1,6 +1,6 @@
 [
   {
-    "date": "2022-11-14",
+    "date": null,
     "result": "Good",
     "eventType": "VICTORINE",
     "eventName": "The loop C",
@@ -10,7 +10,7 @@
     "workVector": "LABOR"
   },
   {
-    "date": "2022-11-11",
+    "date": null,
     "result": "Good",
     "eventType": "MEETING",
     "eventName": "Something",

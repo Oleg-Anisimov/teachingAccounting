@@ -7,7 +7,7 @@
     "employmentType": "INNER_REGULAR_PART_TIME_WORKER",
     "position": "TEACHER",
     "category": "FIRST_CATEGORY",
-    "departmentId": 0
+    "departmentId": 1
   },
   {
     "firstName": "Елена",
@@ -17,6 +17,6 @@
     "employmentType": "REGULAR",
     "position": "DIRECTOR",
     "category": "HIGHEST_CATEGORY",
-    "departmentId": 1
+    "departmentId": 2
   }
 ]

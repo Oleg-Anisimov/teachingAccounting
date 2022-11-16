@@ -1,6 +1,6 @@
 [
   {
-    "date": "2022-11-15",
+    "date": "",
     "result": "Good",
     "eventType": "VICTORINE",
     "eventName": "The loop B",
@@ -9,7 +9,7 @@
     "activityType": "PARTICIPATION"
   },
   {
-    "date": "2022-11-01",
+    "date": "",
     "result": "Bad",
     "eventType": "MEETING",
     "eventName": "Assembler",

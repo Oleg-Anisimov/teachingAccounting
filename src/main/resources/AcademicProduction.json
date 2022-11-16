@@ -1,17 +1,17 @@
 [
   {
-    "date": "2022-11-15",
+    "date": null,
     "result": "Cool",
-    "academicProductionActivityForm": "Che-to, poka hz",
+    "academicProductionActivityForm": null,
     "cabinetType": "CABINET",
     "cabinetName": "316",
     "activityType": "DEVELOPMENT",
-    "specializationId": 0
+    "specializationId": 1
   },
   {
-    "date": "2022-11-13",
+    "date": null,
     "result": "Cool",
-    "academicProductionActivityForm": "Che-to, poka hz",
+    "academicProductionActivityForm": null,
     "cabinetType": "LABORATORY",
     "cabinetName": "Breaking Bad",
     "activityType": "REALIZATION",

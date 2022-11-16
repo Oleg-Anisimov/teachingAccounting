@@ -1,13 +1,16 @@
 [
   {
+    "id": 1,
     "specialization": "09.02.01",
     "specializationName": "Компьютерные системы и комплексы"
   },
   {
+    "id": 2,
     "specialization": "09.02.07",
     "specializationName": "Информационные системы и программирование"
   },
   {
+    "id": 3,
     "specialization": "23.02.03",
     "specializationName": "Техническое обслуживание и ремонт автомобильного транспорта"
   }

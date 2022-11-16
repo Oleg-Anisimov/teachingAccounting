@@ -39,7 +39,10 @@
         <div class="ui-input">
           <label for="input-last-name">Категория</label>
           <select class="ui-select" name="select-XcA1">
-            <option v-for="category in GET_TEACHER_CATEGORIES()" :key="category" :value="category">{{category}}</option>
+            <option selected disabled>Отсутствует</option>
+            <option v-for="category in GET_TEACHER_CATEGORIES()" :key="category" :value="category">
+              {{ $t('enum.categories.'+category) }}
+            </option>
           </select>
         </div>
         <!-- DATE -->
@@ -93,7 +96,7 @@ export default {
 .title_page{
   padding: 0.5em 1em;
   height: 42em;
-  background-color: #ececec;
+  background-color: rgb(225, 225, 225);
 }
 .title_page h1{
   font-size: 1.5em;

@@ -15,7 +15,7 @@ export default {
 
 <style scoped>
   .global_header{
-    height: 120px;
+    padding: 0.5em 0;
     background-color: royalblue;
     color: #f2f2f2;
     font-size: 1.4em;

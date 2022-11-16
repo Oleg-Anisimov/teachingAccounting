@@ -1,7 +1,7 @@
 <template>
   <div class="header_nav">
     <p><router-link to="/title">Титульный лист</router-link></p>
-    <p><a href="/#">Учебная работа</a></p>
+    <p><router-link to="/academic-work">Учебная работа</router-link></p>
     <p><a href="/#">Учебно-методическая работа</a></p>
     <p><a href="/#">Организационно-методическая работа</a></p>
     <p><a href="/#">Научно-методическая работа</a></p>
@@ -31,7 +31,7 @@ a:visited{
   color: #f2f2f2;
 }
 .header_nav{
-  height: 70px;
+  padding: 0.2em 0;
   background-color: #282828;
   color: #f2f2f2;
   text-align: center;

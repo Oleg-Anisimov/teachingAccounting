@@ -6,27 +6,27 @@
         <!-- INPUT -->
         <div class="ui-input">
           <label for="input-last-name">Фамилия</label>
-          <input id="input-last-name" type="text" :value="teacher.lastName" placeholder="Иванов" />
+          <input id="input-last-name" type="text" :value="teacher.lastName" :disabled="!editing" placeholder="Иванов" />
         </div>
         <div class="ui-input">
           <label for="input-first-name">Имя</label>
-          <input id="input-first-name" type="text" :value="teacher.firstName" placeholder="Иван" />
+          <input id="input-first-name" type="text" :value="teacher.firstName" :disabled="!editing" placeholder="Иван" />
         </div>
         <div class="ui-input">
           <label for="input-middle-name">Отчество</label>
-          <input id="input-middle-name" type="text" :value="teacher.middleName" placeholder="Иванович" />
+          <input id="input-middle-name" type="text" :value="teacher.middleName" :disabled="!editing" placeholder="Иванович" />
         </div>
         <!-- SELECT -->
         <div class="ui-input">
           <label for="input-last-name">Тип сотрудника</label>
-          <select class="ui-select" name="select-XcA1">
+          <select class="ui-select" :disabled="!editing" name="select-XcA1">
             <option selected disabled>Отсутствует</option>
             <option v-for="employmentType in GET_EMPLOYMENT_TYPES()" :key="employmentType" :value="employmentType">{{$t('enum.employmentType.' + employmentType)}}</option>
           </select>
         </div>
         <div class="ui-input">
           <label for="input-last-name">Отделение</label>
-          <select class="ui-select" name="select-XcA1">
+          <select class="ui-select" :disabled="!editing" name="select-XcA1">
             <option selected disabled>Отсутствует</option>
             <option v-for="department in GET_ALL_DEPARTMENTS()" :value="department" :key="department.id">{{department.name}}</option>
             <!-- <option v-for="name in GET_DEPARTMENT_NAMES()" :value="name" :key="name">{{name}}</option> -->
@@ -34,14 +34,14 @@
         </div>
         <div class="ui-input">
           <label for="input-last-name">Должность</label>
-          <select class="ui-select" name="select-XcA1">
+          <select class="ui-select" :disabled="!editing" name="select-XcA1">
             <option selected disabled>Отсутствует</option>
             <option v-for="position in GET_POSITIONS()" :key="position" :value="position">{{$t('enum.position.' + position)}}</option>
           </select>
         </div>
         <div class="ui-input">
           <label for="input-last-name">Категория</label>
-          <select class="ui-select" name="select-XcA1">
+          <select class="ui-select" :disabled="!editing" name="select-XcA1">
             <option selected disabled>Отсутствует</option>
             <option v-for="category in GET_TEACHER_CATEGORIES()" :key="category" :value="category">
               {{ $t('enum.categories.'+category) }}
@@ -51,11 +51,15 @@
         <!-- DATE -->
         <div class="ui-input">
           <label for="input-last-name">Дата последней аттестации</label>
-          <input id="input-last-name" type="date"/>
+          <input id="input-last-name" :disabled="!editing" type="date"/>
         </div>
         <!-- BUTTON -->
-        <div class="ui-button-group">
-          <button class="ui-button isDefault">Редактировать</button>
+        <div class="ui-button-group" v-if="!editing">
+          <button class="ui-button isDefault" @click="toggleRedacting()">Редактировать</button>
+        </div>
+        <div class="ui-button-group" v-if="editing">
+          <button class="ui-button isDefault"  @click="toggleRedacting()">Отменить</button>
+          <button class="ui-button isDefault" v-if="editing" @click="SAVE_EDITED()">Сохранить</button>
         </div>
       </div>
     </form>
@@ -69,12 +73,27 @@ export default {
   name: "TitlePage",
   props: [
       'teacher',
-      'enums'
+      'enums',
   ],
+  // computed: {
+  //   editing: false,
+  // },
+  data(){
+    return{
+      editing: false
+    }
+  },
   methods: {
+    toggleRedacting(){
+      this.editing = !this.editing
+    },
+    SAVE_EDITED(){
+      console.log('Data should be saved')
+      event.preventDefault()
+    },
     ...mapActions([
       'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS'
+      'LOAD_DEPARTMENTS',
     ]),
     ...mapGetters([
       'GET_ENUMS',

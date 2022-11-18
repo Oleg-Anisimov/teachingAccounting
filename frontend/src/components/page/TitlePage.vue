@@ -20,20 +20,23 @@
         <div class="ui-input">
           <label for="input-last-name">Тип сотрудника</label>
           <select class="ui-select" name="select-XcA1">
-            <option v-for="employmentType in GET_EMPLOYMENT_TYPES()" :key="employmentType" :value="employmentType">{{employmentType}}</option>
+            <option selected disabled>Отсутствует</option>
+            <option v-for="employmentType in GET_EMPLOYMENT_TYPES()" :key="employmentType" :value="employmentType">{{$t('enum.employmentType.' + employmentType)}}</option>
           </select>
         </div>
         <div class="ui-input">
           <label for="input-last-name">Отделение</label>
           <select class="ui-select" name="select-XcA1">
-            <option v-for="departament in GET_ALL_DEPARTAMENTS()" :value="departament" :key="departament.id">{{departament.name}}</option>
-            <!-- <option v-for="name in GET_DEPARTAMENT_NAMES()" :value="name" :key="name">{{name}}</option> -->
+            <option selected disabled>Отсутствует</option>
+            <option v-for="department in GET_ALL_DEPARTMENTS()" :value="department" :key="department.id">{{department.name}}</option>
+            <!-- <option v-for="name in GET_DEPARTMENT_NAMES()" :value="name" :key="name">{{name}}</option> -->
           </select>
         </div>
         <div class="ui-input">
           <label for="input-last-name">Должность</label>
           <select class="ui-select" name="select-XcA1">
-            <option v-for="position in GET_POSITIONS()" :key="position" :value="position">{{position}}</option>
+            <option selected disabled>Отсутствует</option>
+            <option v-for="position in GET_POSITIONS()" :key="position" :value="position">{{$t('enum.position.' + position)}}</option>
           </select>
         </div>
         <div class="ui-input">
@@ -71,20 +74,20 @@ export default {
   methods: {
     ...mapActions([
       'LOAD_ENUMS',
-      'LOAD_DEPARTAMENTS'
+      'LOAD_DEPARTMENTS'
     ]),
     ...mapGetters([
       'GET_ENUMS',
       'GET_TEACHER_CATEGORIES',
       'GET_EMPLOYMENT_TYPES',
       'GET_POSITIONS',
-      'GET_ALL_DEPARTAMENTS',
-      // 'GET_DEPARTAMENT_NAMES'
+      'GET_ALL_DEPARTMENTS',
+      // 'GET_DEPARTMENT_NAMES'
     ]),
   },
   mounted(){
     this.LOAD_ENUMS()
-    this.LOAD_DEPARTAMENTS()
+    this.LOAD_DEPARTMENTS()
   },
 }
 </script>
@@ -95,7 +98,6 @@ export default {
 }
 .title_page{
   padding: 0.5em 1em;
-  height: 42em;
   background-color: rgb(225, 225, 225);
 }
 .title_page h1{

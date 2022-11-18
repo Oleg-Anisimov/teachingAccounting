@@ -6,7 +6,7 @@ let store = createStore({
     state: {
         teacher: new Teacher('Рамзия', 'Маняхина', 'Накиповна'),
         enums: {},
-        departaments: []
+        departments: []
     },
     mutations: {
         SET_ENUMS: (state, enums) => {
@@ -15,8 +15,8 @@ let store = createStore({
             state.enums.employmentType = enums.EmploymentType
             state.enums.position = enums.Position
         },
-        SET_DEPARTAMENTS: (state, departaments) => {
-            state.departaments = departaments
+        SET_DEPARTMENTS: (state, departments) => {
+            state.departments = departments
         }
     },
     actions: {
@@ -29,12 +29,12 @@ let store = createStore({
                 })
                 .catch((error) => { console.log(error) })
         },
-        LOAD_DEPARTAMENTS({commit}){
+        LOAD_DEPARTMENTS({commit}){
             let url = '/api/department/all'
             return axios(url, { method: 'GET'})
-            .then((departaments) => {
-                commit('SET_DEPARTAMENTS', departaments.data)
-                return departaments.data
+            .then((departments) => {
+                commit('SET_DEPARTMENTS', departments.data)
+                return departments.data
             })
             .catch((error) => {
                 console.log(error)
@@ -58,12 +58,9 @@ let store = createStore({
         GET_POSITIONS(state){
             return state.enums.position
         },
-        GET_ALL_DEPARTAMENTS(state){
-            return state.departaments
+        GET_ALL_DEPARTMENTS(state){
+            return state.departments
         },
-        // GET_DEPARTAMENT_NAMES(state){
-        //     return state.departaments[state.departaments.id].name
-        // }
     },
 })
 

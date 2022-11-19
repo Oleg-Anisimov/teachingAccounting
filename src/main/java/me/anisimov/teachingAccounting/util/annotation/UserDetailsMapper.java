@@ -2,10 +2,12 @@ package me.anisimov.teachingAccounting.util.annotation;
 
 import me.anisimov.teachingAccounting.domain.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.List;
 
 @Component
 public class UserDetailsMapper {
@@ -15,7 +17,7 @@ public class UserDetailsMapper {
 
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
-                return null;
+                return List.of(new SimpleGrantedAuthority(user.getRole().getRoleName()));
             }
 
             @Override

@@ -19,8 +19,8 @@ public class EducateController {
     private EducateService educateService;
 
     @PostMapping("/create")
-    public EducateDto create(@RequestBody EducateDto departmentDto){
-        return educateService.createEducate(departmentDto);
+    public EducateDto create(@RequestBody EducateDto educateDto){
+        return educateService.createEducate(educateDto);
     }
 
     @GetMapping("/delete")

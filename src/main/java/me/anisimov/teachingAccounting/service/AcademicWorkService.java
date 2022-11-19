@@ -21,12 +21,14 @@ public class AcademicWorkService {
     @Autowired
     private AcademicDisciplineService academicDisciplineService;
     @Autowired
+    private GroupService groupService;
+    @Autowired
     private ModelMapper mapper;
 
     public AcademicWorkDto createAcademicWork(AcademicWorkDto academicWorkDto) {
         AcademicWork academicWork = new AcademicWork();
         academicWork.setId(academicWorkDto.getId());
-        academicWork.setGroupName(academicWorkDto.getGroupName());
+        academicWork.setGroup(groupService.getById(academicWorkDto.getGroupId()));
         academicWork.setAcademicYear(academicWorkDto.getAcademicYear());
         academicWork.setFirstSemester(academicWorkDto.getFirstSemester());
         academicWork.setSecondSemester(academicWorkDto.getSecondSemester());

@@ -12,7 +12,6 @@ import me.anisimov.teachingAccounting.domain.Specialization;
 @AllArgsConstructor
 public class AcademicWorkDto {
     private Long id;
-    private String groupName;
     private String incompleteReason;
     private Float absoluteResults;
     private Float qualityResults;
@@ -21,4 +20,5 @@ public class AcademicWorkDto {
     private PlanAndFact academicYear;
     private Long specializationId;
     private Long academicDisciplineId;
+    private Long groupId;
 }

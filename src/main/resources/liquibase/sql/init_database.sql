@@ -7,6 +7,14 @@ create table if not exists academic_discipline
 );
 create sequence if not exists academic_discipline_seq
     increment by 50;
+create table if not exists groups
+(
+    id         bigint not null
+        primary key,
+    group_name varchar(255)
+);
+create sequence if not exists group_seq
+    increment by 50;
 create table if not exists roles
 (
     id        bigint not null
@@ -40,6 +48,31 @@ create table if not exists academic_methods
 );
 create sequence if not exists methods_work_seq
     increment by 50;
+create table if not exists academic_work
+(
+    id                         bigint not null
+        primary key,
+    absolute_results           real,
+    academic_year_semestr_fact varchar(255),
+    academic_year_semestr_plan varchar(255),
+    first_semestr_fact         varchar(255),
+    first_semestr_plan         varchar(255),
+    incomplete_reason          varchar(255),
+    quality_results            real,
+    second_semestr_fact        varchar(255),
+    second_semestr_plan        varchar(255),
+    academic_discipline_id     bigint not null
+        constraint fkkkkpm2fh5am9x0ecnh5mmj91i
+            references academic_discipline,
+    group_id                   bigint not null
+        constraint fklctm3keifp2bxjw26bo7riyj6
+            references groups,
+    specialization_id          bigint not null
+        constraint fkr11j2dxpiqalwbtge4po5ei5x
+            references specialization
+);
+create sequence if not exists academic_work_seq
+    increment by 50;
 create table if not exists academic_production
 (
     id                                bigint not null
@@ -55,24 +88,6 @@ create table if not exists academic_production
             references specialization
 );
 create sequence if not exists academic_production_seq
-    increment by 50;
-
-create table if not exists academic_work
-(
-    id                     bigint not null
-        primary key,
-    absolute_results       real,
-    group_name             varchar(255),
-    incomplete_reason      varchar(255),
-    quality_results        real,
-    academic_discipline_id bigint not null
-        constraint fkkkkpm2fh5am9x0ecnh5mmj91i
-            references academic_discipline,
-    specialization_id      bigint not null
-        constraint fkr11j2dxpiqalwbtge4po5ei5x
-            references specialization
-);
-create sequence if not exists academic_work_seq
     increment by 50;
 create table if not exists department
 (

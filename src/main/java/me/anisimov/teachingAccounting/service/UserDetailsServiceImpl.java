@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -63,8 +64,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = findByLogin(login);
-        UserDetails userDetails = userDetailsMapper.convertToUserDetails(user);
+        Optional<User> user = Optional.ofNullable(findByLogin(login));
+        UserDetails userDetails = userDetailsMapper.convertToUserDetails(user.orElseThrow(() ->
+                new  UsernameNotFoundException("Wrong user or password")));
         return userDetails;
     }
 }

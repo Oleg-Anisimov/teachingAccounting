@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -25,24 +26,31 @@ public class SecurityConfig {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder);
-
         auth.authenticationProvider(authProvider);
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .anyRequest()
-                .permitAll()
+        http.csrf().disable()
+                .authorizeRequests().anyRequest().permitAll()
                 .and()
-                .formLogin().loginPage("/login")
+                .formLogin()
                 .loginProcessingUrl("/perform_login")
+                .defaultSuccessUrl("/")
+                .successHandler(successHandler())
                 .failureHandler(((request, response, exception) -> {
                     response.setStatus(401);
-                }))
-                .and()
-                .logout()
-                .logoutUrl("/perform_logout");
+                }));
         return http.build();
     }
+        @Bean
+        public AuthenticationSuccessHandler successHandler() {
+            return (request, response, authentication) -> {
+                response.setStatus(200);
+
+                StringBuilder sb = new StringBuilder();
+                authentication.getAuthorities().forEach(sb::append);
+                response.getOutputStream().println(sb.toString());
+            };
+        }
 }

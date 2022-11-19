@@ -19,9 +19,6 @@ public class AcademicWork {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="academic_work_seq")
     private Long id;
 
-    @Column(name = "group_name")
-    private String groupName;
-
     @Column(name = "incomplete_reason")
     private String incompleteReason;
 
@@ -59,5 +56,9 @@ public class AcademicWork {
     @ManyToOne(targetEntity = AcademicDiscipline.class)
     @JoinColumn(name="academic_discipline_id", nullable=false)
     private AcademicDiscipline academicDiscipline;
+
+    @ManyToOne(targetEntity = Group.class )
+    @JoinColumn(name = "group_id", nullable=false)
+    private Group group;
 
 }

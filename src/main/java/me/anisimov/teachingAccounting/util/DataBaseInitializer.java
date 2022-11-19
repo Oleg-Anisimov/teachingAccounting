@@ -39,6 +39,20 @@ public class DataBaseInitializer {
         for (Map.Entry<String, JpaRepository> entry : reposList.entrySet())
             entry.getValue().deleteAll();
 
+        List<GroupDto> groupsDto = getGroups();
+        for (GroupDto groupDto : groupsDto) {
+            ((GroupService) applicationContext.getBean("groupService")).createGroup(groupDto);
+        }
+
+        List<Role> roles = getRoles();
+        for (Role role : roles) {
+            ((RoleRepository) applicationContext.getBean("roleRepository")).save(role);
+        }
+
+        List<UserDto> usersDto = getUsers();
+        for (UserDto userDto : usersDto) {
+            ((UserDetailsServiceImpl) applicationContext.getBean("userDetailsServiceImpl")).createUser(userDto);
+        }
         List<DepartmentDto> departmentsDto = getDepartments();
         for (DepartmentDto departmentDto : departmentsDto) {
             ((DepartmentService) applicationContext.getBean("departmentService")).createDepartment(departmentDto);
@@ -93,6 +107,47 @@ public class DataBaseInitializer {
         for (AcademicMethodsDto academicMethodsDto : academicsMethodsDto) {
             ((AcademicMethodsService) applicationContext.getBean("academicMethodsService")).createAcademicMethods(academicMethodsDto);
         }
+
+    }
+
+    private List<GroupDto> getGroups() throws IOException {
+
+        File resource = new File(this.getClass().getClassLoader().getResource("Group.json").getFile());
+        String json = new String(Files.readAllBytes(resource.toPath()));
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<GroupDto> groups = objectMapper.readValue(json, new TypeReference<List<GroupDto>>() {
+        });
+
+        return groups;
+
+    }
+
+    private List<Role> getRoles() throws IOException {
+
+        File resource = new File(this.getClass().getClassLoader().getResource("Role.json").getFile());
+        String json = new String(Files.readAllBytes(resource.toPath()));
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<Role> roles = objectMapper.readValue(json, new TypeReference<List<Role>>() {
+        });
+
+        return roles;
+
+    }
+    private List<UserDto> getUsers() throws IOException {
+
+        File resource = new File(this.getClass().getClassLoader().getResource("User.json").getFile());
+        String json = new String(Files.readAllBytes(resource.toPath()));
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<UserDto> users = objectMapper.readValue(json, new TypeReference<List<UserDto>>() {
+        });
+
+        return users;
 
     }
 

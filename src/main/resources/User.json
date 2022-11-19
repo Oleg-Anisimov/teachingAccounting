@@ -1,0 +1,12 @@
+[
+  {
+    "login": "lem",
+    "password": "12345",
+    "roleId": 1
+  },
+  {
+    "login": "lem1",
+    "password": "43215",
+    "roleId": 2
+  }
+]

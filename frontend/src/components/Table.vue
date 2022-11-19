@@ -16,9 +16,25 @@
         <div class="article">
             <p class="main-p">Новая запись</p>
             <div class="form-border">
-                <button>Добавить</button> 
-            </div>
-            
+                <p>Специальность</p>
+                <select v-model="selected">
+                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.id">{{specialization.specialization}}</option>
+                </select>
+                <p>Учебная дисциплина</p>
+                <select>
+                    <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline.id">{{discipline.disciplineNumber}}</option>
+                </select>
+                <p>Учебная группа</p>
+                <select>
+                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.id">{{specialization.specialization}}</option>
+                </select><br>
+                <p>Кол-во часов по плану:</p>
+                <p>l Семестр</p>
+                <input type="number" name="first_half" value="0">
+                <p>ll Семестр</p>
+                <input type="number" name="last_half" value="0">
+                <button @click="clickButton()">Добавить</button> 
+            </div>    
         </div>
         <div class="export">
             <div class="form-border">
@@ -28,23 +44,63 @@
         </div>
     </div>
 </template>
+<script>
+import { mapActions, mapGetters } from 'vuex';
+
+export default{
+    name: "Table",
+    props: [
+        'enums'
+    ],
+    methods: {
+    ...mapActions([
+      'LOAD_ENUMS',
+      'LOAD_DEPARTMENTS',
+      'LOAD_SPECIALIZATION',
+      'LOAD_ACADEMIC_DISCIPLINE',
+    ]),
+    clickButton(){
+        console.log(this.selected)
+    },
+    ...mapGetters([
+      'GET_ENUMS',
+      'GET_TEACHER_CATEGORIES',
+      'GET_EMPLOYMENT_TYPES',
+      'GET_POSITIONS',
+      'GET_ALL_DEPARTMENTS',
+      'GET_ALL_SPECIALIZATIONS',
+      'GET_ALL_ACADEMIC_DISCIPLINES',
+      //'',
+      // 'GET_DEPARTMENT_NAMES'
+    ]),
+  },
+  mounted(){
+    this.LOAD_ENUMS()
+    this.LOAD_SPECIALIZATION()
+    this.LOAD_ACADEMIC_DISCIPLINE()
+    //this.
+  },
+
+}
+
+</script>
+
 <style>
 .filling-form{
     text-align: center;
     width: 15em;
-    margin: 0.7em;
 }
 .academ-year{
     border-top: 0;
+}
+.aboba{
+    border:  0.2em solid royalblue;
+    border-radius: 0 0 0.7em 0.7em;
 }
 .form-border{
     padding: 0.5em 0;
     border:  0.2em solid royalblue;
     border-radius: 0 0 0.7em 0.7em;
-}
-.filling-form select{
-    border: 1px solid black;
-    width: 11em;
 }
 .filling-form .main-p{
     text-align: center;
@@ -55,11 +111,20 @@
 .article{
     margin: 1em 0;
 }
-.filling-form button{
+.filling-form button,input,select{
     width: 11em;
-    text-align: center;
-    border: 0.4px solid;
     border-radius: 0.2em;
+}
+.filling-form select{
+    border: 1px solid black;
+}
+.filling-form input{
+    border: 1px solid black;
+}
+.filling-form button{
+    text-align: center;
+    border: 1px solid black;
+    margin-top: 0.8em;
 }
 .export .form-border{
     border-radius: 0.7em;
@@ -78,10 +143,13 @@
     margin-right: 0.1em;
     font-size: medium;
 }
+.article .form-border select,input,button{
+    margin-bottom: 0.5em;
+}
+.form-border p{
+    margin-bottom: 0.2em;
+}
+
+
 
 </style>
-<script>
-    export default{
-        name: "Table"
-    }
-</script>

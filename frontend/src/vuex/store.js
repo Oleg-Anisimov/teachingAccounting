@@ -6,7 +6,10 @@ let store = createStore({
     state: {
         teacher: new Teacher('Рамзия', 'Маняхина', 'Накиповна'),
         enums: {},
-        departments: []
+        departments: [],
+        specializations: [],
+        disciplines: [],
+        academicWork: []
     },
     mutations: {
         SET_ENUMS: (state, enums) => {
@@ -17,6 +20,15 @@ let store = createStore({
         },
         SET_DEPARTMENTS: (state, departments) => {
             state.departments = departments
+        },
+        SET_SPECIALIZATIONS: (state, specializations) => {
+            state.specializations = specializations
+        },
+        SET_ACADEMIC_DISCIPLINES: (state, disciplines) => {
+            state.disciplines = disciplines
+        },
+        ADD_ACADEMIC_WORK: (state, academicWork) => {
+            state.academicWork.push(academicWork)
         }
     },
     actions: {
@@ -39,7 +51,29 @@ let store = createStore({
             .catch((error) => {
                 console.log(error)
             })
-        }
+        },
+        LOAD_SPECIALIZATION({commit}){
+            let url = '/api/specialization/all'
+            return axios(url, { method: 'GET'})
+            .then((specializations) => {
+                commit('SET_SPECIALIZATIONS', specializations.data)
+                return specializations.data
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        },
+        LOAD_ACADEMIC_DISCIPLINE({commit}){
+            let url = '/api/discipline/all'
+            return axios(url, { method: 'GET'})
+            .then((disciplines) => {
+                commit('SET_ACADEMIC_DISCIPLINES', disciplines.data)
+                return disciplines.data
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        },
     },
     modules: {},
     getters: {
@@ -61,6 +95,15 @@ let store = createStore({
         GET_ALL_DEPARTMENTS(state){
             return state.departments
         },
+        GET_ALL_SPECIALIZATIONS(state){
+            return state.specializations
+        },
+        GET_ALL_ACADEMIC_DISCIPLINES(state){
+            return state.disciplines
+        },
+        GET_ACADEMIC_WORK(state) {
+            return state.academicWork
+        }
     },
 })
 

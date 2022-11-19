@@ -2,12 +2,12 @@
   <div class="header_nav">
     <p><router-link to="/title">Титульный лист</router-link></p>
     <p><router-link to="/academic-work">Учебная работа</router-link></p>
-    <p><a href="/#">Учебно-методическая работа</a></p>
-    <p><a href="/#">Организационно-методическая работа</a></p>
-    <p><a href="/#">Научно-методическая работа</a></p>
-    <p><a href="/#">Учебно-производственная работа</a></p>
-    <p><a href="/#">Воспитательная работа</a></p>
-    <p><a href="/#">Повышение уровня квалификации</a></p>
+    <p><router-link to="/academ-method">Учебно-методическая работа</router-link></p>
+    <p><router-link to="/organiz-method">Организационно-методическая работа</router-link></p>
+    <p><router-link to="/scien-method">Научно-методическая работа</router-link></p>
+    <p><router-link to="/academic-product-work">Учебно-производственная работа</router-link></p>
+    <p><router-link to="/educate-work">Воспитательная работа</router-link></p>
+    <p><router-link to="/promotion-qualific-lvl">Повышение уровня квалификации</router-link></p>
   </div>
 </template>
 

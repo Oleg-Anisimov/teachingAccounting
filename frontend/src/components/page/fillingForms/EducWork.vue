@@ -16,32 +16,37 @@
         <div class="article">
             <p class="main-p">Новая запись</p>
             <div class="form-border">
-                <p>Специальность</p>
+                <p>Направление работы</p>
                 <select v-model="work.specialization">
                     <option disabled value="">Выберите специальность</option>
                     <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
                 </select>
-                <p>Учебная дисциплина</p>
+                <p>Вид деятельности</p>
                 <select v-model="work.discipline">
                   <option disabled value="">Выберите дисциплину</option>
                   <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline">{{discipline.disciplineNumber}}</option>
                 </select>
-                <p>Учебная группа</p>
+                <p>Вид мероприятия</p>
                 <select v-model="work.group">
                     <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
                 </select><br>
-                <p>Кол-во часов по плану:</p>
-                <p>l Семестр</p>
-                <input type="number" name="first_half" value="0">
-                <p>ll Семестр</p>
-                <input type="number" name="last_half" value="0">
+                <p>Название мероприятия</p>
+                <input type="text">
+                <p>Уровень мероприятия</p>
+                <select v-model="work.group">
+                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                </select><br>
+                <p>Дата</p>
+                <input type="text">
+                <p>Информация о студентах</p>
+                <input type="text">
                 <button @click="clickButton()">Добавить</button> 
             </div>    
         </div>
         <div class="export">
             <div class="form-border">
-                <button><img src="../assets/img/print.png"> Версия для печати</button>
-                <button class="last-button"><img src="../assets/img/excel.png">Экспорт в Excel</button>
+                <button><img src="../../../assets/img/print.png"> Версия для печати</button>
+                <button class="last-button"><img src="../../../assets/img/excel.png">Экспорт в Excel</button>
             </div>
         </div>
     </div>
@@ -50,7 +55,7 @@
 import {mapActions, mapGetters, mapMutations} from 'vuex';
 
 export default{
-    name: "Table",
+    name: "EducWork",
     props: [
         'enums'
     ],
@@ -108,71 +113,3 @@ export default{
 
 </script>
 
-<style>
-.filling-form{
-    text-align: center;
-    width: 15em;
-}
-.academ-year{
-    border-top: 0;
-}
-.aboba{
-    border:  0.2em solid royalblue;
-    border-radius: 0 0 0.7em 0.7em;
-}
-.form-border{
-    padding: 0.5em 0;
-    border:  0.2em solid royalblue;
-    border-radius: 0 0 0.7em 0.7em;
-}
-.filling-form .main-p{
-    text-align: center;
-    color: white;
-    background-color: royalblue;
-    border-radius: 0.7em 0.7em 0 0;
-}
-.article{
-    margin: 1em 0;
-}
-.filling-form button,input,select{
-    width: 11em;
-    border-radius: 0.2em;
-}
-.filling-form select{
-    border: 1px solid black;
-}
-.filling-form input{
-    border: 1px solid black;
-}
-.filling-form button{
-    text-align: center;
-    border: 1px solid black;
-    margin-top: 0.8em;
-}
-.export .form-border{
-    border-radius: 0.7em;
-    padding: 0;
-}
-.export .form-border button{
-    margin-top: 0.5em;
-    font-size: 0.96em;
-}
-.export .form-border .last-button{
-    margin-bottom: 0.5em;
-}
-.export .form-border button img{
-    width: 1em;
-    height: 1em;
-    margin-right: 0.1em;
-    font-size: medium;
-}
-.article .form-border select,input,button{
-    margin-bottom: 0.5em;
-}
-.form-border p{
-    margin-bottom: 0.2em;
-}
-
-
-
-</style>

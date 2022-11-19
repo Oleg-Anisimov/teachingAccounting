@@ -1,33 +1,23 @@
 <script setup>
-import AcaWork from "./fillingForms/AcaWork.vue";
+import OrgMethWork from "./fillingForms/OrgMethWork.vue";
 </script>
 <template>
     <div class="academic_work_page">
-        <AcaWork grid-area="filling-form"></AcaWork>
+        <OrgMethWork grid-area="filling-form"></OrgMethWork>
         <table>
             <tr>
                 <th colspan="140"><img src="">Учебная работа - Заполнение индивидуального плана</th>
             </tr>
             <tr>
-                    <td rowspan="2" class="left-helf simvol">№</td>
-                    <td rowspan="2" class="left-helf">Специальность</td>
-                    <td rowspan="2" class="left-helf">Уч. дисциплина (ПМ,МДК)</td>
-                    <td rowspan="2" class="left-helf">Наименование уч. дисциплины (ПМ,МДК)</td>
-                    <td rowspan="2" class="left-helf">Группа</td>
-                    <td colspan="2" class="left-helf">Первый семестр</td>
-                    <td colspan="2" class="left-helf">Второй семестр</td>
-                    <td colspan="2" class="left-helf">Учебный год</td>
-                    <td rowspan="2" class="right-helf">Причина невыполнения</td>
-                    <td rowspan="2" class="right-helf">Абсолютная успеваемость</td>
-                    <td rowspan="2" class="right-helf">Качественная успеваемость</td>
-            </tr>
-            <tr>
-                <td class="td-bottom">План</td>
-                <td class="td-bottom">Факт</td>
-                <td class="td-bottom">План</td>
-                <td class="td-bottom">Факт</td>
-                <td class="td-bottom">План</td>
-                <td class="td-bottom">Факт</td>
+                    <td class="left-helf simvol">№</td>
+                    <td class="left-helf">Вид деятельности</td>
+                    <td class="left-helf">Вид мероприятия</td>
+                    <td class="left-helf">Название мероприятия</td>
+                    <td class="left-helf">Уровень мероприятия</td>
+                    <td class="left-helf">Дата</td>
+                    <td class="left-helf">Информация о студентах</td>
+                    <td class="left-helf">Результат</td>
+
             </tr>
               <tr v-for="work in GET_ACADEMIC_WORK()" :key="work">
                 <td>{{work.index}}</td>
@@ -36,12 +26,6 @@ import AcaWork from "./fillingForms/AcaWork.vue";
 <!--                Название уч дисциплины-->
                 <td>{{ work.discipline.name }}</td>
                 <td>{{ work.group }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -60,7 +44,7 @@ import AcaWork from "./fillingForms/AcaWork.vue";
 import { mapActions, mapGetters } from 'vuex';
 
 export default{
-    name: "AcademicWorkPage",
+    name: "OrganizMethodPage",
     props: [
         'enums'
     ],
@@ -91,3 +75,12 @@ export default{
   },
 }
 </script>
+<style scoped>
+    .academic_work_page{
+        grid-template-areas: "filling-form table table";
+    }
+    table{
+        max-width: 75em;
+    }
+</style>
+ 

@@ -17,16 +17,18 @@
             <p class="main-p">Новая запись</p>
             <div class="form-border">
                 <p>Специальность</p>
-                <select v-model="selected">
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.id">{{specialization.specialization}}</option>
+                <select v-model="work.specialization">
+                    <option disabled value="">Выберите специальность</option>
+                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
                 </select>
                 <p>Учебная дисциплина</p>
-                <select>
-                    <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline.id">{{discipline.disciplineNumber}}</option>
+                <select v-model="work.discipline">
+                  <option disabled value="">Выберите дисциплину</option>
+                  <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline.disciplineNumber">{{discipline.disciplineNumber}}</option>
                 </select>
                 <p>Учебная группа</p>
-                <select>
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.id">{{specialization.specialization}}</option>
+                <select v-model="work.group">
+                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
                 </select><br>
                 <p>Кол-во часов по плану:</p>
                 <p>l Семестр</p>
@@ -45,13 +47,23 @@
     </div>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import {mapActions, mapGetters, mapMutations} from 'vuex';
 
 export default{
     name: "Table",
     props: [
         'enums'
     ],
+    data() {
+      return {
+        selected: '',
+        work: {
+          specialization: '',
+          group: '',
+          discipline: ''
+        }
+      }
+    },
     methods: {
     ...mapActions([
       'LOAD_ENUMS',
@@ -59,9 +71,9 @@ export default{
       'LOAD_SPECIALIZATION',
       'LOAD_ACADEMIC_DISCIPLINE',
     ]),
-    clickButton(){
-        console.log(this.selected)
-    },
+    ...mapMutations([
+        'ADD_ACADEMIC_WORK'
+    ]),
     ...mapGetters([
       'GET_ENUMS',
       'GET_TEACHER_CATEGORIES',
@@ -73,6 +85,11 @@ export default{
       //'',
       // 'GET_DEPARTMENT_NAMES'
     ]),
+
+    clickButton(){
+      this.ADD_ACADEMIC_WORK(this.work);
+      console.log(this.work.specialization)
+    },
   },
   mounted(){
     this.LOAD_ENUMS()

@@ -29,7 +29,13 @@ import Table from "../Table.vue";
                 <td class="td-bottom">План</td>
                 <td class="td-bottom">Факт</td>
             </tr>
-            <tr>
+              <tr v-for="work in GET_ACADEMIC_WORK()">
+                <td></td>
+                <td>{{ work.specialization }}</td>
+                <td>{{ work.discipline }}</td>
+<!--                Название уч дисциплины-->
+                <td></td>
+                <td>{{ work.group }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -39,18 +45,14 @@ import Table from "../Table.vue";
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+              </tr>
             <tr>
                 <td colspan="100" class="last-td">
                     <p>1 - 10 (Всего: 0) На страницу: <input type="number" value="0"></p>    
                 </td>
                 
             </tr>
+
         </table>
     </div>
 </template>
@@ -77,6 +79,7 @@ export default{
       'GET_ALL_DEPARTMENTS',
       'GET_ALL_SPECIALIZATIONS',
       'GET_ALL_ACADEMIC_DISCIPLINES',
+      'GET_ACADEMIC_WORK'
       // 'GET_DEPARTMENT_NAMES'
     ]),
   },

@@ -9,6 +9,7 @@ let store = createStore({
         departments: [],
         specializations: [],
         disciplines: [],
+        academicWork: []
     },
     mutations: {
         SET_ENUMS: (state, enums) => {
@@ -25,6 +26,9 @@ let store = createStore({
         },
         SET_ACADEMIC_DISCIPLINES: (state, disciplines) => {
             state.disciplines = disciplines
+        },
+        ADD_ACADEMIC_WORK: (state, academicWork) => {
+            state.academicWork.push(academicWork)
         }
     },
     actions: {
@@ -70,17 +74,6 @@ let store = createStore({
                 console.log(error)
             })
         },
-        LOAD_SPECIALIZATION({commit}){
-            let url = '/api/specialization/all'
-            return axios(url, { method: 'GET'})
-            .then((specializations) => {
-                commit('SET_SPECIALIZATIONS', specializations.data)
-                return specializations.data
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-        },
     },
     modules: {},
     getters: {
@@ -108,6 +101,9 @@ let store = createStore({
         GET_ALL_ACADEMIC_DISCIPLINES(state){
             return state.disciplines
         },
+        GET_ACADEMIC_WORK(state) {
+            return state.academicWork
+        }
     },
 })
 

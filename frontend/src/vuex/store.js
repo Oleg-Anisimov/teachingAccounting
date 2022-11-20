@@ -18,6 +18,9 @@ let store = createStore({
             state.enums.employmentType = enums.EmploymentType
             state.enums.position = enums.Position
         },
+        SET_GROUPS: (state, groups) => {
+            state.groups = groups;
+        },
         SET_DEPARTMENTS: (state, departments) => {
             state.departments = departments
         },
@@ -27,7 +30,11 @@ let store = createStore({
         SET_ACADEMIC_DISCIPLINES: (state, disciplines) => {
             state.disciplines = disciplines
         },
+        SET_ACADEMIC_WORK: (state, works) => {
+            state.academicWork = works
+        },
         ADD_ACADEMIC_WORK: (state, academicWork) => {
+            console.log(academicWork);
             state.academicWork.push(academicWork)
         }
     },
@@ -74,6 +81,45 @@ let store = createStore({
                 console.log(error)
             })
         },
+        LOAD_ACADEMIC_WORKS({commit}) {
+            let url = '/api/work/all'
+            return axios(url, { method: 'GET'})
+                .then((works) => {
+                    commit('SET_ACADEMIC_WORK', works.data)
+                    return works.data
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+        LOAD_GROUPS({commit}){
+            let url = '/api/group/all'
+            return axios(url, { method: 'GET'})
+                .then((groups) => {
+                    commit('SET_GROUPS', groups.data)
+                    return groups.data
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+        UPLOAD_ACADEMIC_WORK({commit}, work) {
+            let url = '/api/work/create';
+            let data = {
+                academicDisciplineId: work.discipline.id,
+                specializationId: work.specialization.id,
+                groupId: work.group.id
+            }
+
+            return axios.post(url, data)
+                .then((work) => {
+                    commit('ADD_ACADEMIC_WORK', work.data)
+                    return work.data;
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
     },
     modules: {},
     getters: {
@@ -103,6 +149,9 @@ let store = createStore({
         },
         GET_ACADEMIC_WORK(state) {
             return state.academicWork
+        },
+        GET_ALL_GROUPS(state) {
+            return state.groups
         }
     },
 })

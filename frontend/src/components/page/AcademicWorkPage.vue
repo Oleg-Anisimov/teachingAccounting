@@ -29,16 +29,16 @@ import AcaWork from "./fillingForms/AcaWork.vue";
                 <td class="td-bottom">План</td>
                 <td class="td-bottom">Факт</td>
             </tr>
-              <tr v-for="work in GET_ACADEMIC_WORK()" :key="work">
-                <td>{{work.index}}</td>
-                <td>{{ work.specialization }}</td>
-                <td>{{ work.discipline.disciplineNumber }}</td>
+              <tr v-for="work in this.GET_ACADEMIC_WORK()" :key="work.id">
+                <td>{{ work.id }}</td>
+                <td>{{ work.specialization.specialization }}</td>
+                <td>{{ work.academicDiscipline.disciplineNumber }}</td>
 <!--                Название уч дисциплины-->
-                <td>{{ work.discipline.name }}</td>
-                <td>{{ work.group }}</td>
+                <td>{{ work.academicDiscipline.name }}</td>
+                <td>{{ work.group.groupName }}</td>
+                <td>{{ work.firstSemPlan }}</td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ work.secondSemPlan }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -57,37 +57,24 @@ import AcaWork from "./fillingForms/AcaWork.vue";
     </div>
 </template>
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 
-export default{
+export default {
     name: "AcademicWorkPage",
     props: [
         'enums'
     ],
     methods: {
     ...mapActions([
-      'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
-      'LOAD_SPECIALIZATION',
-      'LOAD_ACADEMIC_DISCIPLINE',
+      'LOAD_ACADEMIC_WORKS',
     ]),
     ...mapGetters([
-      'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
-      'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
       'GET_ACADEMIC_WORK'
-      // 'GET_DEPARTMENT_NAMES'
     ]),
   },
   mounted(){
-    this.LOAD_ENUMS()
-    this.LOAD_DEPARTMENTS()
-    this.LOAD_SPECIALIZATION()
-    this.LOAD_ACADEMIC_DISCIPLINE()
+    this.LOAD_ACADEMIC_WORKS()
+
   },
 }
 </script>

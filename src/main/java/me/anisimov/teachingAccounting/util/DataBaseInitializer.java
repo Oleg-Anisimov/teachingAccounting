@@ -3,20 +3,19 @@ package me.anisimov.teachingAccounting.util;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import me.anisimov.teachingAccounting.domain.*;
+import me.anisimov.teachingAccounting.domain.Role;
 import me.anisimov.teachingAccounting.dto.*;
-import me.anisimov.teachingAccounting.repository.*;
+import me.anisimov.teachingAccounting.repository.RoleRepository;
 import me.anisimov.teachingAccounting.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Files;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.IllegalFormatException;
 import java.util.List;
@@ -112,8 +111,7 @@ public class DataBaseInitializer {
 
     private List<GroupDto> getGroups() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("Group.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("Group.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -126,8 +124,7 @@ public class DataBaseInitializer {
 
     private List<Role> getRoles() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("Role.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("Role.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -139,8 +136,7 @@ public class DataBaseInitializer {
     }
     private List<UserDto> getUsers() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("User.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("User.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -153,8 +149,7 @@ public class DataBaseInitializer {
 
     private List<TeacherDto> getTeachers() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("Teacher.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("Teacher.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -167,8 +162,7 @@ public class DataBaseInitializer {
 
     private List<SpecializationDto> getSpecializations() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("Specialization.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("Specialization.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -181,8 +175,7 @@ public class DataBaseInitializer {
 
     private List<ScientificMethodsDto> getScientificMethods() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("ScientificMethods.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("ScientificMethods.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -195,8 +188,7 @@ public class DataBaseInitializer {
 
     private List<PromotionQualificationLevelDto> getPromotionQualificationLevels() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("PromotionQualificationLevel.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("PromotionQualificationLevel.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -209,8 +201,7 @@ public class DataBaseInitializer {
 
     private List<OrganizedMethodsDto> getOrganizedMethods() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("OrganizedMethods.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("OrganizedMethods.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -223,8 +214,7 @@ public class DataBaseInitializer {
 
     private List<EducateDto> getEducates() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("Educate.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("Educate.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -237,8 +227,7 @@ public class DataBaseInitializer {
 
     private List<DepartmentDto> getDepartments() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("Department.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("Department.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -251,8 +240,7 @@ public class DataBaseInitializer {
 
     private List<AcademicWorkDto> getAcademicWorks() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("AcademicWork.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("AcademicWork.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -265,8 +253,7 @@ public class DataBaseInitializer {
 
     private List<AcademicProductionDto> getAcademicProductions() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("AcademicProduction.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("AcademicProduction.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -279,8 +266,7 @@ public class DataBaseInitializer {
 
     private List<AcademicMethodsDto> getAcademicMethods() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("AcademicMethods.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("AcademicMethods.json.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -293,8 +279,7 @@ public class DataBaseInitializer {
 
     private List<AcademicDisciplineDto> getAcademicDisciplines() throws IOException {
 
-        File resource = new File(this.getClass().getClassLoader().getResource("AcademicDiscipline.json").getFile());
-        String json = new String(Files.readAllBytes(resource.toPath()));
+        String json = readJsonFromFile("AcademicDiscipline.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 
@@ -303,6 +288,12 @@ public class DataBaseInitializer {
 
         return academicDisciplines;
 
+    }
+
+    private String readJsonFromFile(String file) throws IOException {
+        InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(file);
+        String json = new String(resourceAsStream.readAllBytes(), StandardCharsets.UTF_8);
+        return json;
     }
 
 }

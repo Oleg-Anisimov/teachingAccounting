@@ -266,7 +266,7 @@ public class DataBaseInitializer {
 
     private List<AcademicMethodsDto> getAcademicMethods() throws IOException {
 
-        String json = readJsonFromFile("AcademicMethods.json.json");
+        String json = readJsonFromFile("AcademicMethods.json");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
 

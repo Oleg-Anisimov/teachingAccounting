@@ -33,7 +33,7 @@ let store = createStore({
     },
     actions: {
         LOAD_ENUMS({commit}) {
-            let url = '/api/enum'
+            let url = '/enum'
             return axios(url, { method: 'GET'})
                 .then((enums) => {
                     commit('SET_ENUMS', enums.data)
@@ -42,7 +42,7 @@ let store = createStore({
                 .catch((error) => { console.log(error) })
         },
         LOAD_DEPARTMENTS({commit}){
-            let url = '/api/department/all'
+            let url = '/department/all'
             return axios(url, { method: 'GET'})
             .then((departments) => {
                 commit('SET_DEPARTMENTS', departments.data)
@@ -53,7 +53,7 @@ let store = createStore({
             })
         },
         LOAD_SPECIALIZATION({commit}){
-            let url = '/api/specialization/all'
+            let url = '/specialization/all'
             return axios(url, { method: 'GET'})
             .then((specializations) => {
                 commit('SET_SPECIALIZATIONS', specializations.data)
@@ -64,7 +64,7 @@ let store = createStore({
             })
         },
         LOAD_ACADEMIC_DISCIPLINE({commit}){
-            let url = '/api/discipline/all'
+            let url = '/discipline/all'
             return axios(url, { method: 'GET'})
             .then((disciplines) => {
                 commit('SET_ACADEMIC_DISCIPLINES', disciplines.data)

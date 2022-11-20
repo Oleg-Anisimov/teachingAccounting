@@ -98,7 +98,7 @@ export default {
 }
 .title_page{
   padding: 0.5em 1em;
-  background-color: rgb(225, 225, 225);
+  background-color: #e1e1e1;
 }
 .title_page h1{
   font-size: 1.5em;

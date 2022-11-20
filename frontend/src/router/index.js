@@ -8,6 +8,8 @@ import ScienMethodPage from "../components/page/ScienMethodPage.vue";
 import AcademicProductWorkPage from "../components/page/AcademicProductWorkPage.vue";
 import EducateWorkPage from "../components/page/EducateWorkPage.vue";
 import PromotionQualificLVLPage from "../components/page/PromotionQualificLVLPage.vue";
+import AuthorizationPage from "../components/page/AuthorizationPage.vue";
+import RegistrationPage from "../components/page/RegistrationPage.vue";
 import store from "../vuex/store";
 import Teacher from "../model/teacher";
 
@@ -63,6 +65,16 @@ const router = createRouter({
       path: '/promotion-qualific-lvl',
       name: 'promotion-qualific-lvl',
       component: PromotionQualificLVLPage,
+    },
+    {
+      path: '/authorization',
+      name: 'authorization',
+      component: AuthorizationPage,
+    },
+    {
+      path: '/registration',
+      name: 'registration',
+      component: RegistrationPage,
     },
   ]
 })

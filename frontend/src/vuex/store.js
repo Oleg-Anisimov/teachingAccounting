@@ -4,7 +4,7 @@ import axios from "axios";
 
 let store = createStore({
     state: {
-        teacher: new Teacher('Рамзия', 'Маняхина', 'Накиповна'),
+        teacher: {},
         enums: {},
         departments: [],
         specializations: [],
@@ -12,6 +12,9 @@ let store = createStore({
         academicWork: []
     },
     mutations: {
+        SET_TEACHER: (state, teacher) => {
+            state.teacher = teacher
+        },
         SET_ENUMS: (state, enums) => {
             state.enums = enums
             state.enums.category = enums.Category
@@ -40,6 +43,17 @@ let store = createStore({
                     return enums.data
                 })
                 .catch((error) => { console.log(error) })
+        },
+        LOAD_TEACHER({commit}) {
+            let url = '/api/teacher/current'
+            return axios.get(url)
+                .then((response) => {
+                    commit('SET_TEACHER', response.data)
+                    return response.data
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         },
         LOAD_DEPARTMENTS({commit}){
             let url = '/api/department/all'

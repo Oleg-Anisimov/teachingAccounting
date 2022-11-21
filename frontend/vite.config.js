@@ -10,7 +10,6 @@ export default defineConfig({
       '/api': {
         target: 'https://stg.alov.dev',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
       },
     },
     port: 82,

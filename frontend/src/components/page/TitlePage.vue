@@ -6,15 +6,15 @@
         <!-- INPUT -->
         <div class="ui-input">
           <label for="input-last-name">Фамилия</label>
-          <input id="input-last-name" type="text" :value="teacher.lastName" :disabled="!editing" placeholder="Иванов"/>
+          <input id="input-last-name" type="text" v-model="this.teacher.lastName" :disabled="!editing" placeholder="Иванов"/>
         </div>
         <div class="ui-input">
           <label for="input-first-name">Имя</label>
-          <input id="input-first-name" type="text" :value="teacher.firstName" :disabled="!editing" placeholder="Иван"/>
+          <input id="input-first-name" type="text" v-model="this.teacher.firstName" :disabled="!editing" placeholder="Иван"/>
         </div>
         <div class="ui-input">
           <label for="input-middle-name">Отчество</label>
-          <input id="input-middle-name" type="text" :value="teacher.middleName" :disabled="!editing"
+          <input id="input-middle-name" type="text" v-model="this.teacher.middleName" :disabled="!editing"
                  placeholder="Иванович"/>
         </div>
         <!-- SELECT -->
@@ -79,18 +79,20 @@ import {mapActions, mapGetters} from 'vuex';
 export default {
   name: "TitlePage",
   props: [
-    'teacher',
+    // 'teacher',
     'enums',
   ],
-  // computed: {
-  //   editing: false,
-  // },
+  computed: {
+    editing: false,
+  },
   data() {
     return {
+      teacher: {},
       editing: false
     }
   },
   methods: {
+
     toggleRedacting() {
       this.editing = !this.editing
     },
@@ -113,7 +115,10 @@ export default {
     ]),
   },
   mounted() {
-    this.LOAD_TEACHER()
+    this.LOAD_TEACHER().then((response) => {
+      console.log(response)
+      this.teacher = response
+    })
     this.LOAD_ENUMS()
     this.LOAD_DEPARTMENTS()
   },

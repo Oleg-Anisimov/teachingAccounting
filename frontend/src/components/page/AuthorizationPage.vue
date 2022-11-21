@@ -1,6 +1,6 @@
 <template>
     <div class="authPage" >
-        <center>
+<!--        <center>-->
         <div class="authBox">
             <div class="auth">
             <label><b>Войти</b></label>
@@ -8,24 +8,43 @@
             <div class="ui-input-group">
                 <div class="ui-input">
                     <label for="input-login">Логин</label>
-                    <input id="input-login" type="text" placeholder="Введите логин" />
+                    <input id="input-login" type="text" v-model="this.model.username" placeholder="Введите логин" />
                 </div>
                 <div class="ui-input">
                     <label for="input-password">Пароль</label>
-                    <input id="input-password" type="password" placeholder="Введите пароль"/>
+                    <input id="input-password" type="password" v-model="this.model.password" placeholder="Введите пароль"/>
                 </div>
                 <div class="ui-input">
-                    <button class="ui-button isDefault">Вход</button>
+                    <button class="ui-button isDefault" @click="perfromLogin()">Вход</button>
                     <button class="ui-button isDefault"><router-link to="/registration">Зарегистрироваться</router-link></button>
                 </div>
             </div>
         </div>
-        </center>
+<!--        </center>-->
     </div>
 </template>
 <script>
+import {mapActions} from "vuex";
+
 export default{
-    name: "AuthorizationPage"
+    name: "AuthorizationPage",
+    data() {
+      return {
+        model: {
+          username:'',
+          password:''
+        }
+      }
+    },
+    methods: {
+      ...mapActions(['LOGIN']),
+      perfromLogin() {
+        this.LOGIN({
+          username: this.model.username,
+          password: this.model.password
+        })
+      }
+    }
 }
 
 </script>

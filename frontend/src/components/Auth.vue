@@ -4,10 +4,10 @@
             <a href="#">Гость</a>
         </div>
         <div class="auth">
-            <a href="/authorization"><b>Вход</b></a>
+          <p><router-link to="/authorization">Вход</router-link></p>
         </div>
         <div class="auth">
-            <a href="/registration"><b>Регистрация</b></a>
+          <p><router-link to="/registration">Регистрация</router-link></p>
         </div>
     </div>
   </template>

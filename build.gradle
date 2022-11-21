@@ -33,6 +33,9 @@ dependencies {
 	implementation "io.springfox:springfox-swagger2:3.0.0"
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+	implementation 'org.apache.poi:poi-ooxml:4.1.2'
+
 }
 
 tasks.named('test') {

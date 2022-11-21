@@ -20,4 +20,9 @@ public class Group {
 
     @Column(name="group_name")
     private String groupName;
+    @Override
+    public String toString() {
+        return "Group [id=" + id + ", groupName=" + groupName + "]";
+    }
+
 }

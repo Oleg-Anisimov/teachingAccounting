@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Embeddable
 public class PlanAndFact {
 
-    private String plan;
+    private Integer plan;
 
-    private String fact;
+    private Integer fact;
 
 }

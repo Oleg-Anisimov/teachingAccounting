@@ -1,0 +1,4 @@
+
+function transformWorkResponse(work) {
+
+}

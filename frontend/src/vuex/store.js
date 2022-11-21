@@ -195,18 +195,27 @@ let store = createStore({
                     console.log(error)
                 })
         },
-        UPLOAD_ACADEMIC_WORK({commit}, work) {
-            console.log()
+        UPLOAD_ACADEMIC_WORK({commit, getters}, work) {
             let url = '/api/work/create';
             let data = {
                 academicDisciplineId: work.academicDiscipline.id,
                 specializationId: work.specialization.id,
                 groupId: work.group.id
             }
-            console.log(data)
+            console.log(getters)
             return axios.post(url, data)
                 .then((work) => {
-                    commit('ADD_ACADEMIC_WORK', work.data)
+                    function transformWorkResponse(data) {
+                        return {
+                            id: data.id,
+                            group: getters.GET_ALL_GROUPS.find((group) => {return group.id === data.groupId}),
+                            academicDiscipline: getters.GET_ALL_ACADEMIC_DISCIPLINES.find((dis) => {return dis.id === data.academicDisciplineId}),
+                            specialization: getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId})
+                        }
+                    }
+
+                    let transformedWork = transformWorkResponse(work.data);
+                    commit('ADD_ACADEMIC_WORK', transformedWork)
                     return work.data;
                 })
                 .catch((error) => {

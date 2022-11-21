@@ -28,7 +28,7 @@
                 </select>
                 <p>Учебная группа</p>
                 <select v-model="model.group">
-                    <option v-for="group in GET_ALL_GROUPS()" :key="group.id" :value="group.groupName">{{group.groupName}}</option>
+                    <option v-for="group in GET_ALL_GROUPS()" :key="group.id" :value="group">{{group.groupName}}</option>
                 </select><br>
                 <p>Кол-во часов по плану:</p>
                 <p>l Семестр</p>
@@ -94,11 +94,14 @@ export default{
     ]),
 
     addAcademicWork(){
+      console.log(this.model.group)
+      console.log(this.model.specialization)
+      console.log(this.model.discipline)
       let work = new AcademicWork(
           this.id,
           this.model.specialization,
           this.model.group,
-          this.model.academicDiscipline,
+          this.model.discipline,
           this.model.firstSemPlan,
           this.model.secondSemPlan
       )

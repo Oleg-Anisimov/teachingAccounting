@@ -17,27 +17,27 @@
             <p class="main-p">Новая запись</p>
             <div class="form-border">
                 <p>Вид деятельности</p>
-                <select v-model="work.specialization">
+                <select>
                     <option disabled value="">Выберите специальность</option>
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                    <option value=""></option>
                 </select>
                 <p>Вид мероприятия</p>
-                <select v-model="work.discipline">
-                  <option disabled value="">Выберите дисциплину</option>
-                  <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline">{{discipline.disciplineNumber}}</option>
+                <select v-model="model.eventType">
+                  <option disabled value="">Выберите вид мероприятие</option>
+                  <option v-for="organ in GET_ENUMS().EventType" :key="organ" :value="organ">{{organ}}</option>
                 </select>
                 <p>Название мероприятия</p>
                 <input type="text">
                 <p>Уровень мероприятия</p>
-                <select v-model="work.discipline">
-                  <option disabled value="">Выберите дисциплину</option>
-                  <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline">{{discipline.disciplineNumber}}</option>
+                <select v-model="model.eventLevel">
+                  <option disabled value="">Выберите уровень мероприятие</option>
+                  <option v-for="organ in GET_ENUMS().EventLevel" :key="organ" :value="organ">{{organ}}</option>
                 </select>
                 <p>Дата</p>
                 <input type="date">
                 <p>Инфо о студентах</p>
                 <input type="text">
-                <button @click="clickButton()">Добавить</button> 
+                <button @click="addOranizMethod()">Добавить</button> 
             </div>    
         </div>
         <div class="export">
@@ -50,6 +50,7 @@
 </template>
 <script>
 import {mapActions, mapGetters, mapMutations} from 'vuex';
+import OrganizedMethod from "../../../model/organizedMethod";
 
 export default{
     name: "OrgMethWork",
@@ -58,51 +59,40 @@ export default{
     ],
     data() {
       return {
-        selected: '',
-        work: {
-          specialization: '',
-          group: '',
-          discipline: {
-            
-          },
-          input: '<input type="text">',
-          index: 0,
+        model: {
+          id: 1,
+          eventType: '',
+          eventLevel: '',
         },
-        
+
       }
     },
     methods: {
     ...mapActions([
       'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
-      'LOAD_SPECIALIZATION',
-      'LOAD_ACADEMIC_DISCIPLINE',
+      'LOAD_ORGANIZED_METHODS'
     ]),
     ...mapMutations([
-        'ADD_ACADEMIC_WORK'
+        'ADD_ORGANIZ_METHOD'
     ]),
     ...mapGetters([
       'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
-      'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
+      'GET_ORGANIZED_METHOD'
       //'',
       // 'GET_DEPARTMENT_NAMES'
     ]),
 
-    clickButton(){
-      this.ADD_ACADEMIC_WORK(this.work);
-      console.log(this.work.specialization)
-      this.work.index++
+    addOranizMethod(){
+      this.ADD_ORGANIZ_METHOD(new OrganizedMethod(
+          this.model.id,
+          this.model.eventLevel,
+          this.model.eventType
+      ))
     },
   },
   mounted(){
     this.LOAD_ENUMS()
-    this.LOAD_SPECIALIZATION()
-    this.LOAD_ACADEMIC_DISCIPLINE()
+    this.LOAD_ORGANIZED_METHODS()
     //this.
   },
 

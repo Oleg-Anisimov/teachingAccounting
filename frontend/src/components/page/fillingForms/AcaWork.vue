@@ -32,9 +32,9 @@
                 </select><br>
                 <p>Кол-во часов по плану:</p>
                 <p>l Семестр</p>
-                <input type="number" v-model.number="model.firstSemPlan" name="first_half">
+                <input type="text" v-model.number="model.firstSemPlan" name="first_half">
                 <p>ll Семестр</p>
-                <input type="number" v-model.number="model.secondSemPlan" name="last_half">
+                <input type="text" v-model.number="model.secondSemPlan" name="last_half">
                 <button @click="addAcademicWork()">Добавить</button>
             </div>    
         </div>
@@ -58,10 +58,10 @@ export default{
     data() {
       return {
         model: {
-          id: 0,
+          id: 1,
           specialization: '',
           group: '',
-          discipline: '',
+          academicDiscipline: '',
           firstSemPlan: 0,
           secondSemPlan: 0
         }
@@ -94,15 +94,16 @@ export default{
     ]),
 
     addAcademicWork(){
-      this.academicWork.ADD_ACADEMIC_WORK(new AcademicWork(
-          this.model.id,
+      let work = new AcademicWork(
+          this.id,
           this.model.specialization,
           this.model.group,
-          this.model.discipline,
+          this.model.academicDiscipline,
           this.model.firstSemPlan,
           this.model.secondSemPlan
-      ));
-      this.model.id++
+      )
+      console.log(work)
+      this.UPLOAD_ACADEMIC_WORK(work)
     },
   },
   mounted(){

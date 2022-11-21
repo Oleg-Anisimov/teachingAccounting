@@ -19,12 +19,12 @@ import ScienMethWork from "./fillingForms/ScienMethWork.vue";
                     <td class="left-helf">Вид участия</td>
                     <td class="right-helf">Результат</td>
             </tr>
-              <tr v-for="work in GET_ACADEMIC_WORK()" :key="work">
-                <td>{{work.index}}</td>
-                <td>{{ work.specialization }}</td>
-                <td>{{ work.discipline.disciplineNumber }}</td>
-                <td>{{ work.discipline.name }}</td>
-                <td>{{ work.group }}</td>
+              <tr v-for="scien in GET_SCIENTIFIC_METHOD()" :key="scien">
+                <td>{{scien.index}}</td>
+                <td>{{ scien.specialization }}</td>
+                <td>{{ scien.discipline.disciplineNumber }}</td>
+                <td>{{ scien.discipline.name }}</td>
+                <td>{{ scien.group }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -49,28 +49,15 @@ export default{
     ],
     methods: {
     ...mapActions([
-      'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
-      'LOAD_SPECIALIZATION',
-      'LOAD_ACADEMIC_DISCIPLINE',
+      'LOAD_SCIENTIFIC_METHODS'
     ]),
     ...mapGetters([
-      'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
-      'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
-      'GET_ACADEMIC_WORK'
+      'GET_SCIENTIFIC_METHOD'
       // 'GET_DEPARTMENT_NAMES'
     ]),
   },
   mounted(){
-    this.LOAD_ENUMS()
-    this.LOAD_DEPARTMENTS()
-    this.LOAD_SPECIALIZATION()
-    this.LOAD_ACADEMIC_DISCIPLINE()
+    this.LOAD_SCIENTIFIC_METHODS()
   },
 }
 </script>

@@ -29,7 +29,7 @@ import AcaWork from "./fillingForms/AcaWork.vue";
                 <td class="td-bottom">План</td>
                 <td class="td-bottom">Факт</td>
             </tr>
-              <tr v-for="work in this.GET_ACADEMIC_WORK()" :key="work.id">
+              <tr v-for="work in GET_ACADEMIC_WORK()" :key="work.id">
                 <td>{{ work.id }}</td>
                 <td>{{ work.specialization.specialization }}</td>
                 <td>{{ work.academicDiscipline.disciplineNumber }}</td>

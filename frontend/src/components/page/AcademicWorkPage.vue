@@ -33,7 +33,6 @@ import AcaWork from "./fillingForms/AcaWork.vue";
                 <td>{{ work.id }}</td>
                 <td>{{ work.specialization.specialization }}</td>
                 <td>{{ work.academicDiscipline.disciplineNumber }}</td>
-<!--                Название уч дисциплины-->
                 <td>{{ work.academicDiscipline.name }}</td>
                 <td>{{ work.group.groupName }}</td>
                 <td>{{ work.firstSemPlan }}</td>

@@ -19,11 +19,11 @@ import AcaProdWork from "./fillingForms/AcaProdWork.vue";
                     <td class="left-helf">Результат</td>
             </tr>
               <tr v-for="product in GET_ACADEMIC_PRODUCTION()" :key="product">
-                <td>{{product.index}}</td>
-                <td>{{ product.specialization }}</td>
+                <td>{{ product.id }}</td>
+                <td>{{ product.specialization.specialization }}</td>
                 <td></td>
                 <td></td>
-                <td>{{ product.group }}</td>
+                <td>{{ product.activityType }}</td>
                 <td></td>
                 <td></td>
                 <td></td>

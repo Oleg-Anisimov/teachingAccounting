@@ -9,7 +9,8 @@ let store = createStore({
         departments: [],
         specializations: [],
         academicDisciplines: [],
-        academicWork: []
+        academicWork: [],
+        academicMethod: []
     },
     mutations: {
         SET_ENUMS: (state, enums) => {
@@ -59,10 +60,26 @@ let store = createStore({
             console.log(academicMethod);
             state.academicMethod.push(academicMethod)
         },
-        ADD_ORGANIZ_METHOD: (state, organizedMethod) => {
+        ADD_ORGANIZED_METHOD: (state, organizedMethod) => {
             console.log(organizedMethod);
             state.organizedMethod.push(organizedMethod)
-        }
+        },
+        ADD_SCIENTIFIC_METHOD: (state, scientificMethod) => {
+            console.log(scientificMethod);
+            state.scientificMethod.push(scientificMethod)
+        },
+        ADD_ACADEMIC_PRODUCTION: (state, academicProduction) => {
+            console.log(academicProduction);
+            state.academicProduction.push(academicProduction)
+        },
+        ADD_EDUCATE_WORK: (state, educateWork) => {
+            console.log(educateWork);
+            state.educateWork.push(educateWork)
+        },
+        ADD_PROMOTION_QUALIFICATION_LVL: (state, promotionQualificationLvl) => {
+            console.log(promotionQualificationLvl);
+            state.promotionQualificationLvl.push(promotionQualificationLvl)
+        },
     },
     actions: {
         LOAD_ENUMS({commit}) {
@@ -222,17 +239,100 @@ let store = createStore({
                     console.log(error)
                 })
         },
-        UPLOAD_ACADEMIC_METHOD({commit}, method) {
+        UPLOAD_ACADEMIC_METHOD({commit, getters}, method) {
             let url = '/api/methods/create';
             let data = {
                 academicDisciplineId: method.academicDiscipline.id,
                 specializationId: method.specialization.id,
+                activityType: method.activityType,
             }
-
+            console.log(getters)
             return axios.post(url, data)
                 .then((method) => {
-                    commit('ADD_ACADEMIC_METHOD', method.data)
+                    function transformMethodResponse(data) {
+                        return {
+                            id: data.id,
+                            academicDiscipline: getters.GET_ALL_ACADEMIC_DISCIPLINES.find((dis) => {return dis.id === data.academicDisciplineId}),
+                            specialization: getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
+                            activityType: getters.GET_ENUMS.ActivityType.find((actType) => {return actType === data.activityType}),
+                        }
+                    }
+
+                    let transformedMethod = transformMethodResponse(method.data);
+                    commit('ADD_ACADEMIC_METHOD', transformedMethod)
                     return method.data;
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+        UPLOAD_ORGANIZED_METHOD({commit, getters}, organ) {
+            let url = '/api/organized/create';
+            console.log(getters)
+            return axios.post(url, organ)
+                .then((organResponse) => {
+                    commit('ADD_ORGANIZED_METHOD', organResponse.data)
+                    return organResponse.data;
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+        UPLOAD_SCIENTIFIC_METHOD({commit, getters}, scien) {
+            let url = '/api/scientific/create';
+            console.log(getters)
+            return axios.post(url, scien)
+                .then((scienResponse) => {
+                    commit('ADD_SCIENTIFIC_METHOD', scienResponse.data)
+                    return scienResponse.data;
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+        UPLOAD_ACADEMIC_PRODUCTION({commit, getters}, product) {
+            let url = '/api/production/create';
+            let data = {
+                specializationId: product.specialization.id,
+                activityType: product.activityType
+            }
+            console.log(getters)
+            return axios.post(url, data)
+                .then((product) => {
+                    function transformProductResponse(data) {
+                        return {
+                            id: data.id,
+                            specialization: getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
+                            activityType: getters.GET_ENUMS.ActivityType.find((actType) => {return actType === data.activityType}),
+                        }
+                    }
+                    let transformedProduct = transformProductResponse(product.data);
+                    commit('ADD_ACADEMIC_PRODUCTION', transformedProduct)
+                    return product.data;
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+        UPLOAD_EDUCATE_WORK({commit, getters}, educate) {
+            let url = '/api/educate/create';
+            console.log(getters)
+            return axios.post(url, educate)
+                .then((educateResponse) => {
+                    commit('ADD_EDUCATE_WORK', educateResponse.data)
+                    return educateResponse.data;
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        },
+        UPLOAD_PROMOTION_QUALIFICATION_LVL({commit, getters}, lvl) {
+            let url = '/api/promotion/create';
+            console.log(getters)
+            return axios.post(url, lvl)
+                .then((lvlResponse) => {
+                    commit('ADD_PROMOTION_QUALIFICATION_LVL', lvlResponse.data)
+                    return lvlResponse.data;
                 })
                 .catch((error) => {
                     console.log(error)

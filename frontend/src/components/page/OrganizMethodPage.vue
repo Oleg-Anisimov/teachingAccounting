@@ -20,8 +20,8 @@ import OrgMethWork from "./fillingForms/OrgMethWork.vue";
 
             </tr>
               <tr v-for="organ in GET_ORGANIZED_METHOD()" :key="organ">
-                <td>{{organ.index}}</td>
-                <td></td>
+                <td>{{organ.id}}</td>
+                <td>{{organ.activityType}}</td>
                 <td>{{organ.eventType}}</td>
                 <td></td>
                 <td>{{organ.eventLevel}}</td>

@@ -27,7 +27,7 @@ import AcaMethWork from "./fillingForms/AcaMethWork.vue";
                 <td>{{ method.academicDiscipline.disciplineNumber }}</td>
 <!--                Название уч дисциплины-->
                 <td>{{ method.academicDiscipline.name }}</td>
-                <td></td>
+                <td>{{ method.activityType }}</td>
                 <td></td>
                 <td></td>
                 <td></td>

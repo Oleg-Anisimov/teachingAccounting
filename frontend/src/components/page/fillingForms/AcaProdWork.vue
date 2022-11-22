@@ -17,26 +17,25 @@
             <p class="main-p">Новая запись</p>
             <div class="form-border">
                 <p>Специальность</p>
-                <select v-model="work.specialization">
+                <select v-model="model.specialization">
                     <option disabled value="">Выберите специальность</option>
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization">{{specialization.specialization}}</option>
                 </select>
                 <p>Наименование кабинета</p>
-                <select v-model="work.discipline">
-                  <option disabled value="">Выберите дисциплину</option>
-                  <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline">{{discipline.disciplineNumber}}</option>
+                <select>
+                  <option value=""></option>
                 </select>
                 <p>Вид деятельности</p>
-                <select v-model="work.group">
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                <select v-model="model.activityType">
+                    <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{activityType}}</option>
                 </select><br>
                 <p>Вид УПД</p>
-                <select v-model="work.group">
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                <select>
+                    <option value=""></option>
                 </select><br>
                 <p>Дата</p>
                 <input type="text">
-                <button @click="clickButton()">Добавить</button> 
+                <button @click="addAcademicProduct()">Добавить</button> 
             </div>    
         </div>
         <div class="export">
@@ -49,6 +48,7 @@
 </template>
 <script>
 import {mapActions, mapGetters, mapMutations} from 'vuex';
+import AcademicProduct from "../../../model/academicProduction";
 
 export default{
     name: "AcaProdWork",
@@ -57,15 +57,10 @@ export default{
     ],
     data() {
       return {
-        selected: '',
-        work: {
+        model: {
+          id: 1,
           specialization: '',
-          group: '',
-          discipline: {
-            
-          },
-          input: '<input type="text">',
-          index: 0,
+          activityType: ''
         },
         
       }
@@ -73,35 +68,31 @@ export default{
     methods: {
     ...mapActions([
       'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
       'LOAD_SPECIALIZATION',
-      'LOAD_ACADEMIC_DISCIPLINE',
+      'UPLOAD_ACADEMIC_PRODUCTION'
     ]),
     ...mapMutations([
-        'ADD_ACADEMIC_WORK'
+        'ADD_ACADEMIC_PRODUCTION'
     ]),
     ...mapGetters([
       'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
       'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
       //'',
       // 'GET_DEPARTMENT_NAMES'
     ]),
 
-    clickButton(){
-      this.ADD_ACADEMIC_WORK(this.work);
-      console.log(this.work.specialization)
-      this.work.index++
+    addAcademicProduct(){
+      let product = new AcademicProduct(
+          this.id,
+          this.model.specialization,
+          this.model.activityType,
+      )
+      this.UPLOAD_ACADEMIC_PRODUCTION(product)
     },
   },
   mounted(){
     this.LOAD_ENUMS()
     this.LOAD_SPECIALIZATION()
-    this.LOAD_ACADEMIC_DISCIPLINE()
     //this.
   },
 

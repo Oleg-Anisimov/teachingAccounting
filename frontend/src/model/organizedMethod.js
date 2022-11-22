@@ -1,7 +1,8 @@
 export default class OrganizedMethod {
-    constructor(id, eventType, eventLevel) {
+    constructor(id, activityType, eventLevel, eventType) {
         this.id = id;
-        this.eventType = eventType;
+        this.activityType = activityType;
         this.eventLevel = eventLevel;
+        this.eventType = eventType;
     }
 }

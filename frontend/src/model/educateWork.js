@@ -1,7 +1,9 @@
 export default class EducateWork {
-    constructor(id, specialization, academicDiscipline) {
+    constructor(id, workVector, activityType, eventType, eventLevel) {
         this.id = id;
-        this.specialization = specialization;
-        this.academicDiscipline = academicDiscipline;
+        this.workVector = workVector;
+        this.activityType = activityType;
+        this.eventType = eventType;
+        this.eventLevel = eventLevel;
     }
 }

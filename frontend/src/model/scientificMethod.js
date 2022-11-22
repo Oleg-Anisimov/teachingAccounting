@@ -1,7 +1,9 @@
 export default class ScientificMethod {
-    constructor(id, specialization, academicDiscipline) {
+    constructor(id, activityType, eventType, eventLevel, participationType) {
         this.id = id;
-        this.specialization = specialization;
-        this.academicDiscipline = academicDiscipline;
+        this.activityType = activityType;
+        this.eventType = eventType;
+        this.eventLevel = eventLevel;
+        this.participationType = participationType;
     }
 }

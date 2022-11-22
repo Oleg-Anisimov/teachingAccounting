@@ -20,11 +20,11 @@ import EducWork from "./fillingForms/EducWork.vue";
                     <td class="right-helf">Результат</td>
             </tr>
               <tr v-for="educate in GET_EDUCATE_WORK()" :key="educate">
-                <td>{{educate.index}}</td>
-                <td>{{ educate.specialization }}</td>
-                <td>{{ educate.discipline.disciplineNumber }}</td>
-                <td>{{ educate.discipline.name }}</td>
-                <td>{{ educate.group }}</td>
+                <td>{{educate.id}}</td>
+                <td>{{ educate.workVector}}</td>
+                <td>{{ educate.activityType }}</td>
+                <td>{{ educate.eventType }}</td>
+                <td>{{ educate.eventLevel }}</td>
                 <td></td>
                 <td></td>
                 <td></td>

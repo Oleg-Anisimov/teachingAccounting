@@ -1,7 +1,6 @@
 export default class PromotionQualificationLvl {
-    constructor(id, specialization, academicDiscipline) {
+    constructor(id, promotionForm) {
         this.id = id;
-        this.specialization = specialization;
-        this.academicDiscipline = academicDiscipline;
+        this.promotionForm = promotionForm;
     }
 }

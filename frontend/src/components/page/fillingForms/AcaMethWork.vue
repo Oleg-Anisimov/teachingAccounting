@@ -19,7 +19,7 @@
                 <p>Специальность</p>
                 <select v-model="model.specialization">
                     <option disabled value="">Выберите специальность</option>
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization">{{specialization.specialization}}</option>
                 </select>
                 <p>Учебная дисциплина</p>
                 <select v-model="model.discipline">
@@ -27,9 +27,10 @@
                   <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline">{{discipline.disciplineNumber}}</option>
                 </select>
                 <p>Вид деятельности</p>
-                <select>
-                    <option value=""></option>
-                </select><br>
+                <select v-model="model.activityType">
+                  <option disabled value="">Выберите дисциплину</option>
+                  <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{activityType}}</option>
+                </select>
                 <p>Вид УМД</p>
                 <select>
                     <option value=""></option>
@@ -64,6 +65,7 @@ export default{
       return {
         model: {
           id: 1,
+          activityType: '',
           specialization: '',
           academicDiscipline: '',
         },
@@ -84,15 +86,16 @@ export default{
       'GET_ENUMS',
       'GET_EMPLOYMENT_TYPES',
       'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
-      'GET_ACADEMIC_METHOD',
+      'GET_ALL_ACADEMIC_DISCIPLINES'
     ]),
     addAcademicMethod(){
-      this.UPLOAD_ACADEMIC_METHOD(new AcademicMethod(
+      let method = new AcademicMethod(
           this.id,
           this.model.specialization,
-          this.model.academicDiscipline,
-      ))
+          this.model.discipline,
+          this.model.activityType,
+      )
+      this.UPLOAD_ACADEMIC_METHOD(method)
     },
   },
   mounted(){

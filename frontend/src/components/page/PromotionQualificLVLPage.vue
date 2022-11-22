@@ -17,11 +17,11 @@ import PromQual from "./fillingForms/PromQual.vue";
                     <td class="left-helf">Документ/Результат</td>
             </tr>
               <tr v-for="lvl in GET_PROMOTION_QUALIFICATION_LVL()" :key="lvl">
-                <td>{{lvl.index}}</td>
-                <td>{{ lvl.specialization }}</td>
-                <td>{{ lvl.discipline.disciplineNumber }}</td>
-                <td>{{ lvl.discipline.name }}</td>
-                <td>{{ lvl.group }}</td>
+                <td>{{lvl.id}}</td>
+                <td>{{ lvl.promotionForm }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td></td>
 
               </tr>

@@ -20,15 +20,15 @@ import ScienMethWork from "./fillingForms/ScienMethWork.vue";
                     <td class="right-helf">Результат</td>
             </tr>
               <tr v-for="scien in GET_SCIENTIFIC_METHOD()" :key="scien">
-                <td>{{scien.index}}</td>
-                <td>{{ scien.specialization }}</td>
-                <td>{{ scien.discipline.disciplineNumber }}</td>
-                <td>{{ scien.discipline.name }}</td>
-                <td>{{ scien.group }}</td>
+                <td>{{scien.id}}</td>
+                <td>{{ scien.activityType }}</td>
+                <td>{{ scien.eventType }}</td>
+                <td></td>
+                <td>{{ scien.eventLevel }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td>{{ scien.participationType }}</td>
               </tr>
             <tr>
                 <td colspan="100" class="last-td">

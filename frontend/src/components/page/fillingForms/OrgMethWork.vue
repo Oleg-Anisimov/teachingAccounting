@@ -17,27 +17,27 @@
             <p class="main-p">Новая запись</p>
             <div class="form-border">
                 <p>Вид деятельности</p>
-                <select>
-                    <option disabled value="">Выберите специальность</option>
-                    <option value=""></option>
+                <select v-model="model.activityType">
+                  <option disabled value="">Выберите уровень мероприятие</option>
+                  <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{activityType}}</option>
                 </select>
                 <p>Вид мероприятия</p>
                 <select v-model="model.eventType">
                   <option disabled value="">Выберите вид мероприятие</option>
-                  <option v-for="organ in GET_ENUMS().EventType" :key="organ" :value="organ">{{organ}}</option>
+                  <option v-for="eventType in GET_ENUMS().EventType" :key="eventType" :value="eventType">{{eventType}}</option>
                 </select>
                 <p>Название мероприятия</p>
                 <input type="text">
                 <p>Уровень мероприятия</p>
                 <select v-model="model.eventLevel">
                   <option disabled value="">Выберите уровень мероприятие</option>
-                  <option v-for="organ in GET_ENUMS().EventLevel" :key="organ" :value="organ">{{organ}}</option>
+                  <option v-for="eventLevel in GET_ENUMS().EventLevel" :key="eventLevel" :value="eventLevel">{{eventLevel}}</option>
                 </select>
                 <p>Дата</p>
                 <input type="date">
                 <p>Инфо о студентах</p>
                 <input type="text">
-                <button @click="addOranizMethod()">Добавить</button> 
+                <button @click="addOrganizedMethod()">Добавить</button> 
             </div>    
         </div>
         <div class="export">
@@ -63,6 +63,7 @@ export default{
           id: 1,
           eventType: '',
           eventLevel: '',
+          activityType: '',
         },
 
       }
@@ -70,29 +71,30 @@ export default{
     methods: {
     ...mapActions([
       'LOAD_ENUMS',
-      'LOAD_ORGANIZED_METHODS'
+      'UPLOAD_ORGANIZED_METHOD'
     ]),
     ...mapMutations([
-        'ADD_ORGANIZ_METHOD'
+        'ADD_ORGANIZED_METHOD'
     ]),
     ...mapGetters([
       'GET_ENUMS',
-      'GET_ORGANIZED_METHOD'
       //'',
       // 'GET_DEPARTMENT_NAMES'
     ]),
 
-    addOranizMethod(){
-      this.ADD_ORGANIZ_METHOD(new OrganizedMethod(
-          this.model.id,
+    addOrganizedMethod(){
+      let organ = new OrganizedMethod(
+          this.id,
+          this.model.activityType,
           this.model.eventLevel,
-          this.model.eventType
-      ))
+          this.model.eventType,
+      )
+      console.log(organ)
+      this.UPLOAD_ORGANIZED_METHOD(organ)
     },
   },
   mounted(){
     this.LOAD_ENUMS()
-    this.LOAD_ORGANIZED_METHODS()
     //this.
   },
 

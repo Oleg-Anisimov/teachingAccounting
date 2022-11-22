@@ -94,9 +94,6 @@ export default{
     ]),
 
     addAcademicWork(){
-      console.log(this.model.group)
-      console.log(this.model.specialization)
-      console.log(this.model.discipline)
       let work = new AcademicWork(
           this.id,
           this.model.specialization,
@@ -105,7 +102,6 @@ export default{
           this.model.firstSemPlan,
           this.model.secondSemPlan
       )
-      console.log(work)
       this.UPLOAD_ACADEMIC_WORK(work)
     },
   },

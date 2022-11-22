@@ -38,7 +38,7 @@
         padding: 0.4em 0.5em;
         background-color: #343434;
         border-radius: 8px;
-        display: inline;
+        display: inline-block;
         font: bold;
     }
   </style>

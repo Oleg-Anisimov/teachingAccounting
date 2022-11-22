@@ -58,7 +58,8 @@ export default{
     border: 5px solid royalblue;
     border-radius: 10px;
     width: 500px;
-    margin-top: 2em;
+    /* margin-top: 2em; */
+    margin: 2em auto auto auto;
 }
 .ui-input-group{
     padding: 0.5em 2em;

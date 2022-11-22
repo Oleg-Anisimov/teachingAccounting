@@ -18,12 +18,12 @@ import AcaProdWork from "./fillingForms/AcaProdWork.vue";
                     <td class="left-helf">Дата</td>
                     <td class="left-helf">Результат</td>
             </tr>
-              <tr v-for="work in GET_ACADEMIC_WORK()" :key="work">
-                <td>{{work.index}}</td>
-                <td>{{ work.specialization }}</td>
-                <td>{{ work.discipline.disciplineNumber }}</td>
-                <td>{{ work.discipline.name }}</td>
-                <td>{{ work.group }}</td>
+              <tr v-for="product in GET_ACADEMIC_PRODUCTION()" :key="product">
+                <td>{{ product.id }}</td>
+                <td>{{ product.specialization.specialization }}</td>
+                <td></td>
+                <td></td>
+                <td>{{ product.activityType }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -47,28 +47,15 @@ export default{
     ],
     methods: {
     ...mapActions([
-      'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
-      'LOAD_SPECIALIZATION',
-      'LOAD_ACADEMIC_DISCIPLINE',
+      'LOAD_ACADEMIC_PRODUCTIONS',
     ]),
     ...mapGetters([
-      'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
-      'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
-      'GET_ACADEMIC_WORK'
-      // 'GET_DEPARTMENT_NAMES'
+      'GET_ACADEMIC_PRODUCTION'
     ]),
-  },
-  mounted(){
-    this.LOAD_ENUMS()
-    this.LOAD_DEPARTMENTS()
-    this.LOAD_SPECIALIZATION()
-    this.LOAD_ACADEMIC_DISCIPLINE()
+    },
+    mounted(){
+      this.LOAD_ACADEMIC_PRODUCTIONS()
+
   },
 }
 </script>

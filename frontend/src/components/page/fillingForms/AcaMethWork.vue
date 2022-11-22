@@ -17,30 +17,31 @@
             <p class="main-p">Новая запись</p>
             <div class="form-border">
                 <p>Специальность</p>
-                <select v-model="work.specialization">
+                <select v-model="model.specialization">
                     <option disabled value="">Выберите специальность</option>
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization">{{specialization.specialization}}</option>
                 </select>
                 <p>Учебная дисциплина</p>
-                <select v-model="work.discipline">
+                <select v-model="model.discipline">
                   <option disabled value="">Выберите дисциплину</option>
                   <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline">{{discipline.disciplineNumber}}</option>
                 </select>
                 <p>Вид деятельности</p>
-                <select v-model="work.group">
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
-                </select><br>
+                <select v-model="model.activityType">
+                  <option disabled value="">Выберите дисциплину</option>
+                  <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{activityType}}</option>
+                </select>
                 <p>Вид УМД</p>
-                <select v-model="work.group">
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                <select>
+                    <option value=""></option>
                 </select><br>
                 <p>Тип УМД</p>
-                <select v-model="work.group">
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                <select>
+                    <option value=""></option>
                 </select><br>
                 <p>Срок исполнения</p>
                 <input type="text">
-                <button @click="clickButton()">Добавить</button> 
+                <button @click="addAcademicMethod()">Добавить</button> 
             </div>    
         </div>
         <div class="export">
@@ -53,6 +54,7 @@
 </template>
 <script>
 import {mapActions, mapGetters, mapMutations} from 'vuex';
+import AcademicMethod from "../../../model/academicMethod";
 
 export default{
     name: "AcaMethWork",
@@ -61,15 +63,11 @@ export default{
     ],
     data() {
       return {
-        selected: '',
-        work: {
+        model: {
+          id: 1,
+          activityType: '',
           specialization: '',
-          group: '',
-          discipline: {
-            
-          },
-          input: '<input type="text">',
-          index: 0,
+          academicDiscipline: '',
         },
         
       }
@@ -77,29 +75,27 @@ export default{
     methods: {
     ...mapActions([
       'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
       'LOAD_SPECIALIZATION',
       'LOAD_ACADEMIC_DISCIPLINE',
+      'UPLOAD_ACADEMIC_METHOD',
     ]),
     ...mapMutations([
-        'ADD_ACADEMIC_WORK'
+        'ADD_ACADEMIC_METHOD'
     ]),
     ...mapGetters([
       'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
       'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
       'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
-      //'',
-      // 'GET_DEPARTMENT_NAMES'
+      'GET_ALL_ACADEMIC_DISCIPLINES'
     ]),
-
-    clickButton(){
-      this.ADD_ACADEMIC_WORK(this.work);
-      console.log(this.work.specialization)
-      this.work.index++
+    addAcademicMethod(){
+      let method = new AcademicMethod(
+          this.id,
+          this.model.specialization,
+          this.model.discipline,
+          this.model.activityType,
+      )
+      this.UPLOAD_ACADEMIC_METHOD(method)
     },
   },
   mounted(){

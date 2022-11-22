@@ -17,27 +17,27 @@
             <p class="main-p">Новая запись</p>
             <div class="form-border">
                 <p>Вид деятельности</p>
-                <select v-model="work.specialization">
-                    <option disabled value="">Выберите специальность</option>
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                <select v-model="model.activityType">
+                  <option disabled value="">Выберите уровень мероприятие</option>
+                  <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{activityType}}</option>
                 </select>
                 <p>Вид мероприятия</p>
-                <select v-model="work.discipline">
-                  <option disabled value="">Выберите дисциплину</option>
-                  <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline">{{discipline.disciplineNumber}}</option>
+                <select v-model="model.eventType">
+                  <option disabled value="">Выберите вид мероприятие</option>
+                  <option v-for="eventType in GET_ENUMS().EventType" :key="eventType" :value="eventType">{{eventType}}</option>
                 </select>
                 <p>Название мероприятия</p>
                 <input type="text">
                 <p>Уровень мероприятия</p>
-                <select v-model="work.discipline">
-                  <option disabled value="">Выберите дисциплину</option>
-                  <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline">{{discipline.disciplineNumber}}</option>
+                <select v-model="model.eventLevel">
+                  <option disabled value="">Выберите уровень мероприятие</option>
+                  <option v-for="eventLevel in GET_ENUMS().EventLevel" :key="eventLevel" :value="eventLevel">{{eventLevel}}</option>
                 </select>
                 <p>Дата</p>
                 <input type="date">
                 <p>Инфо о студентах</p>
                 <input type="text">
-                <button @click="clickButton()">Добавить</button> 
+                <button @click="addOrganizedMethod()">Добавить</button> 
             </div>    
         </div>
         <div class="export">
@@ -50,6 +50,7 @@
 </template>
 <script>
 import {mapActions, mapGetters, mapMutations} from 'vuex';
+import OrganizedMethod from "../../../model/organizedMethod";
 
 export default{
     name: "OrgMethWork",
@@ -58,51 +59,42 @@ export default{
     ],
     data() {
       return {
-        selected: '',
-        work: {
-          specialization: '',
-          group: '',
-          discipline: {
-            
-          },
-          input: '<input type="text">',
-          index: 0,
+        model: {
+          id: 1,
+          eventType: '',
+          eventLevel: '',
+          activityType: '',
         },
-        
+
       }
     },
     methods: {
     ...mapActions([
       'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
-      'LOAD_SPECIALIZATION',
-      'LOAD_ACADEMIC_DISCIPLINE',
+      'UPLOAD_ORGANIZED_METHOD'
     ]),
     ...mapMutations([
-        'ADD_ACADEMIC_WORK'
+        'ADD_ORGANIZED_METHOD'
     ]),
     ...mapGetters([
       'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
-      'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
       //'',
       // 'GET_DEPARTMENT_NAMES'
     ]),
 
-    clickButton(){
-      this.ADD_ACADEMIC_WORK(this.work);
-      console.log(this.work.specialization)
-      this.work.index++
+    addOrganizedMethod(){
+      let organ = new OrganizedMethod(
+          this.id,
+          this.model.activityType,
+          this.model.eventLevel,
+          this.model.eventType,
+      )
+      console.log(organ)
+      this.UPLOAD_ORGANIZED_METHOD(organ)
     },
   },
   mounted(){
     this.LOAD_ENUMS()
-    this.LOAD_SPECIALIZATION()
-    this.LOAD_ACADEMIC_DISCIPLINE()
     //this.
   },
 

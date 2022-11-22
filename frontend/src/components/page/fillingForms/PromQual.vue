@@ -17,9 +17,9 @@
             <p class="main-p">Новая запись</p>
             <div class="form-border">
                 <p>Форма повышения</p>
-                <select v-model="work.specialization">
+                <select v-model="model.promotionForm">
                     <option disabled value="">Выберите специальность</option>
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                    <option v-for="promotionForm in GET_ENUMS().PromotionForm" :key="promotionForm" :value="promotionForm">{{promotionForm}}</option>
                 </select>
                 <p>Дата</p>
                 <input type="text">
@@ -27,7 +27,7 @@
                 <input type="text">
                 <p>Тема</p>
                 <input type="text">
-                <button @click="clickButton()">Добавить</button> 
+                <button @click="addPromotionQual()">Добавить</button> 
             </div>    
         </div>
         <div class="export">
@@ -40,6 +40,7 @@
 </template>
 <script>
 import {mapActions, mapGetters, mapMutations} from 'vuex';
+import PromotionQualificationLvl from "../../../model/promotionQualificationLvl";
 
 export default{
     name: "PromQual",
@@ -48,15 +49,9 @@ export default{
     ],
     data() {
       return {
-        selected: '',
-        work: {
-          specialization: '',
-          group: '',
-          discipline: {
-            
-          },
-          input: '<input type="text">',
-          index: 0,
+        model: {
+          id: '',
+          promotionForm: ''
         },
         
       }
@@ -64,35 +59,28 @@ export default{
     methods: {
     ...mapActions([
       'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
-      'LOAD_SPECIALIZATION',
-      'LOAD_ACADEMIC_DISCIPLINE',
+      'UPLOAD_PROMOTION_QUALIFICATION_LVL'
     ]),
     ...mapMutations([
-        'ADD_ACADEMIC_WORK'
+        'ADD_PROMOTION_QUALIFICATION_LVL'
     ]),
     ...mapGetters([
       'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
-      'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
       //'',
       // 'GET_DEPARTMENT_NAMES'
     ]),
 
-    clickButton(){
-      this.ADD_ACADEMIC_WORK(this.work);
-      console.log(this.work.specialization)
-      this.work.index++
+    addPromotionQual(){
+      let lvl = new PromotionQualificationLvl(
+          this.id,
+          this.model.promotionForm,
+      )
+      console.log(lvl)
+      this.UPLOAD_PROMOTION_QUALIFICATION_LVL(lvl)
     },
   },
   mounted(){
     this.LOAD_ENUMS()
-    this.LOAD_SPECIALIZATION()
-    this.LOAD_ACADEMIC_DISCIPLINE()
     //this.
   },
 

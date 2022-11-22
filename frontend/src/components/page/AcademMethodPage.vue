@@ -20,18 +20,19 @@ import AcaMethWork from "./fillingForms/AcaMethWork.vue";
                     <td class="left-helf">Срок исполнения</td>
                     <td class="left-helf">Краткий отчёт о выполении</td>
             </tr>
-              <tr v-for="work in GET_ACADEMIC_WORK()" :key="work">
-                <td>{{work.index}}</td>
-                <td>{{ work.specialization }}</td>
-                <td>{{ work.discipline.disciplineNumber }}</td>
+              <tr v-for="method in GET_ACADEMIC_METHOD()" :key="method.id">
+                <td>{{method.id}}</td>
+                <td>{{ method.specialization.specialization }}</td>
+                <td>{{ method.specialization.specializationName }}</td>
+                <td>{{ method.academicDiscipline.disciplineNumber }}</td>
 <!--                Название уч дисциплины-->
-                <td>{{ work.discipline.name }}</td>
-                <td>{{ work.group }}</td>
+                <td>{{ method.academicDiscipline.name }}</td>
+                <td>{{ method.activityType }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                
               </tr>
             <tr>
                 <td colspan="100" class="last-td">
@@ -53,28 +54,14 @@ export default{
     ],
     methods: {
     ...mapActions([
-      'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
-      'LOAD_SPECIALIZATION',
-      'LOAD_ACADEMIC_DISCIPLINE',
+      'LOAD_ACADEMIC_METHODS',
     ]),
     ...mapGetters([
-      'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
-      'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
-      'GET_ACADEMIC_WORK'
-      // 'GET_DEPARTMENT_NAMES'
+      'GET_ACADEMIC_METHOD',
     ]),
   },
   mounted(){
-    this.LOAD_ENUMS()
-    this.LOAD_DEPARTMENTS()
-    this.LOAD_SPECIALIZATION()
-    this.LOAD_ACADEMIC_DISCIPLINE()
+    this.LOAD_ACADEMIC_METHODS()
   },
 }
 </script>

@@ -16,12 +16,12 @@ import PromQual from "./fillingForms/PromQual.vue";
                     <td class="left-helf">Тема</td>
                     <td class="left-helf">Документ/Результат</td>
             </tr>
-              <tr v-for="work in GET_ACADEMIC_WORK()" :key="work">
-                <td>{{work.index}}</td>
-                <td>{{ work.specialization }}</td>
-                <td>{{ work.discipline.disciplineNumber }}</td>
-                <td>{{ work.discipline.name }}</td>
-                <td>{{ work.group }}</td>
+              <tr v-for="lvl in GET_PROMOTION_QUALIFICATION_LVL()" :key="lvl">
+                <td>{{lvl.id}}</td>
+                <td>{{ lvl.promotionForm }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td></td>
 
               </tr>
@@ -44,28 +44,15 @@ export default{
     ],
     methods: {
     ...mapActions([
-      'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
-      'LOAD_SPECIALIZATION',
-      'LOAD_ACADEMIC_DISCIPLINE',
+      'LOAD_PROMOTION_QUALIFICATION_LVLS'
     ]),
     ...mapGetters([
-      'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
-      'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
-      'GET_ACADEMIC_WORK'
+      'GET_PROMOTION_QUALIFICATION_LVL'
       // 'GET_DEPARTMENT_NAMES'
     ]),
   },
   mounted(){
-    this.LOAD_ENUMS()
-    this.LOAD_DEPARTMENTS()
-    this.LOAD_SPECIALIZATION()
-    this.LOAD_ACADEMIC_DISCIPLINE()
+    this.LOAD_PROMOTION_QUALIFICATION_LVLS()
   },
 }
 </script>

@@ -17,25 +17,25 @@
             <p class="main-p">Новая запись</p>
             <div class="form-border">
                 <p>Специальность</p>
-                <select v-model="work.specialization">
+                <select v-model="model.specialization">
                     <option disabled value="">Выберите специальность</option>
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization">{{specialization.specialization}}</option>
                 </select>
                 <p>Учебная дисциплина</p>
-                <select v-model="work.discipline">
+                <select v-model="model.discipline">
                   <option disabled value="">Выберите дисциплину</option>
                   <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline">{{discipline.disciplineNumber}}</option>
                 </select>
                 <p>Учебная группа</p>
-                <select v-model="work.group">
-                    <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization.specialization">{{specialization.specialization}}</option>
+                <select v-model="model.group">
+                    <option v-for="group in GET_ALL_GROUPS()" :key="group.id" :value="group">{{group.groupName}}</option>
                 </select><br>
                 <p>Кол-во часов по плану:</p>
                 <p>l Семестр</p>
-                <input type="number" name="first_half" value="0">
+                <input type="text" v-model.number="model.firstSemPlan" name="first_half">
                 <p>ll Семестр</p>
-                <input type="number" name="last_half" value="0">
-                <button @click="clickButton()">Добавить</button> 
+                <input type="text" v-model.number="model.secondSemPlan" name="last_half">
+                <button @click="addAcademicWork()">Добавить</button>
             </div>    
         </div>
         <div class="export">
@@ -48,6 +48,7 @@
 </template>
 <script>
 import {mapActions, mapGetters, mapMutations} from 'vuex';
+import AcademicWork from "../../../model/academicWork";
 
 export default{
     name: "AcaWork",
@@ -56,25 +57,26 @@ export default{
     ],
     data() {
       return {
-        selected: '',
-        work: {
+        model: {
+          id: 1,
           specialization: '',
           group: '',
-          discipline: {
-            
-          },
-          input: '<input type="text">',
-          index: 0,
-        },
+          academicDiscipline: '',
+          firstSemPlan: 0,
+          secondSemPlan: 0
+        }
         
       }
     },
+
     methods: {
     ...mapActions([
       'LOAD_ENUMS',
       'LOAD_DEPARTMENTS',
       'LOAD_SPECIALIZATION',
       'LOAD_ACADEMIC_DISCIPLINE',
+      'LOAD_GROUPS',
+      'UPLOAD_ACADEMIC_WORK',
     ]),
     ...mapMutations([
         'ADD_ACADEMIC_WORK'
@@ -87,21 +89,27 @@ export default{
       'GET_ALL_DEPARTMENTS',
       'GET_ALL_SPECIALIZATIONS',
       'GET_ALL_ACADEMIC_DISCIPLINES',
-      //'',
-      // 'GET_DEPARTMENT_NAMES'
+      'GET_ALL_GROUPS',
+
     ]),
 
-    clickButton(){
-      this.ADD_ACADEMIC_WORK(this.work);
-      console.log(this.work.specialization)
-      this.work.index++
+    addAcademicWork(){
+      let work = new AcademicWork(
+          this.id,
+          this.model.specialization,
+          this.model.group,
+          this.model.discipline,
+          this.model.firstSemPlan,
+          this.model.secondSemPlan
+      )
+      this.UPLOAD_ACADEMIC_WORK(work)
     },
   },
   mounted(){
     this.LOAD_ENUMS()
     this.LOAD_SPECIALIZATION()
     this.LOAD_ACADEMIC_DISCIPLINE()
-    //this.
+    this.LOAD_GROUPS()
   },
 
 }

@@ -1,10 +1,12 @@
 package me.anisimov.teachingAccounting.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,4 +28,8 @@ public class User {
     @ManyToOne(targetEntity = Role.class)
     @JoinColumn(name="role_id", nullable=false)
     private Role role;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "userId")
+    private Teacher teacher;
 }

@@ -23,4 +23,5 @@ public class TeacherDto {
     private Position position;
     private Category category;
     private Long departmentId;
+    private Long userId;
 }

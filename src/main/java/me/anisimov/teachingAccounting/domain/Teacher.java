@@ -45,6 +45,10 @@ public class Teacher {
     @Column(name="category")
     private Category category;
 
+    @OneToOne(targetEntity = User.class)
+    @JoinColumn(name = "userId", nullable = false)
+    private User userId;
+
     @ManyToOne(targetEntity = Department.class)
     @JoinColumn(name="department_id", nullable=false)
     private Department department;

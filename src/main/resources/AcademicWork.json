@@ -5,16 +5,16 @@
     "absoluteResults": 5.0,
     "qualityResults": 5.0,
     "firstSemester": {
-      "fact": "Che-to",
-      "plan": "Che-to 2"
+      "fact": 2,
+      "plan": 2
     },
     "secondSemester": {
-      "fact": "Che-to",
-      "plan": "Che-to 2"
+      "fact": 3,
+      "plan": 3
     },
     "academicYear": {
-      "fact": "Che-to v celom",
-      "plan": "Che-to v celom 2"
+      "fact": 4,
+      "plan": 4
     },
     "specializationId": 1,
     "academicDisciplineId": 3
@@ -25,16 +25,16 @@
     "absoluteResults": 5.0,
     "qualityResults": 3.5,
     "firstSemester": {
-      "fact": "Che-to",
-      "plan": "Che-to 2"
+      "fact": 2,
+      "plan": 2
     },
     "secondSemester":{
-      "fact": "Che-to",
-      "plan": "Che-to 2"
+      "fact": 3,
+      "plan": 3
     },
     "academicYear": {
-      "fact": "Che-to v celom",
-      "plan": "Che-to v celom 2"
+      "fact": 4,
+      "plan": 4
     },
     "specializationId": 2,
     "academicDisciplineId": 2

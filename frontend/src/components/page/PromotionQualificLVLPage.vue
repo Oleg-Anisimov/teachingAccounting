@@ -52,6 +52,7 @@ export default{
     ]),
   },
   mounted(){
+    document.title = 'Повышение уровня квалификации'
     this.LOAD_PROMOTION_QUALIFICATION_LVLS()
   },
 }

@@ -61,6 +61,7 @@ export default{
     ]),
   },
   mounted(){
+    document.title = 'Учебно-методическая работа'
     this.LOAD_ACADEMIC_METHODS()
   },
 }

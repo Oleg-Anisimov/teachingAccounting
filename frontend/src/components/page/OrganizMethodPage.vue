@@ -56,6 +56,7 @@ export default{
     ]),
   },
   mounted(){
+    document.title = 'Организационно-методическая работа'
     this.LOAD_ORGANIZED_METHODS()
   },
 }

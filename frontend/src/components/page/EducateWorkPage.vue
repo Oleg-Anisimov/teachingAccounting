@@ -57,6 +57,7 @@ export default{
     ]),
   },
   mounted(){
+    document.title = 'Воспитательная работа'
     this.LOAD_EDUCATE_WORKS()
   },
 }

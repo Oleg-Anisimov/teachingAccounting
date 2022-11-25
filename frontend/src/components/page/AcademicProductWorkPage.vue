@@ -54,6 +54,7 @@ export default{
     ]),
     },
     mounted(){
+        document.title = 'Учебно-производственная работа'
       this.LOAD_ACADEMIC_PRODUCTIONS()
 
   },

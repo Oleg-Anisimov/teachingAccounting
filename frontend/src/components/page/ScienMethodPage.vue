@@ -57,6 +57,7 @@ export default{
     ]),
   },
   mounted(){
+    document.title = 'Научно-методическая работа'
     this.LOAD_SCIENTIFIC_METHODS()
   },
 }

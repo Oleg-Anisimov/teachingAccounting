@@ -72,6 +72,7 @@ export default {
     ]),
   },
   mounted(){
+    document.title = 'Учебная работа'
     this.LOAD_ACADEMIC_WORKS()
 
   },

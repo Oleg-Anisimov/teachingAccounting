@@ -21,7 +21,7 @@ const i18n = createI18n({
                 },
                 eventLevel: {
                     INTERNATIONAL: "Международный",
-                    ALL_RUSSIAN: "Всероссийский",
+                    NATIONAL: "Всероссийский",
                     REGIONAL: "Региональный",
                     URBAN: "Городской",
                     UNIVERSITY: "Университетский",

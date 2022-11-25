@@ -6,7 +6,7 @@ import ScienMethWork from "./fillingForms/ScienMethWork.vue";
         <ScienMethWork grid-area="filling-form"></ScienMethWork>
         <table>
             <tr>
-                <th colspan="140"><img src="">Учебная работа - Заполнение индивидуального плана</th>
+                <th colspan="140"><img src="">Научно-методическая работа - Заполнение индивидуального плана</th>
             </tr>
             <tr>
                     <td class="left-helf simvol">№</td>
@@ -21,14 +21,14 @@ import ScienMethWork from "./fillingForms/ScienMethWork.vue";
             </tr>
               <tr v-for="scien in GET_SCIENTIFIC_METHOD()" :key="scien">
                 <td>{{scien.id}}</td>
-                <td>{{ scien.activityType }}</td>
-                <td>{{ scien.eventType }}</td>
+                <td>{{$t('enum.ActivityType.' + scien.activityType)}}</td>
+                <td>{{$t('enum.eventType.' + scien.eventType)}}</td>
                 <td></td>
-                <td>{{ scien.eventLevel }}</td>
+                <td>{{$t('enum.eventLevel.' + scien.eventLevel)}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{{ scien.participationType }}</td>
+                <td>{{$t('enum.ParticipationType.' + scien.participationType)}}</td>
               </tr>
             <tr>
                 <td colspan="100" class="last-td">

@@ -18,8 +18,8 @@
             <div class="form-border">
                 <p>Форма повышения</p>
                 <select v-model="model.promotionForm">
-                    <option disabled value="">Выберите специальность</option>
-                    <option v-for="promotionForm in GET_ENUMS().PromotionForm" :key="promotionForm" :value="promotionForm">{{promotionForm}}</option>
+                    <option disabled value="">Выберите форму повышения</option>
+                    <option v-for="promotionForm in GET_ENUMS().PromotionForm" :key="promotionForm" :value="promotionForm">{{$t('enum.PromotionForm.' + promotionForm)}}</option>
                 </select>
                 <p>Дата</p>
                 <input type="text">

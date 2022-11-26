@@ -2,9 +2,9 @@ package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.AcademicProduction;
+import me.anisimov.teachingAccounting.domain.AcademicProductionActivityForm;
 import me.anisimov.teachingAccounting.dto.AcademicProductionDto;
 import me.anisimov.teachingAccounting.repository.AcademicProductionRepository;
-import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,17 +21,22 @@ public class AcademicProductionService {
     private SpecializationService specializationService;
     @Autowired
     private ModelMapper mapper;
+    @Autowired
+    private CabinetService cabinetService;
+    @Autowired
+    private AcademicWorkActivityTypeService academicWorkActivityTypeService;
+    @Autowired
+    private AcademicProductionActivityFormService academicProductionActivityFormService;
 
     public AcademicProductionDto createAcademicProduction(AcademicProductionDto academicProductionDto) {
         AcademicProduction academicProduction = new AcademicProduction();
         academicProduction.setId(academicProductionDto.getId());
         academicProduction.setDate(academicProductionDto.getDate());
         academicProduction.setResult(academicProductionDto.getResult());
-        academicProduction.setAcademicProductionActivityForm(academicProductionDto.getAcademicProductionActivityForm());
+        academicProduction.setAcademicProductionActivityForm(academicProductionActivityFormService.getById(academicProductionDto.getAcademicProductionActivityFormId()));
         academicProduction.setSpecialization(specializationService.getById(academicProductionDto.getSpecializationId()));
-        academicProduction.setActivityType(academicProductionDto.getActivityType());
-        academicProduction.setCabinetType(academicProductionDto.getCabinetType());
-        academicProduction.setCabinetName(academicProductionDto.getCabinetName());
+        academicProduction.setAcademicWorkActivityType(academicWorkActivityTypeService.getById(academicProductionDto.getAcademicWorkActivityTypeId()));
+        academicProduction.setCabinet(cabinetService.getById(academicProductionDto.getCabinetId()));
         academicProductionRepository.save(academicProduction);
         return mapper.map(academicProduction, AcademicProductionDto.class);
     }

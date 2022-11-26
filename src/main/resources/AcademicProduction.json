@@ -2,19 +2,17 @@
   {
     "date": null,
     "result": "Cool",
-    "academicProductionActivityForm": null,
-    "cabinetType": "CABINET",
-    "cabinetName": "316",
-    "activityType": "DEVELOPMENT",
+    "academicProductionActivityFormId": 1,
+    "cabinetId": 1,
+    "academicWorkActivityTypeId": 1,
     "specializationId": 1
   },
   {
     "date": null,
     "result": "Cool",
-    "academicProductionActivityForm": null,
-    "cabinetType": "LABORATORY",
-    "cabinetName": "Breaking Bad",
-    "activityType": "REALIZATION",
+    "academicProductionActivityFormId": 2,
+    "cabinetId": 2,
+    "academicWorkActivityTypeId": 2,
     "specializationId": 2
   }
 ]

@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "cabinetName": "иностранного языка",
+    "cabinetId": 1
+  },
+  {
+    "id": 2,
+    "cabinetName": "программирования",
+    "cabinetId": 2
+  }
+]

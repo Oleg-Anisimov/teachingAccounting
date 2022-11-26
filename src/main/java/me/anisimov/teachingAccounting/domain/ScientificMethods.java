@@ -3,9 +3,6 @@ package me.anisimov.teachingAccounting.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import me.anisimov.teachingAccounting.domain.Enums.ActivityType;
-import me.anisimov.teachingAccounting.domain.Enums.EventLevel;
-import me.anisimov.teachingAccounting.domain.Enums.ParticipationType;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -31,25 +28,26 @@ public class ScientificMethods {
     @Column(name = "result")
     private String result;
 
-    @Column(name = "event_type")
-    private String eventType;
-
     @Column(name = "event_name")
     private String eventName;
 
     @Column(name = "student_information")
     private String studentInformation;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "event_level")
+    @ManyToOne(targetEntity = EventLevel.class)
+    @JoinColumn(name="event_level_id", nullable=false)
     private EventLevel eventLevel;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "activity_type")
-    private ActivityType activityType;
+    @ManyToOne(targetEntity = EventType.class)
+    @JoinColumn(name="event_type_id", nullable=false)
+    private EventType eventType;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "participation_type")
+    @ManyToOne(targetEntity = ScientificActivityType.class)
+    @JoinColumn(name="activityType_id", nullable=false)
+    private ScientificActivityType scientificActivityType;
+
+    @ManyToOne(targetEntity = ParticipationType.class)
+    @JoinColumn(name="participationType_id", nullable=false)
     private ParticipationType participationType;
 
 }

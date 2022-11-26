@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.ScientificMethods;
 import me.anisimov.teachingAccounting.dto.ScientificMethodsDto;
 import me.anisimov.teachingAccounting.repository.ScientificMethodsRepository;
-import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +18,14 @@ public class ScientificMethodsService {
     private ScientificMethodsRepository scientificMethodsRepository;
     @Autowired
     private ModelMapper mapper;
+    @Autowired
+    private ScientificActivityTypeService scientificActivityTypeService;
+    @Autowired
+    private EventLevelService eventLevelService;
+    @Autowired
+    private EventTypeService eventTypeService;
+    @Autowired
+    private ParticipationTypeService participationTypeService;
 
     public ScientificMethodsDto createScientificMethods(ScientificMethodsDto scientificMethodsDto) {
         ScientificMethods scientificMethods = new ScientificMethods();
@@ -26,11 +33,11 @@ public class ScientificMethodsService {
         scientificMethods.setDate(scientificMethodsDto.getDate());
         scientificMethods.setPlace(scientificMethodsDto.getPlace());
         scientificMethods.setEventName(scientificMethodsDto.getEventName());
-        scientificMethods.setEventType(scientificMethodsDto.getEventType());
+        scientificMethods.setEventType(eventTypeService.getById(scientificMethodsDto.getEventTypeId()));
         scientificMethods.setResult(scientificMethodsDto.getResult());
-        scientificMethods.setActivityType(scientificMethodsDto.getActivityType());
-        scientificMethods.setEventLevel(scientificMethodsDto.getEventLevel());
-        scientificMethods.setParticipationType(scientificMethodsDto.getParticipationType());
+        scientificMethods.setScientificActivityType(scientificActivityTypeService.getById(scientificMethodsDto.getScientificActivityTypeId()));
+        scientificMethods.setEventLevel(eventLevelService.getById(scientificMethodsDto.getEventLevelId()));
+        scientificMethods.setParticipationType(participationTypeService.getById(scientificMethodsDto.getParticipationTypeId()));
         scientificMethods.setStudentInformation(scientificMethodsDto.getStudentInformation());
         scientificMethodsRepository.save(scientificMethods);
         return mapper.map(scientificMethods,ScientificMethodsDto.class);

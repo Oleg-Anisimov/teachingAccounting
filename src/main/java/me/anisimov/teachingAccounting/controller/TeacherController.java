@@ -42,7 +42,7 @@ public class TeacherController {
         return teacherService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Teacher> getAll() {
         return teacherService.getAll();
     }

@@ -39,7 +39,7 @@ public class AcademicMethodsController {
         return academicMethodsService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<AcademicMethods> getAll() {
         return academicMethodsService.getAll();
     }

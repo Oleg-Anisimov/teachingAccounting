@@ -40,7 +40,7 @@ public class ScientificMethodsController {
         return scientificMethodsService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<ScientificMethods> getAll() {
         return scientificMethodsService.getAll();
     }

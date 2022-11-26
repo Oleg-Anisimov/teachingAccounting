@@ -40,7 +40,7 @@ public class DepartmentController {
         return departmentService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Department> getAll(){
         return departmentService.getAll();
     }

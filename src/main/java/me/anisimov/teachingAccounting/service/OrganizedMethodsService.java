@@ -2,10 +2,8 @@ package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.OrganizedMethods;
-import me.anisimov.teachingAccounting.domain.Teacher;
 import me.anisimov.teachingAccounting.dto.OrganizedMethodsDto;
 import me.anisimov.teachingAccounting.repository.OrganizedMethodsRepository;
-import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +18,12 @@ public class OrganizedMethodsService {
     private OrganizedMethodsRepository organizedMethodsRepository;
     @Autowired
     private ModelMapper mapper;
+    @Autowired
+    private OrganizedActivityTypeService organizedActivityTypeService;
+    @Autowired
+    private EventLevelService eventLevelService;
+    @Autowired
+    private EventTypeService eventTypeService;
 
     public OrganizedMethodsDto createOrganizedMethods(OrganizedMethodsDto organizedMethodsDto) {
         OrganizedMethods organizedMethods = new OrganizedMethods();
@@ -27,10 +31,10 @@ public class OrganizedMethodsService {
         organizedMethods.setDate(organizedMethodsDto.getDate());
         organizedMethods.setResult(organizedMethodsDto.getResult());
         organizedMethods.setEventName(organizedMethodsDto.getEventName());
-        organizedMethods.setEventLevel(organizedMethodsDto.getEventLevel());
-        organizedMethods.setEventType(organizedMethodsDto.getEventType());
+        organizedMethods.setEventLevel(eventLevelService.getById(organizedMethodsDto.getEventLevelId()));
+        organizedMethods.setEventType(eventTypeService.getById(organizedMethodsDto.getEventTypeId()));
         organizedMethods.setStudentInformation(organizedMethodsDto.getStudentInformation());
-        organizedMethods.setActivityType(organizedMethodsDto.getActivityType());
+        organizedMethods.setActivityType(organizedActivityTypeService.getById(organizedMethodsDto.getOrganizedActivityTypeId()));
         organizedMethodsRepository.save(organizedMethods);
         return mapper.map(organizedMethods, OrganizedMethodsDto.class);
     }

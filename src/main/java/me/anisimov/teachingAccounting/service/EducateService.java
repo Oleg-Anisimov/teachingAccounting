@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.Educate;
 import me.anisimov.teachingAccounting.dto.EducateDto;
 import me.anisimov.teachingAccounting.repository.EducateRepository;
-import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,18 +18,26 @@ public class EducateService {
     private EducateRepository educateRepository;
     @Autowired
     private ModelMapper mapper;
+    @Autowired
+    private WorkVectorService workVectorService;
+    @Autowired
+    private EducateActivityTypeService educateActivityTypeService;
+    @Autowired
+    private EventLevelService eventLevelService;
+    @Autowired
+    private EventTypeService eventTypeService;
 
     public EducateDto createEducate(EducateDto educateDto) {
         Educate educate = new Educate();
         educate.setId(educateDto.getId());
         educate.setDate(educateDto.getDate());
         educate.setResult(educateDto.getResult());
-        educate.setEventType(educateDto.getEventType());
+        educate.setEventType(eventTypeService.getById(educateDto.getEventTypeId()));
         educate.setEventName(educateDto.getEventName());
-        educate.setEventLevel(educateDto.getEventLevel());
-        educate.setActivityType(educateDto.getActivityType());
+        educate.setEventLevel(eventLevelService.getById(educateDto.getEventLevelId()));
+        educate.setActivityType(educateActivityTypeService.getById(educateDto.getEducateActivityTypeId()));
         educate.setStudentInformation(educateDto.getStudentInformation());
-        educate.setWorkVector(educateDto.getWorkVector());
+        educate.setWorkVector(workVectorService.getById(educateDto.getWorkVectorId()));
         educateRepository.save(educate);
         return mapper.map(educate, EducateDto.class);
     }

@@ -3,7 +3,6 @@ package me.anisimov.teachingAccounting.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import me.anisimov.teachingAccounting.domain.Enums.PromotionForm;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -32,9 +31,10 @@ public class PromotionQualificationLevel {
     @Column(name = "document_or_result")
     private String documentOrResult;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "promotion_form")
+    @ManyToOne(targetEntity = PromotionForm.class)
+    @JoinColumn(name="promotion_form_id", nullable=false)
     private PromotionForm promotionForm;
+
 
 
 }

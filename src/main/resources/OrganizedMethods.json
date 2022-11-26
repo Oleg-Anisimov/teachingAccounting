@@ -2,19 +2,19 @@
   {
     "date": "",
     "result": "Good",
-    "eventType": "VICTORINE",
     "eventName": "The loop B",
     "studentInformation": null,
-    "eventLevel": "COLLEGE",
-    "activityType": "PARTICIPATION"
+    "eventLevelId": 1,
+    "eventTypeId": 1,
+    "organizedActivityTypeId": 1
   },
   {
     "date": "",
     "result": "Bad",
-    "eventType": "MEETING",
     "eventName": "Assembler",
     "studentInformation": null,
-    "eventLevel": "NATIONAL",
-    "activityType": "PARTICIPATION"
+    "eventLevelId": 2,
+    "eventTypeId": 2,
+    "organizedActivityTypeId": 2
   }
 ]

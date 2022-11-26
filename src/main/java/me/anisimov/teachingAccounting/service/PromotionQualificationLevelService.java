@@ -19,11 +19,13 @@ public class PromotionQualificationLevelService {
     private PromotionQualificationLevelRepository promotionQualificationLevelRepository;
     @Autowired
     private ModelMapper mapper;
+    @Autowired
+    private PromotionFormService promotionFormService;
 
     public PromotionQualificationLevelDto createPromotionQualificationLevel(PromotionQualificationLevelDto promotionQualificationLevelDto) {
         PromotionQualificationLevel promotionQualificationLevel = new PromotionQualificationLevel();
         promotionQualificationLevel.setId(promotionQualificationLevelDto.getId());
-        promotionQualificationLevel.setPromotionForm(promotionQualificationLevelDto.getPromotionForm());
+        promotionQualificationLevel.setPromotionForm(promotionFormService.getById(promotionQualificationLevelDto.getPromotionFormId()));
         promotionQualificationLevel.setDate(promotionQualificationLevelDto.getDate());
         promotionQualificationLevel.setTopic(promotionQualificationLevelDto.getTopic());
         promotionQualificationLevel.setDocumentOrResult(promotionQualificationLevelDto.getDocumentOrResult());

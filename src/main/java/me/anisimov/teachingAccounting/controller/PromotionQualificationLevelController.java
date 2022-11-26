@@ -40,7 +40,7 @@ public class PromotionQualificationLevelController {
         return promotionQualificationLevelService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<PromotionQualificationLevel> getAll() {
         return promotionQualificationLevelService.getAll();
     }

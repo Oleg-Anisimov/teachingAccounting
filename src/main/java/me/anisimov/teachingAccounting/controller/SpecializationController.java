@@ -40,7 +40,7 @@ public class SpecializationController {
         return specializationService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Specialization> getAll() {
         return specializationService.getAll();
     }

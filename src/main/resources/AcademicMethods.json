@@ -2,18 +2,18 @@
   {
     "deadLine": null,
     "completeInfo": "https://youtu.be/OPkjnRIdQXQ",
-    "academicMethodActivityType": null,
-    "academicMethodActivityForm": null,
-    "activityType": "PARTICIPATION",
+    "academicMethodActivityTypeId": 1,
+    "academicMethodActivityFormId": 1,
+    "academicWorkActivityTypeId": 1,
     "specializationId": 1,
     "academicDisciplineId": 1
   },
   {
     "deadLine": null,
     "completeInfo": "https://youtu.be/OPkjnRIdQXQ",
-    "academicMethodActivityType": null,
-    "academicMethodActivityForm": null,
-    "activityType": "PARTICIPATION_PREPARE",
+    "academicMethodActivityTypeId": 2,
+    "academicMethodActivityFormId": 2,
+    "academicWorkActivityTypeId": 2,
     "specializationId": 2,
     "academicDisciplineId": 2
   }

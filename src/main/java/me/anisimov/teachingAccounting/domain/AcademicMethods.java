@@ -3,7 +3,6 @@ package me.anisimov.teachingAccounting.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import me.anisimov.teachingAccounting.domain.Enums.ActivityType;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,15 +25,17 @@ public class AcademicMethods {
     @Column(name = "complete_info")
     private String completeInfo;
 
-    @Column(name = "academic_method_activity_type")
-    private String academicMethodActivityType;
+    @ManyToOne(targetEntity = AcademicMethodsActivityType.class)
+    @JoinColumn(name="academic_method_activity_type_id", nullable=false)
+    private AcademicMethodsActivityType academicMethodActivityType;
 
-    @Column(name = "academic_method_activity_form")
-    private String academicMethodActivityForm;
+    @ManyToOne(targetEntity = AcademicMethodsActivityForm.class)
+    @JoinColumn(name="academic_method_activity_form_id", nullable=false)
+    private AcademicMethodsActivityForm academicMethodActivityForm;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "activity_type")
-    private ActivityType activityType;
+    @ManyToOne(targetEntity = AcademicWorkActivityType.class)
+    @JoinColumn(name="activityType_id", nullable=false)
+    private AcademicWorkActivityType academicWorkActivityType;
 
     @OneToOne(targetEntity = Specialization.class)
     @JoinColumn(name="specialization_id", nullable=false)

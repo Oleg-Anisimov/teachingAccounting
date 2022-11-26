@@ -27,21 +27,26 @@ public class TeacherService {
     private DepartmentRepository departmentRepository;
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
-
     @Autowired
     private ModelMapper mapper;
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private PositionService positionService;
+    @Autowired
+    private EmploymentTypeService employmentTypeService;
 
     public TeacherDto createTeacher(TeacherDto teacherDto) {
         Teacher teacher = new Teacher();
         teacher.setId(teacherDto.getId());
-        teacher.setCategory(teacherDto.getCategory());
+        teacher.setCategory(categoryService.getById(teacherDto.getCategoryId()));
         teacher.setDepartment(departmentRepository.getReferenceById(teacherDto.getDepartmentId()));
         teacher.setUserId(userDetailsServiceImpl.getById(teacherDto.getUserId()));
         teacher.setFirstName(teacherDto.getFirstName());
         teacher.setMiddleName(teacherDto.getMiddleName());
         teacher.setLastName(teacherDto.getLastName());
-        teacher.setPosition(teacherDto.getPosition());
-        teacher.setEmploymentType(teacherDto.getEmploymentType());
+        teacher.setPosition(positionService.getById(teacherDto.getPositionId()));
+        teacher.setEmploymentType(employmentTypeService.getById(teacherDto.getEmploymentTypeId()));
         teacher.setCertificationDate(teacherDto.getCertificationDate());
         teacherRepository.save(teacher);
         return mapper.map(teacher, TeacherDto.class);

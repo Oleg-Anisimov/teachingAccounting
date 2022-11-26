@@ -40,7 +40,7 @@ public class OrganizedMethodsController {
         return organizedMethodsService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<OrganizedMethods> getAll() {
         return organizedMethodsService.getAll();
     }

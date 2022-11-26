@@ -40,7 +40,7 @@ public class AcademicWorkController {
         return academicWorkService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<AcademicWork> getAll() {
         return academicWorkService.getAll();
     }

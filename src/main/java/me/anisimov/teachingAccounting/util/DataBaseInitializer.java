@@ -38,6 +38,91 @@ public class DataBaseInitializer {
         for (Map.Entry<String, JpaRepository> entry : reposList.entrySet())
             entry.getValue().deleteAll();
 
+        List<AcademicMethodsActivityTypeDto> academicMethodsActivityTypesDto = getAcademicMethodsActivityTypes();
+        for (AcademicMethodsActivityTypeDto academicMethodsActivityTypeDto : academicMethodsActivityTypesDto) {
+            ((AcademicMethodsActivityTypeService) applicationContext.getBean("academicMethodsActivityTypeService")).createAcademicMethodsActivityType(academicMethodsActivityTypeDto);
+        }
+
+        List<AcademicMethodsActivityFormDto> academicMethodsActivityFormsDto = getAcademicMethodsActivityForms();
+        for (AcademicMethodsActivityFormDto academicMethodsActivityFormDto : academicMethodsActivityFormsDto) {
+            ((AcademicMethodsActivityFormService) applicationContext.getBean("academicMethodsActivityFormService")).createAcademicMethodsActivityForm(academicMethodsActivityFormDto);
+        }
+
+        List<AcademicProductionActivityFormDto> academicProductionActivityFormsDto = getAcademicProductionActivityForms();
+        for (AcademicProductionActivityFormDto academicProductionActivityFormDto : academicProductionActivityFormsDto) {
+            ((AcademicProductionActivityFormService) applicationContext.getBean("academicProductionActivityFormService")).createAcademicProductionActivityForm(academicProductionActivityFormDto);
+        }
+
+        List<ParticipationTypeDto> participationTypesDto = getParticipationTypes();
+        for (ParticipationTypeDto participationTypeDto : participationTypesDto) {
+            ((ParticipationTypeService) applicationContext.getBean("participationTypeService")).createParticipationType(participationTypeDto);
+        }
+
+        List<PromotionFormDto> promotionFormsDto = getPromotionForms();
+        for (PromotionFormDto promotionFormDto : promotionFormsDto) {
+            ((PromotionFormService) applicationContext.getBean("promotionFormService")).createPromotionForm(promotionFormDto);
+        }
+
+        List<EventTypeDto> eventTypesDto = getEventTypes();
+        for (EventTypeDto eventTypeDto : eventTypesDto) {
+            ((EventTypeService) applicationContext.getBean("eventTypeService")).createEventType(eventTypeDto);
+        }
+
+        List<EventLevelDto> eventLevelsDto = getEventLevels();
+        for (EventLevelDto eventLevelDto : eventLevelsDto) {
+            ((EventLevelService) applicationContext.getBean("eventLevelService")).createEventLevel(eventLevelDto);
+        }
+
+        List<ScientificActivityTypeDto> scientificActivityTypesDto = getScientificActivityTypes();
+        for (ScientificActivityTypeDto scientificActivityTypeDto : scientificActivityTypesDto) {
+            ((ScientificActivityTypeService) applicationContext.getBean("scientificActivityTypeService")).createScientificActivityType(scientificActivityTypeDto);
+        }
+
+        List<EducateActivityTypeDto> educateActivityTypesDto = getEducateActivityTypes();
+        for (EducateActivityTypeDto educateActivityTypeDto : educateActivityTypesDto) {
+            ((EducateActivityTypeService) applicationContext.getBean("educateActivityTypeService")).createEducateActivityType(educateActivityTypeDto);
+        }
+
+        List<OrganizedActivityTypeDto> organizedActivityTypesDto = getOrganizedActivityTypes();
+        for (OrganizedActivityTypeDto organizedActivityTypeDto : organizedActivityTypesDto) {
+            ((OrganizedActivityTypeService) applicationContext.getBean("organizedActivityTypeService")).createOrganizedActivityType(organizedActivityTypeDto);
+        }
+
+        List<AcademicWorkActivityTypeDto> academicWorkActivityTypesDto = getAcademicWorkActivityType();
+        for (AcademicWorkActivityTypeDto academicWorkActivityTypeDto : academicWorkActivityTypesDto) {
+            ((AcademicWorkActivityTypeService) applicationContext.getBean("academicWorkActivityTypeService")).createAcademicWorkActivityType(academicWorkActivityTypeDto);
+        }
+
+        List<WorkVectorDto> workVectorsDto = getWorkVectors();
+        for (WorkVectorDto workVectorDto : workVectorsDto) {
+            ((WorkVectorService) applicationContext.getBean("workVectorService")).createWorkVector(workVectorDto);
+        }
+
+        List<EmploymentTypeDto> employmentTypesDto = getEmploymentTypes();
+        for (EmploymentTypeDto employmentTypeDto : employmentTypesDto) {
+            ((EmploymentTypeService) applicationContext.getBean("employmentTypeService")).createEmploymentType(employmentTypeDto);
+        }
+
+        List<PositionDto> positionsDto = getPositions();
+        for (PositionDto positionDto : positionsDto) {
+            ((PositionService) applicationContext.getBean("positionService")).createPosition(positionDto);
+        }
+
+        List<CategoryDto> categoriesDto = getCategories();
+        for (CategoryDto categoryDto : categoriesDto) {
+            ((CategoryService) applicationContext.getBean("categoryService")).createCategory(categoryDto);
+        }
+
+        List<CabinetTypeDto> cabinetTypesDto = getCabinetTypes();
+        for (CabinetTypeDto cabinetTypeDto : cabinetTypesDto) {
+            ((CabinetTypeService) applicationContext.getBean("cabinetTypeService")).createCabinetType(cabinetTypeDto);
+        }
+
+        List<CabinetDto> cabinetsDto = getCabinets();
+        for (CabinetDto cabinetDto : cabinetsDto) {
+            ((CabinetService) applicationContext.getBean("cabinetService")).createCabinet(cabinetDto);
+        }
+
         List<GroupDto> groupsDto = getGroups();
         for (GroupDto groupDto : groupsDto) {
             ((GroupService) applicationContext.getBean("groupService")).createGroup(groupDto);
@@ -106,6 +191,215 @@ public class DataBaseInitializer {
         for (AcademicMethodsDto academicMethodsDto : academicsMethodsDto) {
             ((AcademicMethodsService) applicationContext.getBean("academicMethodsService")).createAcademicMethods(academicMethodsDto);
         }
+
+    }
+    private List<AcademicMethodsActivityTypeDto> getAcademicMethodsActivityTypes() throws IOException {
+
+        String json = readJsonFromFile("AcademicMethodsActivityType.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<AcademicMethodsActivityTypeDto> academicMethodsActivityTypes = objectMapper.readValue(json, new TypeReference<List<AcademicMethodsActivityTypeDto>>() {
+        });
+
+        return academicMethodsActivityTypes;
+
+    }
+    private List<AcademicMethodsActivityFormDto> getAcademicMethodsActivityForms() throws IOException {
+
+        String json = readJsonFromFile("AcademicMethodsActivityForm.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<AcademicMethodsActivityFormDto> academicMethodsActivityForms = objectMapper.readValue(json, new TypeReference<List<AcademicMethodsActivityFormDto>>() {
+        });
+
+        return academicMethodsActivityForms;
+
+    }
+    private List<AcademicProductionActivityFormDto> getAcademicProductionActivityForms() throws IOException {
+
+        String json = readJsonFromFile("AcademicProductionActivityForm.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<AcademicProductionActivityFormDto> academicProductionActivityForms = objectMapper.readValue(json, new TypeReference<List<AcademicProductionActivityFormDto>>() {
+        });
+
+        return academicProductionActivityForms;
+
+    }
+    private List<ParticipationTypeDto> getParticipationTypes() throws IOException {
+
+        String json = readJsonFromFile("ParticipationType.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<ParticipationTypeDto> participationTypes = objectMapper.readValue(json, new TypeReference<List<ParticipationTypeDto>>() {
+        });
+
+        return participationTypes;
+
+    }
+    private List<PromotionFormDto> getPromotionForms() throws IOException {
+
+        String json = readJsonFromFile("PromotionForm.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<PromotionFormDto> promotionForms = objectMapper.readValue(json, new TypeReference<List<PromotionFormDto>>() {
+        });
+
+        return promotionForms;
+
+    }
+    private List<EventTypeDto> getEventTypes() throws IOException {
+
+        String json = readJsonFromFile("EventType.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<EventTypeDto> eventTypes = objectMapper.readValue(json, new TypeReference<List<EventTypeDto>>() {
+        });
+
+        return eventTypes;
+
+    }
+    private List<EventLevelDto> getEventLevels() throws IOException {
+
+        String json = readJsonFromFile("EventLevel.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<EventLevelDto> eventLevels = objectMapper.readValue(json, new TypeReference<List<EventLevelDto>>() {
+        });
+
+        return eventLevels;
+
+    }
+    private List<ScientificActivityTypeDto> getScientificActivityTypes() throws IOException {
+
+        String json = readJsonFromFile("ScientificActivityType.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<ScientificActivityTypeDto> scientificActivityTypes = objectMapper.readValue(json, new TypeReference<List<ScientificActivityTypeDto>>() {
+        });
+
+        return scientificActivityTypes;
+
+    }
+    private List<EducateActivityTypeDto> getEducateActivityTypes() throws IOException {
+
+        String json = readJsonFromFile("EducateActivityType.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<EducateActivityTypeDto> educateActivityTypes = objectMapper.readValue(json, new TypeReference<List<EducateActivityTypeDto>>() {
+        });
+
+        return educateActivityTypes;
+
+    }
+    private List<OrganizedActivityTypeDto> getOrganizedActivityTypes() throws IOException {
+
+        String json = readJsonFromFile("OrganizedActivityType.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<OrganizedActivityTypeDto> organizedActivityTypes = objectMapper.readValue(json, new TypeReference<List<OrganizedActivityTypeDto>>() {
+        });
+
+        return organizedActivityTypes;
+
+    }
+    private List<AcademicWorkActivityTypeDto> getAcademicWorkActivityType() throws IOException {
+
+        String json = readJsonFromFile("AcademicWorkActivityType.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<AcademicWorkActivityTypeDto> academicWorkActivityTypes = objectMapper.readValue(json, new TypeReference<List<AcademicWorkActivityTypeDto>>() {
+        });
+
+        return academicWorkActivityTypes;
+
+    }
+
+    private List<WorkVectorDto> getWorkVectors() throws IOException {
+
+        String json = readJsonFromFile("WorkVector.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<WorkVectorDto> workVectors = objectMapper.readValue(json, new TypeReference<List<WorkVectorDto>>() {
+        });
+
+        return workVectors;
+
+    }
+
+    private List<EmploymentTypeDto> getEmploymentTypes() throws IOException {
+
+        String json = readJsonFromFile("EmploymentType.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<EmploymentTypeDto> employmentTypes = objectMapper.readValue(json, new TypeReference<List<EmploymentTypeDto>>() {
+        });
+
+        return employmentTypes;
+
+    }
+
+    private List<PositionDto> getPositions() throws IOException {
+
+        String json = readJsonFromFile("Position.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<PositionDto> positions = objectMapper.readValue(json, new TypeReference<List<PositionDto>>() {
+        });
+
+        return positions;
+
+    }
+
+    private List<CategoryDto> getCategories() throws IOException {
+
+        String json = readJsonFromFile("Category.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<CategoryDto> categories = objectMapper.readValue(json, new TypeReference<List<CategoryDto>>() {
+        });
+
+        return categories;
+
+    }
+
+    private List<CabinetTypeDto> getCabinetTypes() throws IOException {
+
+        String json = readJsonFromFile("CabinetType.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<CabinetTypeDto> cabinetTypes = objectMapper.readValue(json, new TypeReference<List<CabinetTypeDto>>() {
+        });
+
+        return cabinetTypes;
+
+    }
+    private List<CabinetDto> getCabinets() throws IOException {
+
+        String json = readJsonFromFile("Cabinet.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<CabinetDto> cabinets = objectMapper.readValue(json, new TypeReference<List<CabinetDto>>() {
+        });
+
+        return cabinets;
 
     }
 

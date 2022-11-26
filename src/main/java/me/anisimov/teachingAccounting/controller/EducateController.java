@@ -40,7 +40,7 @@ public class EducateController {
         return educateService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Educate> getAll(){
         return educateService.getAll();
     }

@@ -40,7 +40,7 @@ public class AcademicProductionController {
         return academicProductionService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<AcademicProduction> getAll() {
         return academicProductionService.getAll();
     }

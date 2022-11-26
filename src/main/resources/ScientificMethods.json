@@ -3,22 +3,22 @@
     "date": null,
     "place": "Moscow",
     "result": "Good",
-    "eventType": "VICTORINE",
     "eventName": "The loop A",
     "studentInformation": "https://youtu.be/dQw4w9WgXcQ",
-    "eventLevel": "COLLEGE",
-    "activityType": "PARTICIPATION",
-    "participationType": "PARTICIPATION"
+    "eventLevelId": 1,
+    "eventTypeId": 1,
+    "scientificActivityTypeId": 1,
+    "participationTypeId": 1
   },
   {
     "date": null,
     "place": "Moscow",
     "result": null,
-    "eventType": "PROFESSIONAL_SKILLS_COMPETITION_IN_THE_PROFESSION_OF_A_WORKER_OR_EMPLOYEE",
     "eventName": "Dwarfs",
     "studentInformation": null,
-    "eventLevel": "URBAN",
-    "activityType": "REALIZATION",
-    "participationType": "PERSONAL"
+    "eventLevelId": 2,
+    "eventTypeId": 2,
+    "scientificActivityTypeId": 2,
+    "participationTypeId": 2
   }
 ]

@@ -3,9 +3,6 @@ package me.anisimov.teachingAccounting.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import me.anisimov.teachingAccounting.domain.Enums.AcademicProductionActivityForm;
-import me.anisimov.teachingAccounting.domain.Enums.ActivityType;
-import me.anisimov.teachingAccounting.domain.Enums.CabinetType;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -28,19 +25,16 @@ public class AcademicProduction {
     @Column(name = "result")
     private String result;
 
-    @Column(name = "cabinet_name")
-    private  String cabinetName;
+    @ManyToOne(targetEntity = Cabinet.class)
+    @JoinColumn(name="cabinet_id", nullable=false)
+    private Cabinet cabinet;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "cabinet_type")
-    private CabinetType cabinetType;
+    @ManyToOne(targetEntity = AcademicWorkActivityType.class)
+    @JoinColumn(name="activityType_id", nullable=false)
+    private AcademicWorkActivityType academicWorkActivityType;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "activity_type")
-    private ActivityType activityType;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "academic_production_activity_form")
+    @ManyToOne(targetEntity = AcademicProductionActivityForm.class)
+    @JoinColumn(name="academic_production_activity_form_id", nullable=false)
     private AcademicProductionActivityForm academicProductionActivityForm;
 
     @OneToOne(targetEntity = Specialization.class)

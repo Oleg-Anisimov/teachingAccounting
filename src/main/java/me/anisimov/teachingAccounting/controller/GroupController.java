@@ -40,7 +40,7 @@ public class GroupController {
         return groupService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<Group> getAll(){
         return groupService.getAll();
     }

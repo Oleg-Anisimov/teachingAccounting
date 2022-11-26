@@ -2,21 +2,21 @@
   {
     "date": null,
     "result": "Good",
-    "eventType": "VICTORINE",
     "eventName": "The loop C",
     "studentInformation": null,
-    "eventLevel": "COLLEGE",
-    "activityType": "PARTICIPATION",
-    "workVector": "LABOR"
+    "eventLevelId": 1,
+    "eventTypeId": 1,
+    "educateActivityTypeId": 1,
+    "workVectorId": 1
   },
   {
     "date": null,
     "result": "Good",
-    "eventType": "MEETING",
     "eventName": "Something",
     "studentInformation": "Disabled",
-    "eventLevel": "COLLEGE",
-    "activityType": "PARTICIPATION",
-    "workVector": "LABOR"
+    "eventLevelId": 2,
+    "eventTypeId": 2,
+    "educateActivityTypeId": 2,
+    "workVectorId": 2
   }
 ]

@@ -2,9 +2,7 @@ package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.AcademicMethodsActivityForm;
-import me.anisimov.teachingAccounting.domain.AcademicProductionActivityForm;
 import me.anisimov.teachingAccounting.dto.AcademicMethodsActivityFormDto;
-import me.anisimov.teachingAccounting.dto.AcademicProductionActivityFormDto;
 import me.anisimov.teachingAccounting.repository.AcademicMethodsActivityFormRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

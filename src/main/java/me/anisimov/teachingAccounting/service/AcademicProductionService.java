@@ -2,7 +2,6 @@ package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.AcademicProduction;
-import me.anisimov.teachingAccounting.domain.AcademicProductionActivityForm;
 import me.anisimov.teachingAccounting.dto.AcademicProductionDto;
 import me.anisimov.teachingAccounting.repository.AcademicProductionRepository;
 import org.modelmapper.ModelMapper;

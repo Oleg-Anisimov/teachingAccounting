@@ -1,9 +1,7 @@
 package me.anisimov.teachingAccounting.controller;
 
 import io.swagger.annotations.Api;
-import me.anisimov.teachingAccounting.domain.CabinetType;
 import me.anisimov.teachingAccounting.domain.Category;
-import me.anisimov.teachingAccounting.dto.CabinetTypeDto;
 import me.anisimov.teachingAccounting.dto.CategoryDto;
 import me.anisimov.teachingAccounting.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

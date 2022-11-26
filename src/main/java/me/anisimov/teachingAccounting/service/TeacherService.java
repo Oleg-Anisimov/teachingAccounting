@@ -6,14 +6,9 @@ import me.anisimov.teachingAccounting.domain.User;
 import me.anisimov.teachingAccounting.dto.TeacherDto;
 import me.anisimov.teachingAccounting.repository.DepartmentRepository;
 import me.anisimov.teachingAccounting.repository.TeacherRepository;
-import me.anisimov.teachingAccounting.repository.UserRepository;
 import me.anisimov.teachingAccounting.util.SecurityUtils;
-import org.apache.catalina.security.SecurityUtil;
-import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

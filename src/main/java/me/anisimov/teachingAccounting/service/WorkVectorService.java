@@ -1,9 +1,7 @@
 package me.anisimov.teachingAccounting.service;
 
-import liquibase.pro.packaged.W;
 import lombok.extern.slf4j.Slf4j;
 
-import me.anisimov.teachingAccounting.domain.Category;
 import me.anisimov.teachingAccounting.domain.WorkVector;
 import me.anisimov.teachingAccounting.dto.WorkVectorDto;
 import me.anisimov.teachingAccounting.repository.WorkVectorRepository;

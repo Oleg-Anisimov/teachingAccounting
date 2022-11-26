@@ -1,9 +1,7 @@
 package me.anisimov.teachingAccounting.controller;
 
 import io.swagger.annotations.Api;
-import me.anisimov.teachingAccounting.domain.Position;
 import me.anisimov.teachingAccounting.domain.PromotionForm;
-import me.anisimov.teachingAccounting.dto.PositionDto;
 import me.anisimov.teachingAccounting.dto.PromotionFormDto;
 import me.anisimov.teachingAccounting.service.PromotionFormService;
 import org.springframework.beans.factory.annotation.Autowired;

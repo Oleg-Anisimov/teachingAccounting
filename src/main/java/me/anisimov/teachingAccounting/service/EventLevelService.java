@@ -2,9 +2,7 @@ package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.EventLevel;
-import me.anisimov.teachingAccounting.domain.OrganizedActivityType;
 import me.anisimov.teachingAccounting.dto.EventLevelDto;
-import me.anisimov.teachingAccounting.dto.OrganizedActivityTypeDto;
 import me.anisimov.teachingAccounting.repository.EventLevelRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

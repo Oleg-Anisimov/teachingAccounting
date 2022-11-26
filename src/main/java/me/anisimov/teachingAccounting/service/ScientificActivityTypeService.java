@@ -1,9 +1,7 @@
 package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
-import me.anisimov.teachingAccounting.domain.OrganizedActivityType;
 import me.anisimov.teachingAccounting.domain.ScientificActivityType;
-import me.anisimov.teachingAccounting.dto.OrganizedActivityTypeDto;
 import me.anisimov.teachingAccounting.dto.ScientificActivityTypeDto;
 import me.anisimov.teachingAccounting.repository.ScientificActivityTypeRepository;
 import org.modelmapper.ModelMapper;

@@ -1,10 +1,7 @@
 package me.anisimov.teachingAccounting.controller;
 
-import me.anisimov.teachingAccounting.domain.EducateActivityType;
 import me.anisimov.teachingAccounting.domain.ScientificActivityType;
-import me.anisimov.teachingAccounting.dto.EducateActivityTypeDto;
 import me.anisimov.teachingAccounting.dto.ScientificActivityTypeDto;
-import me.anisimov.teachingAccounting.service.EducateActivityTypeService;
 import me.anisimov.teachingAccounting.service.ScientificActivityTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

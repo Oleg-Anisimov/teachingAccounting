@@ -1,9 +1,7 @@
 package me.anisimov.teachingAccounting.controller;
 
 import io.swagger.annotations.Api;
-import me.anisimov.teachingAccounting.domain.AcademicMethodsActivityForm;
 import me.anisimov.teachingAccounting.domain.AcademicMethodsActivityType;
-import me.anisimov.teachingAccounting.dto.AcademicMethodsActivityFormDto;
 import me.anisimov.teachingAccounting.dto.AcademicMethodsActivityTypeDto;
 import me.anisimov.teachingAccounting.service.AcademicMethodsActivityTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

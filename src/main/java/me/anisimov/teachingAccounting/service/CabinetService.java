@@ -2,7 +2,6 @@ package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.Cabinet;
-import me.anisimov.teachingAccounting.domain.Educate;
 import me.anisimov.teachingAccounting.dto.CabinetDto;
 import me.anisimov.teachingAccounting.repository.CabinetRepository;
 import org.modelmapper.ModelMapper;

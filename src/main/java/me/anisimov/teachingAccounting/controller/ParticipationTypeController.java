@@ -1,9 +1,7 @@
 package me.anisimov.teachingAccounting.controller;
 
 import io.swagger.annotations.Api;
-import me.anisimov.teachingAccounting.domain.EmploymentType;
 import me.anisimov.teachingAccounting.domain.ParticipationType;
-import me.anisimov.teachingAccounting.dto.EmploymentTypeDto;
 import me.anisimov.teachingAccounting.dto.ParticipationTypeDto;
 import me.anisimov.teachingAccounting.service.ParticipationTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

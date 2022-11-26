@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.Specialization;
 import me.anisimov.teachingAccounting.dto.SpecializationDto;
 import me.anisimov.teachingAccounting.repository.SpecializationRepository;
-import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

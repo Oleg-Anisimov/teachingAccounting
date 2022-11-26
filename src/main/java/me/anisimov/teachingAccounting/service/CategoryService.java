@@ -1,7 +1,6 @@
 package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
-import me.anisimov.teachingAccounting.domain.CabinetType;
 import me.anisimov.teachingAccounting.domain.Category;
 import me.anisimov.teachingAccounting.dto.CategoryDto;
 import me.anisimov.teachingAccounting.repository.CategoryRepository;

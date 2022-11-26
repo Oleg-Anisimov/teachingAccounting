@@ -1,9 +1,7 @@
 package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
-import me.anisimov.teachingAccounting.domain.Position;
 import me.anisimov.teachingAccounting.domain.PromotionForm;
-import me.anisimov.teachingAccounting.dto.PositionDto;
 import me.anisimov.teachingAccounting.dto.PromotionFormDto;
 import me.anisimov.teachingAccounting.repository.PromotionFormRepository;
 import org.modelmapper.ModelMapper;

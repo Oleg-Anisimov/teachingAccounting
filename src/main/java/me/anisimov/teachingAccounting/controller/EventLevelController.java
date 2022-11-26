@@ -2,9 +2,7 @@ package me.anisimov.teachingAccounting.controller;
 
 import io.swagger.annotations.Api;
 import me.anisimov.teachingAccounting.domain.EventLevel;
-import me.anisimov.teachingAccounting.domain.OrganizedActivityType;
 import me.anisimov.teachingAccounting.dto.EventLevelDto;
-import me.anisimov.teachingAccounting.dto.OrganizedActivityTypeDto;
 import me.anisimov.teachingAccounting.service.EventLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,11 +1,8 @@
 package me.anisimov.teachingAccounting.controller;
 
 import io.swagger.annotations.Api;
-import me.anisimov.teachingAccounting.domain.Category;
 import me.anisimov.teachingAccounting.domain.Position;
-import me.anisimov.teachingAccounting.dto.CategoryDto;
 import me.anisimov.teachingAccounting.dto.PositionDto;
-import me.anisimov.teachingAccounting.service.CategoryService;
 import me.anisimov.teachingAccounting.service.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

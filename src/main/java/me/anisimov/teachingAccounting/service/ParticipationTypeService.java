@@ -2,9 +2,7 @@ package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.ParticipationType;
-import me.anisimov.teachingAccounting.domain.Position;
 import me.anisimov.teachingAccounting.dto.ParticipationTypeDto;
-import me.anisimov.teachingAccounting.dto.PositionDto;
 import me.anisimov.teachingAccounting.repository.ParticipationTypeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

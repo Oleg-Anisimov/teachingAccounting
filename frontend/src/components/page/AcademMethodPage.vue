@@ -6,7 +6,7 @@ import AcaMethWork from "./fillingForms/AcaMethWork.vue";
         <AcaMethWork grid-area="filling-form"></AcaMethWork>
         <table>
             <tr>
-                <th colspan="140"><img src="">Учебная работа - Заполнение индивидуального плана</th>
+                <th colspan="140"><img src="">Учебно-методическая работа - Заполнение индивидуального плана</th>
             </tr>
             <tr>
                     <td class="left-helf simvol">№</td>
@@ -27,7 +27,7 @@ import AcaMethWork from "./fillingForms/AcaMethWork.vue";
                 <td>{{ method.academicDiscipline.disciplineNumber }}</td>
 <!--                Название уч дисциплины-->
                 <td>{{ method.academicDiscipline.name }}</td>
-                <td>{{ method.activityType }}</td>
+                <td>{{ $t('enum.ActivityType.' + method.activityType) }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -61,6 +61,7 @@ export default{
     ]),
   },
   mounted(){
+    document.title = 'Учебно-методическая работа'
     this.LOAD_ACADEMIC_METHODS()
   },
 }

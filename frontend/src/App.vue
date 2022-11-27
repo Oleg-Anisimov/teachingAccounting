@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar.vue";
 import Auth from "./components/Auth.vue";
 import './assets/style/fillingForm.vue';
 import './assets/style/tableStyle.vue';
+document.title = 'ГБПОУ ОК "ЮГО-ЗАПАД"'
 </script>
 
 <template>

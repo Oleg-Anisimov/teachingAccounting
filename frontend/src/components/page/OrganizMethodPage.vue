@@ -6,7 +6,7 @@ import OrgMethWork from "./fillingForms/OrgMethWork.vue";
         <OrgMethWork grid-area="filling-form"></OrgMethWork>
         <table>
             <tr>
-                <th colspan="140"><img src="">Учебная работа - Заполнение индивидуального плана</th>
+                <th colspan="140"><img src="">Организационно-методическая работа - Заполнение индивидуального плана</th>
             </tr>
             <tr>
                     <td class="left-helf simvol">№</td>
@@ -21,10 +21,10 @@ import OrgMethWork from "./fillingForms/OrgMethWork.vue";
             </tr>
               <tr v-for="organ in GET_ORGANIZED_METHOD()" :key="organ">
                 <td>{{organ.id}}</td>
-                <td>{{organ.activityType}}</td>
-                <td>{{organ.eventType}}</td>
+                <td>{{$t('enum.ActivityType.' + organ.activityType)}}</td>
+                <td>{{$t('enum.eventType.' + organ.eventType)}}</td>
                 <td></td>
-                <td>{{organ.eventLevel}}</td>
+                <td>{{$t('enum.eventLevel.' + organ.eventLevel)}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -56,6 +56,7 @@ export default{
     ]),
   },
   mounted(){
+    document.title = 'Организационно-методическая работа'
     this.LOAD_ORGANIZED_METHODS()
   },
 }

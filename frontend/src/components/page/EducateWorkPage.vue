@@ -6,7 +6,7 @@ import EducWork from "./fillingForms/EducWork.vue";
         <EducWork grid-area="filling-form"></EducWork>
         <table>
             <tr>
-                <th colspan="140"><img src="">Учебная работа - Заполнение индивидуального плана</th>
+                <th colspan="140"><img src="">Воспитательная работа - Заполнение индивидуального плана</th>
             </tr>
             <tr>
                     <td class="left-helf simvol">№</td>
@@ -21,10 +21,10 @@ import EducWork from "./fillingForms/EducWork.vue";
             </tr>
               <tr v-for="educate in GET_EDUCATE_WORK()" :key="educate">
                 <td>{{educate.id}}</td>
-                <td>{{ educate.workVector}}</td>
-                <td>{{ educate.activityType }}</td>
-                <td>{{ educate.eventType }}</td>
-                <td>{{ educate.eventLevel }}</td>
+                <td>{{$t('enum.WorkVector.' + educate.workVector)}}</td>
+                <td>{{$t('enum.ActivityType.' + educate.activityType)}}</td>
+                <td>{{$t('enum.eventType.' + educate.eventType)}}</td>
+                <td>{{$t('enum.eventLevel.' + educate.eventLevel)}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -57,6 +57,7 @@ export default{
     ]),
   },
   mounted(){
+    document.title = 'Воспитательная работа'
     this.LOAD_EDUCATE_WORKS()
   },
 }

@@ -6,7 +6,7 @@ import PromQual from "./fillingForms/PromQual.vue";
         <PromQual grid-area="filling-form"></PromQual>
         <table>
             <tr>
-                <th colspan="140"><img src="">Учебная работа - Заполнение индивидуального плана</th>
+                <th colspan="140"><img src="">Повышение уровня квалификации - Заполнение индивидуального плана</th>
             </tr>
             <tr>
                     <td class="left-helf simvol">№</td>
@@ -18,7 +18,7 @@ import PromQual from "./fillingForms/PromQual.vue";
             </tr>
               <tr v-for="lvl in GET_PROMOTION_QUALIFICATION_LVL()" :key="lvl">
                 <td>{{lvl.id}}</td>
-                <td>{{ lvl.promotionForm }}</td>
+                <td>{{$t('enum.PromotionForm.' + lvl.promotionForm)}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -52,6 +52,7 @@ export default{
     ]),
   },
   mounted(){
+    document.title = 'Повышение уровня квалификации'
     this.LOAD_PROMOTION_QUALIFICATION_LVLS()
   },
 }

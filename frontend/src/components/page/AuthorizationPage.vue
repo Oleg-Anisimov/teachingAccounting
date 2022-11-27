@@ -44,6 +44,9 @@ export default{
           password: this.model.password
         })
       }
+    },
+    mounted() {
+        document.title = 'Авторизация'
     }
 }
 

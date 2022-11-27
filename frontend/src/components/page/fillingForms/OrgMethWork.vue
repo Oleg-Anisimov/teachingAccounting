@@ -19,19 +19,19 @@
                 <p>Вид деятельности</p>
                 <select v-model="model.activityType">
                   <option disabled value="">Выберите уровень мероприятие</option>
-                  <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{activityType}}</option>
+                  <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{$t('enum.ActivityType.' + activityType)}}</option>
                 </select>
                 <p>Вид мероприятия</p>
                 <select v-model="model.eventType">
                   <option disabled value="">Выберите вид мероприятие</option>
-                  <option v-for="eventType in GET_ENUMS().EventType" :key="eventType" :value="eventType">{{eventType}}</option>
+                  <option v-for="eventType in GET_ENUMS().EventType" :key="eventType" :value="eventType">{{$t('enum.eventType.' + eventType)}}</option>
                 </select>
                 <p>Название мероприятия</p>
                 <input type="text">
                 <p>Уровень мероприятия</p>
                 <select v-model="model.eventLevel">
                   <option disabled value="">Выберите уровень мероприятие</option>
-                  <option v-for="eventLevel in GET_ENUMS().EventLevel" :key="eventLevel" :value="eventLevel">{{eventLevel}}</option>
+                  <option v-for="eventLevel in GET_ENUMS().EventLevel" :key="eventLevel" :value="eventLevel">{{$t('enum.eventLevel.' + eventLevel)}}</option>
                 </select>
                 <p>Дата</p>
                 <input type="date">

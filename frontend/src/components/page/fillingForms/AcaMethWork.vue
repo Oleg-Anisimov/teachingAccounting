@@ -29,7 +29,7 @@
                 <p>Вид деятельности</p>
                 <select v-model="model.activityType">
                   <option disabled value="">Выберите дисциплину</option>
-                  <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{activityType}}</option>
+                  <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{$t('enum.ActivityType.' + activityType)}}</option>
                 </select>
                 <p>Вид УМД</p>
                 <select>

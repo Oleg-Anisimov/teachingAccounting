@@ -115,6 +115,7 @@ export default {
     ]),
   },
   mounted() {
+    document.title = 'Титульная страница'
     this.LOAD_TEACHER().then((response) => {
       console.log(response)
       this.teacher = response

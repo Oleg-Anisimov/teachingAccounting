@@ -43,7 +43,10 @@
 <script>
 
 export default{
-    name: "RegistrationPage"
+    name: "RegistrationPage",
+    mounted() {
+        document.title = 'Регистрация'
+    }
 }
 </script>
 <style scoped>

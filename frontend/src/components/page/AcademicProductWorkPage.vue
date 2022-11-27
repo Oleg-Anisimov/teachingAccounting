@@ -6,7 +6,7 @@ import AcaProdWork from "./fillingForms/AcaProdWork.vue";
         <AcaProdWork grid-area="filling-form"></AcaProdWork>
         <table>
             <tr>
-                <th colspan="140"><img src="">Учебная работа - Заполнение индивидуального плана</th>
+                <th colspan="140"><img src="">Учебная-производственная работа - Заполнение индивидуального плана</th>
             </tr>
             <tr>
                     <td class="left-helf simvol">№</td>
@@ -23,7 +23,7 @@ import AcaProdWork from "./fillingForms/AcaProdWork.vue";
                 <td>{{ product.specialization.specialization }}</td>
                 <td></td>
                 <td></td>
-                <td>{{ product.activityType }}</td>
+                <td>{{$t('enum.ActivityType.' + product.activityType)}}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -54,6 +54,7 @@ export default{
     ]),
     },
     mounted(){
+        document.title = 'Учебно-производственная работа'
       this.LOAD_ACADEMIC_PRODUCTIONS()
 
   },

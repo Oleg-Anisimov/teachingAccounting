@@ -34,7 +34,7 @@
         display: inline;
     }
     .auth{
-        margin: 0.4em;
+        margin: 0.2em 0.4em;
         padding: 0.4em 0.5em;
         background-color: #343434;
         border-radius: 8px;

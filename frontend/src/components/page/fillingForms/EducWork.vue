@@ -18,23 +18,25 @@
             <div class="form-border">
                 <p>Направление работы</p>
                 <select v-model="model.workVector">
-                    <option disabled value="">Выберите специальность</option>
-                    <option v-for="workVector in GET_ENUMS().WorkVector" :key="workVector" :value="workVector">{{workVector}}</option>
+                    <option disabled value="">Выберите направление работы</option>
+                    <option v-for="workVector in GET_ENUMS().WorkVector" :key="workVector" :value="workVector">{{$t('enum.WorkVector.' + workVector)}}</option>
                 </select>
                 <p>Вид деятельности</p>
                 <select v-model="model.activityType">
-                  <option disabled value="">Выберите дисциплину</option>
-                  <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{activityType}}</option>
+                  <option disabled value="">Выберите вид деятельности</option>
+                  <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{$t('enum.ActivityType.' + activityType)}}</option>
                 </select>
                 <p>Вид мероприятия</p>
                 <select v-model="model.eventType">
-                    <option v-for="eventType in GET_ENUMS().EventType" :key="eventType" :value="eventType">{{eventType}}</option>
+                  <option disabled value="">Выберите вид мероприятия</option>
+                    <option v-for="eventType in GET_ENUMS().EventType" :key="eventType" :value="eventType">{{$t('enum.eventType.' + eventType)}}</option>
                 </select><br>
                 <p>Название мероприятия</p>
                 <input type="text">
                 <p>Уровень мероприятия</p>
                 <select v-model="model.eventLevel">
-                    <option v-for="eventLevel in GET_ENUMS().EventLevel" :key="eventLevel" :value="eventLevel">{{eventLevel}}</option>
+                  <option disabled value="">Выберите уровень мероприятия</option>
+                    <option v-for="eventLevel in GET_ENUMS().EventLevel" :key="eventLevel" :value="eventLevel">{{$t('enum.eventLevel.' + eventLevel)}}</option>
                 </select><br>
                 <p>Дата</p>
                 <input type="text">

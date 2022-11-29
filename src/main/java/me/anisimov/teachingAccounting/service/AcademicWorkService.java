@@ -2,14 +2,17 @@ package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.AcademicWork;
+import me.anisimov.teachingAccounting.domain.User;
 import me.anisimov.teachingAccounting.dto.AcademicWorkDto;
+import me.anisimov.teachingAccounting.dto.TeacherDto;
 import me.anisimov.teachingAccounting.repository.AcademicWorkRepository;
-import org.dozer.DozerBeanMapper;
+import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -24,6 +27,8 @@ public class AcademicWorkService {
     private GroupService groupService;
     @Autowired
     private ModelMapper mapper;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
     public AcademicWorkDto createAcademicWork(AcademicWorkDto academicWorkDto) {
         AcademicWork academicWork = new AcademicWork();
@@ -32,6 +37,7 @@ public class AcademicWorkService {
         academicWork.setAcademicYear(academicWorkDto.getAcademicYear());
         academicWork.setFirstSemester(academicWorkDto.getFirstSemester());
         academicWork.setSecondSemester(academicWorkDto.getSecondSemester());
+        academicWork.setUser(userDetailsServiceImpl.getById(academicWorkDto.getUserId()));
         academicWork.setAcademicDiscipline(academicDisciplineService.getById(academicWorkDto.getAcademicDisciplineId()));
         academicWork.setSpecialization(specializationService.getById(academicWorkDto.getSpecializationId()));
         academicWork.setAbsoluteResults(academicWorkDto.getAbsoluteResults());
@@ -53,8 +59,16 @@ public class AcademicWorkService {
         return academicWorkRepository.getReferenceById(id);
     }
 
-    public List<AcademicWork> getAll(){
+    public List<AcademicWork> getAll() {
         return academicWorkRepository.findAll();
+    }
+
+    public List<AcademicWorkDto> getCurrentAcademicWork() {
+        User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
+        List<AcademicWorkDto> allUsersInformation = academicWorkRepository.findAllByUser(user.getId()).stream().map(work -> {
+            return mapper.map(work, AcademicWorkDto.class);
+        }).collect(Collectors.toList());
+        return allUsersInformation;
     }
 
 }

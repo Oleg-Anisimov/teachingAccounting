@@ -17,7 +17,8 @@
       "plan": 4
     },
     "specializationId": 1,
-    "academicDisciplineId": 3
+    "academicDisciplineId": 3,
+    "userId": 1
   },
   {
     "groupId": 2,
@@ -37,6 +38,7 @@
       "plan": 4
     },
     "specializationId": 2,
-    "academicDisciplineId": 2
+    "academicDisciplineId": 2,
+    "userId": 2
   }
 ]

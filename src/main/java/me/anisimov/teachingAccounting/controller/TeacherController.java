@@ -47,8 +47,8 @@ public class TeacherController {
         return teacherService.getAll();
     }
 
-    @GetMapping("/current")
-    public TeacherDto getCurrentTeacher(){
+    @GetMapping()
+    public TeacherDto getCurrent(){
         return teacherService.getCurrentTeacher();
     }
 

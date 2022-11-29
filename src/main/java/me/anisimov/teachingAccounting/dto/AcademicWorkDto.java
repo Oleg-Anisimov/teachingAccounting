@@ -21,4 +21,5 @@ public class AcademicWorkDto {
     private Long specializationId;
     private Long academicDisciplineId;
     private Long groupId;
+    private Long userId;
 }

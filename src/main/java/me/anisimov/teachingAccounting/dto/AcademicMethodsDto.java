@@ -21,4 +21,5 @@ public class AcademicMethodsDto {
     private ActivityType activityType;
     private Long specializationId;
     private Long academicDisciplineId;
+    private Long userId;
 }

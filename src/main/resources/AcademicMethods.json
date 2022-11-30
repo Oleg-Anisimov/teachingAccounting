@@ -6,7 +6,8 @@
     "academicMethodActivityForm": null,
     "activityType": "PARTICIPATION",
     "specializationId": 1,
-    "academicDisciplineId": 1
+    "academicDisciplineId": 1,
+    "userId": 1
   },
   {
     "deadLine": null,
@@ -15,6 +16,7 @@
     "academicMethodActivityForm": null,
     "activityType": "PARTICIPATION_PREPARE",
     "specializationId": 2,
-    "academicDisciplineId": 2
+    "academicDisciplineId": 2,
+    "userId": 2
   }
 ]

@@ -37,7 +37,7 @@ public class AcademicWorkService {
         academicWork.setAcademicYear(academicWorkDto.getAcademicYear());
         academicWork.setFirstSemester(academicWorkDto.getFirstSemester());
         academicWork.setSecondSemester(academicWorkDto.getSecondSemester());
-        academicWork.setUser(userDetailsServiceImpl.getById(academicWorkDto.getUserId()));
+        academicWork.setUser(userDetailsServiceImpl.getCurrentUser().);
         academicWork.setAcademicDiscipline(academicDisciplineService.getById(academicWorkDto.getAcademicDisciplineId()));
         academicWork.setSpecialization(specializationService.getById(academicWorkDto.getSpecializationId()));
         academicWork.setAbsoluteResults(academicWorkDto.getAbsoluteResults());

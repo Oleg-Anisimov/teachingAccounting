@@ -1,9 +1,10 @@
 package me.anisimov.teachingAccounting.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.Authorization;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import me.anisimov.teachingAccounting.domain.AcademicWork;
 import me.anisimov.teachingAccounting.dto.AcademicWorkDto;
-import me.anisimov.teachingAccounting.dto.TeacherDto;
 import me.anisimov.teachingAccounting.service.AcademicWorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class AcademicWorkController {
     }
 
     @GetMapping("/all")
-    public List<AcademicWork> getAll() {
+    public List<AcademicWorkDto> getAll() {
         return academicWorkService.getAll();
     }
 

@@ -31,7 +31,14 @@ public class AcademicMethodsService {
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
     public AcademicMethodsDto createAcademicMethods(AcademicMethodsDto academicMethodsDto) {
+
+        Long userId = academicMethodsDto.getUserId();
+        User user = (userId != null)
+                ? userDetailsServiceImpl.getById(userId)
+                : userDetailsServiceImpl.getCurrentUser();
+
         AcademicMethods academicMethods = new AcademicMethods();
+        academicMethods.setUser(user);
         academicMethods.setId(academicMethodsDto.getId());
         academicMethods.setAcademicDiscipline(academicDisciplineService.getById(academicMethodsDto.getAcademicDisciplineId()));
         academicMethods.setAcademicMethodActivityForm(academicMethodsDto.getAcademicMethodActivityForm());
@@ -40,7 +47,7 @@ public class AcademicMethodsService {
         academicMethods.setActivityType(academicMethodsDto.getActivityType());
         academicMethods.setDeadLine(academicMethodsDto.getDeadLine());
         academicMethods.setCompleteInfo(academicMethodsDto.getCompleteInfo());
-        academicMethods.setUser(userDetailsServiceImpl.getById(academicMethodsDto.getUserId()));
+
         academicMethodsRepository.save(academicMethods);
         return mapper.map(academicMethods, AcademicMethodsDto.class);
     }
@@ -57,8 +64,10 @@ public class AcademicMethodsService {
         return academicMethodsRepository.getReferenceById(id);
     }
 
-    public List<AcademicMethods> getAll(){
-        return academicMethodsRepository.findAll();
+    public List<AcademicMethodsDto> getAll() {
+        return academicMethodsRepository.findAll().stream()
+                .map(entity -> mapper.map(entity, AcademicMethodsDto.class))
+                .collect(Collectors.toList());
     }
 
     public List<AcademicMethodsDto> getCurrentAcademicMethods() {

@@ -40,7 +40,7 @@ public class AcademicMethodsController {
     }
 
     @GetMapping("/all")
-    public List<AcademicMethods> getAll() {
+    public List<AcademicMethodsDto> getAll() {
         return academicMethodsService.getAll();
     }
 

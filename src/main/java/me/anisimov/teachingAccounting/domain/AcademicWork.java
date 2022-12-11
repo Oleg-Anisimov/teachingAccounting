@@ -62,6 +62,7 @@ public class AcademicWork {
     private Group group;
 
     @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "users", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
 }

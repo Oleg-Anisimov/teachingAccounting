@@ -30,14 +30,14 @@ import AcaWork from "./fillingForms/AcaWork.vue";
                 <td class="td-bottom">Факт</td>
             </tr>
               <tr v-for="work in GET_ACADEMIC_WORK()" :key="work.id">
-                <td>{{ work.id }}</td>
-                <td>{{ work.specialization.specialization }}</td>
-                <td>{{ work.academicDiscipline.disciplineNumber }}</td>
-                <td>{{ work.academicDiscipline.name }}</td>
-                <td>{{ work.group.groupName }}</td>
-                <td>{{ work.firstSemPlan }}</td>
+                <td>{{ this.work.id }}</td>
+                <td>{{ this.work.specialization.specialization }}</td>
+                <td>{{ this.work.academicDiscipline.disciplineNumber }}</td>
+                <td>{{ this.work.academicDiscipline.name }}</td>
+                <td>{{ this.work.group.groupName }}</td>
+                <td>{{ this.work.firstSemPlan }}</td>
                 <td></td>
-                <td>{{ work.secondSemPlan }}</td>
+                <td>{{ this.work.secondSemPlan }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -63,6 +63,11 @@ export default {
     props: [
         'enums'
     ],
+    data(){
+      return{
+        work: {}
+      }
+    },
     methods: {
     ...mapActions([
       'LOAD_ACADEMIC_WORKS',
@@ -73,7 +78,9 @@ export default {
   },
   mounted(){
     document.title = 'Учебная работа'
-    this.LOAD_ACADEMIC_WORKS()
+    this.LOAD_ACADEMIC_WORKS().then((response) => {
+      this.work = response;
+    })
 
   },
 }

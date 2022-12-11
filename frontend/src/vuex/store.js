@@ -161,7 +161,7 @@ let store = createStore({
             })
         },
         LOAD_ACADEMIC_WORKS({commit}) {
-            let url = '/api/work/all'
+            let url = '/api/work'
             return axios(url, { method: 'GET'})
                 .then((works) => {
                     commit('SET_ACADEMIC_WORK', works.data)

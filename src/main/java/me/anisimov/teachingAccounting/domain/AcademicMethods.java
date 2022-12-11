@@ -44,6 +44,8 @@ public class AcademicMethods {
     @JoinColumn(name="academic_discipline_id", nullable=false)
     private AcademicDiscipline academicDiscipline;
 
-
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user", nullable = false)
+    private User user;
 
 }

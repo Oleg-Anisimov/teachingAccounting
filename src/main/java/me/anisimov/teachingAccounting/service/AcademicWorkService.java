@@ -31,13 +31,19 @@ public class AcademicWorkService {
     private UserDetailsServiceImpl userDetailsServiceImpl;
 
     public AcademicWorkDto createAcademicWork(AcademicWorkDto academicWorkDto) {
+
+        Long userId = academicWorkDto.getUserId();
+        User user = (userId != null)
+                ? userDetailsServiceImpl.getById(userId)
+                : userDetailsServiceImpl.getCurrentUser();
+
         AcademicWork academicWork = new AcademicWork();
+        academicWork.setUser(user);
         academicWork.setId(academicWorkDto.getId());
         academicWork.setGroup(groupService.getById(academicWorkDto.getGroupId()));
         academicWork.setAcademicYear(academicWorkDto.getAcademicYear());
         academicWork.setFirstSemester(academicWorkDto.getFirstSemester());
         academicWork.setSecondSemester(academicWorkDto.getSecondSemester());
-        academicWork.setUser(userDetailsServiceImpl.getById(academicWorkDto.getUserId()));
         academicWork.setAcademicDiscipline(academicDisciplineService.getById(academicWorkDto.getAcademicDisciplineId()));
         academicWork.setSpecialization(specializationService.getById(academicWorkDto.getSpecializationId()));
         academicWork.setAbsoluteResults(academicWorkDto.getAbsoluteResults());
@@ -59,8 +65,10 @@ public class AcademicWorkService {
         return academicWorkRepository.getReferenceById(id);
     }
 
-    public List<AcademicWork> getAll() {
-        return academicWorkRepository.findAll();
+    public List<AcademicWorkDto> getAll() {
+        return academicWorkRepository.findAll().stream()
+                .map(entity -> mapper.map(entity, AcademicWorkDto.class))
+                .collect(Collectors.toList());
     }
 
     public List<AcademicWorkDto> getCurrentAcademicWork() {

@@ -5,6 +5,7 @@ import me.anisimov.teachingAccounting.domain.User;
 import me.anisimov.teachingAccounting.dto.UserDto;
 import me.anisimov.teachingAccounting.repository.RoleRepository;
 import me.anisimov.teachingAccounting.repository.UserRepository;
+import me.anisimov.teachingAccounting.util.SecurityUtils;
 import me.anisimov.teachingAccounting.util.annotation.UserDetailsMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public List<User> getAll(){
         return userRepository.findAll();
+    }
+
+    public User getCurrentUser(){
+        String username = SecurityUtils.getCurrentUsername();
+        return userRepository.findUserByLogin(username);
     }
 
     public User findByLogin(String login){

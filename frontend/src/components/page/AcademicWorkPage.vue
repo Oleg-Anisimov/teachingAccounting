@@ -31,10 +31,10 @@ import AcaWork from "./fillingForms/AcaWork.vue";
             </tr>
               <tr v-for="work in GET_ACADEMIC_WORK()" :key="work.id">
                 <td>{{ this.work.id }}</td>
-                <td>{{ this.work.specialization.specialization }}</td>
-                <td>{{ this.work.academicDiscipline.disciplineNumber }}</td>
-                <td>{{ this.work.academicDiscipline.name }}</td>
-                <td>{{ this.work.group.groupName }}</td>
+                <td>{{ this.work.specializationId }}</td>
+                <td>{{ this.work.academicDisciplineId }}</td>
+                <td>{{ this.work.academicDisciplineId }}</td>
+                <td>{{ this.work.groupId }}</td>
                 <td>{{ this.work.firstSemPlan }}</td>
                 <td></td>
                 <td>{{ this.work.secondSemPlan }}</td>

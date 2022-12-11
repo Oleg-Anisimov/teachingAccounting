@@ -73,7 +73,7 @@ public class AcademicWorkService {
 
     public List<AcademicWorkDto> getCurrentAcademicWork() {
         User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
-        List<AcademicWorkDto> allUsersInformation = academicWorkRepository.findAllByUser(user.getId()).stream().map(work -> {
+        List<AcademicWorkDto> allUsersInformation = academicWorkRepository.findAllByUser(user).stream().map(work -> {
             return mapper.map(work, AcademicWorkDto.class);
         }).collect(Collectors.toList());
         return allUsersInformation;

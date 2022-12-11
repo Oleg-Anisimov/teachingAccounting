@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 //    @Override

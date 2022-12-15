@@ -72,7 +72,7 @@ public class AcademicMethodsService {
 
     public List<AcademicMethodsDto> getCurrentAcademicMethods() {
         User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
-        List<AcademicMethodsDto> allUsersInformation = academicMethodsRepository.findAllByUser(user.getId()).stream().map(work -> {
+        List<AcademicMethodsDto> allUsersInformation = academicMethodsRepository.findAllByUser(user).stream().map(work -> {
             return mapper.map(work, AcademicMethodsDto.class);
         }).collect(Collectors.toList());
         return allUsersInformation;

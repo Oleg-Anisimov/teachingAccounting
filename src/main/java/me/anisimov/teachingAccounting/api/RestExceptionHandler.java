@@ -1,6 +1,7 @@
 package me.anisimov.teachingAccounting.api;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RestControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -30,6 +32,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({Exception.class})
     public ResponseEntity<ApiResponse> ExceptionErrorMessage(Exception e) {
+        log.error(e.getMessage());
+        log.error(e.getCause().toString());
         return ResponseEntity.ok(ApiResponse.error(e.getMessage()));
     }
 

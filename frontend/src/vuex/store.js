@@ -41,9 +41,19 @@ let store = createStore({
             state.academicDisciplines = academicDisciplines
         },
         SET_ACADEMIC_WORK: (state, works) => {
+            works.forEach((w) => {
+                w.specialization = state.specializations.find((spec) => {return spec.id === w.specializationId})
+                w.academicDiscipline = state.academicDisciplines.find((disc) => {return disc.id === w.academicDisciplineId})
+                w.group = state.groups.find((group) => {return group.id === w.groupId})
+            })
+            console.log(works)
             state.academicWork = works
         },
         SET_ACADEMIC_METHOD: (state, methods) => {
+            methods.forEach((m) => {
+                m.specialization = state.specializations.find((spec) => {return spec.id === m.specializationId})
+                m.academicDiscipline = state.academicDisciplines.find((disc) => {return disc.id === m.academicDisciplineId})
+            })
             state.academicMethod = methods
         },
         SET_ORGANIZED_METHOD: (state, organs) => {
@@ -161,7 +171,7 @@ let store = createStore({
             })
         },
         LOAD_ACADEMIC_WORKS({commit}) {
-            let url = '/api/work'
+            let url = '/api/work/all'
             return axios(url, { method: 'GET'})
                 .then((works) => {
                     commit('SET_ACADEMIC_WORK', works.data)
@@ -176,7 +186,6 @@ let store = createStore({
             return axios(url, { method: 'GET'})
                 .then((methods) => {
                     commit('SET_ACADEMIC_METHOD', methods.data)
-                    return methods.data
                 })
                 .catch((error) => {
                     console.log(error)

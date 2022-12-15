@@ -30,20 +30,20 @@ import AcaWork from "./fillingForms/AcaWork.vue";
                 <td class="td-bottom">Факт</td>
             </tr>
               <tr v-for="work in GET_ACADEMIC_WORK()" :key="work.id">
-                <td>{{ this.work.id }}</td>
-                <td>{{ this.work.specialization.specialization }}</td>
-                <td>{{ this.work.academicDiscipline.disciplineNumber }}</td>
-                <td>{{ this.work.academicDiscipline.name }}</td>
-                <td>{{ this.work.group.groupName }}</td>
-                <td>{{ this.work.firstSemPlan }}</td>
-                <td></td>
-                <td>{{ this.work.secondSemPlan }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ work.id }}</td>
+                <td>{{ work.specialization.specialization }}</td>
+                <td>{{ work.academicDiscipline.disciplineNumber }}</td>
+                <td>{{ work.academicDiscipline.name }}</td>
+                <td>{{ work.group.groupName }}</td>
+                <td>{{ work.firstSemester.plan }}</td>
+                <td>{{ work.firstSemester.fact }}</td>
+                <td>{{ work.secondSemester.plan }}</td>
+                <td>{{ work.secondSemester.fact }}</td>
+                <td>{{ work.academicYear.plan }}</td>
+                <td>{{ work.academicYear.fact }}</td>
+                <td>{{ work.incompleteReason }}</td>
+                <td>{{ work.absoluteResults }}</td>
+                <td>{{ work.qualityResults }}</td>
               </tr>
             <tr>
                 <td colspan="100" class="last-td">
@@ -63,11 +63,6 @@ export default {
     props: [
         'enums'
     ],
-    data(){
-      return{
-        work: {}
-      }
-    },
     methods: {
     ...mapActions([
       'LOAD_ACADEMIC_WORKS',
@@ -78,9 +73,7 @@ export default {
   },
   mounted(){
     document.title = 'Учебная работа'
-    this.LOAD_ACADEMIC_WORKS().then((response) => {
-      this.work = response;
-    })
+    this.LOAD_ACADEMIC_WORKS()
 
   },
 }

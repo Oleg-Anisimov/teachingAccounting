@@ -42,6 +42,8 @@ export default{
         this.LOGIN({
           username: this.model.username,
           password: this.model.password
+        }).then((data) => {
+          this.$router.push('title');
         })
       }
     },

@@ -111,7 +111,7 @@ let store = createStore({
                 .then((response) => {
                     console.log(response.data)
                     commit('SET_CURRENT_USER', response.data)
-                    return response.data
+                    return response
                 })
                 .catch((error) => {
                     console.log(error)

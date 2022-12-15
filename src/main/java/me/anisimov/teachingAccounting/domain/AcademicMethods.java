@@ -45,7 +45,7 @@ public class AcademicMethods {
     private AcademicDiscipline academicDiscipline;
 
     @ManyToOne(targetEntity = User.class)
-    @JoinColumn(name = "user", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
 }

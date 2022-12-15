@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import me.anisimov.teachingAccounting.domain.Enums.Category;
-import me.anisimov.teachingAccounting.domain.Department;
 import me.anisimov.teachingAccounting.domain.Enums.EmploymentType;
 import me.anisimov.teachingAccounting.domain.Enums.Position;
 

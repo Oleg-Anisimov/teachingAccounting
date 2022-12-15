@@ -127,7 +127,7 @@ let store = createStore({
                 .catch((error) => { console.log(error) })
         },
         LOAD_TEACHER({commit}) {
-            let url = '/api/teacher/current'
+            let url = '/api/teacher'
             return axios.get(url)
                 .then((response) => {
                     commit('SET_TEACHER', response.data)
@@ -171,7 +171,7 @@ let store = createStore({
             })
         },
         LOAD_ACADEMIC_WORKS({commit}) {
-            let url = '/api/work/all'
+            let url = '/api/work'
             return axios(url, { method: 'GET'})
                 .then((works) => {
                     commit('SET_ACADEMIC_WORK', works.data)
@@ -182,7 +182,7 @@ let store = createStore({
                 })
         },
         LOAD_ACADEMIC_METHODS({commit}) {
-            let url = '/api/methods/all'
+            let url = '/api/methods'
             return axios(url, { method: 'GET'})
                 .then((methods) => {
                     commit('SET_ACADEMIC_METHOD', methods.data)
@@ -399,14 +399,17 @@ let store = createStore({
         GET_TEACHER_CATEGORIES(state) {
             return state.enums.category
         },
-        GET_EMPLOYMENT_TYPES(state){
+        GET_EMPLOYMENT_TYPES(state) {
             return state.enums.employmentType
         },
-        GET_POSITIONS(state){
+        GET_POSITIONS(state) {
             return state.enums.position
         },
-        GET_ALL_DEPARTMENTS(state){
+        GET_ALL_DEPARTMENTS(state) {
             return state.departments
+        },
+        GET_ALL_DEPARTMENTS_NAMES(state) {
+            return state.departments.map((d) => d.name)
         },
         GET_ALL_SPECIALIZATIONS(state){
             return state.specializations

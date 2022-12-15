@@ -21,7 +21,7 @@
         <div class="ui-input">
           <label for="input-last-name">Тип сотрудника</label>
           <select class="ui-select" :disabled="!editing" name="select-XcA1">
-            <option selected disabled>Отсутствует</option>
+            <option disabled>Отсутствует</option>
             <option v-for="employmentType in GET_EMPLOYMENT_TYPES()" :key="employmentType" :value="employmentType">
               {{ $t('enum.employmentType.' + employmentType) }}
             </option>
@@ -29,8 +29,8 @@
         </div>
         <div class="ui-input">
           <label for="input-last-name">Отделение</label>
-          <select class="ui-select" :disabled="!editing" name="select-XcA1">
-            <option selected disabled>Отсутствует</option>
+          <select v-model="teacher.department" class="ui-select" :disabled="!editing" name="select-XcA1">
+            <option disabled>Отсутствует</option>
             <option v-for="department in GET_ALL_DEPARTMENTS()" :value="department" :key="department.id">
               {{ department.name }}
             </option>
@@ -39,8 +39,8 @@
         </div>
         <div class="ui-input">
           <label for="input-last-name">Должность</label>
-          <select class="ui-select" :disabled="!editing" name="select-XcA1">
-            <option selected disabled>Отсутствует</option>
+          <select v-model="teacher.position" class="ui-select" :disabled="!editing" name="select-XcA1">
+            <option disabled>Отсутствует</option>
             <option v-for="position in GET_POSITIONS()" :key="position" :value="position">
               {{ $t('enum.position.' + position) }}
             </option>
@@ -48,8 +48,8 @@
         </div>
         <div class="ui-input">
           <label for="input-last-name">Категория</label>
-          <select class="ui-select" :disabled="!editing" name="select-XcA1">
-            <option selected disabled>Отсутствует</option>
+          <select v-model="teacher.category" class="ui-select" :disabled="!editing" name="select-XcA1">
+            <option disabled>Отсутствует</option>
             <option v-for="category in GET_TEACHER_CATEGORIES()" :key="category" :value="category">
               {{ $t('enum.categories.' + category) }}
             </option>
@@ -58,7 +58,7 @@
         <!-- DATE -->
         <div class="ui-input">
           <label for="input-last-name">Дата последней аттестации</label>
-          <input id="last-attestation-date" :disabled="!editing" type="date"/>
+          <input v-model="teacher.certificationDate" id="last-attestation-date" :disabled="!editing" type="date"/>
         </div>
         <!-- BUTTON -->
         <div class="ui-button-group" v-if="!editing">
@@ -112,13 +112,16 @@ export default {
       'GET_EMPLOYMENT_TYPES',
       'GET_POSITIONS',
       'GET_ALL_DEPARTMENTS',
+      'GET_ALL_DEPARTMENTS_NAMES'
     ]),
   },
   mounted() {
     document.title = 'Титульная страница'
     this.LOAD_TEACHER().then((response) => {
-      console.log(response)
       this.teacher = response
+      let deps = this.GET_ALL_DEPARTMENTS();
+      let currentDep = deps.find((d) => {return d.id === this.teacher.departmentId})
+      this.teacher.department = currentDep;
     })
     this.LOAD_ENUMS()
     this.LOAD_DEPARTMENTS()

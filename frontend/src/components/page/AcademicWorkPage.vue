@@ -35,15 +35,15 @@ import AcaWork from "./fillingForms/AcaWork.vue";
                 <td>{{ work.academicDiscipline.disciplineNumber }}</td>
                 <td>{{ work.academicDiscipline.name }}</td>
                 <td>{{ work.group.groupName }}</td>
-                <td>{{ work.firstSemester.plan }}</td>
-                <td>{{ work.firstSemester.fact }}</td>
-                <td>{{ work.secondSemester.plan }}</td>
-                <td>{{ work.secondSemester.fact }}</td>
-                <td>{{ work.academicYear.plan }}</td>
-                <td>{{ work.academicYear.fact }}</td>
-                <td>{{ work.incompleteReason }}</td>
-                <td>{{ work.absoluteResults }}</td>
-                <td>{{ work.qualityResults }}</td>
+                <td>{{ work.firstSemester ? work.firstSemester.plan : ""}}</td>
+                <td>{{ work.firstSemester ? work.firstSemester.fact : ""}}</td>
+                <td>{{ work.secondSemester ? work.secondSemester.plan : ""}}</td>
+                <td>{{ work.secondSemester ? work.secondSemester.fact : ""}}</td>
+                <td>{{ work.academicYear ? work.academicYear.plan : ""}}</td>
+                <td>{{ work.academicYear ? work.academicYear.fact : ""}}</td>
+                <td>{{ work.incompleteReason ? work.incompleteReason : ""}}</td>
+                <td>{{ work.absoluteResults ? work.absoluteResults : ""}}</td>
+                <td>{{ work.qualityResults ? work.qualityResults : ""}}</td>
               </tr>
             <tr>
                 <td colspan="100" class="last-td">

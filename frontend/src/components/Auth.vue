@@ -20,7 +20,7 @@
   
   <style scoped>
     .authorization{
-        background-color: #5f83ee;
+        background-color: #3e65a0;
         color: white;
         padding: 10px;
         text-align: right;

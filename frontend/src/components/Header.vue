@@ -16,7 +16,7 @@ export default {
 <style scoped>
   .global_header{
     padding: 0.5em 0;
-    background-color: royalblue;
+    background-color: #2b4e84;
     color: #f2f2f2;
     font-size: 1.4em;
     text-align: center;

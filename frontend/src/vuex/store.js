@@ -170,12 +170,17 @@ let store = createStore({
                 console.log(error)
             })
         },
-        LOAD_ACADEMIC_WORKS({commit}) {
-            let url = '/api/work'
-            return axios(url, { method: 'GET'})
-                .then((works) => {
-                    commit('SET_ACADEMIC_WORK', works.data)
-                    return works.data
+        LOAD_ACADEMIC_WORKS({commit}, pageRequest) {
+            let url = '/api/work';
+            const options = {
+                method: 'POST',
+                data: qs.stringify(pageRequest)
+            }
+            return axios(url, options)
+                .then((response) => {
+                    commit('SET_ACADEMIC_WORK', response.data.content)
+                    console.log(response.data)
+                    return response.data;
                 })
                 .catch((error) => {
                     console.log(error)
@@ -262,7 +267,9 @@ let store = createStore({
             let data = {
                 academicDisciplineId: work.academicDiscipline.id,
                 specializationId: work.specialization.id,
-                groupId: work.group.id
+                groupId: work.group.id,
+                firstSemester: work.firstSemester,
+                secondSemester: work.secondSemester
             }
             console.log(getters)
             return axios.post(url, data)
@@ -272,7 +279,9 @@ let store = createStore({
                             id: data.id,
                             group: getters.GET_ALL_GROUPS.find((group) => {return group.id === data.groupId}),
                             academicDiscipline: getters.GET_ALL_ACADEMIC_DISCIPLINES.find((dis) => {return dis.id === data.academicDisciplineId}),
-                            specialization: getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId})
+                            specialization: getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
+                            firstSemester: data.firstSemester,
+                            secondSemester: data.secondSemester
                         }
                     }
 

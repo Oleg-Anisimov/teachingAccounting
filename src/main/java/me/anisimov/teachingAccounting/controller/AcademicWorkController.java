@@ -52,7 +52,7 @@ public class AcademicWorkController {
 
     @PostMapping()
     public Page<AcademicWorkDto> getCurrent(@RequestParam(defaultValue = "0") int page,
-                                            @RequestParam(defaultValue = "9") int size) {
+                                            @RequestParam(defaultValue = "10") int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         return academicWorkService.getCurrentAcademicWork(pageRequest);
     }

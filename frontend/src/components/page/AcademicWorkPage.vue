@@ -47,11 +47,11 @@ import AcaWork from "./fillingForms/AcaWork.vue";
               </tr>
             <tr>
                 <td colspan="100" class="last-td">
-                  <p>(Всего: {{ totalElements }}) На страницу: <input type="number"  v-model="pageRequest.size">.
+                  <p>(Всего: {{ totalElements }}) На страницу: <input type="number" min="0" :max="totalElements" v-model="pageRequest.size">.
                     Страниц: {{ totalPages }}
-                    <button class="ui-button isOutline isDefault" v-on:click="pageRequest.page -= 1">◁</button>
-                    {{ pageRequest.page }}
-                    <button class="ui-button isOutline isDefault" v-on:click="pageRequest.page += 1">▷</button>
+                    <button class="ui-button isOutline isDefault" :disabled="pageRequest.page===0" v-on:click="pageRequest.page -= 1">◁</button>
+                    {{ pageRequest.page + 1 }}
+                    <button class="ui-button isOutline isDefault" :disabled="pageRequest.page===totalPages -1" v-on:click="pageRequest.page += 1">▷</button>
                   </p>
                 </td>
                 

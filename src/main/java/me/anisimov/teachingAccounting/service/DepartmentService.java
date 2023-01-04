@@ -18,8 +18,6 @@ public class DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
     @Autowired
-    private TeacherService teacherService;
-    @Autowired
     private ModelMapper mapper;
 
     public DepartmentDto createDepartment(DepartmentDto departmentDto) {

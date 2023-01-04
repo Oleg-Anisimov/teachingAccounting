@@ -22,4 +22,5 @@ public class OrganizedMethodsDto {
     private String studentInformation;
     private EventLevel eventLevel;
     private ActivityType activityType;
+    private Long userId;
 }

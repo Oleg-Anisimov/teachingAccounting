@@ -41,7 +41,12 @@ public class OrganizedMethodsController {
     }
 
     @GetMapping("/all")
-    public List<OrganizedMethods> getAll() {
+    public List<OrganizedMethodsDto> getAll() {
         return organizedMethodsService.getAll();
+    }
+
+    @GetMapping()
+    public List<OrganizedMethodsDto> getCurrent(){
+        return organizedMethodsService.getCurrentOrganizedMethods();
     }
 }

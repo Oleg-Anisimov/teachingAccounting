@@ -46,4 +46,8 @@ public class OrganizedMethods {
     @Column(name = "activity_type")
     private ActivityType activityType;
 
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
 }

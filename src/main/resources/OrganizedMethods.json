@@ -6,7 +6,8 @@
     "eventName": "The loop B",
     "studentInformation": null,
     "eventLevel": "COLLEGE",
-    "activityType": "PARTICIPATION"
+    "activityType": "PARTICIPATION",
+    "userId": 1
   },
   {
     "date": "",
@@ -15,6 +16,7 @@
     "eventName": "Assembler",
     "studentInformation": null,
     "eventLevel": "NATIONAL",
-    "activityType": "PARTICIPATION"
+    "activityType": "PARTICIPATION",
+    "userId": 2
   }
 ]

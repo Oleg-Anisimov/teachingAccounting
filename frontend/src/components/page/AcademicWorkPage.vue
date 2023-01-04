@@ -47,7 +47,12 @@ import AcaWork from "./fillingForms/AcaWork.vue";
               </tr>
             <tr>
                 <td colspan="100" class="last-td">
-                    <p>1 - 10 (Всего: 0) На страницу: <input type="number" value="0"></p>    
+                  <p>(Всего: {{ totalElements }}) На страницу: <input type="number" min="0" :max="totalElements" v-model="pageRequest.size">.
+                    Страниц: {{ totalPages }}
+                    <button class="ui-button isOutline isDefault" :disabled="pageRequest.page===0" v-on:click="pageRequest.page -= 1">◁</button>
+                    {{ pageRequest.page + 1 }}
+                    <button class="ui-button isOutline isDefault" :disabled="pageRequest.page===totalPages -1" v-on:click="pageRequest.page += 1">▷</button>
+                  </p>
                 </td>
                 
             </tr>
@@ -63,6 +68,35 @@ export default {
     props: [
         'enums'
     ],
+    watch: {
+      'pageRequest.page'(newValue) {
+        let resultPromise = this.LOAD_ACADEMIC_WORKS(this.pageRequest);
+        resultPromise.then(data => {
+          this.totalPages = data.totalPages
+          this.pageNumber = data.pageable.pageNumber + 1
+        });
+      },
+      'pageRequest.size'(newValue) {
+        let resultPromise = this.LOAD_ACADEMIC_WORKS(this.pageRequest);
+        resultPromise.then(data => {
+          this.totalPages = data.totalPages
+          this.pageNumber = data.pageable.pageNumber + 1
+
+        });
+      }
+    },
+    data() {
+      return {
+        pageRequest: {
+          page: 0,
+          size: 10
+        },
+        totalElements: 0,
+        totalPages: 0,
+        offset: 0,
+        pageNumber:0
+      }
+    },
     methods: {
     ...mapActions([
       'LOAD_ACADEMIC_WORKS',
@@ -73,7 +107,12 @@ export default {
   },
   mounted(){
     document.title = 'Учебная работа'
-    this.LOAD_ACADEMIC_WORKS()
+    let resultPromise = this.LOAD_ACADEMIC_WORKS(this.pageRequest);
+    resultPromise.then(data => {
+      this.totalElements = data.totalElements
+      this.totalPages = data.totalPages
+      this.pageNumber = data.pageable.pageNumber + 1
+    });
 
   },
 }

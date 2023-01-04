@@ -6,8 +6,6 @@
 <style>
     .academic_work_page{
         padding: 1em;
-        background-color: #e1e1e1;
-        height: 53em;
         display: grid;
         grid-template-areas: "filling-form table";
         grid-gap: 1em;

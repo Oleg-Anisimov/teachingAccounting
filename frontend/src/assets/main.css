@@ -1,2 +1,7 @@
 @import './base.css';
 @import "uimini/dist/uimini.css";
+
+.ui-body {
+    --ui-g-0: #e1e1e1;
+
+}

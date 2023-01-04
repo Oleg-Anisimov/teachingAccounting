@@ -99,9 +99,14 @@ export default{
           this.model.specialization,
           this.model.group,
           this.model.discipline,
-          this.model.firstSemPlan,
-          this.model.secondSemPlan
+          {
+            plan: this.model.firstSemPlan
+          },
+          {
+            plan: this.model.secondSemPlan
+          }
       )
+      console.log(work)
       this.UPLOAD_ACADEMIC_WORK(work)
     },
   },

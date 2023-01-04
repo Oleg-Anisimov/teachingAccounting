@@ -9,6 +9,8 @@ import me.anisimov.teachingAccounting.repository.AcademicWorkRepository;
 import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,11 +73,12 @@ public class AcademicWorkService {
                 .collect(Collectors.toList());
     }
 
-    public List<AcademicWorkDto> getCurrentAcademicWork() {
+    public Page<AcademicWorkDto> getCurrentAcademicWork(PageRequest pageRequest) {
         User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
-        List<AcademicWorkDto> allUsersInformation = academicWorkRepository.findAllByUser(user).stream().map(work -> {
-            return mapper.map(work, AcademicWorkDto.class);
-        }).collect(Collectors.toList());
+        Page<AcademicWorkDto> allUsersInformation = academicWorkRepository.getAllByUser(user, pageRequest)
+                .map(work -> {
+                    return mapper.map(work, AcademicWorkDto.class);
+                });
         return allUsersInformation;
     }
 

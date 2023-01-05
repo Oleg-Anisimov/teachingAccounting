@@ -47,4 +47,8 @@ public class AcademicProduction {
     @JoinColumn(name="specialization_id", nullable=false)
     private Specialization specialization;
 
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
 }

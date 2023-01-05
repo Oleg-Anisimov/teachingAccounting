@@ -41,7 +41,12 @@ public class EducateController {
     }
 
     @GetMapping("/all")
-    public List<Educate> getAll(){
+    public List<EducateDto> getAll(){
         return educateService.getAll();
+    }
+
+    @GetMapping()
+    public List<EducateDto> getCurrent(){
+        return educateService.getCurrentEducate();
     }
 }

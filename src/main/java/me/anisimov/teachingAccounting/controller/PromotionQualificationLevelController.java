@@ -2,6 +2,7 @@ package me.anisimov.teachingAccounting.controller;
 
 import io.swagger.annotations.Api;
 import me.anisimov.teachingAccounting.domain.PromotionQualificationLevel;
+import me.anisimov.teachingAccounting.dto.EducateDto;
 import me.anisimov.teachingAccounting.dto.PromotionQualificationLevelDto;
 import me.anisimov.teachingAccounting.service.PromotionQualificationLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,12 @@ public class PromotionQualificationLevelController {
     }
 
     @GetMapping("/all")
-    public List<PromotionQualificationLevel> getAll() {
+    public List<PromotionQualificationLevelDto> getAll() {
         return promotionQualificationLevelService.getAll();
+    }
+
+    @GetMapping()
+    public List<PromotionQualificationLevelDto> getCurrent(){
+        return promotionQualificationLevelService.getCurrentPromotionQualificationLevel();
     }
 }

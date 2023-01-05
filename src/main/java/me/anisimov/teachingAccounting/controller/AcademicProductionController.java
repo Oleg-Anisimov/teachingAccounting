@@ -2,6 +2,7 @@ package me.anisimov.teachingAccounting.controller;
 
 import io.swagger.annotations.Api;
 import me.anisimov.teachingAccounting.domain.AcademicProduction;
+import me.anisimov.teachingAccounting.dto.AcademicMethodsDto;
 import me.anisimov.teachingAccounting.dto.AcademicProductionDto;
 import me.anisimov.teachingAccounting.service.AcademicProductionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,12 @@ public class AcademicProductionController {
     }
 
     @GetMapping("/all")
-    public List<AcademicProduction> getAll() {
+    public List<AcademicProductionDto> getAll() {
         return academicProductionService.getAll();
+    }
+
+    @GetMapping()
+    public List<AcademicProductionDto> getCurrent(){
+        return academicProductionService.getCurrentAcademicProduction();
     }
 }

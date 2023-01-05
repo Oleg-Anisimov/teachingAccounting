@@ -2,14 +2,17 @@ package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.Educate;
+import me.anisimov.teachingAccounting.domain.User;
 import me.anisimov.teachingAccounting.dto.EducateDto;
 import me.anisimov.teachingAccounting.repository.EducateRepository;
+import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -19,9 +22,18 @@ public class EducateService {
     private EducateRepository educateRepository;
     @Autowired
     private ModelMapper mapper;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
     public EducateDto createEducate(EducateDto educateDto) {
+
+        Long userId = educateDto.getUserId();
+        User user = (userId != null)
+                ? userDetailsServiceImpl.getById(userId)
+                : userDetailsServiceImpl.getCurrentUser();
+
         Educate educate = new Educate();
+        educate.setUser(user);
         educate.setId(educateDto.getId());
         educate.setDate(educateDto.getDate());
         educate.setResult(educateDto.getResult());
@@ -47,7 +59,17 @@ public class EducateService {
         return educateRepository.getReferenceById(id);
     }
 
-    public List<Educate> getAll() {
-        return educateRepository.findAll();
+    public List<EducateDto> getAll() {
+        return educateRepository.findAll().stream()
+                .map(entity -> mapper.map(entity,EducateDto.class))
+                .collect(Collectors.toList());
+    }
+
+    public List<EducateDto> getCurrentEducate(){
+        User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
+        List<EducateDto> allUserInformation = educateRepository.findAllByUser(user).stream()
+                .map(educate ->{return mapper.map(educate,EducateDto.class);
+                }).collect(Collectors.toList());
+        return allUserInformation;
     }
 }

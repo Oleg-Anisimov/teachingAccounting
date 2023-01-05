@@ -49,5 +49,8 @@ public class Educate {
     @Column(name = "work_vector")
     private WorkVector workVector;
 
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
 }

@@ -33,6 +33,7 @@ public class AcademicMethodsService {
     public AcademicMethodsDto createAcademicMethods(AcademicMethodsDto academicMethodsDto) {
 
         Long userId = academicMethodsDto.getUserId();
+
         User user = (userId != null)
                 ? userDetailsServiceImpl.getById(userId)
                 : userDetailsServiceImpl.getCurrentUser();
@@ -66,7 +67,7 @@ public class AcademicMethodsService {
 
     public List<AcademicMethodsDto> getAll() {
         return academicMethodsRepository.findAll().stream()
-                .map(entity -> mapper.map(entity, AcademicMethodsDto.class))
+                .map(entity ->  mapper.map(entity, AcademicMethodsDto.class))
                 .collect(Collectors.toList());
     }
 

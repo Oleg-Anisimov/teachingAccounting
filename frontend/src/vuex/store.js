@@ -197,7 +197,7 @@ let store = createStore({
                 })
         },
         LOAD_ORGANIZED_METHODS({commit}) {
-            let url = '/api/organized/all'
+            let url = '/api/organized'
             return axios(url, { method: 'GET'})
                 .then((organs) => {
                     commit('SET_ORGANIZED_METHOD', organs.data)

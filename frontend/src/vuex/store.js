@@ -208,7 +208,7 @@ let store = createStore({
                 })
         },
         LOAD_SCIENTIFIC_METHODS({commit}) {
-            let url = '/api/scientific/all'
+            let url = '/api/scientific'
             return axios(url, { method: 'GET'})
                 .then((sciens) => {
                     commit('SET_SCIENTIFIC_METHOD', sciens.data)

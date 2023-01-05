@@ -24,4 +24,5 @@ public class ScientificMethodsDto {
     private EventLevel eventLevel;
     private ActivityType activityType;
     private ParticipationType participationType;
+    private Long userId;
 }

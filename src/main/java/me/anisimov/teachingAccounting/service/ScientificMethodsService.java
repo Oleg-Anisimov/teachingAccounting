@@ -2,14 +2,18 @@ package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.ScientificMethods;
+import me.anisimov.teachingAccounting.domain.User;
+import me.anisimov.teachingAccounting.dto.AcademicMethodsDto;
 import me.anisimov.teachingAccounting.dto.ScientificMethodsDto;
 import me.anisimov.teachingAccounting.repository.ScientificMethodsRepository;
+import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -20,8 +24,18 @@ public class ScientificMethodsService {
     @Autowired
     private ModelMapper mapper;
 
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServiceImpl;
+
     public ScientificMethodsDto createScientificMethods(ScientificMethodsDto scientificMethodsDto) {
+
+        Long userId = scientificMethodsDto.getUserId();
+        User user = (userId != null)
+                ? userDetailsServiceImpl.getById(userId)
+                : userDetailsServiceImpl.getCurrentUser();
+
         ScientificMethods scientificMethods = new ScientificMethods();
+        scientificMethods.setUser(user);
         scientificMethods.setId(scientificMethodsDto.getId());
         scientificMethods.setDate(scientificMethodsDto.getDate());
         scientificMethods.setPlace(scientificMethodsDto.getPlace());
@@ -32,6 +46,7 @@ public class ScientificMethodsService {
         scientificMethods.setEventLevel(scientificMethodsDto.getEventLevel());
         scientificMethods.setParticipationType(scientificMethodsDto.getParticipationType());
         scientificMethods.setStudentInformation(scientificMethodsDto.getStudentInformation());
+
         scientificMethodsRepository.save(scientificMethods);
         return mapper.map(scientificMethods,ScientificMethodsDto.class);
     }
@@ -48,8 +63,16 @@ public class ScientificMethodsService {
         return scientificMethodsRepository.getReferenceById(id);
     }
 
-    public List<ScientificMethods> getAll() {
-        return scientificMethodsRepository.findAll();
+    public List<ScientificMethodsDto> getAll() {
+        return scientificMethodsRepository.findAll().stream().map(entity -> mapper.map(entity, ScientificMethodsDto.class)).collect(Collectors.toList());
+    }
+
+    public  List<ScientificMethodsDto> getCurrentScientificMethods() {
+        User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
+        List<ScientificMethodsDto> allUsersInformation = scientificMethodsRepository.findAllByUser(user).stream().map(work -> {
+            return mapper.map(work, ScientificMethodsDto.class);
+        }).collect(Collectors.toList());
+        return allUsersInformation;
     }
 
 }

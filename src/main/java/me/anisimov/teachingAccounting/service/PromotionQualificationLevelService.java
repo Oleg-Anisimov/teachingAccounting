@@ -32,7 +32,8 @@ public class PromotionQualificationLevelService {
                 ? userDetailsServiceImpl.getById(userId)
                 : userDetailsServiceImpl.getCurrentUser();
 
-                PromotionQualificationLevel promotionQualificationLevel = new PromotionQualificationLevel();
+        PromotionQualificationLevel promotionQualificationLevel = new PromotionQualificationLevel();
+        promotionQualificationLevel.setUser(user);
         promotionQualificationLevel.setId(promotionQualificationLevelDto.getId());
         promotionQualificationLevel.setPromotionForm(promotionQualificationLevelDto.getPromotionForm());
         promotionQualificationLevel.setDate(promotionQualificationLevelDto.getDate());

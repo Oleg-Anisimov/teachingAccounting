@@ -52,4 +52,8 @@ public class ScientificMethods {
     @Column(name = "participation_type")
     private ParticipationType participationType;
 
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
 }

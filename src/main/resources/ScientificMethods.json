@@ -8,7 +8,8 @@
     "studentInformation": "https://youtu.be/dQw4w9WgXcQ",
     "eventLevel": "COLLEGE",
     "activityType": "PARTICIPATION",
-    "participationType": "PARTICIPATION"
+    "participationType": "PARTICIPATION",
+    "userId": 1
   },
   {
     "date": null,
@@ -19,6 +20,7 @@
     "studentInformation": null,
     "eventLevel": "URBAN",
     "activityType": "REALIZATION",
-    "participationType": "PERSONAL"
+    "participationType": "PERSONAL",
+    "userId": 2
   }
 ]

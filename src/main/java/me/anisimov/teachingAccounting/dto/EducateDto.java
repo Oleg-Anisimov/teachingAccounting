@@ -26,4 +26,5 @@ public class EducateDto {
     private EventLevel eventLevel;
     private ActivityType activityType;
     private WorkVector workVector;
+    private Long userId;
 }

@@ -7,7 +7,8 @@
     "studentInformation": null,
     "eventLevel": "COLLEGE",
     "activityType": "PARTICIPATION",
-    "workVector": "LABOR"
+    "workVector": "LABOR",
+    "userId": 1
   },
   {
     "date": null,
@@ -17,6 +18,7 @@
     "studentInformation": "Disabled",
     "eventLevel": "COLLEGE",
     "activityType": "PARTICIPATION",
-    "workVector": "LABOR"
+    "workVector": "LABOR",
+    "userId": 2
   }
 ]

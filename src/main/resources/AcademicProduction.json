@@ -6,7 +6,8 @@
     "cabinetType": "CABINET",
     "cabinetName": "316",
     "activityType": "DEVELOPMENT",
-    "specializationId": 1
+    "specializationId": 1,
+    "userId": 1
   },
   {
     "date": null,
@@ -15,6 +16,7 @@
     "cabinetType": "LABORATORY",
     "cabinetName": "Breaking Bad",
     "activityType": "REALIZATION",
-    "specializationId": 2
+    "specializationId": 2,
+    "userId": 2
   }
 ]

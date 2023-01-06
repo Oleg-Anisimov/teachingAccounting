@@ -19,5 +19,7 @@ public class PromotionQualificationLevelDto {
     private LocalDate date;
     private String topic;
     private String documentOrResult;
+    private String place;
     private PromotionForm promotionForm;
+    private Long userId;
 }

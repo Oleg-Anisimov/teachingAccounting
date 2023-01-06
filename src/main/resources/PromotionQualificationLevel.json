@@ -3,12 +3,16 @@
     "date": "",
     "topic": "Amogus",
     "documentOrResult": "sus",
-    "promotionForm": "ATTESTATION"
+    "promotionForm": "ATTESTATION",
+    "place": "school",
+    "userId": 1
   },
   {
     "date": "",
     "topic": "Sugoma",
     "documentOrResult": "sugus",
-    "promotionForm": "PROFESSIONAL_RETRAINING"
+    "place": "school",
+    "promotionForm": "PROFESSIONAL_RETRAINING",
+    "userId": 2
   }
 ]

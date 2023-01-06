@@ -6,6 +6,8 @@ import me.anisimov.teachingAccounting.dto.AcademicMethodsDto;
 import me.anisimov.teachingAccounting.dto.ScientificMethodsDto;
 import me.anisimov.teachingAccounting.service.ScientificMethodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,8 +48,10 @@ public class ScientificMethodsController {
         return scientificMethodsService.getAll();
     }
 
-    @GetMapping()
-    public List<ScientificMethodsDto> getCurrent(){
-        return scientificMethodsService.getCurrentScientificMethods();
+    @PostMapping()
+    public Page<ScientificMethodsDto> getCurrent(@RequestParam(defaultValue = "0") int page,
+                                                 @RequestParam(defaultValue = "10") int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return scientificMethodsService.getCurrentScientificMethods(pageRequest);
     }
 }

@@ -22,5 +22,6 @@ public class AcademicProductionDto {
     private String cabinetName;
     private ActivityType activityType;
     private Long specializationId;
+    private Long userId;
 
 }

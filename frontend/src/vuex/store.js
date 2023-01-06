@@ -260,7 +260,7 @@ let store = createStore({
                 data: qs.stringify(pageRequest)
             }
             return axios(url, options)
-            
+
                 .then((lvls) => {
                     commit('SET_PROMOTION_QUALIFICATION_LVL', lvls.data.content)
                     console.log(lvls.data)

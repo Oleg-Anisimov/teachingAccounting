@@ -1,5 +1,14 @@
 <template>
     <div class="authorization">
+      <div v-if="username">
+         <div class="guest">
+            <a href="#">{{username}}</a>
+        </div>
+        <div class="auth">
+          <p><router-link to="/authorization">Выход</router-link></p>
+        </div>
+      </div>
+      <div v-if="!username">
         <div class="guest">
             <a href="#">Гость</a>
         </div>
@@ -9,13 +18,20 @@
         <div class="auth">
           <p><router-link to="/registration">Регистрация</router-link></p>
         </div>
+      </div>
     </div>
   </template>
   
   <script>
   export default {
-    name: "Auth"
+    name: "Auth",
+    props: ["username"],
+    methods: {
+      
+      
+    }
   }
+  
   </script>
   
   <style scoped>

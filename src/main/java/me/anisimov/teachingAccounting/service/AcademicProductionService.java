@@ -9,6 +9,8 @@ import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -65,12 +67,11 @@ public class AcademicProductionService {
                 .map(entity -> mapper.map(entity,AcademicProductionDto.class))
                 .collect(Collectors.toList());
     }
-    public List<AcademicProductionDto> getCurrentAcademicProduction(){
+    public Page<AcademicProductionDto> getCurrentAcademicProduction(PageRequest pageRequest){
         User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
-        List<AcademicProductionDto> allUserInformation = academicProductionRepository.findAllByUser(user).stream()
-                .map(production ->{
+        Page<AcademicProductionDto> allUserInformation = academicProductionRepository.getAllByUser(user, pageRequest).map(production ->{
                     return mapper.map(production,AcademicProductionDto.class);
-        }).collect(Collectors.toList());
+        });
         return allUserInformation;
     }
 }

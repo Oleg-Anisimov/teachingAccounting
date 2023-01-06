@@ -3,8 +3,11 @@ package me.anisimov.teachingAccounting.controller;
 import io.swagger.annotations.Api;
 import me.anisimov.teachingAccounting.domain.Educate;
 import me.anisimov.teachingAccounting.dto.EducateDto;
+import me.anisimov.teachingAccounting.dto.ScientificMethodsDto;
 import me.anisimov.teachingAccounting.service.EducateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,7 +49,9 @@ public class EducateController {
     }
 
     @PostMapping()
-    public List<EducateDto> getCurrent(){
-        return educateService.getCurrentEducate();
+    public Page<EducateDto> getCurrent(@RequestParam(defaultValue = "0") int page,
+                                                 @RequestParam(defaultValue = "10") int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return educateService.getCurrentEducate(pageRequest);
     }
 }

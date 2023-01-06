@@ -9,6 +9,8 @@ import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -65,11 +67,11 @@ public class EducateService {
                 .collect(Collectors.toList());
     }
 
-    public List<EducateDto> getCurrentEducate(){
+    public Page<EducateDto> getCurrentEducate(PageRequest pageRequest){
         User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
-        List<EducateDto> allUserInformation = educateRepository.findAllByUser(user).stream()
-                .map(educate ->{return mapper.map(educate,EducateDto.class);
-                }).collect(Collectors.toList());
+        Page<EducateDto> allUserInformation = educateRepository.getAllByUser(user, pageRequest).map(educate ->{
+            return mapper.map(educate,EducateDto.class);
+                });
         return allUserInformation;
     }
 }

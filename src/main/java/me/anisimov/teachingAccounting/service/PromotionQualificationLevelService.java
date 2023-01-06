@@ -9,6 +9,8 @@ import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,11 +64,11 @@ public class PromotionQualificationLevelService {
                 .collect(Collectors.toList());
     }
 
-    public List<PromotionQualificationLevelDto> getCurrentPromotionQualificationLevel(){
+    public Page<PromotionQualificationLevelDto> getCurrentPromotionQualificationLevel(PageRequest pageRequest){
         User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
-        List<PromotionQualificationLevelDto> allUserInformation = promotionQualificationLevelRepository.findAllByUser(user).stream()
-                .map(promotion->{return mapper.map(promotion,PromotionQualificationLevelDto.class);
-                }).collect(Collectors.toList());
+        Page<PromotionQualificationLevelDto> allUserInformation = promotionQualificationLevelRepository.getAllByUser(user, pageRequest).map(promotion->{
+            return mapper.map(promotion,PromotionQualificationLevelDto.class);
+                });
         return allUserInformation;
     }
 }

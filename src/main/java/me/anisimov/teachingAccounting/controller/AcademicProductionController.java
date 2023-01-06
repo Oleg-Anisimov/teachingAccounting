@@ -46,7 +46,7 @@ public class AcademicProductionController {
         return academicProductionService.getAll();
     }
 
-    @GetMapping()
+    @PostMapping()
     public List<AcademicProductionDto> getCurrent(){
         return academicProductionService.getCurrentAcademicProduction();
     }

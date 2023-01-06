@@ -45,7 +45,7 @@ public class EducateController {
         return educateService.getAll();
     }
 
-    @GetMapping()
+    @PostMapping()
     public List<EducateDto> getCurrent(){
         return educateService.getCurrentEducate();
     }

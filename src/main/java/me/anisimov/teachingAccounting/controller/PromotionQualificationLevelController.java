@@ -46,7 +46,7 @@ public class PromotionQualificationLevelController {
         return promotionQualificationLevelService.getAll();
     }
 
-    @GetMapping()
+    @PostMapping()
     public List<PromotionQualificationLevelDto> getCurrent(){
         return promotionQualificationLevelService.getCurrentPromotionQualificationLevel();
     }

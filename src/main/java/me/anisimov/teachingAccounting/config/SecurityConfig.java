@@ -1,5 +1,7 @@
 package me.anisimov.teachingAccounting.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import me.anisimov.teachingAccounting.dto.AuthResultDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +9,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -20,6 +23,8 @@ public class SecurityConfig {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private ObjectMapper mapper;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -50,7 +55,9 @@ public class SecurityConfig {
 
                 StringBuilder sb = new StringBuilder();
                 authentication.getAuthorities().forEach(sb::append);
-                response.getOutputStream().println(sb.toString());
+                String principal = ((UserDetails) authentication.getPrincipal()).getUsername();
+                AuthResultDto authResultDto = new AuthResultDto(principal,sb.toString());
+                response.getOutputStream().println(mapper.writeValueAsString(authResultDto));
             };
         }
 }

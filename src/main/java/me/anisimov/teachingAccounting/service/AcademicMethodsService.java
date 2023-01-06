@@ -9,6 +9,8 @@ import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -70,11 +72,11 @@ public class AcademicMethodsService {
                 .collect(Collectors.toList());
     }
 
-    public List<AcademicMethodsDto> getCurrentAcademicMethods() {
+    public Page<AcademicMethodsDto> getCurrentAcademicMethods(PageRequest pageRequest) {
         User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
-        List<AcademicMethodsDto> allUsersInformation = academicMethodsRepository.findAllByUser(user).stream().map(work -> {
+        Page<AcademicMethodsDto> allUsersInformation = academicMethodsRepository.getAllByUser(user,pageRequest).map(work -> {
             return mapper.map(work, AcademicMethodsDto.class);
-        }).collect(Collectors.toList());
+        });
         return allUsersInformation;
     }
 }

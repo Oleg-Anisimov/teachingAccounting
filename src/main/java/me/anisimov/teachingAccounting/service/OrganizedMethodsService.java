@@ -69,11 +69,12 @@ public class OrganizedMethodsService {
                 .collect(Collectors.toList());
     }
 
-    public List<OrganizedMethodsDto> getCurrentOrganizedMethods() {
+    public Page<OrganizedMethodsDto> getCurrentOrganizedMethods(PageRequest pageRequest) {
         User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
-        List<OrganizedMethodsDto> allUserInformation = organizedMethodsRepository.findAllByUser(user).stream().map(method -> {
-            return mapper.map(method, OrganizedMethodsDto.class);
-        }).collect(Collectors.toList());
+        Page<OrganizedMethodsDto> allUserInformation = organizedMethodsRepository.getAllByUser(user,pageRequest)
+                .map(method -> {
+                    return mapper.map(method, OrganizedMethodsDto.class);
+                });
         return allUserInformation;
     }
 }

@@ -186,11 +186,17 @@ let store = createStore({
                     console.log(error)
                 })
         },
-        LOAD_ACADEMIC_METHODS({commit}) {
+        LOAD_ACADEMIC_METHODS({commit}, pageRequest) {
             let url = '/api/methods'
-            return axios(url, { method: 'GET'})
+            const options = {
+                method: 'POST',
+                data: qs.stringify(pageRequest)
+            }
+            return axios(url, options)
                 .then((methods) => {
-                    commit('SET_ACADEMIC_METHOD', methods.data)
+                    commit('SET_ACADEMIC_METHOD', methods.data.content)
+                    console.log(methods.data)
+                    return methods.data;
                 })
                 .catch((error) => {
                     console.log(error)

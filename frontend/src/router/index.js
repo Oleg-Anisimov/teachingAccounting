@@ -10,8 +10,7 @@ import EducateWorkPage from "../components/page/EducateWorkPage.vue";
 import PromotionQualificLVLPage from "../components/page/PromotionQualificLVLPage.vue";
 import AuthorizationPage from "../components/page/AuthorizationPage.vue";
 import RegistrationPage from "../components/page/RegistrationPage.vue";
-import store from "../vuex/store";
-import Teacher from "../model/teacher";
+import rootStore from "../vuex/rootStore";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,8 +27,8 @@ const router = createRouter({
       name: 'title',
       component: TitlePage,
       props: {
-        teacher: store.getters.GET_TEACHER
-      }
+        teacher: rootStore.getters.GET_TEACHER
+      },
     },
     {
       path: '/academic-work',

@@ -120,8 +120,8 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["LOAD_ACADEMIC_WORKS"]),
-    ...mapGetters(["GET_ACADEMIC_WORK"]),
+    ...mapActions('academicWork',["LOAD_ACADEMIC_WORKS"]),
+    ...mapGetters('academicWork', ["GET_ACADEMIC_WORK"]),
   },
   mounted() {
     document.title = "Учебная работа";

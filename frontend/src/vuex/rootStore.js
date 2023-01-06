@@ -2,8 +2,12 @@ import Teacher from "../model/teacher";
 import {createStore} from "vuex";
 import axios from "axios";
 import qs from 'qs'
+import academicWorkStore from "./academicWorkStore";
 
-let store = createStore({
+let rootStore = createStore({
+    modules: {
+        academicWork: academicWorkStore
+    },
     state: {
         currentUser: {},
         teacher: {},
@@ -11,7 +15,7 @@ let store = createStore({
         departments: [],
         specializations: [],
         academicDisciplines: [],
-        academicWork: [],
+        groups: [],
         academicMethod: []
     },
     mutations: {
@@ -40,15 +44,6 @@ let store = createStore({
         SET_ACADEMIC_DISCIPLINES: (state, academicDisciplines) => {
             state.academicDisciplines = academicDisciplines
         },
-        SET_ACADEMIC_WORK: (state, works) => {
-            works.forEach((w) => {
-                w.specialization = state.specializations.find((spec) => {return spec.id === w.specializationId})
-                w.academicDiscipline = state.academicDisciplines.find((disc) => {return disc.id === w.academicDisciplineId})
-                w.group = state.groups.find((group) => {return group.id === w.groupId})
-            })
-            console.log(works)
-            state.academicWork = works
-        },
         SET_ACADEMIC_METHOD: (state, methods) => {
             methods.forEach((m) => {
                 m.specialization = state.specializations.find((spec) => {return spec.id === m.specializationId})
@@ -70,10 +65,6 @@ let store = createStore({
         },
         SET_PROMOTION_QUALIFICATION_LVL: (state, lvls) => {
             state.promotionQualificationLvl = lvls
-        },
-        ADD_ACADEMIC_WORK: (state, academicWork) => {
-            console.log(academicWork);
-            state.academicWork.push(academicWork)
         },
         ADD_ACADEMIC_METHOD: (state, academicMethod) => {
             console.log(academicMethod);
@@ -170,22 +161,6 @@ let store = createStore({
                 console.log(error)
             })
         },
-        LOAD_ACADEMIC_WORKS({commit}, pageRequest) {
-            let url = '/api/work';
-            const options = {
-                method: 'POST',
-                data: qs.stringify(pageRequest)
-            }
-            return axios(url, options)
-                .then((response) => {
-                    commit('SET_ACADEMIC_WORK', response.data.content)
-                    console.log(response.data)
-                    return response.data;
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
         LOAD_ACADEMIC_METHODS({commit}) {
             let url = '/api/methods'
             return axios(url, { method: 'GET'})
@@ -257,37 +232,6 @@ let store = createStore({
                 .then((groups) => {
                     commit('SET_GROUPS', groups.data)
                     return groups.data
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-        UPLOAD_ACADEMIC_WORK({commit, getters}, work) {
-            let url = '/api/work/create';
-            let data = {
-                academicDisciplineId: work.academicDiscipline.id,
-                specializationId: work.specialization.id,
-                groupId: work.group.id,
-                firstSemester: work.firstSemester,
-                secondSemester: work.secondSemester
-            }
-            console.log(getters)
-            return axios.post(url, data)
-                .then((work) => {
-                    function transformWorkResponse(data) {
-                        return {
-                            id: data.id,
-                            group: getters.GET_ALL_GROUPS.find((group) => {return group.id === data.groupId}),
-                            academicDiscipline: getters.GET_ALL_ACADEMIC_DISCIPLINES.find((dis) => {return dis.id === data.academicDisciplineId}),
-                            specialization: getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
-                            firstSemester: data.firstSemester,
-                            secondSemester: data.secondSemester
-                        }
-                    }
-
-                    let transformedWork = transformWorkResponse(work.data);
-                    commit('ADD_ACADEMIC_WORK', transformedWork)
-                    return work.data;
                 })
                 .catch((error) => {
                     console.log(error)
@@ -394,10 +338,9 @@ let store = createStore({
         },
 
     },
-    modules: {},
     getters: {
         GET_CURRENT_USER(state) {
-            return this.state.currentUser
+            return state.currentUser
         },
         GET_TEACHER(state) {
             return state.teacher
@@ -426,9 +369,6 @@ let store = createStore({
         GET_ALL_ACADEMIC_DISCIPLINES(state){
             return state.academicDisciplines
         },
-        GET_ACADEMIC_WORK(state) {
-            return state.academicWork
-        },
         GET_ACADEMIC_METHOD(state) {
             return state.academicMethod
         },
@@ -453,4 +393,4 @@ let store = createStore({
     },
 })
 
-export default store;
+export default rootStore;

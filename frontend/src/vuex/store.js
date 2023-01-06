@@ -116,9 +116,6 @@ let store = createStore({
                     commit('SET_CURRENT_USER', response.data)
                     return response
                 })
-                .catch((error) => {
-                    console.log(error)
-                })
         },
         LOAD_ENUMS({commit}) {
             let url = '/api/enum'

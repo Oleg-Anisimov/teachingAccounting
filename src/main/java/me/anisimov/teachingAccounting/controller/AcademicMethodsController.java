@@ -46,7 +46,7 @@ public class AcademicMethodsController {
         return academicMethodsService.getAll();
     }
 
-    @GetMapping()
+    @PostMapping()
     public Page<AcademicMethodsDto> getCurrent(@RequestParam(defaultValue = "0") int page,
                                                @RequestParam(defaultValue = "10") int size) {
         PageRequest pageRequest = PageRequest.of(page, size);

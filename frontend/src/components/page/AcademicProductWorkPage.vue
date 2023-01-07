@@ -18,7 +18,7 @@ import AcaProdWork from "./fillingForms/AcaProdWork.vue";
                     <td class="left-helf">Дата</td>
                     <td class="left-helf">Результат</td>
             </tr>
-              <tr v-for="product in GET_ACADEMIC_PRODUCTION()" :key="product">
+              <tr v-for="product in GET_ACADEMIC_PRODUCTION()" :key="product.id">
                 <td>{{ product.id }}</td>
                 <td>{{ product.specialization.specialization }}</td>
                 <td></td>
@@ -28,19 +28,16 @@ import AcaProdWork from "./fillingForms/AcaProdWork.vue";
                 <td></td>
                 <td></td>
               </tr>
-            <tr>
-                <td colspan="100" class="last-td">
-                    <p>1 - 10 (Всего: 0) На страницу: <input type="number" value="0"></p>    
-                </td>
-                
-            </tr>
+              <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>
         </table>
     </div>
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import pog from "../pogination/pog.vue";
 
 export default{
+    components: { pog },
     name: "AcademicProductWorkPage",
     props: [
         'enums'
@@ -53,9 +50,42 @@ export default{
       'GET_ACADEMIC_PRODUCTION'
     ]),
     },
+    watch: {
+        "pageRequest.page"() {
+        let resultPromise = this.LOAD_ACADEMIC_PRODUCTIONS(this.pageRequest);
+        resultPromise.then((data) => {
+            this.totalPages = data.totalPages;
+            this.pageNumber = data.pageable.pageNumber + 1;
+        });
+        },
+        "pageRequest.size"() {
+        let resultPromise = this.LOAD_ACADEMIC_PRODUCTIONS(this.pageRequest);
+        resultPromise.then((data) => {
+            this.totalPages = data.totalPages;
+            this.pageNumber = data.pageable.pageNumber + 1;
+        });
+        },
+    },
+    data() {
+        return {
+        pageRequest: {
+            page: 0,
+            size: 10,
+        },
+        totalElements: 0,
+        totalPages: 0,
+        offset: 0,
+        pageNumber: 0,
+        };
+    },
     mounted(){
-        document.title = 'Учебно-производственная работа'
-      this.LOAD_ACADEMIC_PRODUCTIONS()
+        document.title = 'Учебно-производственная работа';
+        let resultPromise = this.LOAD_ACADEMIC_PRODUCTIONS(this.pageRequest);
+        resultPromise.then((data) => {
+        this.totalElements = data.totalElements;
+        this.totalPages = data.totalPages;
+        this.pageNumber = data.pageable.pageNumber + 1;
+    });
 
   },
 }

@@ -63,6 +63,9 @@ let store = createStore({
             state.scientificMethod = sciens
         },
         SET_ACADEMIC_PRODUCTION: (state, products) => {
+            products.forEach((e) =>{
+                e.specialization = state.specializations.find((spec) => {return  spec.id === e.specializationId})
+            })
             state.academicProduction = products
         },
         SET_EDUCATE_WORK: (state, educats) => {

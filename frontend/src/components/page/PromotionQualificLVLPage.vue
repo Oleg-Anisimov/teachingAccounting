@@ -25,23 +25,48 @@ import PromQual from "./fillingForms/PromQual.vue";
                 <td></td>
 
               </tr>
-            <tr>
-                <td colspan="100" class="last-td">
-                    <p>1 - 10 (Всего: 0) На страницу: <input type="number" value="0"></p>    
-                </td>
-                
-            </tr>
+              <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>
         </table>
     </div>
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import pog from "../pogination/pog.vue";
 
 export default{
+  components: { pog },
     name: "PromotionQualificLVLPage",
     props: [
         'enums'
     ],
+  watch: {
+    "pageRequest.page"() {
+      let resultPromise = this.LOAD_PROMOTION_QUALIFICATION_LVLS(this.pageRequest);
+      resultPromise.then((data) => {
+        this.totalPages = data.totalPages;
+        this.pageNumber = data.pageable.pageNumber + 1;
+      });
+    },
+    "pageRequest.size"() {
+      let resultPromise = this.LOAD_PROMOTION_QUALIFICATION_LVLS(this.pageRequest);
+      resultPromise.then((data) => {
+        this.totalPages = data.totalPages;
+        this.pageNumber = data.pageable.pageNumber + 1;
+      });
+    },
+  },
+  data() {
+    return {
+      pageRequest: {
+        page: 0,
+        size: 10,
+      },
+      totalElements: 0,
+      totalPages: 0,
+      offset: 0,
+      pageNumber: 0,
+    };
+  },
     methods: {
     ...mapActions([
       'LOAD_PROMOTION_QUALIFICATION_LVLS'
@@ -52,8 +77,13 @@ export default{
     ]),
   },
   mounted(){
-    document.title = 'Повышение уровня квалификации'
-    this.LOAD_PROMOTION_QUALIFICATION_LVLS()
+    document.title = 'Повышение уровня квалификации';
+    let resultPromise = this.LOAD_PROMOTION_QUALIFICATION_LVLS(this.pageRequest);
+    resultPromise.then((data) => {
+      this.totalElements = data.totalElements;
+      this.totalPages = data.totalPages;
+      this.pageNumber = data.pageable.pageNumber + 1;
+    });
   },
 }
 </script>

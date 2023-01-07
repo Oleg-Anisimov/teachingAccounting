@@ -30,23 +30,48 @@ import ScienMethWork from "./fillingForms/ScienMethWork.vue";
                 <td></td>
                 <td>{{$t('enum.ParticipationType.' + scien.participationType)}}</td>
               </tr>
-            <tr>
-                <td colspan="100" class="last-td">
-                    <p>1 - 10 (Всего: 0) На страницу: <input type="number" value="0"></p>    
-                </td>
-                
-            </tr>
+              <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>
         </table>
     </div>
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import pog from "../pogination/pog.vue";
 
 export default{
+    components: { pog },
     name: "ScienMethodPage",
     props: [
         'enums'
     ],
+    watch: {
+    "pageRequest.page"() {
+      let resultPromise = this.LOAD_SCIENTIFIC_METHODS(this.pageRequest);
+      resultPromise.then((data) => {
+        this.totalPages = data.totalPages;
+        this.pageNumber = data.pageable.pageNumber + 1;
+      });
+    },
+    "pageRequest.size"() {
+      let resultPromise = this.LOAD_SCIENTIFIC_METHODS(this.pageRequest);
+      resultPromise.then((data) => {
+        this.totalPages = data.totalPages;
+        this.pageNumber = data.pageable.pageNumber + 1;
+      });
+    },
+  },
+  data() {
+    return {
+      pageRequest: {
+        page: 0,
+        size: 10,
+      },
+      totalElements: 0,
+      totalPages: 0,
+      offset: 0,
+      pageNumber: 0,
+    };
+  },
     methods: {
     ...mapActions([
       'LOAD_SCIENTIFIC_METHODS'
@@ -57,8 +82,13 @@ export default{
     ]),
   },
   mounted(){
-    document.title = 'Научно-методическая работа'
-    this.LOAD_SCIENTIFIC_METHODS()
+    document.title = 'Научно-методическая работа';
+    let resultPromise = this.LOAD_SCIENTIFIC_METHODS(this.pageRequest);
+    resultPromise.then((data) => {
+      this.totalElements = data.totalElements;
+      this.totalPages = data.totalPages;
+      this.pageNumber = data.pageable.pageNumber + 1;
+    });
   },
 }
 </script>

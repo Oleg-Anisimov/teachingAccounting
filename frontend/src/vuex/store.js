@@ -213,22 +213,32 @@ let store = createStore({
                     console.log(error)
                 })
         },
-        LOAD_SCIENTIFIC_METHODS({commit}) {
+        LOAD_SCIENTIFIC_METHODS({commit}, pageRequest) {
             let url = '/api/scientific'
-            return axios(url, { method: 'GET'})
+            const options = {
+                method: 'POST',
+                data: qs.stringify(pageRequest)
+            }
+            return axios(url, options)
                 .then((sciens) => {
-                    commit('SET_SCIENTIFIC_METHOD', sciens.data)
+                    commit('SET_SCIENTIFIC_METHOD', sciens.data.content)
+                    console.log(sciens.data)
                     return sciens.data
                 })
                 .catch((error) => {
                     console.log(error)
                 })
         },
-        LOAD_ACADEMIC_PRODUCTIONS({commit}) {
-            let url = '/api/production/all'
-            return axios(url, { method: 'GET'})
+        LOAD_ACADEMIC_PRODUCTIONS({commit}, pageRequest) {
+            let url = '/api/production'
+            const options = {
+                method: 'POST',
+                data: qs.stringify(pageRequest)
+            }
+            return axios(url, options)
                 .then((products) => {
-                    commit('SET_ACADEMIC_PRODUCTION', products.data)
+                    commit('SET_ACADEMIC_PRODUCTION', products.data.content)
+                    console.log(products.data)
                     return products.data
                 })
                 .catch((error) => {
@@ -236,7 +246,7 @@ let store = createStore({
                 })
         },
         LOAD_EDUCATE_WORKS({commit}) {
-            let url = '/api/educate/all'
+            let url = '/api/educate'
             return axios(url, { method: 'GET'})
                 .then((educats) => {
                     commit('SET_EDUCATE_WORK', educats.data)
@@ -246,11 +256,17 @@ let store = createStore({
                     console.log(error)
                 })
         },
-        LOAD_PROMOTION_QUALIFICATION_LVLS({commit}) {
-            let url = '/api/promotion/all'
-            return axios(url, { method: 'GET'})
+        LOAD_PROMOTION_QUALIFICATION_LVLS({commit}, pageRequest) {
+            let url = '/api/promotion'
+            const options = {
+                method: 'POST',
+                data: qs.stringify(pageRequest)
+            }
+            return axios(url, options)
+            
                 .then((lvls) => {
-                    commit('SET_PROMOTION_QUALIFICATION_LVL', lvls.data)
+                    commit('SET_PROMOTION_QUALIFICATION_LVL', lvls.data.content)
+                    console.log(lvls.data)
                     return lvls.data
                 })
                 .catch((error) => {

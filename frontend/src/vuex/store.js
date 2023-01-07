@@ -202,11 +202,15 @@ let store = createStore({
                     console.log(error)
                 })
         },
-        LOAD_ORGANIZED_METHODS({commit}) {
+        LOAD_ORGANIZED_METHODS({commit}, pageRequest) {
             let url = '/api/organized'
-            return axios(url, { method: 'GET'})
+            const options = {
+                method: 'POST',
+                data: qs.stringify(pageRequest)
+            }
+            return axios(url, options)
                 .then((organs) => {
-                    commit('SET_ORGANIZED_METHOD', organs.data)
+                    commit('SET_ORGANIZED_METHOD', organs.data.content)
                     return organs.data
                 })
                 .catch((error) => {

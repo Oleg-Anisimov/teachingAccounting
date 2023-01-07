@@ -80,7 +80,12 @@ export default {
   },
   mounted() {
     document.title = 'Организационно-методическая работа'
-    this.LOAD_ORGANIZED_METHODS()
+    let resultPromise = this.LOAD_ORGANIZED_METHODS(this.pageRequest);
+    resultPromise.then((data) => {
+      this.totalPages = data.totalPages;
+      this.pageNumber = data.pageable.pageNumber + 1;
+      this.totalElements = data.totalElements;
+    });
   },
 }
 </script>

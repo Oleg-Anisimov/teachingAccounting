@@ -39,9 +39,11 @@ export default{
       }
     },
     methods: {
-      ...mapActions(['LOGIN']),
+      ...mapActions({
+        login: 'user/LOGIN'
+      }),
       perfromLogin() {
-        this.LOGIN({
+        this.login({
           username: this.model.username,
           password: this.model.password
         }).then((data) => {
@@ -86,7 +88,7 @@ export default{
 .authBox .auth{
     background-color: royalblue;
     padding: 0.5em 0em;
-    border-radius: px 5px 0 0;
+    border-radius: 5px 5px 0 0;
 }
 .ui-input label{
     font-size: 1.1em;

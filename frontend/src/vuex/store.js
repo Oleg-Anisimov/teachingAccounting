@@ -1,11 +1,15 @@
-import Teacher from "../model/teacher";
 import {createStore} from "vuex";
 import axios from "axios";
 import qs from 'qs'
+import {user} from "./userStore";
 
 let store = createStore({
+
+    modules: {
+        user
+    },
+
     state: {
-        currentUser: {},
         teacher: {},
         enums: {},
         departments: [],
@@ -15,10 +19,6 @@ let store = createStore({
         academicMethod: []
     },
     mutations: {
-        SET_CURRENT_USER: (state, user) => {
-            console.log("trying to commit")
-            state.currentUser = user
-        },
         SET_TEACHER: (state, teacher) => {
             state.teacher = teacher
         },
@@ -101,19 +101,7 @@ let store = createStore({
         },
     },
     actions: {
-        LOGIN({commit}, credentials) {
-            const url = '/api/perform_login'
-            const options = {
-                method: 'POST',
-                data: qs.stringify(credentials)
-            }
-            return axios(url, options)
-                .then((response) => {
-                    console.log(response.data)
-                    commit('SET_CURRENT_USER', response.data)
-                    return response
-                })
-        },
+
         LOAD_ENUMS({commit}) {
             let url = '/api/enum'
             return axios(url, { method: 'GET'})
@@ -397,11 +385,8 @@ let store = createStore({
         },
 
     },
-    modules: {},
     getters: {
-        GET_CURRENT_USER(state) {
-            return this.state.currentUser
-        },
+
         GET_TEACHER(state) {
             return state.teacher
         },

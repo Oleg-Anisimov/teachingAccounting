@@ -252,12 +252,17 @@ let store = createStore({
                     console.log(error)
                 })
         },
-        LOAD_EDUCATE_WORKS({commit}) {
+        LOAD_EDUCATE_WORKS({commit}, pageRequest) {
             let url = '/api/educate'
-            return axios(url, { method: 'GET'})
-                .then((educats) => {
-                    commit('SET_EDUCATE_WORK', educats.data)
-                    return educats.data
+            const options = {
+                method: 'POST',
+                data: qs.stringify(pageRequest)
+            }
+            return axios(url, options)
+                .then((products) => {
+                    commit('SET_EDUCATE_WORK', products.data.content)
+                    console.log(products.data)
+                    return products.data
                 })
                 .catch((error) => {
                     console.log(error)

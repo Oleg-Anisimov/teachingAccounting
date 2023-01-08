@@ -1,14 +1,14 @@
 <template>
     <div class="authorization">
-      <div v-if="username">
+      <div v-if="user">
          <div class="guest">
-            <a href="#">{{username}}</a>
+            <a href="#">{{user.userName}}</a>
         </div>
         <div class="auth">
           <p><router-link to="/authorization">Выход</router-link></p>
         </div>
       </div>
-      <div v-if="!username">
+      <div v-if="!user">
         <div class="guest">
             <a href="#">Гость</a>
         </div>
@@ -25,11 +25,7 @@
   <script>
   export default {
     name: "Auth",
-    props: ["username"],
-    methods: {
-      
-      
-    }
+    props: ["user"],
   }
   
   </script>

@@ -1,6 +1,7 @@
 package me.anisimov.teachingAccounting.controller;
 
 import io.swagger.annotations.Api;
+import me.anisimov.teachingAccounting.api.ApiResponse;
 import me.anisimov.teachingAccounting.domain.User;
 import me.anisimov.teachingAccounting.dto.UserDto;
 import me.anisimov.teachingAccounting.service.UserDetailsServiceImpl;
@@ -42,6 +43,11 @@ public class UserController {
     @GetMapping("/all")
     public List<User> getAll() {
         return userDetailsServiceImpl.getAll();
+    }
+
+    @GetMapping("/loggedin")
+    public ApiResponse<Boolean> loggedIn(){
+        return ApiResponse.ok(userDetailsServiceImpl.isLoggedIn());
     }
 
     @GetMapping("/bylogin")

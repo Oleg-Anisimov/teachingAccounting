@@ -30,7 +30,11 @@ import EducWork from "./fillingForms/EducWork.vue";
         <td></td>
         <td></td>
       </tr>
-      <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>
+      <pog  @pageRequestUpdated="loadData"
+            :totalPages="totalPages"
+            :totalElements="totalElements"
+            :pageRequest="pageRequest"
+      />
     </table>
   </div>
 </template>
@@ -44,22 +48,7 @@ export default {
   props: [
     'enums'
   ],
-  watch: {
-    "pageRequest.page"() {
-      let resultPromise = this.LOAD_EDUCATE_WORKS(this.pageRequest);
-      resultPromise.then((data) => {
-        this.totalPages = data.totalPages;
-        this.pageNumber = data.pageable.pageNumber + 1;
-      });
-    },
-    "pageRequest.size"() {
-      let resultPromise = this.LOAD_EDUCATE_WORKS(this.pageRequest);
-      resultPromise.then((data) => {
-        this.totalPages = data.totalPages;
-        this.pageNumber = data.pageable.pageNumber + 1;
-      });
-    },
-  },
+
   data() {
     return {
       totalPages: 0,
@@ -76,17 +65,20 @@ export default {
     ]),
     ...mapGetters([
       'GET_EDUCATE_WORK'
-      // 'GET_DEPARTMENT_NAMES'
     ]),
+
+    loadData() {
+      let resultPromise = this.LOAD_EDUCATE_WORKS(this.pageRequest)
+      resultPromise.then((data) => {
+        this.totalPages = data.totalPages;
+        this.pageNumber = data.pageable.pageNumber + 1;
+        this.totalElements = data.totalElements;
+      })
+    }
   },
   mounted() {
     document.title = 'Воспитательная работа'
-    let resultPromise = this.LOAD_EDUCATE_WORKS(this.pageRequest)
-    resultPromise.then((data) => {
-      this.totalPages = data.totalPages;
-      this.pageNumber = data.pageable.pageNumber + 1;
-      this.totalElements = data.totalElements;
-    })
+    this.loadData()
   },
 }
 </script>

@@ -24,10 +24,17 @@
 </template>
 <script>
 export default {
-    name: "pog",
-    props: ["totalElements","totalPages","pageRequest"]
-    
-  }
+  name: "pog",
+  props: ["totalElements","totalPages","pageRequest"],
+  watch: {
+    "pageRequest.page"() {
+      this.$emit('pageRequestUpdated')
+    },
+    "pageRequest.size"() {
+      this.$emit('pageRequestUpdated')
+    },
+  },
+}
 </script>
 <style>
 .bottomTableNavigation {

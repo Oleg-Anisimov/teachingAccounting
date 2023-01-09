@@ -9,6 +9,8 @@ import me.anisimov.teachingAccounting.util.SecurityUtils;
 import me.anisimov.teachingAccounting.util.annotation.UserDetailsMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -64,6 +66,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userRepository.findUserByLogin(username);
     }
 
+    public Boolean isLoggedIn(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.isAuthenticated();
+    }
     public User findByLogin(String login){
         return userRepository.findUserByLogin(login);
     }

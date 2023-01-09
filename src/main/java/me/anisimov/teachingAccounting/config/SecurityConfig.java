@@ -48,7 +48,10 @@ public class SecurityConfig {
                 }))
                 .and()
                 .logout()
-                .logoutUrl("/perform_logout");
+                .logoutUrl("/perform_logout")
+                .logoutSuccessHandler(((request, response, authentication) -> {
+                    response.setStatus(200);
+                }));
 
         return http.build();
     }

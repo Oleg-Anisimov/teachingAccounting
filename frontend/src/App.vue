@@ -9,12 +9,30 @@ document.title = 'ГБПОУ ОК "ЮГО-ЗАПАД"'
 
 <template>
   <div class="wrapper">
-    <Auth></Auth>
+    <Auth :user="getUser"></Auth>
     <Header></Header>
     <Navbar></Navbar>
     <RouterView/>
   </div>
 </template>
+
+<script>
+
+import { mapGetters } from 'vuex';
+
+
+export default {
+  name:"App",
+  computed: {
+    ...mapGetters({
+      getCurrentUser: 'user/GET_CURRENT_USER'
+    }),
+    getUser() {
+      return this.getCurrentUser
+    }
+  },
+}
+</script>
 
 <style scoped lang="stylus">
 

@@ -8,12 +8,13 @@
             <div class="ui-input-group">
                 <div class="ui-input">
                     <label for="input-login">Логин</label>
-                    <input id="input-login" type="text" v-model="this.model.username" placeholder="Введите логин" />
+                    <input id="input-login" type="text" v-model="this.model.username" placeholder="Введите логин"/>
                 </div>
                 <div class="ui-input">
                     <label for="input-password">Пароль</label>
                     <input id="input-password" type="password" v-model="this.model.password" placeholder="Введите пароль"/>
                 </div>
+              <p class="alertMessage" v-if="model.invalid">Неверный логин или пароль</p>
                 <div class="ui-input">
                     <button class="ui-button isDefault" @click="perfromLogin()">Вход</button>
                     <button class="ui-button isDefault"><router-link to="/registration">Зарегистрироваться</router-link></button>
@@ -32,18 +33,23 @@ export default{
       return {
         model: {
           username:'',
-          password:''
+          password:'',
+          invalid: false
         }
       }
     },
     methods: {
-      ...mapActions(['LOGIN']),
+      ...mapActions({
+        login: 'user/LOGIN'
+      }),
       perfromLogin() {
-        this.LOGIN({
+        this.login({
           username: this.model.username,
           password: this.model.password
         }).then((data) => {
           this.$router.push('title');
+        }).catch((e) => {
+          this.model.invalid = true
         })
       }
     },
@@ -54,6 +60,9 @@ export default{
 
 </script>
 <style scoped>
+.alertMessage{
+  color: red;
+}
 .authPage{
     background-color: #e1e1e1;
     padding-bottom: 26em;
@@ -79,7 +88,7 @@ export default{
 .authBox .auth{
     background-color: royalblue;
     padding: 0.5em 0em;
-    border-radius: px 5px 0 0;
+    border-radius: 5px 5px 0 0;
 }
 .ui-input label{
     font-size: 1.1em;

@@ -37,7 +37,11 @@ export const user = {
                 })
         },
         LOGOUT({commit}) {
-            commit('SET_CURRENT_USER', null)
+            const url = '/api/perform_logout'
+            return axios(url, {method: 'POST'})
+                .then(() => {
+                    commit('SET_CURRENT_USER', null)
+                })
         }
     }
 }

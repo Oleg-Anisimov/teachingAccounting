@@ -45,7 +45,14 @@ public class SecurityConfig {
                 .successHandler(successHandler())
                 .failureHandler(((request, response, exception) -> {
                     response.setStatus(401);
+                }))
+                .and()
+                .logout()
+                .logoutUrl("/perform_logout")
+                .logoutSuccessHandler(((request, response, authentication) -> {
+                    response.setStatus(200);
                 }));
+
         return http.build();
     }
         @Bean

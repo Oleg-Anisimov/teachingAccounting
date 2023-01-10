@@ -10,8 +10,8 @@
         <div class="guest">
             <a href="#">Гость</a>
         </div>
-          <button class="auth" v-on="logg"><span>Вход</span></button>
-          <button class="reg" v-on="logg"><span>Регистрация</span></button>
+          <button class="auth" v-on:click="logg"><span>Вход</span></button>
+          <button class="reg" v-on:click="logg"><span>Регистрация</span></button>
       </div>
     </div>
   </template>

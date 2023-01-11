@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name ="academic_discipline")
 @SequenceGenerator(name = "academic_discipline_seq_gen", sequenceName = "academic_discipline_seq", allocationSize = 1)
-public class AcademicDiscipline {
+public class AcademicDiscipline extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "academic_discipline_seq")

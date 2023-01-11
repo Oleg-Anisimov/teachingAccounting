@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name ="groups")
 @SequenceGenerator(name = "group_seq_gen", sequenceName = "group_seq", allocationSize = 1)
-public class Group {
+public class Group extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "group_seq")

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name ="academic_methods")
 @SequenceGenerator(name = "academic_methods_seq_gen", sequenceName = "methods_work_seq", allocationSize = 1)
-public class AcademicMethods {
+public class AcademicMethods extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "methods_work_seq")

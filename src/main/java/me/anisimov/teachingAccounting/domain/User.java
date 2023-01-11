@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name ="users")
 @SequenceGenerator(name = "user_seq_gen", sequenceName = "user_seq", allocationSize = 1)
-public class User {
+public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "user_seq")
     private Long id;

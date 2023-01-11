@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name ="roles")
 @SequenceGenerator(name = "role_seq_gen", sequenceName = "role_seq", allocationSize = 1)
-public class Role {
+public class Role extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "role_seq")
     private Long id;

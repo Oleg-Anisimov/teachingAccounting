@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name ="academic_work")
 @SequenceGenerator(name = "academic_work_seq_gen", sequenceName = "academic_work_seq", allocationSize = 1)
-public class AcademicWork {
+public class AcademicWork extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="academic_work_seq")

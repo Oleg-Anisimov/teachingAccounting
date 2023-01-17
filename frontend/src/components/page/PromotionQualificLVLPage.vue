@@ -68,13 +68,13 @@ export default{
     };
   },
     methods: {
-    ...mapActions([
-      'LOAD_PROMOTION_QUALIFICATION_LVLS'
-    ]),
-    ...mapGetters([
-      'GET_PROMOTION_QUALIFICATION_LVL'
+    ...mapActions({
+      LOAD_PROMOTION_QUALIFICATION_LVLS: 'promotionQualificLVL/LOAD_PROMOTION_QUALIFICATION_LVLS'
+    }),
+    ...mapGetters({
+      GET_PROMOTION_QUALIFICATION_LVL: 'promotionQualificLVL/GET_PROMOTION_QUALIFICATION_LVL'
       // 'GET_DEPARTMENT_NAMES'
-    ]),
+    }),
   },
   mounted(){
     document.title = 'Повышение уровня квалификации';

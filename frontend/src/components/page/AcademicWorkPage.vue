@@ -76,7 +76,7 @@ export default {
         this.pageNumber = data.pageable.pageNumber + 1;
       });
     },
-  },
+  },  
   data() {
     return {
       pageRequest: {
@@ -90,12 +90,13 @@ export default {
     };
   },
   methods: {
-    ...mapActions([
-      "LOAD_ACADEMIC_WORKS"
-    ]),
-    ...mapGetters([
-      "GET_ACADEMIC_WORK"
-    ]),
+    ...mapActions({
+      LOAD_ACADEMIC_WORKS: 'academicWork/LOAD_ACADEMIC_WORKS',
+
+    }),
+    ...mapGetters({
+      GET_ACADEMIC_WORK: 'academicWork/GET_ACADEMIC_WORK',
+    }),
   },
   mounted() {
     document.title = "Учебная работа";

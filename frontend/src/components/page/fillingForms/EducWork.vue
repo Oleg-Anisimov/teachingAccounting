@@ -78,10 +78,10 @@ export default{
     methods: {
     ...mapActions({
       LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
-      UPLOAD_EDUCATE_WORK: 'UPLOAD_EDUCATE_WORK'
+      UPLOAD_EDUCATE_WORK: 'educateWork/UPLOAD_EDUCATE_WORK'
     }),
     ...mapMutations({
-      ADD_EDUCATE_WORK: 'ADD_EDUCATE_WORK'
+      ADD_EDUCATE_WORK: 'educateWork/ADD_EDUCATE_WORK'
     }),
     ...mapGetters({
       GET_ENUMS: 'categoryBased/GET_ENUMS',

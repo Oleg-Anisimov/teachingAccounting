@@ -71,10 +71,10 @@ export default{
     methods: {
     ...mapActions({
       LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
-      UPLOAD_ORGANIZED_METHOD: 'UPLOAD_ORGANIZED_METHOD'
+      UPLOAD_ORGANIZED_METHOD: 'organizMethod/UPLOAD_ORGANIZED_METHOD'
     }),
     ...mapMutations({
-      ADD_ORGANIZED_METHOD: 'ADD_ORGANIZED_METHOD'
+      ADD_ORGANIZED_METHOD: 'organizMethod/ADD_ORGANIZED_METHOD'
     }),
     ...mapGetters({
       GET_ENUMS: 'categoryBased/GET_ENUMS',

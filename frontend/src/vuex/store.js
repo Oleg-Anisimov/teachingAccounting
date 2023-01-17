@@ -2,17 +2,19 @@ import {createStore} from "vuex";
 import axios from "axios";
 import qs from 'qs';
 import {user} from "./userStore";
+import {categoryBased} from "./categoryBased";
 import {academicWork} from "./pageStores/academicWork";
 import {academicMethod} from "./pageStores/academicMethod";
-import {categoryBased} from "./categoryBased";
+import {organizMethod} from "./pageStores/organizMethod";
 
 let store = createStore({
 
     modules: {
         user,
+        categoryBased,
         academicWork,
         academicMethod,
-        categoryBased
+        organizMethod
     },
 
     state: {
@@ -21,9 +23,6 @@ let store = createStore({
     mutations: {
         SET_TEACHER: (state, teacher) => {
             state.teacher = teacher
-        },
-        SET_ORGANIZED_METHOD: (state, organs) => {
-            state.organizedMethod = organs
         },
         SET_SCIENTIFIC_METHOD: (state, sciens) => {
             state.scientificMethod = sciens
@@ -39,10 +38,6 @@ let store = createStore({
         },
         SET_PROMOTION_QUALIFICATION_LVL: (state, lvls) => {
             state.promotionQualificationLvl = lvls
-        },
-        ADD_ORGANIZED_METHOD: (state, organizedMethod) => {
-            console.log(organizedMethod);
-            state.organizedMethod.push(organizedMethod)
         },
         ADD_SCIENTIFIC_METHOD: (state, scientificMethod) => {
             console.log(scientificMethod);
@@ -73,21 +68,6 @@ let store = createStore({
                             console.log(error)
                         })
                 },
-        LOAD_ORGANIZED_METHODS({commit}, pageRequest) {
-            let url = '/api/organized'
-            const options = {
-                method: 'POST',
-                data: qs.stringify(pageRequest)
-            }
-            return axios(url, options)
-                .then((organs) => {
-                    commit('SET_ORGANIZED_METHOD', organs.data.content)
-                    return organs.data
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
         LOAD_SCIENTIFIC_METHODS({commit}, pageRequest) {
             let url = '/api/scientific'
             const options = {
@@ -148,18 +128,6 @@ let store = createStore({
                     commit('SET_PROMOTION_QUALIFICATION_LVL', lvls.data.content)
                     console.log(lvls.data)
                     return lvls.data
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-        UPLOAD_ORGANIZED_METHOD({commit, getters}, organ) {
-            let url = '/api/organized/create';
-            console.log(getters)
-            return axios.post(url, organ)
-                .then((organResponse) => {
-                    commit('ADD_ORGANIZED_METHOD', organResponse.data)
-                    return organResponse.data;
                 })
                 .catch((error) => {
                     console.log(error)
@@ -230,9 +198,6 @@ let store = createStore({
     getters: {
         GET_TEACHER(state) {
             return state.teacher
-        },
-        GET_ORGANIZED_METHOD(state) {
-            return state.organizedMethod
         },
         GET_SCIENTIFIC_METHOD(state) {
             return state.scientificMethod

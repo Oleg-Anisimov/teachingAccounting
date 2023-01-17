@@ -71,12 +71,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'LOAD_ORGANIZED_METHODS'
-    ]),
-    ...mapGetters([
-      'GET_ORGANIZED_METHOD'
-    ]),
+    ...mapActions({
+      LOAD_ORGANIZED_METHODS: 'organizMethod/LOAD_ORGANIZED_METHODS'
+    }),
+    ...mapGetters({
+      GET_ORGANIZED_METHOD: 'organizMethod/GET_ORGANIZED_METHOD'
+    }),
   },
   mounted() {
     document.title = 'Организационно-методическая работа'

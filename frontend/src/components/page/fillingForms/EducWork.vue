@@ -76,18 +76,18 @@ export default{
       }
     },
     methods: {
-    ...mapActions([
-      'LOAD_ENUMS',
-      'UPLOAD_EDUCATE_WORK'
-    ]),
-    ...mapMutations([
-        'ADD_EDUCATE_WORK'
-    ]),
-    ...mapGetters([
-      'GET_ENUMS',
+    ...mapActions({
+      LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
+      UPLOAD_EDUCATE_WORK: 'UPLOAD_EDUCATE_WORK'
+    }),
+    ...mapMutations({
+      ADD_EDUCATE_WORK: 'ADD_EDUCATE_WORK'
+    }),
+    ...mapGetters({
+      GET_ENUMS: 'categoryBased/GET_ENUMS',
       //'',
       // 'GET_DEPARTMENT_NAMES'
-    ]),
+    }),
 
     addEducateWork(){
       let educate = new EducateWork(

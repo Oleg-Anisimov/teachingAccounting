@@ -1,6 +1,6 @@
 import qs from "qs";
 import axios from "axios";
-import {categoryBased} from "./categoryBased";
+import {categoryBased} from "../categoryBased";
 
 export const academicWork = {
     namespaced: true,

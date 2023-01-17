@@ -2,7 +2,8 @@ import {createStore} from "vuex";
 import axios from "axios";
 import qs from 'qs';
 import {user} from "./userStore";
-import {academicWork} from "./academicWork";
+import {academicWork} from "./pageStores/academicWork";
+import {academicMethod} from "./pageStores/academicMethod";
 import {categoryBased} from "./categoryBased";
 
 let store = createStore({
@@ -10,23 +11,16 @@ let store = createStore({
     modules: {
         user,
         academicWork,
+        academicMethod,
         categoryBased
     },
 
     state: {
         teacher: {},
-        academicMethod: []
     },
     mutations: {
         SET_TEACHER: (state, teacher) => {
             state.teacher = teacher
-        },
-        SET_ACADEMIC_METHOD: (state, methods) => {
-            methods.forEach((m) => {
-                m.specialization = state.specializations.find((spec) => {return spec.id === m.specializationId})
-                m.academicDiscipline = state.academicDisciplines.find((disc) => {return disc.id === m.academicDisciplineId})
-            })
-            state.academicMethod = methods
         },
         SET_ORGANIZED_METHOD: (state, organs) => {
             state.organizedMethod = organs
@@ -45,10 +39,6 @@ let store = createStore({
         },
         SET_PROMOTION_QUALIFICATION_LVL: (state, lvls) => {
             state.promotionQualificationLvl = lvls
-        },
-        ADD_ACADEMIC_METHOD: (state, academicMethod) => {
-            console.log(academicMethod);
-            state.academicMethod.push(academicMethod)
         },
         ADD_ORGANIZED_METHOD: (state, organizedMethod) => {
             console.log(organizedMethod);
@@ -83,22 +73,6 @@ let store = createStore({
                             console.log(error)
                         })
                 },
-        LOAD_ACADEMIC_METHODS({commit}, pageRequest) {
-            let url = '/api/methods'
-            const options = {
-                method: 'POST',
-                data: qs.stringify(pageRequest)
-            }
-            return axios(url, options)
-                .then((methods) => {
-                    commit('SET_ACADEMIC_METHOD', methods.data.content)
-                    console.log(methods.data)
-                    return methods.data;
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
         LOAD_ORGANIZED_METHODS({commit}, pageRequest) {
             let url = '/api/organized'
             const options = {
@@ -174,33 +148,6 @@ let store = createStore({
                     commit('SET_PROMOTION_QUALIFICATION_LVL', lvls.data.content)
                     console.log(lvls.data)
                     return lvls.data
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-        UPLOAD_ACADEMIC_METHOD({commit, getters}, method) {
-            let url = '/api/methods/create';
-            let data = {
-                academicDisciplineId: method.academicDiscipline.id,
-                specializationId: method.specialization.id,
-                activityType: method.activityType,
-            }
-            console.log(getters)
-            return axios.post(url, data)
-                .then((method) => {
-                    function transformMethodResponse(data) {
-                        return {
-                            id: data.id,
-                            academicDiscipline: getters.GET_ALL_ACADEMIC_DISCIPLINES.find((dis) => {return dis.id === data.academicDisciplineId}),
-                            specialization: getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
-                            activityType: getters.GET_ENUMS.ActivityType.find((actType) => {return actType === data.activityType}),
-                        }
-                    }
-
-                    let transformedMethod = transformMethodResponse(method.data);
-                    commit('ADD_ACADEMIC_METHOD', transformedMethod)
-                    return method.data;
                 })
                 .catch((error) => {
                     console.log(error)
@@ -283,9 +230,6 @@ let store = createStore({
     getters: {
         GET_TEACHER(state) {
             return state.teacher
-        },
-        GET_ACADEMIC_METHOD(state) {
-            return state.academicMethod
         },
         GET_ORGANIZED_METHOD(state) {
             return state.organizedMethod

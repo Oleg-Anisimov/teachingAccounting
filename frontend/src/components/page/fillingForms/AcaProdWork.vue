@@ -70,10 +70,10 @@ export default{
     ...mapActions({
       LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
       LOAD_SPECIALIZATION: 'categoryBased/LOAD_SPECIALIZATION',
-      UPLOAD_ACADEMIC_PRODUCTION: 'UPLOAD_ACADEMIC_PRODUCTION'
+      UPLOAD_ACADEMIC_PRODUCTION: 'academicProduct/UPLOAD_ACADEMIC_PRODUCTION'
     }),
     ...mapMutations({
-      ADD_ACADEMIC_PRODUCTION: 'ADD_ACADEMIC_PRODUCTION'
+      ADD_ACADEMIC_PRODUCTION: 'academicProduct/ADD_ACADEMIC_PRODUCTION'
     }),
     ...mapGetters({
       GET_ENUMS: 'categoryBased/GET_ENUMS',

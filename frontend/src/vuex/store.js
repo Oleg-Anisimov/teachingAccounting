@@ -7,6 +7,7 @@ import {academicWork} from "./pageStores/academicWork";
 import {academicMethod} from "./pageStores/academicMethod";
 import {organizMethod} from "./pageStores/organizMethod";
 import {scienMethod} from "./pageStores/scienMethod";
+import {academicProduct} from "./pageStores/academicProduct";
 
 let store = createStore({
 
@@ -16,7 +17,8 @@ let store = createStore({
         academicWork,
         academicMethod,
         organizMethod,
-        scienMethod
+        scienMethod,
+        academicProduct
     },
 
     state: {
@@ -26,21 +28,11 @@ let store = createStore({
         SET_TEACHER: (state, teacher) => {
             state.teacher = teacher
         },
-        SET_ACADEMIC_PRODUCTION: (state, products) => {
-            products.forEach((e) =>{
-                e.specialization = state.specializations.find((spec) => {return  spec.id === e.specializationId})
-            })
-            state.academicProduction = products
-        },
         SET_EDUCATE_WORK: (state, educats) => {
             state.educateWork = educats
         },
         SET_PROMOTION_QUALIFICATION_LVL: (state, lvls) => {
             state.promotionQualificationLvl = lvls
-        },
-        ADD_ACADEMIC_PRODUCTION: (state, academicProduction) => {
-            console.log(academicProduction);
-            state.academicProduction.push(academicProduction)
         },
         ADD_EDUCATE_WORK: (state, educateWork) => {
             console.log(educateWork);
@@ -63,22 +55,6 @@ let store = createStore({
                             console.log(error)
                         })
                 },
-        LOAD_ACADEMIC_PRODUCTIONS({commit}, pageRequest) {
-            let url = '/api/production'
-            const options = {
-                method: 'POST',
-                data: qs.stringify(pageRequest)
-            }
-            return axios(url, options)
-                .then((products) => {
-                    commit('SET_ACADEMIC_PRODUCTION', products.data.content)
-                    console.log(products.data)
-                    return products.data
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
         LOAD_EDUCATE_WORKS({commit}, pageRequest) {
             let url = '/api/educate'
             const options = {
@@ -107,30 +83,6 @@ let store = createStore({
                     commit('SET_PROMOTION_QUALIFICATION_LVL', lvls.data.content)
                     console.log(lvls.data)
                     return lvls.data
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-        UPLOAD_ACADEMIC_PRODUCTION({commit, getters}, product) {
-            let url = '/api/production/create';
-            let data = {
-                specializationId: product.specialization.id,
-                activityType: product.activityType
-            }
-            console.log(getters)
-            return axios.post(url, data)
-                .then((product) => {
-                    function transformProductResponse(data) {
-                        return {
-                            id: data.id,
-                            specialization: getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
-                            activityType: getters.GET_ENUMS.ActivityType.find((actType) => {return actType === data.activityType}),
-                        }
-                    }
-                    let transformedProduct = transformProductResponse(product.data);
-                    commit('ADD_ACADEMIC_PRODUCTION', transformedProduct)
-                    return product.data;
                 })
                 .catch((error) => {
                     console.log(error)
@@ -165,9 +117,6 @@ let store = createStore({
     getters: {
         GET_TEACHER(state) {
             return state.teacher
-        },
-        GET_ACADEMIC_PRODUCTION(state) {
-            return state.academicProduction
         },
         GET_EDUCATE_WORK(state) {
             return state.educateWork

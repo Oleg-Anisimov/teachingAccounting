@@ -6,6 +6,7 @@ import {categoryBased} from "./categoryBased";
 import {academicWork} from "./pageStores/academicWork";
 import {academicMethod} from "./pageStores/academicMethod";
 import {organizMethod} from "./pageStores/organizMethod";
+import {scienMethod} from "./pageStores/scienMethod";
 
 let store = createStore({
 
@@ -14,7 +15,8 @@ let store = createStore({
         categoryBased,
         academicWork,
         academicMethod,
-        organizMethod
+        organizMethod,
+        scienMethod
     },
 
     state: {
@@ -23,9 +25,6 @@ let store = createStore({
     mutations: {
         SET_TEACHER: (state, teacher) => {
             state.teacher = teacher
-        },
-        SET_SCIENTIFIC_METHOD: (state, sciens) => {
-            state.scientificMethod = sciens
         },
         SET_ACADEMIC_PRODUCTION: (state, products) => {
             products.forEach((e) =>{
@@ -38,10 +37,6 @@ let store = createStore({
         },
         SET_PROMOTION_QUALIFICATION_LVL: (state, lvls) => {
             state.promotionQualificationLvl = lvls
-        },
-        ADD_SCIENTIFIC_METHOD: (state, scientificMethod) => {
-            console.log(scientificMethod);
-            state.scientificMethod.push(scientificMethod)
         },
         ADD_ACADEMIC_PRODUCTION: (state, academicProduction) => {
             console.log(academicProduction);
@@ -68,22 +63,6 @@ let store = createStore({
                             console.log(error)
                         })
                 },
-        LOAD_SCIENTIFIC_METHODS({commit}, pageRequest) {
-            let url = '/api/scientific'
-            const options = {
-                method: 'POST',
-                data: qs.stringify(pageRequest)
-            }
-            return axios(url, options)
-                .then((sciens) => {
-                    commit('SET_SCIENTIFIC_METHOD', sciens.data.content)
-                    console.log(sciens.data)
-                    return sciens.data
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
         LOAD_ACADEMIC_PRODUCTIONS({commit}, pageRequest) {
             let url = '/api/production'
             const options = {
@@ -128,18 +107,6 @@ let store = createStore({
                     commit('SET_PROMOTION_QUALIFICATION_LVL', lvls.data.content)
                     console.log(lvls.data)
                     return lvls.data
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-        UPLOAD_SCIENTIFIC_METHOD({commit, getters}, scien) {
-            let url = '/api/scientific/create';
-            console.log(getters)
-            return axios.post(url, scien)
-                .then((scienResponse) => {
-                    commit('ADD_SCIENTIFIC_METHOD', scienResponse.data)
-                    return scienResponse.data;
                 })
                 .catch((error) => {
                     console.log(error)
@@ -198,9 +165,6 @@ let store = createStore({
     getters: {
         GET_TEACHER(state) {
             return state.teacher
-        },
-        GET_SCIENTIFIC_METHOD(state) {
-            return state.scientificMethod
         },
         GET_ACADEMIC_PRODUCTION(state) {
             return state.academicProduction

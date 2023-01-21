@@ -53,4 +53,20 @@ public class Teacher extends BaseEntity {
     @JoinColumn(name="department_id", nullable=false)
     private Department department;
 
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", certificationDate=" + certificationDate +
+                ", employmentType=" + employmentType +
+                ", position=" + position +
+                ", category=" + category +
+                ", userId=" + userId.getId() +
+                ", department=" + department.getId() +
+                '}';
+    }
 }

@@ -1,18 +1,23 @@
 package me.anisimov.teachingAccounting.service;
 
+import liquibase.pro.packaged.A;
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.AcademicWork;
 import me.anisimov.teachingAccounting.domain.User;
 import me.anisimov.teachingAccounting.dto.AcademicWorkDto;
 import me.anisimov.teachingAccounting.dto.TeacherDto;
 import me.anisimov.teachingAccounting.repository.AcademicWorkRepository;
+import me.anisimov.teachingAccounting.repository.EntityRepository;
 import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +36,10 @@ public class AcademicWorkService {
     private ModelMapper mapper;
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
+    @Autowired
+    private ExportToExcelService exportToExcelService;
+    @Autowired
+    private EntityRepository entityRepository;
 
     public AcademicWorkDto createAcademicWork(AcademicWorkDto academicWorkDto) {
 
@@ -80,6 +89,21 @@ public class AcademicWorkService {
                     return mapper.map(work, AcademicWorkDto.class);
                 });
         return allUsersInformation;
+    }
+
+    public FileSystemResource exportToExcel() {
+        User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
+        List<AcademicWork> academicWorks = entityRepository.listForUser(AcademicWork.class, user);
+
+        String[] fieldNames = {
+                "id", "specialization.specialization", "academicDiscipline.disciplineNumber",
+                "academicDiscipline.name", "group.groupName", "firstSemester.plan", "firstSemester.fact",
+                "secondSemester.plan", "secondSemester.fact", "academicYear.plan", "academicYear.fact",
+                "incompleteReason", "absoluteResults", "qualityResults"
+        };
+        String filename = "AcademicWork_" + LocalDate.now() + ".xlsx";
+        exportToExcelService.export(filename, fieldNames, AcademicWork.class, academicWorks);
+        return new FileSystemResource(new File(filename));
     }
 
 }

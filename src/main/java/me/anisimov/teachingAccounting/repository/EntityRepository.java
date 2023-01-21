@@ -70,5 +70,15 @@ public class EntityRepository {
         return query.getResultList();
     }
 
+
+    public <E extends BaseEntity> List<E> list(Class<E> entityClass) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<E> cq = builder.createQuery(entityClass);
+        Root<E> entity = cq.from(entityClass);
+        TypedQuery<E> query = entityManager.createQuery(cq);
+
+        return query.getResultList();
+    }
+
 }
 

@@ -21,13 +21,14 @@ let store = createStore({
         scienMethod,
         academicProduct,
         educateWork,
-        promotionQualificLVL
+        promotionQualificLVL,
     },
 
     state: {
         teacher: {},
         specializations: [],
         academicDisciplines: [],
+        departments: [],
     },
     mutations: {
         SET_TEACHER: (state, teacher) => {
@@ -42,18 +43,62 @@ let store = createStore({
         SET_GROUPS: (state, groups) => {
             state.groups = groups;
         },
+        SET_DEPARTMENTS: (state, departments) => {
+            state.departments = departments
+        },
     },
     actions: {
         LOAD_TEACHER({commit}) {
             let url = '/api/teacher'
             return axios.get(url)
             .then((response) => {
+                var dataToSplit = []
+                dataToSplit = response.data.certificationDate
+                for(var i = 0; i < dataToSplit.length; i++){
+                    if(dataToSplit[i].toString().length ===1){
+                        dataToSplit[i] = "0" + dataToSplit[i]
+                    }
+                }
+                dataToSplit = dataToSplit.join('-')
+                response.data.certificationDate = dataToSplit
+                console.log(response.data)
                 commit('SET_TEACHER', response.data)
                 return response.data
             })
             .catch((error) => {
                 console.log(error)
             })
+        },
+        UPLOAD_TEACHER({commit, getters}, tec) {
+            let url = '/api/teacher/update';
+            let transformedTec = {
+                id: tec.id,
+                category: tec.category,
+                department: tec.department,
+                employmentType: tec.employmentType,
+                position: tec.position,
+                firstName: tec.firstName,
+                lastName: tec.lastName,
+                middleName: tec.middleName,
+                certificationDate: tec.certificationDate,
+                userId: user.getters.GET_ALL_USERS(user.state).find((user) => {return user.id === tec.userId}),
+            }
+            var dataToSplit = ""
+            dataToSplit = transformedTec.certificationDate.split('-')
+            dataToSplit[0] = parseInt(dataToSplit[0])
+            dataToSplit[1] = parseInt(dataToSplit[1])
+            dataToSplit[2] = parseInt(dataToSplit[2])
+            transformedTec.certificationDate = dataToSplit
+            console.log(dataToSplit)
+            console.log(transformedTec)
+            return axios.post(url, transformedTec)
+                .then((tecResponse) => {
+                    commit('SET_TEACHER', transformedTec)
+                    return tecResponse.data;
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         },
         LOAD_SPECIALIZATION({commit}){
             let url = '/api/specialization/all'
@@ -88,6 +133,17 @@ let store = createStore({
                     console.log(error)
                 })
         },
+        LOAD_DEPARTMENTS({commit}){
+            let url = '/api/department/all'
+            return axios(url, { method: 'GET'})
+            .then((departments) => {
+                commit('SET_DEPARTMENTS', departments.data)
+                return departments.data
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        },
 
 
     },
@@ -104,6 +160,13 @@ let store = createStore({
         GET_ALL_GROUPS(state) {
             return state.groups
         },
+        GET_ALL_DEPARTMENTS_NAMES(state) {
+            return state.departments.map((d) => d.name)
+        },
+        GET_ALL_DEPARTMENTS(state) {
+            return state.departments
+        },
+        
     },
 })
 

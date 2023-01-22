@@ -4,9 +4,6 @@ import store from "../store";
 
 export const academicWork = {
     namespaced: true,
-    modules: {
-        categoryBased: []
-    },
     state: {
         academicWork: [],
     },

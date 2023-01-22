@@ -69,7 +69,7 @@ export default{
     methods: {
     ...mapActions({
       LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
-      LOAD_SPECIALIZATION: 'categoryBased/LOAD_SPECIALIZATION',
+      LOAD_SPECIALIZATION: 'LOAD_SPECIALIZATION',
       UPLOAD_ACADEMIC_PRODUCTION: 'academicProduct/UPLOAD_ACADEMIC_PRODUCTION'
     }),
     ...mapMutations({
@@ -77,7 +77,7 @@ export default{
     }),
     ...mapGetters({
       GET_ENUMS: 'categoryBased/GET_ENUMS',
-      GET_ALL_SPECIALIZATIONS: 'categoryBased/GET_ALL_SPECIALIZATIONS',
+      GET_ALL_SPECIALIZATIONS: 'GET_ALL_SPECIALIZATIONS',
       //'',
       // 'GET_DEPARTMENT_NAMES'
     }),

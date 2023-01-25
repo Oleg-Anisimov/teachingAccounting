@@ -1,11 +1,12 @@
 import qs from "qs";
 import axios from "axios";
 import {categoryBased} from "../categoryBased";
+import store from "../store";
 
 export const academicProduct = {
     namespaced: true,
     modules: {
-        categoryBased
+        categoryBased,
     },
     state: {
         academicProduct: [],
@@ -18,7 +19,7 @@ export const academicProduct = {
     mutations: {
         SET_ACADEMIC_PRODUCTION: (state, products) => {
             products.forEach((e) =>{
-                e.specialization = categoryBased.state.specializations.find((spec) => {return  spec.id === e.specializationId})
+                e.specialization = store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return  spec.id === e.specializationId})
             })
             state.academicProduction = products
         },
@@ -56,7 +57,7 @@ export const academicProduct = {
                     function transformProductResponse(data) {
                         return {
                             id: data.id,
-                            specialization: categoryBased.getters.GET_ALL_SPECIALIZATIONS(categoryBased.state).find((spec) => {return spec.id === data.specializationId}),
+                            specialization: store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
                             activityType: categoryBased.getters.GET_ENUMS(categoryBased.state).ActivityType.find((actType) => {return actType === data.activityType}),
                         }
                     }

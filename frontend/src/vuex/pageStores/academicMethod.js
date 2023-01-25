@@ -1,11 +1,12 @@
 import qs from "qs";
 import axios from "axios";
-import {categoryBased} from "../categoryBased";
+import store from "../store";
+import { categoryBased } from "../categoryBased";
 
 export const academicMethod = {
     namespaced: true,
     modules: {
-        categoryBased
+        categoryBased,
     },
     state: {
         academicMethod: [],
@@ -18,8 +19,8 @@ export const academicMethod = {
     mutations: {
         SET_ACADEMIC_METHOD: (state, methods) => {
             methods.forEach((m) => {
-                m.specialization = categoryBased.state.specializations.find((spec) => {return spec.id === m.specializationId})
-                m.academicDiscipline = categoryBased.state.academicDisciplines.find((disc) => {return disc.id === m.academicDisciplineId})
+                m.specialization = store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === m.specializationId})
+                m.academicDiscipline = store.getters.GET_ALL_ACADEMIC_DISCIPLINES.find((disc) => {return disc.id === m.academicDisciplineId})
             })
             state.academicMethod = methods
         },
@@ -58,8 +59,8 @@ export const academicMethod = {
                     function transformMethodResponse(data) {
                         return {
                             id: data.id,
-                            academicDiscipline: categoryBased.getters.GET_ALL_ACADEMIC_DISCIPLINES(categoryBased.state).find((dis) => {return dis.id === data.academicDisciplineId}),
-                            specialization: categoryBased.getters.GET_ALL_SPECIALIZATIONS(categoryBased.state).find((spec) => {return spec.id === data.specializationId}),
+                            academicDiscipline: store.getters.GET_ALL_ACADEMIC_DISCIPLINES.find((dis) => {return dis.id === data.academicDisciplineId}),
+                            specialization: store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
                             activityType: categoryBased.getters.GET_ENUMS(categoryBased.state).ActivityType.find((actType) => {return actType === data.activityType}),
                         }
                     }

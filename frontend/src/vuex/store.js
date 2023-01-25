@@ -1,53 +1,25 @@
 import {createStore} from "vuex";
 import axios from "axios";
-import qs from 'qs'
+import qs from 'qs';
 import {user} from "./userStore";
+import {academicWork} from "./academicWork";
+import {categoryBased} from "./categoryBased";
 
 let store = createStore({
 
     modules: {
-        user
+        user,
+        academicWork,
+        categoryBased
     },
 
     state: {
         teacher: {},
-        enums: {},
-        departments: [],
-        specializations: [],
-        academicDisciplines: [],
-        academicWork: [],
         academicMethod: []
     },
     mutations: {
         SET_TEACHER: (state, teacher) => {
             state.teacher = teacher
-        },
-        SET_ENUMS: (state, enums) => {
-            state.enums = enums
-            state.enums.category = enums.Category
-            state.enums.employmentType = enums.EmploymentType
-            state.enums.position = enums.Position
-        },
-        SET_GROUPS: (state, groups) => {
-            state.groups = groups;
-        },
-        SET_DEPARTMENTS: (state, departments) => {
-            state.departments = departments
-        },
-        SET_SPECIALIZATIONS: (state, specializations) => {
-            state.specializations = specializations
-        },
-        SET_ACADEMIC_DISCIPLINES: (state, academicDisciplines) => {
-            state.academicDisciplines = academicDisciplines
-        },
-        SET_ACADEMIC_WORK: (state, works) => {
-            works.forEach((w) => {
-                w.specialization = state.specializations.find((spec) => {return spec.id === w.specializationId})
-                w.academicDiscipline = state.academicDisciplines.find((disc) => {return disc.id === w.academicDisciplineId})
-                w.group = state.groups.find((group) => {return group.id === w.groupId})
-            })
-            console.log(works)
-            state.academicWork = works
         },
         SET_ACADEMIC_METHOD: (state, methods) => {
             methods.forEach((m) => {
@@ -73,10 +45,6 @@ let store = createStore({
         },
         SET_PROMOTION_QUALIFICATION_LVL: (state, lvls) => {
             state.promotionQualificationLvl = lvls
-        },
-        ADD_ACADEMIC_WORK: (state, academicWork) => {
-            console.log(academicWork);
-            state.academicWork.push(academicWork)
         },
         ADD_ACADEMIC_METHOD: (state, academicMethod) => {
             console.log(academicMethod);
@@ -104,76 +72,17 @@ let store = createStore({
         },
     },
     actions: {
-
-        LOAD_ENUMS({commit}) {
-            let url = '/api/enum'
-            return axios(url, { method: 'GET'})
-                .then((enums) => {
-                    commit('SET_ENUMS', enums.data)
-                    return enums.data
-                })
-                .catch((error) => { console.log(error) })
-        },
         LOAD_TEACHER({commit}) {
-            let url = '/api/teacher'
-            return axios.get(url)
-                .then((response) => {
-                    commit('SET_TEACHER', response.data)
-                    return response.data
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-        LOAD_DEPARTMENTS({commit}){
-            let url = '/api/department/all'
-            return axios(url, { method: 'GET'})
-            .then((departments) => {
-                commit('SET_DEPARTMENTS', departments.data)
-                return departments.data
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-        },
-        LOAD_SPECIALIZATION({commit}){
-            let url = '/api/specialization/all'
-            return axios(url, { method: 'GET'})
-            .then((specializations) => {
-                commit('SET_SPECIALIZATIONS', specializations.data)
-                return specializations.data
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-        },
-        LOAD_ACADEMIC_DISCIPLINE({commit}){
-            let url = '/api/discipline/all'
-            return axios(url, { method: 'GET'})
-            .then((academicDisciplines) => {
-                commit('SET_ACADEMIC_DISCIPLINES', academicDisciplines.data)
-                return academicDisciplines.data
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-        },
-        LOAD_ACADEMIC_WORKS({commit}, pageRequest) {
-            let url = '/api/work';
-            const options = {
-                method: 'POST',
-                data: qs.stringify(pageRequest)
-            }
-            return axios(url, options)
-                .then((response) => {
-                    commit('SET_ACADEMIC_WORK', response.data.content)
-                    console.log(response.data)
-                    return response.data;
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
+                    let url = '/api/teacher'
+                    return axios.get(url)
+                        .then((response) => {
+                            commit('SET_TEACHER', response.data)
+                            return response.data
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                        })
+                },
         LOAD_ACADEMIC_METHODS({commit}, pageRequest) {
             let url = '/api/methods'
             const options = {
@@ -265,48 +174,6 @@ let store = createStore({
                     commit('SET_PROMOTION_QUALIFICATION_LVL', lvls.data.content)
                     console.log(lvls.data)
                     return lvls.data
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-        LOAD_GROUPS({commit}){
-            let url = '/api/group/all'
-            return axios(url, { method: 'GET'})
-                .then((groups) => {
-                    commit('SET_GROUPS', groups.data)
-                    return groups.data
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        },
-        UPLOAD_ACADEMIC_WORK({commit, getters}, work) {
-            let url = '/api/work/create';
-            let data = {
-                academicDisciplineId: work.academicDiscipline.id,
-                specializationId: work.specialization.id,
-                groupId: work.group.id,
-                firstSemester: work.firstSemester,
-                secondSemester: work.secondSemester
-            }
-            console.log(getters)
-            return axios.post(url, data)
-                .then((work) => {
-                    function transformWorkResponse(data) {
-                        return {
-                            id: data.id,
-                            group: getters.GET_ALL_GROUPS.find((group) => {return group.id === data.groupId}),
-                            academicDiscipline: getters.GET_ALL_ACADEMIC_DISCIPLINES.find((dis) => {return dis.id === data.academicDisciplineId}),
-                            specialization: getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
-                            firstSemester: data.firstSemester,
-                            secondSemester: data.secondSemester
-                        }
-                    }
-
-                    let transformedWork = transformWorkResponse(work.data);
-                    commit('ADD_ACADEMIC_WORK', transformedWork)
-                    return work.data;
                 })
                 .catch((error) => {
                     console.log(error)
@@ -414,36 +281,8 @@ let store = createStore({
 
     },
     getters: {
-
         GET_TEACHER(state) {
             return state.teacher
-        },
-        GET_ENUMS(state) {
-            return state.enums
-        },
-        GET_TEACHER_CATEGORIES(state) {
-            return state.enums.category
-        },
-        GET_EMPLOYMENT_TYPES(state) {
-            return state.enums.employmentType
-        },
-        GET_POSITIONS(state) {
-            return state.enums.position
-        },
-        GET_ALL_DEPARTMENTS(state) {
-            return state.departments
-        },
-        GET_ALL_DEPARTMENTS_NAMES(state) {
-            return state.departments.map((d) => d.name)
-        },
-        GET_ALL_SPECIALIZATIONS(state){
-            return state.specializations
-        },
-        GET_ALL_ACADEMIC_DISCIPLINES(state){
-            return state.academicDisciplines
-        },
-        GET_ACADEMIC_WORK(state) {
-            return state.academicWork
         },
         GET_ACADEMIC_METHOD(state) {
             return state.academicMethod
@@ -462,9 +301,6 @@ let store = createStore({
         },
         GET_PROMOTION_QUALIFICATION_LVL(state) {
             return state.promotionQualificationLvl
-        },
-        GET_ALL_GROUPS(state) {
-            return state.groups
         },
     },
 })

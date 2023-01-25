@@ -70,28 +70,28 @@ export default{
     },
 
     methods: {
-    ...mapActions([
-      'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
-      'LOAD_SPECIALIZATION',
-      'LOAD_ACADEMIC_DISCIPLINE',
-      'LOAD_GROUPS',
-      'UPLOAD_ACADEMIC_WORK',
-    ]),
-    ...mapMutations([
-        'ADD_ACADEMIC_WORK'
-    ]),
-    ...mapGetters([
-      'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
-      'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES',
-      'GET_ALL_GROUPS',
+    ...mapActions({
+      LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
+      LOAD_DEPARTMENTS: 'categoryBased/LOAD_DEPARTMENTS',
+      LOAD_SPECIALIZATION: 'categoryBased/LOAD_SPECIALIZATION',
+      LOAD_ACADEMIC_DISCIPLINE: 'categoryBased/LOAD_ACADEMIC_DISCIPLINE',
+      LOAD_GROUPS: 'categoryBased/LOAD_GROUPS',
+      UPLOAD_ACADEMIC_WORK: 'academicWork/UPLOAD_ACADEMIC_WORK',
+    }),
+    ...mapMutations({
+      ADD_ACADEMIC_WORK: 'academicWork/ADD_ACADEMIC_WORK'
+    }),
+    ...mapGetters({
+      GET_ENUMS: 'categoryBased/GET_ENUMS',
+      GET_TEACHER_CATEGORIES: 'categoryBased/GET_TEACHER_CATEGORIES',
+      GET_EMPLOYMENT_TYPES: 'categoryBased/GET_EMPLOYMENT_TYPES',
+      GET_POSITIONS: 'categoryBased/GET_POSITIONS',
+      GET_ALL_DEPARTMENTS: 'categoryBased/GET_ALL_DEPARTMENTS',
+      GET_ALL_SPECIALIZATIONS: 'categoryBased/GET_ALL_SPECIALIZATIONS',
+      GET_ALL_ACADEMIC_DISCIPLINES: 'categoryBased/GET_ALL_ACADEMIC_DISCIPLINES',
+      GET_ALL_GROUPS: 'categoryBased/GET_ALL_GROUPS',
 
-    ]),
+    }),
 
     addAcademicWork(){
       let work = new AcademicWork(

@@ -33,7 +33,10 @@
       logg (){
         this.$router.push('authorization');
       }
-    }
+    },
+
+
+    
   }
   
   </script>

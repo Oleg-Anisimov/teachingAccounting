@@ -20,7 +20,7 @@
         <!-- SELECT -->
         <div class="ui-input">
           <label for="input-last-name">Тип сотрудника</label>
-          <select class="ui-select" :disabled="!editing" name="select-XcA1">
+          <select class="ui-select" :disabled="!editing" name="select-XcA1" v-model="this.teacher.employmentType">
             <option disabled>Отсутствует</option>
             <option v-for="employmentType in GET_EMPLOYMENT_TYPES()" :key="employmentType" :value="employmentType">
               {{ $t('enum.employmentType.' + employmentType) }}
@@ -29,7 +29,7 @@
         </div>
         <div class="ui-input">
           <label for="input-last-name">Отделение</label>
-          <select v-model="teacher.department" class="ui-select" :disabled="!editing" name="select-XcA1">
+          <select class="ui-select" :disabled="!editing" name="select-XcA1" v-model="this.teacher.department">
             <option disabled>Отсутствует</option>
             <option v-for="department in GET_ALL_DEPARTMENTS()" :value="department" :key="department.id">
               {{ department.name }}
@@ -39,7 +39,7 @@
         </div>
         <div class="ui-input">
           <label for="input-last-name">Должность</label>
-          <select v-model="teacher.position" class="ui-select" :disabled="!editing" name="select-XcA1">
+          <select class="ui-select" :disabled="!editing" name="select-XcA1" v-model="this.teacher.position">
             <option disabled>Отсутствует</option>
             <option v-for="position in GET_POSITIONS()" :key="position" :value="position">
               {{ $t('enum.position.' + position) }}
@@ -48,7 +48,7 @@
         </div>
         <div class="ui-input">
           <label for="input-last-name">Категория</label>
-          <select v-model="teacher.category" class="ui-select" :disabled="!editing" name="select-XcA1">
+          <select class="ui-select" :disabled="!editing" name="select-XcA1" v-model="this.teacher.category">
             <option disabled>Отсутствует</option>
             <option v-for="category in GET_TEACHER_CATEGORIES()" :key="category" :value="category">
               {{ $t('enum.categories.' + category) }}
@@ -58,7 +58,7 @@
         <!-- DATE -->
         <div class="ui-input">
           <label for="input-last-name">Дата последней аттестации</label>
-          <input v-model="teacher.certificationDate" id="last-attestation-date" :disabled="!editing" type="date"/>
+          <input v-model="this.teacher.certificationDate" id="last-attestation-date" :disabled="!editing" type="date"/>
         </div>
         <!-- BUTTON -->
         <div class="ui-button-group" v-if="!editing">
@@ -75,12 +75,14 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex';
+import Teacher from '../../model/teacher';
 
 export default {
   name: "TitlePage",
   props: [
     // 'teacher',
     'enums',
+    'user'
   ],
   computed: {
     editing: false,
@@ -98,22 +100,39 @@ export default {
     },
     SAVE_EDITED() {
       console.log('Data should be saved')
-      event.preventDefault()
+      var data = new Teacher(
+        this.teacher.id,
+        this.teacher.lastName,
+        this.teacher.firstName,
+        this.teacher.middleName,
+        this.teacher.employmentType,
+        this.teacher.department,
+        this.teacher.position,
+        this.teacher.category,
+        this.teacher.certificationDate,
+        this.teacher.userId,
+      )
+      this.UPLOAD_TEACHER(data)
+      console.log(this.GET_ALL_USERS())
     },
-    ...mapActions([
-      'LOAD_ENUMS',
-      'LOAD_DEPARTMENTS',
-      'LOAD_TEACHER'
-    ]),
-    ...mapGetters([
-      'GET_TEACHER',
-      'GET_ENUMS',
-      'GET_TEACHER_CATEGORIES',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_POSITIONS',
-      'GET_ALL_DEPARTMENTS',
-      'GET_ALL_DEPARTMENTS_NAMES'
-    ]),
+    ...mapActions({
+      LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
+      LOAD_DEPARTMENTS: 'LOAD_DEPARTMENTS',
+      LOAD_TEACHER: 'LOAD_TEACHER',
+      UPLOAD_TEACHER: 'UPLOAD_TEACHER',
+      LOAD_ALL_USERS: 'user/LOAD_ALL_USERS'
+     }),
+    ...mapGetters({
+      GET_TEACHER: 'GET_TEACHER',
+      GET_ENUMS: 'categoryBased/GET_ENUMS',
+      GET_TEACHER_CATEGORIES: 'categoryBased/GET_TEACHER_CATEGORIES',
+      GET_EMPLOYMENT_TYPES: 'categoryBased/GET_EMPLOYMENT_TYPES',
+      GET_POSITIONS: 'categoryBased/GET_POSITIONS',
+      GET_ALL_DEPARTMENTS: 'GET_ALL_DEPARTMENTS',
+      GET_ALL_DEPARTMENTS_NAMES: 'GET_ALL_DEPARTMENTS_NAMES',
+      getCurrentUser: 'user/GET_CURRENT_USER',
+      GET_ALL_USERS: 'user/GET_ALL_USERS'
+    }),
   },
   mounted() {
     document.title = 'Титульная страница'
@@ -125,6 +144,7 @@ export default {
     })
     this.LOAD_ENUMS()
     this.LOAD_DEPARTMENTS()
+    this.LOAD_ALL_USERS()
   },
 }
 </script>

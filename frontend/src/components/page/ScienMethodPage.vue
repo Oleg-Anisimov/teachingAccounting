@@ -73,13 +73,13 @@ export default{
     };
   },
     methods: {
-    ...mapActions([
-      'LOAD_SCIENTIFIC_METHODS'
-    ]),
-    ...mapGetters([
-      'GET_SCIENTIFIC_METHOD'
+    ...mapActions({
+      LOAD_SCIENTIFIC_METHODS: 'scienMethod/LOAD_SCIENTIFIC_METHODS'
+    }),
+    ...mapGetters({
+      GET_SCIENTIFIC_METHOD: 'scienMethod/GET_SCIENTIFIC_METHOD'
       // 'GET_DEPARTMENT_NAMES'
-    ]),
+    }),
   },
   mounted(){
     document.title = 'Научно-методическая работа';

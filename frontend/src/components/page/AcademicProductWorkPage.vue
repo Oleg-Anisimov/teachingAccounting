@@ -43,12 +43,12 @@ export default{
         'enums'
     ],
     methods: {
-    ...mapActions([
-      'LOAD_ACADEMIC_PRODUCTIONS',
-    ]),
-    ...mapGetters([
-      'GET_ACADEMIC_PRODUCTION'
-    ]),
+    ...mapActions({
+        LOAD_ACADEMIC_PRODUCTIONS: 'academicProduct/LOAD_ACADEMIC_PRODUCTIONS',
+    }),
+    ...mapGetters({
+        GET_ACADEMIC_PRODUCTION: 'academicProduct/GET_ACADEMIC_PRODUCTION'
+    }),
     },
     watch: {
         "pageRequest.page"() {

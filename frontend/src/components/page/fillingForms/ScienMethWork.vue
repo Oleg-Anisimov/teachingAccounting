@@ -76,18 +76,18 @@ export default{
       }
     },
     methods: {
-    ...mapActions([
-      'LOAD_ENUMS',
-      'UPLOAD_SCIENTIFIC_METHOD'
-    ]),
-    ...mapMutations([
-        'ADD_SCIENTIFIC_METHOD'
-    ]),
-    ...mapGetters([
-      'GET_ENUMS',
+    ...mapActions({
+      LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
+      UPLOAD_SCIENTIFIC_METHOD: 'scienMethod/UPLOAD_SCIENTIFIC_METHOD'
+    }),
+    ...mapMutations({
+      ADD_SCIENTIFIC_METHOD: 'scienMethod/ADD_SCIENTIFIC_METHOD'
+    }),
+    ...mapGetters({
+      GET_ENUMS: 'categoryBased/GET_ENUMS',
       //'',
       // 'GET_DEPARTMENT_NAMES'
-    ]),
+    }),
 
     addScienMethod(){
       let scien = new ScientificMethod(

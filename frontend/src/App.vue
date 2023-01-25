@@ -18,8 +18,7 @@ document.title = 'ГБПОУ ОК "ЮГО-ЗАПАД"'
 
 <script>
 
-import { mapGetters } from 'vuex';
-
+import {mapActions, mapGetters, mapMutations} from 'vuex';
 
 export default {
   name:"App",
@@ -31,6 +30,19 @@ export default {
       return this.getCurrentUser
     }
   },
+  
+  methods: {
+    ...mapActions({
+      LOAD_SPECIALIZATION: 'LOAD_SPECIALIZATION',
+      LOAD_ACADEMIC_DISCIPLINE: 'LOAD_ACADEMIC_DISCIPLINE',
+      LOAD_GROUPS: 'LOAD_GROUPS',
+    }),
+  },
+  created(){
+      this.LOAD_GROUPS();
+      this.LOAD_SPECIALIZATION();
+      this.LOAD_ACADEMIC_DISCIPLINE();
+    }
 }
 </script>
 

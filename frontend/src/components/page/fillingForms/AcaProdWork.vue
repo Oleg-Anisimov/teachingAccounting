@@ -67,20 +67,20 @@ export default{
       }
     },
     methods: {
-    ...mapActions([
-      'LOAD_ENUMS',
-      'LOAD_SPECIALIZATION',
-      'UPLOAD_ACADEMIC_PRODUCTION'
-    ]),
-    ...mapMutations([
-        'ADD_ACADEMIC_PRODUCTION'
-    ]),
-    ...mapGetters([
-      'GET_ENUMS',
-      'GET_ALL_SPECIALIZATIONS',
+    ...mapActions({
+      LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
+      LOAD_SPECIALIZATION: 'categoryBased/LOAD_SPECIALIZATION',
+      UPLOAD_ACADEMIC_PRODUCTION: 'academicProduct/UPLOAD_ACADEMIC_PRODUCTION'
+    }),
+    ...mapMutations({
+      ADD_ACADEMIC_PRODUCTION: 'academicProduct/ADD_ACADEMIC_PRODUCTION'
+    }),
+    ...mapGetters({
+      GET_ENUMS: 'categoryBased/GET_ENUMS',
+      GET_ALL_SPECIALIZATIONS: 'categoryBased/GET_ALL_SPECIALIZATIONS',
       //'',
       // 'GET_DEPARTMENT_NAMES'
-    ]),
+    }),
 
     addAcademicProduct(){
       let product = new AcademicProduct(

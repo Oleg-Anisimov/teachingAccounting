@@ -57,18 +57,18 @@ export default{
       }
     },
     methods: {
-    ...mapActions([
-      'LOAD_ENUMS',
-      'UPLOAD_PROMOTION_QUALIFICATION_LVL'
-    ]),
-    ...mapMutations([
-        'ADD_PROMOTION_QUALIFICATION_LVL'
-    ]),
-    ...mapGetters([
-      'GET_ENUMS',
+    ...mapActions({
+      LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
+      UPLOAD_PROMOTION_QUALIFICATION_LVL: 'promotionQualificLVL/UPLOAD_PROMOTION_QUALIFICATION_LVL'
+    }),
+    ...mapMutations({
+      ADD_PROMOTION_QUALIFICATION_LVL: 'promotionQualificLVL/ADD_PROMOTION_QUALIFICATION_LVL'
+    }),
+    ...mapGetters({
+      GET_ENUMS: 'categoryBased/GET_ENUMS',
       //'',
       // 'GET_DEPARTMENT_NAMES'
-    ]),
+    }),
 
     addPromotionQual(){
       let lvl = new PromotionQualificationLvl(

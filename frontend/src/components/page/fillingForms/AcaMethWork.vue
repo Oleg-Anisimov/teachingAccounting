@@ -73,21 +73,21 @@ export default{
       }
     },
     methods: {
-    ...mapActions([
-      'LOAD_ENUMS',
-      'LOAD_SPECIALIZATION',
-      'LOAD_ACADEMIC_DISCIPLINE',
-      'UPLOAD_ACADEMIC_METHOD',
-    ]),
-    ...mapMutations([
-        'ADD_ACADEMIC_METHOD'
-    ]),
-    ...mapGetters([
-      'GET_ENUMS',
-      'GET_EMPLOYMENT_TYPES',
-      'GET_ALL_SPECIALIZATIONS',
-      'GET_ALL_ACADEMIC_DISCIPLINES'
-    ]),
+    ...mapActions({
+      LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
+      LOAD_SPECIALIZATION: 'categoryBased/LOAD_SPECIALIZATION',
+      LOAD_ACADEMIC_DISCIPLINE: 'categoryBased/LOAD_ACADEMIC_DISCIPLINE',
+      UPLOAD_ACADEMIC_METHOD: 'academicMethod/UPLOAD_ACADEMIC_METHOD',
+    }),
+    ...mapMutations({
+      ADD_ACADEMIC_METHOD: 'academicMethod/ADD_ACADEMIC_METHOD'
+    }),
+    ...mapGetters({
+      GET_ENUMS: 'categoryBased/GET_ENUMS',
+      GET_EMPLOYMENT_TYPES: 'categoryBased/GET_EMPLOYMENT_TYPES',
+      GET_ALL_SPECIALIZATIONS: 'categoryBased/GET_ALL_SPECIALIZATIONS',
+      GET_ALL_ACADEMIC_DISCIPLINES: 'categoryBased/GET_ALL_ACADEMIC_DISCIPLINES'
+    }),
     addAcademicMethod(){
       let method = new AcademicMethod(
           this.id,

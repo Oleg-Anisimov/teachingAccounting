@@ -1,11 +1,11 @@
 import qs from "qs";
 import axios from "axios";
-import {categoryBased} from "./categoryBased";
+import store from "../store";
 
 export const academicWork = {
     namespaced: true,
     modules: {
-        categoryBased
+        categoryBased: []
     },
     state: {
         academicWork: [],
@@ -19,11 +19,10 @@ export const academicWork = {
         SET_ACADEMIC_WORK: (state, works) => {
             console.log(works)
             works.forEach((w) => {
-                w.group = categoryBased.state.groups.find((group) => {return group.id === w.groupId})
-                w.specialization = categoryBased.state.specializations.find((spec) => {return spec.id === w.specializationId})
-                w.academicDiscipline = categoryBased.state.academicDisciplines.find((disc) => {return disc.id === w.academicDisciplineId})
+                w.group = store.getters.GET_ALL_GROUPS.find((group) => {return group.id === w.groupId})
+                w.specialization = store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === w.specializationId})
+                w.academicDiscipline = store.getters.GET_ALL_ACADEMIC_DISCIPLINES.find((disc) => {return disc.id === w.academicDisciplineId})
             })
-            
             state.academicWork = works
         },
         ADD_ACADEMIC_WORK: (state, academicWork) => {
@@ -31,7 +30,7 @@ export const academicWork = {
         },
     },
     actions: {
-        LOAD_ACADEMIC_WORKS({commit}, pageRequest) {
+        LOAD_ACADEMIC_WORKS({commit}, pageRequest,) {
             let url = '/api/work';
             const options = {
                 method: 'POST',
@@ -51,8 +50,8 @@ export const academicWork = {
             let url = '/api/work/create';
             let data = {
                 groupId: work.group.id,
-                academicDisciplineId: work.academicDiscipline.id,
                 specializationId: work.specialization.id,
+                academicDisciplineId: work.academicDiscipline.id,
                 firstSemester: work.firstSemester,
                 secondSemester: work.secondSemester
             }
@@ -62,9 +61,9 @@ export const academicWork = {
                     function transformWorkResponse(data) {
                         return {
                             id: data.id,
-                            group: categoryBased.getters.GET_ALL_GROUPS(categoryBased.state).find((group) => {return group.id === data.groupId}),
-                            academicDiscipline: categoryBased.getters.GET_ALL_ACADEMIC_DISCIPLINES(categoryBased.state).find((dis) => {return dis.id === data.academicDisciplineId}),
-                            specialization: categoryBased.getters.GET_ALL_SPECIALIZATIONS(categoryBased.state).find((spec) => {return spec.id === data.specializationId}),
+                            group: store.getters.GET_ALL_GROUPS.find((group) => {return group.id === data.groupId}),
+                            specialization: store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
+                            academicDiscipline: store.getters.GET_ALL_ACADEMIC_DISCIPLINES.find((dis) => {return dis.id === data.academicDisciplineId}),
                             firstSemester: data.firstSemester,
                             secondSemester: data.secondSemester
                         }

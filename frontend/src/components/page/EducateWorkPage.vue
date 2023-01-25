@@ -60,12 +60,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'LOAD_EDUCATE_WORKS'
-    ]),
-    ...mapGetters([
-      'GET_EDUCATE_WORK'
-    ]),
+    ...mapActions({
+      LOAD_EDUCATE_WORKS: 'educateWork/LOAD_EDUCATE_WORKS'
+    }),
+    ...mapGetters({
+      GET_EDUCATE_WORK: 'educateWork/GET_EDUCATE_WORK'
+    }),
 
     loadData() {
       let resultPromise = this.LOAD_EDUCATE_WORKS(this.pageRequest)

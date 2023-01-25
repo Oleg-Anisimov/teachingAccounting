@@ -75,12 +75,12 @@ export default{
     };
   },
   methods: {
-    ...mapActions([
-      'LOAD_ACADEMIC_METHODS',
-    ]),
-    ...mapGetters([
-      'GET_ACADEMIC_METHOD',
-    ]),
+    ...mapActions({
+      LOAD_ACADEMIC_METHODS: 'academicMethod/LOAD_ACADEMIC_METHODS',
+    }),
+    ...mapGetters({
+      GET_ACADEMIC_METHOD: 'academicMethod/GET_ACADEMIC_METHOD',
+    }),
   },
   mounted(){
     document.title = 'Учебно-методическая работа';

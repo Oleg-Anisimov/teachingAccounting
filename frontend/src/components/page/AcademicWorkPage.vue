@@ -100,8 +100,8 @@ export default {
   },
   mounted() {
     document.title = "Учебная работа";
-    let resultPromise = this.LOAD_ACADEMIC_WORKS(this.pageRequest);
-    resultPromise.then((data) => {
+    this.resultPromise = this.LOAD_ACADEMIC_WORKS(this.pageRequest)
+    this.resultPromise.then((data) => {
       this.totalElements = data.totalElements;
       this.totalPages = data.totalPages;
       this.pageNumber = data.pageable.pageNumber + 1;

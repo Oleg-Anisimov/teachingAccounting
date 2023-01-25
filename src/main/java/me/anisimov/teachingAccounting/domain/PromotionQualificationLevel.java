@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name ="promotion_qualification_level")
 @SequenceGenerator(name = "promotion_qualification_level_seq_gen", sequenceName = "promotion_qualification_level_seq", allocationSize = 1)
-public class PromotionQualificationLevel {
+public class PromotionQualificationLevel extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "promotion_qualification_level_seq")

@@ -30,11 +30,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 //        return handleExceptionInternal(ex, error, headers, HttpStatus.BAD_GATEWAY, request);
 //    }
 
-    @ExceptionHandler({Exception.class})
-    public ResponseEntity<ApiResponse> ExceptionErrorMessage(Exception e) {
-        log.error(e.getMessage());
-        log.error(e.getCause().toString());
-        return ResponseEntity.ok(ApiResponse.error(e.getMessage()));
-    }
+//    @ExceptionHandler({Exception.class})
+//    public ResponseEntity<ApiResponse> ExceptionErrorMessage(Exception e) {
+//        log.error(e.getMessage());
+//        log.error(e.getCause().toString());
+//        return ResponseEntity.ok(ApiResponse.error(e.getMessage()));
+//    }
 
 }

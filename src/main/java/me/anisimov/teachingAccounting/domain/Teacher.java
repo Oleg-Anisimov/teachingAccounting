@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name ="teacher")
 @SequenceGenerator(name = "teacher_seq_gen", sequenceName = "teacher_seq", allocationSize = 1)
-public class Teacher {
+public class Teacher extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "teacher_seq")
     private Long id;
@@ -53,4 +53,20 @@ public class Teacher {
     @JoinColumn(name="department_id", nullable=false)
     private Department department;
 
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", certificationDate=" + certificationDate +
+                ", employmentType=" + employmentType +
+                ", position=" + position +
+                ", category=" + category +
+                ", userId=" + userId.getId() +
+                ", department=" + department.getId() +
+                '}';
+    }
 }

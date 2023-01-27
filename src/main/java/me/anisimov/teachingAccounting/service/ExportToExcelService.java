@@ -1,6 +1,7 @@
 package me.anisimov.teachingAccounting.service;
 
 import me.anisimov.teachingAccounting.domain.BaseEntity;
+import me.anisimov.teachingAccounting.util.ReflectionUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -17,9 +18,9 @@ import java.util.List;
 @Service
 public class ExportToExcelService {
 
-    public <T extends BaseEntity> void export(String filename, String[] fieldNames, Class<T> tClass, List<T> data) {
+    public <T extends BaseEntity> void export(String filename, String[] fieldNames, List<T> data) {
         try {
-            List<String[]> rows = collectRows(tClass, fieldNames, data);
+            List<String[]> rows = collectRows(fieldNames, data);
             this.buildExcelFile(filename, fieldNames, rows);
         } catch (NoSuchFieldException e) {
             throw new RuntimeException("Fantastic situation: declared class field was not found in data-object");
@@ -30,48 +31,25 @@ public class ExportToExcelService {
     }
 
 
-    //TODO: refactor
-    private  <T> List<String[]> collectRows(Class<T> tClass, String[] fieldNames, List<T> data) throws NoSuchFieldException {
+    private  <T> List<String[]> collectRows(String[] fieldNames, List<T> data) throws NoSuchFieldException {
         List<String[]> rows = new ArrayList<>();
 
-        Field[] fields = tClass.getDeclaredFields();
         for (int i = 0; i < data.size(); i++) {
             String[] row = new String[fieldNames.length];
             for (int j = 0; j < fieldNames.length; j++) {
                 String currentFieldName = fieldNames[j];
                 try {
-                    if (isComplexField(currentFieldName)) {
-                        Object object = data.get(i);
-                        String[] fieldNameParts = this.getFieldNameParts(currentFieldName);
-
-                        for (String s : fieldNameParts) {
-                            Field field = object.getClass().getDeclaredField(s);
-                            field.setAccessible(true);
-                            object = field.get(object);
-                        }
-                        if (object != null) {
-                            row[j] = object.toString();
-                        } else {
-                            row[j] = "";
-                        }
-
+                    Object o = ReflectionUtils.diveForField(currentFieldName, data.get(i));
+                    if (o != null) {
+                        row[j] = o.toString();
                     } else {
-                        T object = data.get(i);
-                        Field field = object.getClass().getDeclaredField(currentFieldName);
-                        field.setAccessible(true);
-                        Object o = field.get(object);
-                        if (o != null) {
-                            row[j] = o.toString();
-                        } else {
-                            row[j] = "";
-                        }
+                        row[j] = "";
                     }
                 } catch (IllegalAccessException e) {
                     throw new RuntimeException("Can't get access to field [" + currentFieldName + ']');
                 }
             }
             rows.add(row);
-
         }
 
         return rows;
@@ -107,14 +85,5 @@ public class ExportToExcelService {
             Cell cell = row.createCell(i);
             cell.setCellValue(data[i]);
         }
-    }
-
-
-    private String[] getFieldNameParts(String field) {
-        return field.split("\\.");
-    }
-
-    private boolean isComplexField(String fieldName) {
-        return fieldName.contains(".");
     }
 }

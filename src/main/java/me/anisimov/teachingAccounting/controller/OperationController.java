@@ -42,7 +42,7 @@ public class OperationController {
 
         List<AcademicWork> data = entityRepository.list(AcademicWork.class);
 
-        exportToExcelService.export("test111.xls", fieldNames, AcademicWork.class, data);
+        exportToExcelService.export("test111.xls", fieldNames, data);
 
     }
 }

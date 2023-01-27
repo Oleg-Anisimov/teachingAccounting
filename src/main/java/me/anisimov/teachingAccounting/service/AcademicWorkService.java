@@ -102,7 +102,7 @@ public class AcademicWorkService {
                 "incompleteReason", "absoluteResults", "qualityResults"
         };
         String filename = "AcademicWork_" + LocalDate.now() + ".xlsx";
-        exportToExcelService.export(filename, fieldNames, AcademicWork.class, academicWorks);
+        exportToExcelService.export(filename, fieldNames, academicWorks);
         return new FileSystemResource(new File(filename));
     }
 

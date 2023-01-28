@@ -35,7 +35,7 @@
                     <option value=""></option>
                 </select><br>
                 <p>Дата</p>
-                <input type="text">
+                <input type="date">
                 <button @click="addAcademicProduct()">Добавить</button> 
             </div>    
         </div>

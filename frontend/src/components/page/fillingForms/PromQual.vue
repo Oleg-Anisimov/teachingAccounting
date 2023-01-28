@@ -22,7 +22,7 @@
                     <option v-for="promotionForm in GET_ENUMS().PromotionForm" :key="promotionForm" :value="promotionForm">{{$t('enum.PromotionForm.' + promotionForm)}}</option>
                 </select>
                 <p>Дата</p>
-                <input type="text">
+                <input type="date">
                 <p>Место</p>
                 <input type="text">
                 <p>Тема</p>

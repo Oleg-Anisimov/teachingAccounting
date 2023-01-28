@@ -83,13 +83,13 @@ let store = createStore({
                 certificationDate: tec.certificationDate,
                 userId: user.getters.GET_ALL_USERS(user.state).find((user) => {return user.id === tec.userId}),
             }
-            var dataToSplit = ""
-            dataToSplit = transformedTec.certificationDate.split('-')
-            dataToSplit[0] = parseInt(dataToSplit[0])
-            dataToSplit[1] = parseInt(dataToSplit[1])
-            dataToSplit[2] = parseInt(dataToSplit[2])
-            transformedTec.certificationDate = dataToSplit
-            console.log(dataToSplit)
+            // var dataToSplit = ""
+            // dataToSplit = transformedTec.certificationDate.split('-')
+            // dataToSplit[0] = parseInt(dataToSplit[0])
+            // dataToSplit[1] = parseInt(dataToSplit[1])
+            // dataToSplit[2] = parseInt(dataToSplit[2])
+            // transformedTec.certificationDate = dataToSplit
+            // console.log(dataToSplit)
             console.log(transformedTec)
             return axios.post(url, transformedTec)
                 .then((tecResponse) => {

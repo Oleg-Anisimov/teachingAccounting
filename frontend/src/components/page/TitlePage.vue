@@ -58,7 +58,7 @@
         <!-- DATE -->
         <div class="ui-input">
           <label for="input-last-name">Дата последней аттестации</label>
-          <input v-model="this.teacher.date" id="last-attestation-date" :disabled="!editing" type="date"/>
+          <input v-model="this.teacher.certificationDate" id="last-attestation-date" :disabled="!editing" type="date"/>
         </div>
         <!-- BUTTON -->
         <div class="ui-button-group" v-if="!editing">
@@ -109,12 +109,12 @@ export default {
         this.teacher.department,
         this.teacher.position,
         this.teacher.category,
-        this.teacher.date,
+        this.teacher.certificationDate,
         this.teacher.userId,
       )
-      console.log(this.teacher.date)
+      // this.STRING_TO_DATE(data.certificationDate)
       this.UPLOAD_TEACHER(data)
-      console.log(this.GET_ALL_USERS())
+      // console.log(this.GET_ALL_USERS())
 
       event.preventDefault();
     },
@@ -123,7 +123,7 @@ export default {
       LOAD_DEPARTMENTS: 'LOAD_DEPARTMENTS',
       LOAD_TEACHER: 'LOAD_TEACHER',
       UPLOAD_TEACHER: 'UPLOAD_TEACHER',
-      LOAD_ALL_USERS: 'user/LOAD_ALL_USERS'
+      LOAD_ALL_USERS: 'user/LOAD_ALL_USERS',
      }),
     ...mapGetters({
       GET_TEACHER: 'GET_TEACHER',
@@ -134,7 +134,7 @@ export default {
       GET_ALL_DEPARTMENTS: 'GET_ALL_DEPARTMENTS',
       GET_ALL_DEPARTMENTS_NAMES: 'GET_ALL_DEPARTMENTS_NAMES',
       getCurrentUser: 'user/GET_CURRENT_USER',
-      GET_ALL_USERS: 'user/GET_ALL_USERS'
+      GET_ALL_USERS: 'user/GET_ALL_USERS',
     }),
   },
   mounted() {

@@ -9,9 +9,9 @@ import {scienMethod} from "./pageStores/scienMethod";
 import {academicProduct} from "./pageStores/academicProduct";
 import {educateWork} from "./pageStores/educateWork";
 import {promotionQualificLVL} from "./pageStores/promotionQualificLVL";
+import {methods} from "./dateMethods";
 
 let store = createStore({
-
     modules: {
         user,
         categoryBased,
@@ -52,15 +52,7 @@ let store = createStore({
             let url = '/api/teacher'
             return axios.get(url)
             .then((response) => {
-                var dataToSplit = []
-                dataToSplit = response.data.certificationDate
-                for(var i = 0; i < dataToSplit.length; i++){
-                    if(dataToSplit[i].toString().length ===1){
-                        dataToSplit[i] = "0" + dataToSplit[i]
-                    }
-                }
-                dataToSplit = dataToSplit.join('-')
-                response.data.certificationDate = dataToSplit
+                response.data.certificationDate = methods.methods.DATE_TO_STRING(response.data.certificationDate)
                 console.log(response.data)
                 commit('SET_TEACHER', response.data)
                 return response.data
@@ -83,13 +75,7 @@ let store = createStore({
                 certificationDate: tec.certificationDate,
                 userId: user.getters.GET_ALL_USERS(user.state).find((user) => {return user.id === tec.userId}),
             }
-            // var dataToSplit = ""
-            // dataToSplit = transformedTec.certificationDate.split('-')
-            // dataToSplit[0] = parseInt(dataToSplit[0])
-            // dataToSplit[1] = parseInt(dataToSplit[1])
-            // dataToSplit[2] = parseInt(dataToSplit[2])
-            // transformedTec.certificationDate = dataToSplit
-            // console.log(dataToSplit)
+            transformedTec.certificationDate = methods.methods.STRING_TO_DATE(transformedTec.certificationDate)
             console.log(transformedTec)
             return axios.post(url, transformedTec)
                 .then((tecResponse) => {
@@ -144,7 +130,15 @@ let store = createStore({
                 console.log(error)
             })
         },
-
+        STRING_TO_DATE(string){
+            // dataToSplit = string.split('-')
+            // dataToSplit[0] = parseInt(dataToSplit[0])
+            // dataToSplit[1] = parseInt(dataToSplit[1])
+            // dataToSplit[2] = parseInt(dataToSplit[2])
+            // string = dataToSplit
+            console.log(string)
+            return string
+        }
 
     },
     getters: {
@@ -166,7 +160,6 @@ let store = createStore({
         GET_ALL_DEPARTMENTS(state) {
             return state.departments
         },
-        
     },
 })
 

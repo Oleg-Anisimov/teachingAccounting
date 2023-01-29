@@ -5,14 +5,18 @@ import me.anisimov.teachingAccounting.domain.AcademicProduction;
 import me.anisimov.teachingAccounting.domain.User;
 import me.anisimov.teachingAccounting.dto.AcademicProductionDto;
 import me.anisimov.teachingAccounting.repository.AcademicProductionRepository;
+import me.anisimov.teachingAccounting.repository.EntityRepository;
 import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +32,10 @@ public class AcademicProductionService {
     private ModelMapper mapper;
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
+    @Autowired
+    private ExportToExcelService exportToExcelService;
+    @Autowired
+    private EntityRepository entityRepository;
 
     public AcademicProductionDto createAcademicProduction(AcademicProductionDto academicProductionDto) {
 
@@ -74,5 +82,24 @@ public class AcademicProductionService {
         });
         return allUserInformation;
     }
+
+    public FileSystemResource exportToExcel() {
+
+        User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
+        List<AcademicProduction> academicProductions = entityRepository.listForUser(AcademicProduction.class, user);
+
+        String[] fieldNames = {
+                "id", "specialization.specialization", "cabinetType",
+                "cabinetName", "activityType", "academicProductionActivityForm",
+                "date", "result"
+        };
+        String filename = "AcademicProduction_" + LocalDate.now() + ".xlsx";
+
+        exportToExcelService.export(filename, fieldNames, academicProductions);
+
+        return new FileSystemResource(new File(filename));
+
+    }
+
 }
 

@@ -6,15 +6,19 @@ import me.anisimov.teachingAccounting.domain.Teacher;
 import me.anisimov.teachingAccounting.domain.User;
 import me.anisimov.teachingAccounting.dto.AcademicWorkDto;
 import me.anisimov.teachingAccounting.dto.OrganizedMethodsDto;
+import me.anisimov.teachingAccounting.repository.EntityRepository;
 import me.anisimov.teachingAccounting.repository.OrganizedMethodsRepository;
 import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +33,11 @@ public class OrganizedMethodsService {
     private UserDetailsServiceImpl userDetailsServiceImpl;
     @Autowired
     private ModelMapper mapper;
+    @Autowired
+    private ExportToExcelService exportToExcelService;
+    @Autowired
+    private EntityRepository entityRepository;
+
 
     public OrganizedMethodsDto createOrganizedMethods(OrganizedMethodsDto organizedMethodsDto) {
 
@@ -71,10 +80,24 @@ public class OrganizedMethodsService {
 
     public Page<OrganizedMethodsDto> getCurrentOrganizedMethods(PageRequest pageRequest) {
         User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
-        Page<OrganizedMethodsDto> allUserInformation = organizedMethodsRepository.getAllByUser(user,pageRequest)
+        Page<OrganizedMethodsDto> allUserInformation = organizedMethodsRepository.getAllByUser(user, pageRequest)
                 .map(method -> {
                     return mapper.map(method, OrganizedMethodsDto.class);
                 });
         return allUserInformation;
+    }
+
+    public FileSystemResource exportToExcel() {
+        User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
+        List<OrganizedMethods> organizedMethods = entityRepository.listForUser(OrganizedMethods.class, user);
+
+        String[] fieldNames = {
+                "id", "activityType", "eventType",
+                "eventName", "eventLevel", "date",
+                "studentInformation", "result"
+        };
+        String filename = "OrganizedMethods_" + LocalDate.now() + ".xlsx";
+        exportToExcelService.export(filename, fieldNames, organizedMethods);
+        return new FileSystemResource(new File(filename));
     }
 }

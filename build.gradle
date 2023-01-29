@@ -35,6 +35,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
 	implementation 'org.apache.poi:poi-ooxml:4.1.2'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-batch
+	implementation 'org.springframework.boot:spring-boot-starter-batch:2.3.3.RELEASE'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.3.3.RELEASE'
+
+
 
 }
 

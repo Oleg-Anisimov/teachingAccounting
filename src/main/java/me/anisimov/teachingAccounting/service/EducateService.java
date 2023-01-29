@@ -1,18 +1,23 @@
 package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
+import me.anisimov.teachingAccounting.domain.AcademicProduction;
 import me.anisimov.teachingAccounting.domain.Educate;
 import me.anisimov.teachingAccounting.domain.User;
 import me.anisimov.teachingAccounting.dto.EducateDto;
 import me.anisimov.teachingAccounting.repository.EducateRepository;
+import me.anisimov.teachingAccounting.repository.EntityRepository;
 import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +31,10 @@ public class EducateService {
     private ModelMapper mapper;
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
+    @Autowired
+    private ExportToExcelService exportToExcelService;
+    @Autowired
+    private EntityRepository entityRepository;
 
     public EducateDto createEducate(EducateDto educateDto) {
 
@@ -74,4 +83,23 @@ public class EducateService {
                 });
         return allUserInformation;
     }
+
+    public FileSystemResource exportToExcel() {
+
+        User user = userDetailsServiceImpl.findByLogin(SecurityUtils.getCurrentUsername());
+        List<Educate> educates = entityRepository.listForUser(Educate.class, user);
+
+        String[] fieldNames = {
+                "id", "workVector", "activityType",
+                "eventType", "eventName", "eventLevel",
+                "date", "studentInformation", "result"
+        };
+        String filename = "Educate_" + LocalDate.now() + ".xlsx";
+
+        exportToExcelService.export(filename, fieldNames, educates);
+
+        return new FileSystemResource(new File(filename));
+
+    }
+
 }

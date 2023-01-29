@@ -39,7 +39,7 @@
                     <option v-for="eventLevel in GET_ENUMS().EventLevel" :key="eventLevel" :value="eventLevel">{{$t('enum.eventLevel.' + eventLevel)}}</option>
                 </select><br>
                 <p>Дата</p>
-                <input type="text">
+                <input type="date">
                 <p>Информация о студентах</p>
                 <input type="text">
                 <button @click="addEducateWork()">Добавить</button> 

@@ -19,7 +19,7 @@ import PromQual from "./fillingForms/PromQual.vue";
               <tr v-for="lvl in GET_PROMOTION_QUALIFICATION_LVL()" :key="lvl">
                 <td>{{lvl.id}}</td>
                 <td>{{$t('enum.PromotionForm.' + lvl.promotionForm)}}</td>
-                <td></td>
+                <td>{{ lvl.date }}</td>
                 <td></td>
                 <td></td>
                 <td></td>

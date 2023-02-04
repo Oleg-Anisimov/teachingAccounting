@@ -1,11 +1,13 @@
 import qs from "qs";
 import axios from "axios";
 import {categoryBased} from "../categoryBased";
+import {methods} from "../dateMethods";
 
 export const scienMethod = {
     namespaced: true,
     modules: {
-        categoryBased
+        categoryBased,
+        methods
     },
     state: {
         scienMethod: [],
@@ -20,6 +22,7 @@ export const scienMethod = {
             state.scientificMethod = sciens
         },
         ADD_SCIENTIFIC_METHOD: (state, scientificMethod) => {
+            scientificMethod.date = methods.methods.DATE_TO_STRING(scientificMethod.date)
             console.log(scientificMethod);
             state.scientificMethod.push(scientificMethod)
         },
@@ -33,6 +36,10 @@ export const scienMethod = {
             }
             return axios(url, options)
                 .then((sciens) => {
+                    sciens.data.content.forEach(element => {
+                        element.date = methods.methods.DATE_TO_STRING(element.date)
+                        console.log(element.date)
+                    })
                     commit('SET_SCIENTIFIC_METHOD', sciens.data.content)
                     console.log(sciens.data)
                     return sciens.data

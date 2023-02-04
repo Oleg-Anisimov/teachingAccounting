@@ -112,9 +112,8 @@ export default {
         this.teacher.certificationDate,
         this.teacher.userId,
       )
-      // this.STRING_TO_DATE(data.certificationDate)
       this.UPLOAD_TEACHER(data)
-      // console.log(this.GET_ALL_USERS())
+      console.log(this.GET_ALL_USERS())
 
       event.preventDefault();
     },

@@ -25,7 +25,7 @@ import OrgMethWork from "./fillingForms/OrgMethWork.vue";
         <td>{{ $t('enum.eventType.' + organ.eventType) }}</td>
         <td></td>
         <td>{{ $t('enum.eventLevel.' + organ.eventLevel) }}</td>
-        <td></td>
+        <td>{{ organ.date }}</td>
         <td></td>
         <td></td>
       </tr>
@@ -94,8 +94,8 @@ export default {
   grid-template-areas: "filling-form table table";
 }
 
-table {
+/* table {
   max-width: 75em;
-}
+} */
 </style>
  

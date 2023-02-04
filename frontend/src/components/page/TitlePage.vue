@@ -112,7 +112,6 @@ export default {
         this.teacher.certificationDate,
         this.teacher.userId,
       )
-      console.log(this.teacher.date)
       this.UPLOAD_TEACHER(data)
       console.log(this.GET_ALL_USERS())
 

@@ -1,11 +1,13 @@
 import qs from "qs";
 import axios from "axios";
 import {categoryBased} from "../categoryBased";
+import {methods} from "../dateMethods";
 
 export const organizMethod = {
     namespaced: true,
     modules: {
-        categoryBased
+        categoryBased,
+        methods
     },
     state: {
         organizMethod: [],
@@ -20,6 +22,7 @@ export const organizMethod = {
             state.organizedMethod = organs
         },
         ADD_ORGANIZED_METHOD: (state, organizedMethod) => {
+            organizedMethod.date = methods.methods.DATE_TO_STRING(organizedMethod.date)
             console.log(organizedMethod);
             state.organizedMethod.push(organizedMethod)
         },
@@ -33,27 +36,10 @@ export const organizMethod = {
             }
             return axios(url, options)
                 .then((organs) => {
-                // var dataToSplit = []
-                // for(var i = 0; i < organs.data.content.length; i++){
-                //     dataToSplit = organs.data.content[i].date
-                //     console.log(organs.data.content[i].date)
-                // }    
-                // console.log(organs.data.content[2].date)
-                // for(var i = 0; i < dataToSplit.length; i++){
-                //     if(dataToSplit[i].toString().length ===1){
-                //         dataToSplit[i] = "0" + dataToSplit[i]
-                //     }
-                // }
-                
-                // dataToSplit = dataToSplit.join('-')
-                
-                // for(var i = 0; i < organs.data.content.length; i++){
-                //     organs.data.content[i].date = dataToSplit
-                    
-                // }
-
-                
-
+                organs.data.content.forEach(element => {
+                    element.date = methods.methods.DATE_TO_STRING(element.date)
+                    console.log(element.date)
+                })
                 console.log(organs.data)
                     commit('SET_ORGANIZED_METHOD', organs.data.content)
                     return organs.data
@@ -67,6 +53,7 @@ export const organizMethod = {
             console.log(getters)
             return axios.post(url, organ)
                 .then((organResponse) => {
+                    console.log(organResponse.data)
                     commit('ADD_ORGANIZED_METHOD', organResponse.data)
                     return organResponse.data;
                 })

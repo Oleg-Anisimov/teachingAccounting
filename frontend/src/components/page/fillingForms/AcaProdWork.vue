@@ -41,8 +41,8 @@
         </div>
         <div class="export">
             <div class="form-border">
-                <button><img src="../../../assets/img/print.png"> Версия для печати</button>
-                <button class="last-button"><img src="../../../assets/img/excel.png">Экспорт в Excel</button>
+                <button class="last-button" v-on:click="EXPORT_TO_EXCEL">
+                <img src="../../../assets/img/excel.png">Экспорт в Excel</button>
             </div>
         </div>
     </div>
@@ -71,7 +71,8 @@ export default{
     ...mapActions({
       LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
       LOAD_SPECIALIZATION: 'LOAD_SPECIALIZATION',
-      UPLOAD_ACADEMIC_PRODUCTION: 'academicProduct/UPLOAD_ACADEMIC_PRODUCTION'
+      UPLOAD_ACADEMIC_PRODUCTION: 'academicProduct/UPLOAD_ACADEMIC_PRODUCTION',
+      EXPORT_TO_EXCEL: 'academicProduct/EXPORT_TO_EXCEL'
     }),
     ...mapMutations({
       ADD_ACADEMIC_PRODUCTION: 'academicProduct/ADD_ACADEMIC_PRODUCTION'
@@ -90,6 +91,7 @@ export default{
           this.model.activityType,
           this.model.date,
       )
+      console.log(product)
       this.UPLOAD_ACADEMIC_PRODUCTION(product)
     },
   },

@@ -33,6 +33,28 @@ export const organizMethod = {
             }
             return axios(url, options)
                 .then((organs) => {
+                // var dataToSplit = []
+                // for(var i = 0; i < organs.data.content.length; i++){
+                //     dataToSplit = organs.data.content[i].date
+                //     console.log(organs.data.content[i].date)
+                // }    
+                // console.log(organs.data.content[2].date)
+                // for(var i = 0; i < dataToSplit.length; i++){
+                //     if(dataToSplit[i].toString().length ===1){
+                //         dataToSplit[i] = "0" + dataToSplit[i]
+                //     }
+                // }
+                
+                // dataToSplit = dataToSplit.join('-')
+                
+                // for(var i = 0; i < organs.data.content.length; i++){
+                //     organs.data.content[i].date = dataToSplit
+                    
+                // }
+
+                
+
+                console.log(organs.data)
                     commit('SET_ORGANIZED_METHOD', organs.data.content)
                     return organs.data
                 })

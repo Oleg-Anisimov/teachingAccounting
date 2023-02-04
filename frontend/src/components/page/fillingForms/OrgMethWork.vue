@@ -42,8 +42,8 @@
         </div>
         <div class="export">
             <div class="form-border">
-                <button><img src="../../../assets/img/print.png"> Версия для печати</button>
-                <button class="last-button"><img src="../../../assets/img/excel.png">Экспорт в Excel</button>
+                <button class="last-button" v-on:click="EXPORT_TO_EXCEL">
+                <img src="../../../assets/img/excel.png">Экспорт в Excel</button>
             </div>
         </div>
     </div>
@@ -72,7 +72,8 @@ export default{
     methods: {
     ...mapActions({
       LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
-      UPLOAD_ORGANIZED_METHOD: 'organizMethod/UPLOAD_ORGANIZED_METHOD'
+      UPLOAD_ORGANIZED_METHOD: 'organizMethod/UPLOAD_ORGANIZED_METHOD',
+      EXPORT_TO_EXCEL: 'organizMethod/EXPORT_TO_EXCEL'
     }),
     ...mapMutations({
       ADD_ORGANIZED_METHOD: 'organizMethod/ADD_ORGANIZED_METHOD'

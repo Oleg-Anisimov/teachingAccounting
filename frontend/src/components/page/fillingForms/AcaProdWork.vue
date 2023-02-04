@@ -91,6 +91,7 @@ export default{
           this.model.activityType,
           this.model.date,
       )
+      console.log(product)
       this.UPLOAD_ACADEMIC_PRODUCTION(product)
     },
   },

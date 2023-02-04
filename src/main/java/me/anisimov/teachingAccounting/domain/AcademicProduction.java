@@ -22,7 +22,7 @@ public class AcademicProduction extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "academic_production_seq")
     private Long id;
 
-    @Column(name = "date")
+    @Column(name = "production_date")
     private LocalDate date;
 
     @Column(name = "result")

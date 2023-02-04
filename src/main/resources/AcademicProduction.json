@@ -1,8 +1,8 @@
 [
   {
-    "date": null,
+    "date": "2020-03-10",
     "result": "Cool",
-    "academicProductionActivityForm": null,
+    "academicProductionActivityForm": "ACTUALIZATION",
     "cabinetType": "CABINET",
     "cabinetName": "316",
     "activityType": "DEVELOPMENT",
@@ -10,9 +10,9 @@
     "userId": 1
   },
   {
-    "date": null,
+    "date": "2020-03-10",
     "result": "Cool",
-    "academicProductionActivityForm": null,
+    "academicProductionActivityForm": "ACTUALIZATION",
     "cabinetType": "LABORATORY",
     "cabinetName": "Breaking Bad",
     "activityType": "REALIZATION",

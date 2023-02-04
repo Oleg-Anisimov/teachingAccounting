@@ -2,11 +2,13 @@ import qs from "qs";
 import axios from "axios";
 import {categoryBased} from "../categoryBased";
 import store from "../store";
+import {methods} from "../dateMethods";
 
 export const academicProduct = {
     namespaced: true,
     modules: {
         categoryBased,
+        methods
     },
     state: {
         academicProduct: [],
@@ -24,6 +26,7 @@ export const academicProduct = {
             state.academicProduction = products
         },
         ADD_ACADEMIC_PRODUCTION: (state, academicProduction) => {
+            academicProduction.date = methods.methods.DATE_TO_STRING(academicProduction.date)
             console.log(academicProduction);
             state.academicProduction.push(academicProduction)
         },
@@ -37,6 +40,10 @@ export const academicProduct = {
             }
             return axios(url, options)
                 .then((products) => {
+                    products.data.content.forEach(element => {
+                        element.date = methods.methods.DATE_TO_STRING(element.date)
+                        console.log(element.date)
+                    })
                     commit('SET_ACADEMIC_PRODUCTION', products.data.content)
                     console.log(products.data)
                     return products.data

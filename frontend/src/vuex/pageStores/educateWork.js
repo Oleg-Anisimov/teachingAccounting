@@ -1,11 +1,13 @@
 import qs from "qs";
 import axios from "axios";
 import {categoryBased} from "../categoryBased";
+import {methods} from "../dateMethods";
 
 export const educateWork = {
     namespaced: true,
     modules: {
-        categoryBased
+        categoryBased,
+        methods
     },
     state: {
         educateWork: [],
@@ -20,6 +22,7 @@ export const educateWork = {
             state.educateWork = educats
         },
         ADD_EDUCATE_WORK: (state, educateWork) => {
+            educateWork.date = methods.methods.DATE_TO_STRING(educateWork.date)
             console.log(educateWork);
             state.educateWork.push(educateWork)
         },
@@ -33,6 +36,10 @@ export const educateWork = {
             }
             return axios(url, options)
                 .then((products) => {
+                    products.data.content.forEach(element => {
+                        element.date = methods.methods.DATE_TO_STRING(element.date)
+                        console.log(element.date)
+                    })
                     commit('SET_EDUCATE_WORK', products.data.content)
                     console.log(products.data)
                     return products.data

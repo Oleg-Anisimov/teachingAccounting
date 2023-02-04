@@ -114,13 +114,15 @@ export default {
       )
       this.UPLOAD_TEACHER(data)
       console.log(this.GET_ALL_USERS())
+
+      event.preventDefault();
     },
     ...mapActions({
       LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
       LOAD_DEPARTMENTS: 'LOAD_DEPARTMENTS',
       LOAD_TEACHER: 'LOAD_TEACHER',
       UPLOAD_TEACHER: 'UPLOAD_TEACHER',
-      LOAD_ALL_USERS: 'user/LOAD_ALL_USERS'
+      LOAD_ALL_USERS: 'user/LOAD_ALL_USERS',
      }),
     ...mapGetters({
       GET_TEACHER: 'GET_TEACHER',
@@ -131,7 +133,7 @@ export default {
       GET_ALL_DEPARTMENTS: 'GET_ALL_DEPARTMENTS',
       GET_ALL_DEPARTMENTS_NAMES: 'GET_ALL_DEPARTMENTS_NAMES',
       getCurrentUser: 'user/GET_CURRENT_USER',
-      GET_ALL_USERS: 'user/GET_ALL_USERS'
+      GET_ALL_USERS: 'user/GET_ALL_USERS',
     }),
   },
   mounted() {

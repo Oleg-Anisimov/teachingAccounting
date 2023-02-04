@@ -22,7 +22,7 @@
                     <option v-for="promotionForm in GET_ENUMS().PromotionForm" :key="promotionForm" :value="promotionForm">{{$t('enum.PromotionForm.' + promotionForm)}}</option>
                 </select>
                 <p>Дата</p>
-                <input type="text">
+                <input v-model="this.model.date" type="date">
                 <p>Место</p>
                 <input type="text">
                 <p>Тема</p>
@@ -51,7 +51,8 @@ export default{
       return {
         model: {
           id: '',
-          promotionForm: ''
+          promotionForm: '',
+          date: '',
         },
         
       }
@@ -74,6 +75,7 @@ export default{
       let lvl = new PromotionQualificationLvl(
           this.id,
           this.model.promotionForm,
+          this.model.date,
       )
       console.log(lvl)
       this.UPLOAD_PROMOTION_QUALIFICATION_LVL(lvl)

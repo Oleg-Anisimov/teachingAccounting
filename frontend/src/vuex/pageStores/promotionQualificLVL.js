@@ -1,11 +1,13 @@
 import qs from "qs";
 import axios from "axios";
 import {categoryBased} from "../categoryBased";
+import {methods} from "../dateMethods";
 
 export const promotionQualificLVL = {
     namespaced: true,
     modules: {
-        categoryBased
+        categoryBased,
+        methods
     },
     state: {
         promotionQualificLVL: [],
@@ -20,6 +22,7 @@ export const promotionQualificLVL = {
             state.promotionQualificationLvl = lvls
         },
         ADD_PROMOTION_QUALIFICATION_LVL: (state, promotionQualificationLvl) => {
+            promotionQualificationLvl.date = methods.methods.DATE_TO_STRING(promotionQualificationLvl.date)
             console.log(promotionQualificationLvl);
             state.promotionQualificationLvl.push(promotionQualificationLvl)
         },
@@ -34,6 +37,10 @@ export const promotionQualificLVL = {
             return axios(url, options)
             
                 .then((lvls) => {
+                    lvls.data.content.forEach(element => {
+                        element.date = methods.methods.DATE_TO_STRING(element.date)
+                        console.log(element.date)
+                    })
                     commit('SET_PROMOTION_QUALIFICATION_LVL', lvls.data.content)
                     console.log(lvls.data)
                     return lvls.data

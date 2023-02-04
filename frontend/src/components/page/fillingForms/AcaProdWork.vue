@@ -35,7 +35,7 @@
                     <option value=""></option>
                 </select><br>
                 <p>Дата</p>
-                <input type="text">
+                <input v-model="this.model.date" type="date">
                 <button @click="addAcademicProduct()">Добавить</button> 
             </div>    
         </div>
@@ -61,7 +61,8 @@ export default{
         model: {
           id: 1,
           specialization: '',
-          activityType: ''
+          activityType: '',
+          date: '',
         },
         
       }
@@ -87,6 +88,7 @@ export default{
           this.id,
           this.model.specialization,
           this.model.activityType,
+          this.model.date,
       )
       this.UPLOAD_ACADEMIC_PRODUCTION(product)
     },

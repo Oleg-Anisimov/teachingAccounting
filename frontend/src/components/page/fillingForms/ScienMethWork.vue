@@ -34,7 +34,7 @@
                   <option v-for="eventLevel in GET_ENUMS().EventLevel" :key="eventLevel" :value="eventLevel">{{$t('enum.eventLevel.' + eventLevel)}}</option>
                 </select>
                 <p>Дата</p>
-                <input type="text">
+                <input v-model="this.model.date" type="date">
                 <p>Место</p>
                 <input type="text">
                 <p>Вид участия</p>
@@ -71,6 +71,7 @@ export default{
           eventLevel: '',
           eventType: '',
           participationType: '',
+          date: '',
         },
         
       }
@@ -95,7 +96,8 @@ export default{
           this.model.activityType,
           this.model.eventType,
           this.model.eventLevel,
-          this.model.participationType
+          this.model.participationType,
+          this.model.date,
       )
       console.log(scien)
       this.UPLOAD_SCIENTIFIC_METHOD(scien)

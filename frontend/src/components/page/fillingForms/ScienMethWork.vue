@@ -40,7 +40,7 @@
                 <p>Вид участия</p>
                 <select v-model="model.participationType">
                   <option disabled value="">Выберите вид участия</option>
-                  <option v-for="participationType in GET_ENUMS().ParticipationType" :key="participationType" :value="participationType">{{participationType}}</option>
+                  <option v-for="participationType in GET_ENUMS().ParticipationType" :key="participationType" :value="participationType">{{$t('enum.ParticipationType.' + participationType)}}</option>
                 </select>
                 <button @click="addScienMethod()">Добавить</button> 
             </div>    

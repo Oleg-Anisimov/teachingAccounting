@@ -28,6 +28,7 @@
                 </select>
                 <p>Учебная группа</p>
                 <select v-model="model.group">
+                  <option disabled value="">Выберите группу</option>
                     <option v-for="group in GET_ALL_GROUPS()" :key="group.id" :value="group">{{group.groupName}}</option>
                 </select><br>
                 <p>Кол-во часов по плану:</p>

@@ -24,8 +24,8 @@ import EducWork from "./fillingForms/EducWork.vue";
         <td>{{ $t('enum.WorkVector.' + educate.workVector) }}</td>
         <td>{{ $t('enum.ActivityType.' + educate.activityType) }}</td>
         <td>{{ $t('enum.eventType.' + educate.eventType) }}</td>
-        <td>{{ $t('enum.eventLevel.' + educate.eventLevel) }}</td>
         <td></td>
+        <td>{{ $t('enum.eventLevel.' + educate.eventLevel) }}</td>
         <td>{{ educate.date }}</td>
         <td></td>
         <td></td>

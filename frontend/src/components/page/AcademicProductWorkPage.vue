@@ -21,8 +21,8 @@ import AcaProdWork from "./fillingForms/AcaProdWork.vue";
               <tr v-for="product in GET_ACADEMIC_PRODUCTION()" :key="product.id">
                 <td>{{ product.id }}</td>
                 <td>{{ product.specialization.specialization }}</td>
-                <td></td>
-                <td></td>
+                <td>{{ product.cabinet.cabinetType }}</td>
+                <td>{{ product.cabinet.cabinetName }}</td>
                 <td>{{$t('enum.ActivityType.' + product.activityType)}}</td>
                 <td>{{ product.academicProductionActivityForm }}</td>
                 <td>{{ product.date }}</td>

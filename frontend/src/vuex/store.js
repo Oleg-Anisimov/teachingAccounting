@@ -29,6 +29,7 @@ let store = createStore({
         specializations: [],
         academicDisciplines: [],
         departments: [],
+        cabinets: []
     },
     mutations: {
         SET_TEACHER: (state, teacher) => {
@@ -46,6 +47,9 @@ let store = createStore({
         SET_DEPARTMENTS: (state, departments) => {
             state.departments = departments
         },
+        SET_CABINETS: (state, cabinets) => {
+            state.cabinets = cabinets;
+        }
     },
     actions: {
         LOAD_TEACHER({commit}) {
@@ -130,16 +134,17 @@ let store = createStore({
                 console.log(error)
             })
         },
-        STRING_TO_DATE(string){
-            // dataToSplit = string.split('-')
-            // dataToSplit[0] = parseInt(dataToSplit[0])
-            // dataToSplit[1] = parseInt(dataToSplit[1])
-            // dataToSplit[2] = parseInt(dataToSplit[2])
-            // string = dataToSplit
-            console.log(string)
-            return string
-        }
-
+        LOAD_CABINETS({commit}) {
+            const url = '/api/cabinet/all';
+            return axios(url, {method: 'GET'})
+            .then((cabinets) => {
+                commit('SET_CABINETS', cabinets.data)
+                return cabinets.data
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        },
     },
     getters: {
         GET_TEACHER(state) {
@@ -160,6 +165,9 @@ let store = createStore({
         GET_ALL_DEPARTMENTS(state) {
             return state.departments
         },
+        GET_ALL_CABINETS(state) {
+            return state.cabinets
+        }
     },
 })
 

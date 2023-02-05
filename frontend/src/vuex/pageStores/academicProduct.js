@@ -27,6 +27,9 @@ export const academicProduct = {
         },
         ADD_ACADEMIC_PRODUCTION: (state, academicProduction) => {
             academicProduction.date = methods.methods.DATE_TO_STRING(academicProduction.date)
+            
+            academicProduction.cabinet = store.getters.GET_ALL_CABINETS.find((cab) => {return cab.id === academicProduction.cabinetId})
+            console.log(academicProduction)
             state.academicProduction.push(academicProduction)
         },
     },
@@ -41,6 +44,7 @@ export const academicProduct = {
                 .then((products) => {
                     products.data.content.forEach(element => {
                         element.date = methods.methods.DATE_TO_STRING(element.date)
+                        element.cabinet = store.getters.GET_ALL_CABINETS.find((cab) => {return cab.id === element.cabinetId})
                         console.log(element.date)
                     })
                     commit('SET_ACADEMIC_PRODUCTION', products.data.content)
@@ -57,7 +61,8 @@ export const academicProduct = {
                 specializationId: product.specialization.id,
                 activityType: product.activityType,
                 date: product.date,
-                academicProductionActivityForm: product.academicProductionActivityForm
+                academicProductionActivityForm: product.academicProductionActivityForm,
+                cabinetId: product.cabinetId
             }
             console.log(getters)
             console.log(data.date)
@@ -69,7 +74,8 @@ export const academicProduct = {
                             specialization: store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
                             date: data.date,
                             activityType: categoryBased.getters.GET_ENUMS(categoryBased.state).ActivityType.find((actType) => {return actType === data.activityType}),
-                            academicProductionActivityForm: data.academicProductionActivityForm
+                            academicProductionActivityForm: data.academicProductionActivityForm,
+                            cabinetId: data.cabinetId
                         }
                     }
                     console.log(data.date)

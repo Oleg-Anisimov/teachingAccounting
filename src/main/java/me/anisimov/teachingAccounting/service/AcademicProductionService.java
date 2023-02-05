@@ -91,8 +91,8 @@ public class AcademicProductionService {
         List<AcademicProduction> academicProductions = entityRepository.listForUser(AcademicProduction.class, user);
 
         String[] fieldNames = {
-                "id", "specialization.specialization", "cabinetType",
-                "cabinetName", "activityType", "academicProductionActivityForm",
+                "id", "specialization.specialization", "cabinet.cabinetType",
+                "cabinet.cabinetName", "activityType", "academicProductionActivityForm",
                 "date", "result"
         };
         String filename = "AcademicProduction_" + LocalDate.now() + ".xlsx";

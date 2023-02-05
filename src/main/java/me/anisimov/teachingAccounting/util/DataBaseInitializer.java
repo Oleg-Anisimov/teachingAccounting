@@ -38,6 +38,11 @@ public class DataBaseInitializer {
         for (Map.Entry<String, JpaRepository> entry : reposList.entrySet())
             entry.getValue().deleteAll();
 
+        List<CabinetDto> cabinetsDto = getCabinets();
+        for (CabinetDto cabinetDto : cabinetsDto) {
+            ((CabinetService) applicationContext.getBean("cabinetService")).createCabinet(cabinetDto);
+        }
+
         List<GroupDto> groupsDto = getGroups();
         for (GroupDto groupDto : groupsDto) {
             ((GroupService) applicationContext.getBean("groupService")).createGroup(groupDto);
@@ -106,6 +111,19 @@ public class DataBaseInitializer {
         for (AcademicMethodsDto academicMethodsDto : academicsMethodsDto) {
             ((AcademicMethodsService) applicationContext.getBean("academicMethodsService")).createAcademicMethods(academicMethodsDto);
         }
+
+    }
+
+    private List<CabinetDto> getCabinets() throws IOException {
+
+        String json = readJsonFromFile("Cabinet.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
+
+        List<CabinetDto> cabinets = objectMapper.readValue(json, new TypeReference<List<CabinetDto>>() {
+        });
+
+        return cabinets;
 
     }
 

@@ -18,8 +18,7 @@ public class AcademicProductionDto {
     private LocalDate date;
     private String result;
     private AcademicProductionActivityForm academicProductionActivityForm;
-    private CabinetType cabinetType;
-    private String cabinetName;
+    private Long cabinetId;
     private ActivityType activityType;
     private Long specializationId;
     private Long userId;

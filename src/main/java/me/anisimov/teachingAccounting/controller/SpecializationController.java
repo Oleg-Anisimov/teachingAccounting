@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/specialization")
-@Api(value = "TeacherController",tags = {"Методы для работы со специальностями"})
+@Api(value = "SpecializationController",tags = {"Методы для работы со специальностями"})
 public class SpecializationController {
 
     @Autowired

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import me.anisimov.teachingAccounting.domain.Enums.ActivityType;
 import me.anisimov.teachingAccounting.domain.Enums.EventLevel;
+import me.anisimov.teachingAccounting.domain.Enums.EventType;
 import me.anisimov.teachingAccounting.domain.Enums.WorkVector;
 
 import javax.persistence.Column;
@@ -20,7 +21,7 @@ public class EducateDto {
     private Long id;
     private LocalDate date;
     private String result;
-    private String eventType;
+    private EventType eventType;
     private String eventName;
     private String studentInformation;
     private EventLevel eventLevel;

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import me.anisimov.teachingAccounting.domain.Enums.ActivityType;
 import me.anisimov.teachingAccounting.domain.Enums.EventLevel;
+import me.anisimov.teachingAccounting.domain.Enums.EventType;
 import me.anisimov.teachingAccounting.domain.Enums.WorkVector;
 
 import javax.persistence.*;
@@ -29,7 +30,7 @@ public class Educate extends BaseEntity {
     private String result;
 
     @Column(name = "event_type")
-    private String eventType;
+    private EventType eventType;
 
     @Column(name = "event_name")
     private String eventName;

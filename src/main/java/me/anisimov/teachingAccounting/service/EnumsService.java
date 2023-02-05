@@ -34,6 +34,8 @@ public class EnumsService {
         putEnumList(CabinetType.class);
         putEnumList(EmploymentType.class);
         putEnumList(AcademicProductionActivityForm.class);
+        putEnumList(AcademicMethodActivityForm.class);
+        putEnumList(AcademicMethodActivityType.class);
         putEnumList(EventLevel.class);
         putEnumList(EventType.class);
         putEnumList(ParticipationType.class);

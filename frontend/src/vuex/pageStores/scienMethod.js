@@ -60,6 +60,24 @@ export const scienMethod = {
                     console.log(error)
                 })
         },
+        EXPORT_TO_EXCEL() {
+            const url = '/api/scientific/excel';
+            return axios({
+                url: url,
+                method: 'GET',
+                responseType: 'blob',
+            }).then((response) => {
+                const filename = response.headers['content-disposition'].split('filename="')[1].split('"')[0];
+                var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                var fileLink = document.createElement('a');
+
+                fileLink.href = fileURL;
+                fileLink.setAttribute('download', filename);
+                document.body.appendChild(fileLink);
+
+                fileLink.click();
+            });
+        }
     },
     
 

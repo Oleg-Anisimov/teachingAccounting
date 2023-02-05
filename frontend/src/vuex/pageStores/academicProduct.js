@@ -26,7 +26,9 @@ export const academicProduct = {
             state.academicProduction = products
         },
         ADD_ACADEMIC_PRODUCTION: (state, academicProduction) => {
+            console.log(academicProduction.date);
             academicProduction.date = methods.methods.DATE_TO_STRING(academicProduction.date)
+            console.log(academicProduction.date);
             console.log(academicProduction);
             state.academicProduction.push(academicProduction)
         },
@@ -56,18 +58,22 @@ export const academicProduct = {
             let url = '/api/production/create';
             let data = {
                 specializationId: product.specialization.id,
-                activityType: product.activityType
+                activityType: product.activityType,
+                date: product.date
             }
             console.log(getters)
+            console.log(data.date)
             return axios.post(url, data)
                 .then((product) => {
                     function transformProductResponse(data) {
                         return {
                             id: data.id,
                             specialization: store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
+                            date: data.date,
                             activityType: categoryBased.getters.GET_ENUMS(categoryBased.state).ActivityType.find((actType) => {return actType === data.activityType}),
                         }
                     }
+                    console.log(data.date)
                     let transformedProduct = transformProductResponse(product.data);
                     commit('ADD_ACADEMIC_PRODUCTION', transformedProduct)
                     return product.data;
@@ -76,6 +82,24 @@ export const academicProduct = {
                     console.log(error)
                 })
         },
+        EXPORT_TO_EXCEL() {
+            const url = '/api/production/excel';
+            return axios({
+                url: url,
+                method: 'GET',
+                responseType: 'blob',
+            }).then((response) => {
+                const filename = response.headers['content-disposition'].split('filename="')[1].split('"')[0];
+                var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                var fileLink = document.createElement('a');
+
+                fileLink.href = fileURL;
+                fileLink.setAttribute('download', filename);
+                document.body.appendChild(fileLink);
+
+                fileLink.click();
+            });
+        }
     },
     
 

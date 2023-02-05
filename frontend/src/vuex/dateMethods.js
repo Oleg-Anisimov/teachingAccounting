@@ -1,6 +1,7 @@
 export const methods = {
     methods: {
         STRING_TO_DATE(string){
+            console.log(string)
             var dataToSplit = ""
             dataToSplit = string.split('-')
             for(var i = 0; i < dataToSplit.length; i++){

@@ -41,7 +41,7 @@
         <div class="export">
             <div class="form-border">
                 <button class="last-button" v-on:click="EXPORT_TO_EXCEL">
-                  <img src="../../../assets/img/excel.png">Экспорт в Excel</button>
+                <img src="../../../assets/img/excel.png">Экспорт в Excel</button>
             </div>
         </div>
     </div>

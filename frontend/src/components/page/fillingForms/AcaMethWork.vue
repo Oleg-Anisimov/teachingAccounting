@@ -46,8 +46,8 @@
         </div>
         <div class="export">
             <div class="form-border">
-                <button><img src="../../../assets/img/print.png"> Версия для печати</button>
-                <button class="last-button"><img src="../../../assets/img/excel.png">Экспорт в Excel</button>
+                <button class="last-button" v-on:click="EXPORT_TO_EXCEL">
+                <img src="../../../assets/img/excel.png">Экспорт в Excel</button>
             </div>
         </div>
     </div>
@@ -78,6 +78,7 @@ export default{
       LOAD_SPECIALIZATION: 'LOAD_SPECIALIZATION',
       LOAD_ACADEMIC_DISCIPLINE: 'LOAD_ACADEMIC_DISCIPLINE',
       UPLOAD_ACADEMIC_METHOD: 'academicMethod/UPLOAD_ACADEMIC_METHOD',
+      EXPORT_TO_EXCEL: 'academicMethod/EXPORT_TO_EXCEL'
     }),
     ...mapMutations({
       ADD_ACADEMIC_METHOD: 'academicMethod/ADD_ACADEMIC_METHOD'

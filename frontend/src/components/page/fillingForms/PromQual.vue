@@ -32,8 +32,8 @@
         </div>
         <div class="export">
             <div class="form-border">
-                <button><img src="../../../assets/img/print.png"> Версия для печати</button>
-                <button class="last-button"><img src="../../../assets/img/excel.png">Экспорт в Excel</button>
+                <button class="last-button" v-on:click="EXPORT_TO_EXCEL">
+                <img src="../../../assets/img/excel.png">Экспорт в Excel</button>
             </div>
         </div>
     </div>
@@ -60,7 +60,8 @@ export default{
     methods: {
     ...mapActions({
       LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
-      UPLOAD_PROMOTION_QUALIFICATION_LVL: 'promotionQualificLVL/UPLOAD_PROMOTION_QUALIFICATION_LVL'
+      UPLOAD_PROMOTION_QUALIFICATION_LVL: 'promotionQualificLVL/UPLOAD_PROMOTION_QUALIFICATION_LVL',
+      EXPORT_TO_EXCEL: 'promotionQualificLVL/EXPORT_TO_EXCEL'
     }),
     ...mapMutations({
       ADD_PROMOTION_QUALIFICATION_LVL: 'promotionQualificLVL/ADD_PROMOTION_QUALIFICATION_LVL'

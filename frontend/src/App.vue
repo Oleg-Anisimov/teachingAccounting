@@ -36,12 +36,14 @@ export default {
       LOAD_SPECIALIZATION: 'LOAD_SPECIALIZATION',
       LOAD_ACADEMIC_DISCIPLINE: 'LOAD_ACADEMIC_DISCIPLINE',
       LOAD_GROUPS: 'LOAD_GROUPS',
+      LOAD_CABINETS: 'LOAD_CABINETS'
     }),
   },
   created(){
       this.LOAD_GROUPS();
       this.LOAD_SPECIALIZATION();
       this.LOAD_ACADEMIC_DISCIPLINE();
+      this.LOAD_CABINETS();
     }
 }
 </script>

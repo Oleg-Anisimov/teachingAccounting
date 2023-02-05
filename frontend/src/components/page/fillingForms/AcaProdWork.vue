@@ -22,8 +22,9 @@
                     <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization">{{specialization.specialization}}</option>
                 </select>
                 <p>Наименование кабинета</p>
-                <select>
-                  <option value=""></option>
+                <select v-model="model.cabinet">
+                  <option value="" disabled>Выберите наименование кабинета</option>
+                  <option v-for="cabinet in GET_ALL_CABINETS()" :key="cabinet" :value="cabinet.id">{{ cabinet.cabinetName }}</option>
                 </select>
                 <p>Вид деятельности</p>
                 <select v-model="model.activityType">
@@ -64,7 +65,8 @@ export default{
           specialization: '',
           activityType: '',
           date: '',
-          APAForm: ''
+          APAForm: '',
+          cabinet: ''
         },
         
       }
@@ -74,7 +76,8 @@ export default{
       LOAD_ENUMS: 'categoryBased/LOAD_ENUMS',
       LOAD_SPECIALIZATION: 'LOAD_SPECIALIZATION',
       UPLOAD_ACADEMIC_PRODUCTION: 'academicProduct/UPLOAD_ACADEMIC_PRODUCTION',
-      EXPORT_TO_EXCEL: 'academicProduct/EXPORT_TO_EXCEL'
+      EXPORT_TO_EXCEL: 'academicProduct/EXPORT_TO_EXCEL',
+      LOAD_CABINETS: 'LOAD_CABINETS'
     }),
     ...mapMutations({
       ADD_ACADEMIC_PRODUCTION: 'academicProduct/ADD_ACADEMIC_PRODUCTION'
@@ -82,6 +85,7 @@ export default{
     ...mapGetters({
       GET_ENUMS: 'categoryBased/GET_ENUMS',
       GET_ALL_SPECIALIZATIONS: 'GET_ALL_SPECIALIZATIONS',
+      GET_ALL_CABINETS: 'GET_ALL_CABINETS'
       //'',
       // 'GET_DEPARTMENT_NAMES'
     }),
@@ -92,7 +96,8 @@ export default{
           this.model.specialization,
           this.model.activityType,
           this.model.date,
-          this.model.APAForm
+          this.model.APAForm,
+          this.model.cabinet
       )
       console.log(product)
       this.UPLOAD_ACADEMIC_PRODUCTION(product)
@@ -101,6 +106,7 @@ export default{
   mounted(){
     this.LOAD_ENUMS()
     this.LOAD_SPECIALIZATION()
+    this.LOAD_CABINETS()
     //this.
   },
 

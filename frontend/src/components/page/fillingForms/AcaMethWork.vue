@@ -32,12 +32,14 @@
                   <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{$t('enum.ActivityType.' + activityType)}}</option>
                 </select>
                 <p>Вид УМД</p>
-                <select>
-                    <option value=""></option>
+                <select v-model="model.AMAForm">
+                    <option value="" disabled>Выберите вид УМД</option>
+                    <option v-for="AMAForm in this.GET_ENUMS().AcademicMethodActivityForm" :key="AMAForm" :value="AMAForm">{{ AMAForm }}</option>
                 </select><br>
                 <p>Тип УМД</p>
-                <select>
-                    <option value=""></option>
+                <select v-model="model.AMAType">
+                  <option value="" disabled>Выберите тип УМД</option>
+                    <option v-for="AMAType in this.GET_ENUMS().AcademicMethodActivityType" :key="AMAType" :value="AMAType">{{ AMAType }}</option>
                 </select><br>
                 <p>Срок исполнения</p>
                 <input type="text">
@@ -68,6 +70,8 @@ export default{
           activityType: '',
           specialization: '',
           academicDiscipline: '',
+          AMAForm: '',
+          AMAType: ''
         },
         
       }
@@ -95,7 +99,10 @@ export default{
           this.model.specialization,
           this.model.discipline,
           this.model.activityType,
+          this.model.AMAType,
+          this.model.AMAForm
       )
+      console.log(method)
       this.UPLOAD_ACADEMIC_METHOD(method)
     },
   },
@@ -103,7 +110,6 @@ export default{
     this.LOAD_ENUMS()
     this.LOAD_SPECIALIZATION()
     this.LOAD_ACADEMIC_DISCIPLINE()
-    //this.
   },
 
 }

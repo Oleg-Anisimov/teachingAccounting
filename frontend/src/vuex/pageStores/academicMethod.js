@@ -52,6 +52,8 @@ export const academicMethod = {
                 academicDisciplineId: method.academicDiscipline.id,
                 specializationId: method.specialization.id,
                 activityType: method.activityType,
+                academicMethodActivityType: method.academicMethodActivityType,
+                academicMethodActivityForm: method.academicMethodActivityForm
             }
             console.log(getters)
             return axios.post(url, data)
@@ -62,6 +64,8 @@ export const academicMethod = {
                             academicDiscipline: store.getters.GET_ALL_ACADEMIC_DISCIPLINES.find((dis) => {return dis.id === data.academicDisciplineId}),
                             specialization: store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
                             activityType: categoryBased.getters.GET_ENUMS(categoryBased.state).ActivityType.find((actType) => {return actType === data.activityType}),
+                            academicMethodActivityType: data.academicMethodActivityType,
+                            academicMethodActivityForm: data.academicMethodActivityForm
                         }
                     }
 

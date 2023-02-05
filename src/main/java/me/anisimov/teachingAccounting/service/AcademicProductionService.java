@@ -5,6 +5,7 @@ import me.anisimov.teachingAccounting.domain.AcademicProduction;
 import me.anisimov.teachingAccounting.domain.User;
 import me.anisimov.teachingAccounting.dto.AcademicProductionDto;
 import me.anisimov.teachingAccounting.repository.AcademicProductionRepository;
+import me.anisimov.teachingAccounting.repository.CabinetRepository;
 import me.anisimov.teachingAccounting.repository.EntityRepository;
 import me.anisimov.teachingAccounting.util.SecurityUtils;
 import org.dozer.DozerBeanMapper;
@@ -36,6 +37,8 @@ public class AcademicProductionService {
     private ExportToExcelService exportToExcelService;
     @Autowired
     private EntityRepository entityRepository;
+    @Autowired
+    private CabinetService cabinetService;
 
     public AcademicProductionDto createAcademicProduction(AcademicProductionDto academicProductionDto) {
 
@@ -52,8 +55,7 @@ public class AcademicProductionService {
         academicProduction.setAcademicProductionActivityForm(academicProductionDto.getAcademicProductionActivityForm());
         academicProduction.setSpecialization(specializationService.getById(academicProductionDto.getSpecializationId()));
         academicProduction.setActivityType(academicProductionDto.getActivityType());
-        academicProduction.setCabinetType(academicProductionDto.getCabinetType());
-        academicProduction.setCabinetName(academicProductionDto.getCabinetName());
+        academicProduction.setCabinet(cabinetService.getById(academicProductionDto.getCabinetId()));
         academicProductionRepository.save(academicProduction);
         return mapper.map(academicProduction, AcademicProductionDto.class);
     }

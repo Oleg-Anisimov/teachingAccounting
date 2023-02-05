@@ -3,8 +3,7 @@
     "date": "2020-03-10",
     "result": "Cool",
     "academicProductionActivityForm": "ACTUALIZATION",
-    "cabinetType": "CABINET",
-    "cabinetName": "316",
+    "cabinetId": 1,
     "activityType": "DEVELOPMENT",
     "specializationId": 1,
     "userId": 1
@@ -13,8 +12,7 @@
     "date": "2020-03-10",
     "result": "Cool",
     "academicProductionActivityForm": "ACTUALIZATION",
-    "cabinetType": "LABORATORY",
-    "cabinetName": "Breaking Bad",
+    "cabinetId": 2,
     "activityType": "REALIZATION",
     "specializationId": 2,
     "userId": 2

@@ -28,13 +28,6 @@ public class AcademicProduction extends BaseEntity {
     @Column(name = "result")
     private String result;
 
-    @Column(name = "cabinet_name")
-    private  String cabinetName;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "cabinet_type")
-    private CabinetType cabinetType;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "activity_type")
     private ActivityType activityType;
@@ -42,6 +35,10 @@ public class AcademicProduction extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "academic_production_activity_form")
     private AcademicProductionActivityForm academicProductionActivityForm;
+
+    @OneToOne(targetEntity = Cabinet.class)
+    @JoinColumn(name="cabinet_id", nullable=false)
+    private Cabinet cabinet;
 
     @OneToOne(targetEntity = Specialization.class)
     @JoinColumn(name="specialization_id", nullable=false)

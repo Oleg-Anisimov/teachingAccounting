@@ -2,8 +2,8 @@
   {
     "deadLine": null,
     "completeInfo": "https://youtu.be/OPkjnRIdQXQ",
-    "academicMethodActivityType": null,
-    "academicMethodActivityForm": null,
+    "academicMethodActivityType": "DOCUMENTATION_MANAGEMENT",
+    "academicMethodActivityForm": "DOCUMENTATION_MANAGEMENT",
     "activityType": "PARTICIPATION",
     "specializationId": 1,
     "academicDisciplineId": 1,
@@ -12,8 +12,8 @@
   {
     "deadLine": null,
     "completeInfo": "https://youtu.be/OPkjnRIdQXQ",
-    "academicMethodActivityType": null,
-    "academicMethodActivityForm": null,
+    "academicMethodActivityType": "DOCUMENTATION_MANAGEMENT",
+    "academicMethodActivityForm": "DOCUMENTATION_MANAGEMENT",
     "activityType": "PARTICIPATION_PREPARE",
     "specializationId": 2,
     "academicDisciplineId": 2,

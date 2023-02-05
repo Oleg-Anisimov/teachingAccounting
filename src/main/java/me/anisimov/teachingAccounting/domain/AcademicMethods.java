@@ -3,6 +3,8 @@ package me.anisimov.teachingAccounting.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import me.anisimov.teachingAccounting.domain.Enums.AcademicMethodActivityForm;
+import me.anisimov.teachingAccounting.domain.Enums.AcademicMethodActivityType;
 import me.anisimov.teachingAccounting.domain.Enums.ActivityType;
 
 import javax.persistence.*;
@@ -27,10 +29,10 @@ public class AcademicMethods extends BaseEntity {
     private String completeInfo;
 
     @Column(name = "academic_method_activity_type")
-    private String academicMethodActivityType;
+    private AcademicMethodActivityType academicMethodActivityType;
 
     @Column(name = "academic_method_activity_form")
-    private String academicMethodActivityForm;
+    private AcademicMethodActivityForm academicMethodActivityForm;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "activity_type")

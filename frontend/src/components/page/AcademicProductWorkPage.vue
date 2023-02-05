@@ -24,7 +24,7 @@ import AcaProdWork from "./fillingForms/AcaProdWork.vue";
                 <td></td>
                 <td></td>
                 <td>{{$t('enum.ActivityType.' + product.activityType)}}</td>
-                <td></td>
+                <td>{{ product.academicProductionActivityForm }}</td>
                 <td>{{ product.date }}</td>
                 <td></td>
               </tr>

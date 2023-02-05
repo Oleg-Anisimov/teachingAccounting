@@ -31,8 +31,9 @@
                     <option v-for="activityType in GET_ENUMS().ActivityType" :key="activityType" :value="activityType">{{$t('enum.ActivityType.' + activityType)}}</option>
                 </select><br>
                 <p>Вид УПД</p>
-                <select>
-                    <option value=""></option>
+                <select v-model="model.APAForm">
+                    <option disabled value="">Выберите вид УПД</option>
+                    <option v-for="APAForm in GET_ENUMS().AcademicProductionActivityForm" :key="APAForm" :value="APAForm">{{APAForm}}</option>
                 </select><br>
                 <p>Дата</p>
                 <input v-model="this.model.date" type="date">
@@ -63,6 +64,7 @@ export default{
           specialization: '',
           activityType: '',
           date: '',
+          APAForm: ''
         },
         
       }
@@ -90,6 +92,7 @@ export default{
           this.model.specialization,
           this.model.activityType,
           this.model.date,
+          this.model.APAForm
       )
       console.log(product)
       this.UPLOAD_ACADEMIC_PRODUCTION(product)

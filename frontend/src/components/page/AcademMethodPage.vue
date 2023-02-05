@@ -28,8 +28,8 @@ import AcaMethWork from "./fillingForms/AcaMethWork.vue";
 <!--                Название уч дисциплины-->
                 <td>{{ method.academicDiscipline.name }}</td>
                 <td>{{ $t('enum.ActivityType.' + method.activityType) }}</td>
-                <td></td>
-                <td></td>
+                <td>{{ method.academicMethodActivityForm }}</td>
+                <td>{{ method.academicMethodActivityType }}</td>
                 <td></td>
                 <td></td>
                 

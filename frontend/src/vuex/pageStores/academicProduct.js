@@ -26,10 +26,7 @@ export const academicProduct = {
             state.academicProduction = products
         },
         ADD_ACADEMIC_PRODUCTION: (state, academicProduction) => {
-            console.log(academicProduction.date);
             academicProduction.date = methods.methods.DATE_TO_STRING(academicProduction.date)
-            console.log(academicProduction.date);
-            console.log(academicProduction);
             state.academicProduction.push(academicProduction)
         },
     },
@@ -59,7 +56,8 @@ export const academicProduct = {
             let data = {
                 specializationId: product.specialization.id,
                 activityType: product.activityType,
-                date: product.date
+                date: product.date,
+                academicProductionActivityForm: product.academicProductionActivityForm
             }
             console.log(getters)
             console.log(data.date)
@@ -71,6 +69,7 @@ export const academicProduct = {
                             specialization: store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
                             date: data.date,
                             activityType: categoryBased.getters.GET_ENUMS(categoryBased.state).ActivityType.find((actType) => {return actType === data.activityType}),
+                            academicProductionActivityForm: data.academicProductionActivityForm
                         }
                     }
                     console.log(data.date)

@@ -91,7 +91,7 @@ export default {
 </script>
 <style scoped>
 .academic_work_page {
-  grid-template-areas: "filling-form table table";
+  grid-template-areas: "filling-form table table table table table";
 }
 
 /* table {

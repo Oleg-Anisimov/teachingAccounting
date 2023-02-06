@@ -1,8 +1,8 @@
 export default class Teacher {
-    constructor(id, firstName, lastName, middleName, employmentType, department, position, category, certificationDate, userId) {
+    constructor(id, lastName, firstName, middleName, employmentType, department, position, category, certificationDate, userId) {
         this.id = id,
-        this.firstName = firstName;
         this.lastName = lastName;
+        this.firstName = firstName;
         this.middleName = middleName;
         this.employmentType = employmentType;
         this.department = department;

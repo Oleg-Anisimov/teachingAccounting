@@ -32,7 +32,7 @@
                     <option v-for="eventType in GET_ENUMS().EventType" :key="eventType" :value="eventType">{{$t('enum.eventType.' + eventType)}}</option>
                 </select><br>
                 <p>Название мероприятия</p>
-                <input type="text">
+                <input type="text" v-model="model.eventName">
                 <p>Уровень мероприятия</p>
                 <select v-model="model.eventLevel">
                   <option disabled value="">Выберите уровень мероприятия</option>
@@ -41,7 +41,7 @@
                 <p>Дата</p>
                 <input v-model="this.model.date" type="date">
                 <p>Информация о студентах</p>
-                <input type="text">
+                <input type="text" v-model="model.studentInfo">
                 <button @click="addEducateWork()">Добавить</button> 
             </div>    
         </div>
@@ -71,7 +71,8 @@ export default{
           eventType: '',
           eventLevel: '',
           date: '',
-
+          eventName: '',
+          studentInfo: ''
         },
         
       }
@@ -99,6 +100,8 @@ export default{
           this.model.eventType,
           this.model.eventLevel,
           this.model.date,
+          this.model.eventName,
+          this.model.studentInfo
       )
       this.UPLOAD_EDUCATE_WORK(educate)
     },

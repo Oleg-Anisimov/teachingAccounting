@@ -26,7 +26,7 @@ import AcaProdWork from "./fillingForms/AcaProdWork.vue";
                 <td>{{$t('enum.ActivityType.' + product.activityType)}}</td>
                 <td>{{ product.academicProductionActivityForm }}</td>
                 <td>{{ product.date }}</td>
-                <td></td>
+                <td>{{ product.result }}</td>
               </tr>
               <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>
         </table>

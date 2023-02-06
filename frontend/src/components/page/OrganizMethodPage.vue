@@ -23,11 +23,11 @@ import OrgMethWork from "./fillingForms/OrgMethWork.vue";
         <td>{{ organ.id }}</td>
         <td>{{ $t('enum.ActivityType.' + organ.activityType) }}</td>
         <td>{{ $t('enum.eventType.' + organ.eventType) }}</td>
-        <td></td>
+        <td>{{ organ.eventName }}</td>
         <td>{{ $t('enum.eventLevel.' + organ.eventLevel) }}</td>
         <td>{{ organ.date }}</td>
-        <td></td>
-        <td></td>
+        <td>{{ organ.studentInformation }}</td>
+        <td>{{ organ.result }}</td>
       </tr>
       <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>
 

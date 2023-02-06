@@ -42,7 +42,7 @@
                     <option v-for="AMAType in this.GET_ENUMS().AcademicMethodActivityType" :key="AMAType" :value="AMAType">{{ AMAType }}</option>
                 </select><br>
                 <p>Срок исполнения</p>
-                <input type="text">
+                <input type="date" v-model="model.deadLine">
                 <button @click="addAcademicMethod()">Добавить</button> 
             </div>    
         </div>
@@ -71,7 +71,8 @@ export default{
           specialization: '',
           academicDiscipline: '',
           AMAForm: '',
-          AMAType: ''
+          AMAType: '',
+          deadLine: ''
         },
         
       }
@@ -100,7 +101,8 @@ export default{
           this.model.discipline,
           this.model.activityType,
           this.model.AMAType,
-          this.model.AMAForm
+          this.model.AMAForm,
+          this.model.deadLine
       )
       console.log(method)
       this.UPLOAD_ACADEMIC_METHOD(method)

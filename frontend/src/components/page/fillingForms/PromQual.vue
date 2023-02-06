@@ -24,9 +24,9 @@
                 <p>Дата</p>
                 <input v-model="this.model.date" type="date">
                 <p>Место</p>
-                <input type="text">
+                <input type="text" v-model="model.place">
                 <p>Тема</p>
-                <input type="text">
+                <input type="text" v-model="model.topic">
                 <button @click="addPromotionQual()">Добавить</button> 
             </div>    
         </div>
@@ -53,6 +53,8 @@ export default{
           id: '',
           promotionForm: '',
           date: '',
+          place: '',
+          topic: ''
         },
         
       }
@@ -77,6 +79,8 @@ export default{
           this.id,
           this.model.promotionForm,
           this.model.date,
+          this.model.place,
+          this.model.topic
       )
       console.log(lvl)
       this.UPLOAD_PROMOTION_QUALIFICATION_LVL(lvl)

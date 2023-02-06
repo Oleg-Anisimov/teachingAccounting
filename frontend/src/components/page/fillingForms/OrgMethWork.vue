@@ -27,16 +27,16 @@
                   <option v-for="eventType in GET_ENUMS().EventType" :key="eventType" :value="eventType">{{$t('enum.eventType.' + eventType)}}</option>
                 </select>
                 <p>Название мероприятия</p>
-                <input type="text">
+                <input type="text" v-model="model.eventName">
                 <p>Уровень мероприятия</p>
                 <select v-model="model.eventLevel">
                   <option disabled value="">Выберите уровень мероприятия</option>
                   <option v-for="eventLevel in GET_ENUMS().EventLevel" :key="eventLevel" :value="eventLevel">{{$t('enum.eventLevel.' + eventLevel)}}</option>
                 </select>
                 <p>Дата</p>
-                <input v-model="this.model.date" type="date">
+                <input v-model="model.date" type="date">
                 <p>Инфо о студентах</p>
-                <input type="text">
+                <input type="text" v-model="model.studentInfo">
                 <button @click="addOrganizedMethod()">Добавить</button> 
             </div>    
         </div>
@@ -65,6 +65,8 @@ export default{
           eventLevel: '',
           activityType: '',
           date: '',
+          studentInfo: '',
+          eventName: ''
         },
 
       }
@@ -91,6 +93,8 @@ export default{
           this.model.eventLevel,
           this.model.eventType,
           this.model.date,
+          this.model.studentInfo,
+          this.model.eventName
       )
       console.log(organ)
       this.UPLOAD_ORGANIZED_METHOD(organ)

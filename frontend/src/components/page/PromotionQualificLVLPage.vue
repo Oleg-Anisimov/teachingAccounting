@@ -20,9 +20,9 @@ import PromQual from "./fillingForms/PromQual.vue";
                 <td>{{lvl.id}}</td>
                 <td>{{$t('enum.PromotionForm.' + lvl.promotionForm)}}</td>
                 <td>{{ lvl.date }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ lvl.place }}</td>
+                <td>{{ lvl.topic }}</td>
+                <td>{{ lvl.documentOrResult }}</td>
 
               </tr>
               <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>

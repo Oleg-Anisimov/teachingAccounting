@@ -2,6 +2,7 @@ import qs from "qs";
 import axios from "axios";
 import store from "../store";
 import { categoryBased } from "../categoryBased";
+import {methods} from "../dateMethods";
 
 export const academicMethod = {
     namespaced: true,
@@ -17,15 +18,17 @@ export const academicMethod = {
         },
     },
     mutations: {
-        SET_ACADEMIC_METHOD: (state, methods) => {
-            methods.forEach((m) => {
+        SET_ACADEMIC_METHOD: (state, meths) => {
+            meths.forEach((m) => {
                 m.specialization = store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === m.specializationId})
                 m.academicDiscipline = store.getters.GET_ALL_ACADEMIC_DISCIPLINES.find((disc) => {return disc.id === m.academicDisciplineId})
+                m.deadLine = methods.methods.DATE_TO_STRING(m.deadLine)
             })
-            state.academicMethod = methods
+            state.academicMethod = meths
         },
         ADD_ACADEMIC_METHOD: (state, academicMethod) => {
             console.log(academicMethod);
+            academicMethod.deadLine = methods.methods.DATE_TO_STRING(academicMethod.deadLine)
             state.academicMethod.push(academicMethod)
         },
     },
@@ -53,7 +56,8 @@ export const academicMethod = {
                 specializationId: method.specialization.id,
                 activityType: method.activityType,
                 academicMethodActivityType: method.academicMethodActivityType,
-                academicMethodActivityForm: method.academicMethodActivityForm
+                academicMethodActivityForm: method.academicMethodActivityForm,
+                deadLine: method.deadLine
             }
             console.log(getters)
             return axios.post(url, data)
@@ -65,7 +69,8 @@ export const academicMethod = {
                             specialization: store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
                             activityType: categoryBased.getters.GET_ENUMS(categoryBased.state).ActivityType.find((actType) => {return actType === data.activityType}),
                             academicMethodActivityType: data.academicMethodActivityType,
-                            academicMethodActivityForm: data.academicMethodActivityForm
+                            academicMethodActivityForm: data.academicMethodActivityForm,
+                            deadLine: data.deadLine
                         }
                     }
 

@@ -23,12 +23,12 @@ import ScienMethWork from "./fillingForms/ScienMethWork.vue";
                 <td>{{scien.id}}</td>
                 <td>{{$t('enum.ActivityType.' + scien.activityType)}}</td>
                 <td>{{$t('enum.eventType.' + scien.eventType)}}</td>
-                <td></td>
+                <td>{{ scien.eventName }}</td>
                 <td>{{$t('enum.eventLevel.' + scien.eventLevel)}}</td>
                 <td>{{ scien.date }}</td>
-                <td></td>
+                <td>{{ scien.place }}</td>
                 <td>{{$t('enum.ParticipationType.' + scien.participationType)}}</td>
-                <td></td>
+                <td>{{ scien.result }}</td>
               </tr>
               <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>
         </table>

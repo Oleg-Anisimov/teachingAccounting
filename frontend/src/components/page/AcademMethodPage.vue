@@ -30,8 +30,8 @@ import AcaMethWork from "./fillingForms/AcaMethWork.vue";
                 <td>{{ $t('enum.ActivityType.' + method.activityType) }}</td>
                 <td>{{ method.academicMethodActivityForm }}</td>
                 <td>{{ method.academicMethodActivityType }}</td>
-                <td></td>
-                <td></td>
+                <td>{{ method.deadLine }}</td>
+                <td>{{ method.completeInfo }}</td>
                 
               </tr>
               <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>

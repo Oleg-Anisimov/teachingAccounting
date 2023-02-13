@@ -20,9 +20,9 @@ import PromQual from "./fillingForms/PromQual.vue";
                 <td>{{lvl.id}}</td>
                 <td>{{$t('enum.PromotionForm.' + lvl.promotionForm)}}</td>
                 <td>{{ lvl.date }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ lvl.place }}</td>
+                <td>{{ lvl.topic }}</td>
+                <td>{{ lvl.documentOrResult }}</td>
 
               </tr>
               <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>
@@ -89,11 +89,11 @@ export default{
 </script>
 <style scoped>
     .academic_work_page{
-        grid-template-areas: "filling-form table table";
+        grid-template-areas: "filling-form table table table table table";
     }
-    table{
+    /* table{
         max-width: 45em;
-    }
+    } */
 </style>
 
  

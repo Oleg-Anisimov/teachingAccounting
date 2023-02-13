@@ -24,11 +24,11 @@ import EducWork from "./fillingForms/EducWork.vue";
         <td>{{ $t('enum.WorkVector.' + educate.workVector) }}</td>
         <td>{{ $t('enum.ActivityType.' + educate.activityType) }}</td>
         <td>{{ $t('enum.eventType.' + educate.eventType) }}</td>
-        <td></td>
+        <td>{{ educate.eventName }}</td>
         <td>{{ $t('enum.eventLevel.' + educate.eventLevel) }}</td>
         <td>{{ educate.date }}</td>
-        <td></td>
-        <td></td>
+        <td>{{ educate.studentInformation }}</td>
+        <td>{{ educate.result }}</td>
       </tr>
       <pog  @pageRequestUpdated="loadData"
             :totalPages="totalPages"

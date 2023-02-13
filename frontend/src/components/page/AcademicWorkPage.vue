@@ -73,8 +73,8 @@ import AcaWork from "./fillingForms/AcaWork.vue";
               <td><div v-if="!redactState">{{ work.academicYear ? work.academicYear.plan : "" }}</div><input type="number" v-if="redactState"></td>
               <td><div v-if="!redactState">{{ work.academicYear ? work.academicYear.fact : "" }}</div><input type="number" v-if="redactState"></td>
               <td><div v-if="!redactState">{{ work.incompleteReason ? work.incompleteReason : "" }}</div><input type="text" v-if="redactState"></td>
-              <td><div v-if="!redactState">{{ work.absoluteResults ? work.absoluteResults : "" }}</div><input type="number" v-if="redactState"></td>
-              <td><div v-if="!redactState">{{ work.qualityResults ? work.qualityResults : "" }}</div><input type="number" v-if="redactState"></td>
+              <td><div v-if="!redactState">{{ work.absoluteResults }}</div><input type="number" v-if="redactState"></td>
+              <td><div v-if="!redactState">{{ work.qualityResults }}</div><input type="number" v-if="redactState"></td>
             </tr>
             <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>
           </table>

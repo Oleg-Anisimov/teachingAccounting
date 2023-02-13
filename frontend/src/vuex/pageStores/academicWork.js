@@ -50,9 +50,13 @@ export const academicWork = {
                 specializationId: work.specialization.id,
                 academicDisciplineId: work.academicDiscipline.id,
                 firstSemester: work.firstSemester,
-                secondSemester: work.secondSemester
+                secondSemester: work.secondSemester,
+                academicYear: work.academicYear,
+                incompleteReason: work.incompleteReason,
+                absoluteResults: work.absoluteResults,
+                qualityResults: work.qualityResults
             }
-            console.log(getters)
+            console.log(data)
             return axios.post(url, data)
                 .then((work) => {
                     function transformWorkResponse(data) {
@@ -62,7 +66,11 @@ export const academicWork = {
                             specialization: store.getters.GET_ALL_SPECIALIZATIONS.find((spec) => {return spec.id === data.specializationId}),
                             academicDiscipline: store.getters.GET_ALL_ACADEMIC_DISCIPLINES.find((dis) => {return dis.id === data.academicDisciplineId}),
                             firstSemester: data.firstSemester,
-                            secondSemester: data.secondSemester
+                            secondSemester: data.secondSemester,
+                            academicYear: data.academicYear,
+                            incompleteReason: data.incompleteReason,
+                            absoluteResults: data.absoluteResults,
+                            qualityResults: data.qualityResults
                         }
                     }
                     let transformedWork = transformWorkResponse(work.data);

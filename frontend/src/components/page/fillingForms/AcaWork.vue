@@ -64,7 +64,7 @@ export default{
           group: '',
           academicDiscipline: '',
           firstSemPlan: 0,
-          secondSemPlan: 0
+          secondSemPlan: 0,
         }
         
       }
@@ -102,11 +102,20 @@ export default{
           this.model.group,
           this.model.discipline,
           {
-            plan: this.model.firstSemPlan
+            plan: this.model.firstSemPlan,
+            fact: 0
           },
           {
-            plan: this.model.secondSemPlan
-          }
+            plan: this.model.secondSemPlan,
+            fact: 0
+          },
+          {
+            plan: 0,
+            fact: 0
+          },
+          "Отсутствует",
+          0,
+          0
       )
       console.log(work)
       this.UPLOAD_ACADEMIC_WORK(work)

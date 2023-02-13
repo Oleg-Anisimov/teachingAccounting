@@ -1,92 +1,10 @@
-<script setup>
-import AcaWork from "./fillingForms/AcaWork.vue";
-</script>
-<template>
-  <div class="academic_work_page">
-    <AcaWork grid-area="filling-form"></AcaWork>
-    <div class="main-table" grid-area="table1">
-      <button id="red" grid-area="img"><img src="../../assets/img/11111123123123.png" v-on:click="REDACTION_STATE_TURN"></button>  
-      <table> 
-            <tr>
-              <th colspan="140">
-                <img src="" />Учебная работа - Заполнение индивидуального плана
-              </th>
-            </tr>
-            <tr>
-              <td rowspan="2" class="left-helf simvol">№</td>
-              <td rowspan="2" class="left-helf">Специальность</td>
-              <td rowspan="2" class="left-helf">Уч. дисциплина (ПМ,МДК)</td>
-              <td rowspan="2" class="left-helf">
-                Наименование уч. дисциплины (ПМ,МДК)
-              </td>
-              <td rowspan="2" class="left-helf">Группа</td>
-              <td colspan="2" class="left-helf">Первый семестр</td>
-              <td colspan="2" class="left-helf">Второй семестр</td>
-              <td colspan="2" class="left-helf">Учебный год</td>
-              <td rowspan="2" class="right-helf">Причина невыполнения</td>
-              <td rowspan="2" class="right-helf">Абсолютная успеваемость</td>
-              <td rowspan="2" class="right-helf">Качественная успеваемость</td>
-            </tr>
-            <tr>
-              <td class="td-bottom">План</td>
-              <td class="td-bottom">Факт</td>
-              <td class="td-bottom">План</td>
-              <td class="td-bottom">Факт</td>
-              <td class="td-bottom">План</td>
-              <td class="td-bottom">Факт</td>
-            </tr>
-            <tr v-for="work in GET_ACADEMIC_WORK()" :key="work.id">
-              <td>{{ work.id }}</td>
-
-              <td>
-                <div v-if="!redactState">{{ work.specialization.specialization }}</div>
-                <select v-if="redactState" v-model="newWorkModel.specialization">
-                  <option value="0" disabled>Выберите специальность</option>
-                  <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization.id" :value="specialization">{{ specialization.specialization }}</option>
-                </select>
-              </td>
-
-              <td>
-                <div v-if="!redactState">{{ work.academicDiscipline.disciplineNumber }}</div>
-                <select v-if="redactState" v-model="newWorkModel.academicDiscipline">
-                  <option value="0" disabled>Выберите учебную дисциплину</option>
-                  <option v-for="academicDiscipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="academicDiscipline.id" :value="academicDiscipline">{{ academicDiscipline.disciplineNumber }}</option>
-                </select>
-              </td>
-
-              <td>
-                <div v-if="!redactState">{{ work.academicDiscipline.name }}</div>
-                <div v-if="redactState">{{ newWorkModel.academicDiscipline.name }}</div>
-              </td>
-
-              <td><div v-if="!redactState">{{ work.group.groupName }}</div>
-                <select v-if="redactState" v-model="newWorkModel.group">
-                  <option value="0" disabled>Выберите группу</option>
-                  <option v-for="group in GET_ALL_GROUPS()" :key="group.id" :value="group">{{ group.groupName }}</option>
-                </select>
-              </td>
-
-              <td><div v-if="!redactState">{{ work.firstSemester ? work.firstSemester.plan : "" }}</div><input type="number" v-if="redactState"></td>
-              <td><div v-if="!redactState">{{ work.firstSemester ? work.firstSemester.fact : "" }}</div><input type="number" v-if="redactState"></td>
-              <td><div v-if="!redactState">{{ work.secondSemester ? work.secondSemester.plan : "" }}</div><input type="number" v-if="redactState"></td>
-              <td><div v-if="!redactState">{{ work.secondSemester ? work.secondSemester.fact : "" }}</div><input type="number" v-if="redactState"></td>
-              <td><div v-if="!redactState">{{ work.academicYear ? work.academicYear.plan : "" }}</div><input type="number" v-if="redactState"></td>
-              <td><div v-if="!redactState">{{ work.academicYear ? work.academicYear.fact : "" }}</div><input type="number" v-if="redactState"></td>
-              <td><div v-if="!redactState">{{ work.incompleteReason ? work.incompleteReason : "" }}</div><input type="text" v-if="redactState"></td>
-              <td><div v-if="!redactState">{{ work.absoluteResults }}</div><input type="number" v-if="redactState"></td>
-              <td><div v-if="!redactState">{{ work.qualityResults }}</div><input type="number" v-if="redactState"></td>
-            </tr>
-            <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>
-          </table>
-    </div>
-  </div>
-</template>
 <script>
 import { mapActions, mapGetters } from "vuex";
 import pog from "../pogination/pog.vue";
+import AcaWork from "./fillingForms/AcaWork.vue";
 
 export default {
-  components: { pog },
+  components: { pog, AcaWork },
   name: "AcademicWorkPage",
   props: ["enums"],
   watch: {
@@ -104,7 +22,7 @@ export default {
         this.pageNumber = data.pageable.pageNumber + 1;
       });
     },
-  },  
+  },
   data() {
     return {
       redactState: false,
@@ -116,11 +34,15 @@ export default {
       totalPages: 0,
       offset: 0,
       pageNumber: 0,
-      newWorkModel: {
-        specialization: 0, 
-        academicDiscipline: 0, 
-        group: 0,
-      },
+      model: {
+        id: 1,
+        specialization: '',
+        group: '',
+        academicDiscipline: '',
+        firstSemPlan: 0,
+        secondSemPlan: 0,
+        isEditMode: false
+      }
     };
   },
   methods: {
@@ -134,10 +56,24 @@ export default {
       GET_ALL_ACADEMIC_DISCIPLINES: 'GET_ALL_ACADEMIC_DISCIPLINES',
       GET_ALL_GROUPS: 'GET_ALL_GROUPS',
     }),
-    REDACTION_STATE_TURN(){
-      this.redactState = !this.redactState;
-      console.log(this.newWorkModel)
-      // console.log(this.redactState);
+    REDACTION_STATE_TURN(work){
+      this.model.isEditMode = true
+      console.log(work.academicDiscipline.disciplineNumber)
+      this.model.id = work.id
+      this.model.specialization = work.specialization;
+      this.model.academicDiscipline = work.academicDiscipline;
+      this.model.group = work.group;
+      this.model.incompleteReason = work.incompleteReason
+      this.model.firstSemPlan = work.firstSemester.plan;
+      this.model.firstSemFact = work.firstSemester.fact;
+
+      this.model.secondSemPlan = work.secondSemester.plan;
+      this.model.secondSemFact = work.secondSemester.fact;
+      this.model.absoluteResults = work.absoluteResults;
+      this.model.qualityResults = work.qualityResults;
+    },
+    onDataUpdated() {
+      console.log('data updated')
     }
   },
   mounted() {
@@ -151,27 +87,73 @@ export default {
   },
 }
 </script>
+
+<template>
+  <div class="academic_work_page">
+    <AcaWork grid-area="filling-form" :model="this.model" @dataUpdated="onDataUpdated()"></AcaWork>
+    <table>
+      <thead>
+        <tr>
+          <th colspan="140">
+            <img src="" />Учебная работа - Заполнение индивидуального плана
+          </th>
+        </tr>
+        <tr>
+          <td rowspan="2" class="left-helf simvol">№</td>
+          <td rowspan="2" class="left-helf">Специальность</td>
+          <td rowspan="2" class="left-helf">Уч. дисциплина (ПМ,МДК)</td>
+          <td rowspan="2" class="left-helf">
+            Наименование уч. дисциплины (ПМ,МДК)
+          </td>
+          <td rowspan="2" class="left-helf">Группа</td>
+          <td colspan="2" class="left-helf">Первый семестр</td>
+          <td colspan="2" class="left-helf">Второй семестр</td>
+          <td colspan="2" class="left-helf">Учебный год</td>
+          <td rowspan="2" class="right-helf">Причина невыполнения</td>
+          <td rowspan="2" class="right-helf">Абсолютная успеваемость</td>
+          <td rowspan="2" class="right-helf">Качественная успеваемость</td>
+        </tr>
+        <tr>
+          <td class="td-bottom">План</td>
+          <td class="td-bottom">Факт</td>
+          <td class="td-bottom">План</td>
+          <td class="td-bottom">Факт</td>
+          <td class="td-bottom">План</td>
+          <td class="td-bottom">Факт</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="work in GET_ACADEMIC_WORK()" :key="work.id" v-on:click="REDACTION_STATE_TURN(work)">
+          <td>{{ work.id }}</td>
+          <td>{{ work.specialization.specialization }}</td>
+          <td>{{ work.academicDiscipline.disciplineNumber }}</td>
+          <td>{{ work.academicDiscipline.name }}</td>
+          <td>{{ work.group.groupName }}</td>
+          <td>{{ work.firstSemester ? work.firstSemester.plan : "" }}</td>
+          <td>{{ work.firstSemester ? work.firstSemester.fact : "" }}</td>
+          <td>{{ work.secondSemester ? work.secondSemester.plan : "" }}</td>
+          <td>{{ work.secondSemester ? work.secondSemester.fact : "" }}</td>
+          <td>{{ work.academicYear ? work.academicYear.plan : "" }}</td>
+          <td>{{ work.academicYear ? work.academicYear.fact : "" }}</td>
+          <td>{{ work.incompleteReason ? work.incompleteReason : "" }}</td>
+          <td>{{ work.absoluteResults ? work.absoluteResults : "" }}</td>
+          <td>{{ work.qualityResults ? work.qualityResults : "" }}</td>
+        </tr>
+      </tbody>
+
+      <pog :totalPages="totalPages" :totalElements="totalElements" :pageRequest="pageRequest"></pog>
+    </table>
+  </div>
+</template>
+
 <style scoped>
-#red{
-  width: 50px;
-  height: 50px;
-  border: 3px solid royalblue;
-  margin-right: -8px;
-}
+
 .academic_work_page{
   padding: 1em;
   display: grid;
-  grid-template-areas: "filling-form table1";
+  grid-template-columns: 270px 1fr;
 }
-.main-table{
-  display: grid;
-  grid-template-areas: "img table table";
-  padding: 0;
-  margin: 0;
-}
-table{
-  max-width: 1400px;
-}
+
 table input, table select{
   width: 80px;
 }

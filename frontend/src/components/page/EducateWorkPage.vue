@@ -83,13 +83,11 @@ export default {
 }
 </script>
 <style scoped>
-.academic_work_page {
-  grid-template-areas: "filling-form table table";
-}
-
-table {
-  max-width: 80em;
-}
+  .academic_work_page{
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
 </style>
 
  

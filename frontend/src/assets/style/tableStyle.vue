@@ -17,11 +17,13 @@
         border: 0.2em solid royalblue;
         background-color: #f1f1f1;
     }
+
     table td{
         border: 0.2em solid royalblue;
         text-align: center;
         justify-content: center;
         vertical-align: middle;
+        height: 30px;
     }
     table th{
         border: 0.2em solid royalblue;

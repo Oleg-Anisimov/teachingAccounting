@@ -56,7 +56,6 @@ export const academicWork = {
                 absoluteResults: work.absoluteResults,
                 qualityResults: work.qualityResults
             }
-            console.log(data)
             return axios.post(url, data)
                 .then((work) => {
                     function transformWorkResponse(data) {
@@ -83,6 +82,29 @@ export const academicWork = {
                     console.log(error)
                 })
         },
+
+
+        UPDATE_ACADEMIC_WORK({commit, getters}, work) {
+            let url = '/api/work/update';
+            console.log(work)
+            let data = {
+                id: work.id,
+                groupId: work.group.id,
+                specializationId: work.specialization.id,
+                academicDisciplineId: work.academicDiscipline.id,
+                firstSemester: work.firstSemester,
+                secondSemester: work.secondSemester,
+                academicYear: work.academicYear,
+                incompleteReason: work.incompleteReason,
+                absoluteResults: work.absoluteResults,
+                qualityResults: work.qualityResults
+            }
+            return axios.post(url, data)
+                        .catch((error) => {
+                            console.log(error)
+                        })
+        },
+
         EXPORT_TO_EXCEL() {
             const url = '/api/work/excel';
             return axios({

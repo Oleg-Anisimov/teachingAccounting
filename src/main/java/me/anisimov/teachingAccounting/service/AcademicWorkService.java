@@ -72,7 +72,20 @@ public class AcademicWorkService {
         academicWorkRepository.deleteById(id);
     }
 
-    public void updateAcademicWork(AcademicWork academicWork) {
+    public void updateAcademicWork(AcademicWorkDto academicWorkDto) {
+       AcademicWork academicWork = academicWorkRepository.getReferenceById(academicWorkDto.getId());
+        academicWork.setGroup(groupService.getById(academicWorkDto.getGroupId()));
+        academicWork.setAcademicYear(new PlanAndFact(
+                academicWorkDto.getFirstSemester().getPlan()+academicWorkDto.getSecondSemester().getPlan(),
+                academicWorkDto.getFirstSemester().getFact()+academicWorkDto.getSecondSemester().getFact())
+        );
+        academicWork.setFirstSemester(academicWorkDto.getFirstSemester());
+        academicWork.setSecondSemester(academicWorkDto.getSecondSemester());
+        academicWork.setAcademicDiscipline(academicDisciplineService.getById(academicWorkDto.getAcademicDisciplineId()));
+        academicWork.setSpecialization(specializationService.getById(academicWorkDto.getSpecializationId()));
+        academicWork.setAbsoluteResults(academicWorkDto.getAbsoluteResults());
+        academicWork.setQualityResults(academicWorkDto.getQualityResults());
+        academicWork.setIncompleteReason(academicWorkDto.getIncompleteReason());
         academicWorkRepository.save(academicWork);
     }
 

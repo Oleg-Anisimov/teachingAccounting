@@ -2,14 +2,8 @@
   <aside>
     <div>
       <SidebarItem icon="icon_users.svg" text="Пользователи"/>
-      <SidebarItem icon="icon_deals.svg" text="Учебная работа"/>
-      <SidebarItem icon="icon_tasks.svg" text="Организационно-методическая работа"/>
       <SidebarItem icon="icon_payments.svg" text="Платежи"/>
       <SidebarItem icon="icon_calendar.svg" text="Календарь"/>
-    </div>
-    <div>
-      <SidebarItem icon="icon_settings.svg" text="Настройки"/>
-
     </div>
   </aside>
 
@@ -26,4 +20,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+aside {
+  padding: 0.5em;
+  background-color: #f3f3f3;
+  box-shadow: 0px 0 5px 1px  black;
+}
 </style>

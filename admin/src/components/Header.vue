@@ -6,7 +6,7 @@
 
     </div>
     <div class="userbar">
-      <p>Кринжов Ж.А.</p>
+      Кринжов Ж.А.
       <img  src="avatar_mock.jpg" alt="">
     </div>
   </header>
@@ -23,7 +23,6 @@ export default defineComponent({
 
 <style scoped>
 header {
-  padding: 1em;
   display: grid;
 
   grid-template-columns: 1fr 1fr;
@@ -32,21 +31,17 @@ header {
 
 h2 {
   display: inline-block;
-}
-
-p {
-  display: inline-block;
+  margin: 0;
 }
 img {
   display: inline-block;
-  width: 60px;
-  height: 60px;
+  width: 50px;
   border-radius: 10px;
 }
 
 .userbar {
   justify-self: end;
-  vertical-align: middle;
+  align-items: center;
 }
 
 </style>

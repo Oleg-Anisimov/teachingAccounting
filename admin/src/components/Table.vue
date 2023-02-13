@@ -1,11 +1,16 @@
 <template>
   <table>
-    <tr>
-      <td v-for="column in columns"> {{column}}</td>
-    </tr>
-    <tr v-for="row in rows">
-      <td v-for="cell in row"> {{cell}} </td>
-    </tr>
+    <thead>
+      <tr>
+        <td v-for="column in columns"> {{column}}</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="row in rows" v-on:click="this.$emit('onUserSelected', row[0])">
+        <td v-for="cell in row"> {{cell}} </td>
+      </tr>
+    </tbody>
+
   </table>
 </template>
 
@@ -22,23 +27,25 @@ export default defineComponent({
 </script>
 
 <style scoped>
-table{
-  grid-area: table;
-  max-height: 50px;
-  max-width: 94em;
-  border: 0.2em solid royalblue;
-  background-color: #f1f1f1;
+table {
+  border-collapse: collapse;
 }
-table td{
-  border: 0.2em solid royalblue;
-  text-align: center;
-  justify-content: center;
-  vertical-align: middle;
+
+thead {
+  background-color: #123E89;
+  color: #fff;
+  font-weight: 600;
 }
-table th{
-  border: 0.2em solid royalblue;
-  text-align: center;
-  justify-content: center;
-  vertical-align: middle;
+
+tbody > tr:nth-child(even) {
+  background-color: #fff;
+}
+
+tbody > tr:nth-child(odd) {
+  background-color: #e1e1e1;
+}
+
+td {
+  padding: 11px;
 }
 </style>

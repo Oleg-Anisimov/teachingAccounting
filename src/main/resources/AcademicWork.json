@@ -13,8 +13,8 @@
       "plan": 3
     },
     "academicYear": {
-      "fact": 4,
-      "plan": 4
+      "fact": null,
+      "plan": null
     },
     "specializationId": 1,
     "academicDisciplineId": 3,
@@ -34,8 +34,8 @@
       "plan": 3
     },
     "academicYear": {
-      "fact": 4,
-      "plan": 4
+      "fact": null,
+      "plan": null
     },
     "specializationId": 2,
     "academicDisciplineId": 2,

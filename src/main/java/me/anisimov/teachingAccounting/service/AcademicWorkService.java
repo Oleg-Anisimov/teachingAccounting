@@ -3,6 +3,7 @@ package me.anisimov.teachingAccounting.service;
 import liquibase.pro.packaged.A;
 import lombok.extern.slf4j.Slf4j;
 import me.anisimov.teachingAccounting.domain.AcademicWork;
+import me.anisimov.teachingAccounting.domain.PlanAndFact;
 import me.anisimov.teachingAccounting.domain.User;
 import me.anisimov.teachingAccounting.dto.AcademicWorkDto;
 import me.anisimov.teachingAccounting.dto.TeacherDto;
@@ -52,7 +53,10 @@ public class AcademicWorkService {
         academicWork.setUser(user);
         academicWork.setId(academicWorkDto.getId());
         academicWork.setGroup(groupService.getById(academicWorkDto.getGroupId()));
-        academicWork.setAcademicYear(academicWorkDto.getAcademicYear());
+        academicWork.setAcademicYear(new PlanAndFact(
+                academicWorkDto.getFirstSemester().getPlan()+academicWorkDto.getSecondSemester().getPlan(),
+                        academicWorkDto.getFirstSemester().getFact()+academicWorkDto.getSecondSemester().getFact())
+        );
         academicWork.setFirstSemester(academicWorkDto.getFirstSemester());
         academicWork.setSecondSemester(academicWorkDto.getSecondSemester());
         academicWork.setAcademicDiscipline(academicDisciplineService.getById(academicWorkDto.getAcademicDisciplineId()));

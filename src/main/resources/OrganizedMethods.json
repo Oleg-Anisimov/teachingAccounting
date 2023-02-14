@@ -2,21 +2,17 @@
   {
     "date": "",
     "result": "Good",
-    "eventType": "VICTORINE",
-    "eventName": "The loop B",
     "studentInformation": null,
-    "eventLevel": "COLLEGE",
     "activityType": "PARTICIPATION",
+    "eventId": 1,
     "userId": 1
   },
   {
     "date": "",
     "result": "Bad",
-    "eventType": "MEETING",
-    "eventName": "Assembler",
     "studentInformation": null,
-    "eventLevel": "NATIONAL",
     "activityType": "PARTICIPATION",
+    "eventId": 2,
     "userId": 2
   }
 ]

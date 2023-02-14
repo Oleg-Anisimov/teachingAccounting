@@ -28,23 +28,16 @@ public class OrganizedMethods extends BaseEntity {
     @Column(name = "result")
     private String result;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "event_type")
-    private EventType eventType;
-
-    @Column(name = "event_name")
-    private String eventName;
-
     @Column(name = "student_information")
     private String studentInformation;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "event_level")
-    private EventLevel eventLevel;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "activity_type")
     private ActivityType activityType;
+
+    @ManyToOne(targetEntity = Event.class)
+    @JoinColumn(name="event_id", nullable=false)
+    private Event event;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id", nullable = false)

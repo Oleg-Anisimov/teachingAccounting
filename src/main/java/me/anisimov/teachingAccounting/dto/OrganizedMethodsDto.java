@@ -17,10 +17,8 @@ public class OrganizedMethodsDto {
     private Long id;
     private LocalDate date;
     private String result;
-    private EventType eventType;
-    private String eventName;
     private String studentInformation;
-    private EventLevel eventLevel;
     private ActivityType activityType;
+    private Long eventId;
     private Long userId;
 }

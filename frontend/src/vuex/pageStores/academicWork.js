@@ -72,9 +72,6 @@ export const academicWork = {
                             qualityResults: data.qualityResults
                         }
                     }
-                    let transformedWork = transformWorkResponse(work.data);
-
-                    commit('ADD_ACADEMIC_WORK', transformedWork)
                     return work.data;
                     
                 })

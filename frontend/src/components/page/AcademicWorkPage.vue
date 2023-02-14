@@ -34,6 +34,15 @@ export default {
       totalPages: 0,
       offset: 0,
       pageNumber: 0,
+      defaultModel: {
+        id: 1,
+        specialization: '',
+        group: '',
+        academicDiscipline: '',
+        firstSemPlan: 0,
+        secondSemPlan: 0,
+        isEditMode: false
+      },
       model: {
         id: 1,
         specialization: '',
@@ -72,8 +81,17 @@ export default {
       this.model.absoluteResults = work.absoluteResults;
       this.model.qualityResults = work.qualityResults;
     },
+
     onDataUpdated() {
-      console.log('data updated')
+      this.LOAD_ACADEMIC_WORKS(this.pageRequest).then((data) => {
+        this.totalElements = data.totalElements;
+        this.totalPages = data.totalPages;
+        this.pageNumber = data.pageable.pageNumber + 1;
+      });
+    },
+
+    onCancelUpdate() {
+      this.model = {...this.defaultModel};
     }
   },
   mounted() {
@@ -90,7 +108,7 @@ export default {
 
 <template>
   <div class="academic_work_page">
-    <AcaWork grid-area="filling-form" :model="this.model" @dataUpdated="onDataUpdated()"></AcaWork>
+    <AcaWork grid-area="filling-form" :model="this.model" @dataUpdated="onDataUpdated" @cancelUpdate="onCancelUpdate"></AcaWork>
     <table>
       <thead>
         <tr>

@@ -50,8 +50,8 @@
                 <input v-if="model.isEditMode" type="text" v-model="model.qualityResults" name="last_half">
 
                 <button v-if="!model.isEditMode" @click="addAcademicWork()">Добавить</button>
-                <button v-if="model.isEditMode" style="width: 42%" @click="updateAcademicWork()"> <img src="../../../assets/img/save.png">Сохранить</button>
-                <button v-if="model.isEditMode" style="width: 37%; margin-left: 1%" @click=""> <img src="../../../assets/img/cancel.png">Отмена</button>
+                <button v-if="model.isEditMode" style="width: 42%" v-on:click="updateAcademicWork"> <img src="../../../assets/img/save.png">Сохранить</button>
+                <button v-if="model.isEditMode" style="width: 37%; margin-left: 1%" @click="cancelUpdate"> <img src="../../../assets/img/cancel.png">Отмена</button>
             </div>
         </div>
         <div class="export">
@@ -125,7 +125,8 @@ export default{
           0
       )
       this.UPLOAD_ACADEMIC_WORK(work)
-      this.$emit('dataUpdated')
+          .then(() => this.$emit('dataUpdated'))
+
     },
 
     updateAcademicWork(){
@@ -150,9 +151,13 @@ export default{
           this.model.absoluteResults,
           this.model.qualityResults
       )
-      console.log(work)
       this.UPDATE_ACADEMIC_WORK(work)
+          .then(() => this.$emit('dataUpdated'))
     },
+
+    cancelUpdate() {
+      this.$emit('cancelUpdate')
+    }
   },
   mounted(){
     this.LOAD_ENUMS()

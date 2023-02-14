@@ -41,7 +41,7 @@ public class AcademicWorkController {
 
     @PostMapping("/update")
     public ResponseEntity update(@RequestBody AcademicWorkDto academicWorkDto) {
-        academicWorkService.updateAcademicWork(academicWork);
+        academicWorkService.updateAcademicWork(academicWorkDto);
         return ResponseEntity.ok().build();
     }
 

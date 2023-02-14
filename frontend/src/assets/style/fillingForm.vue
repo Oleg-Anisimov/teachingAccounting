@@ -6,7 +6,6 @@
 <style>
 .filling-form{
     text-align: center;
-    width: 15em;
 }
 .academ-year{
     border-top: 0;
@@ -33,14 +32,21 @@
 }
 .filling-form select{
     border: 1px solid black;
+    width: 80%;
+    height: 25px;
+
 }
 .filling-form input{
     border: 1px solid black;
+    width: 80%;
+    height: 25px;
 }
 .filling-form button{
     text-align: center;
     border: 1px solid black;
     margin-top: 0.8em;
+    width: 80%;
+    height: 25px;
 }
 .export .form-border{
     border-radius: 0.7em;
@@ -53,7 +59,7 @@
 .export .form-border .last-button{
     margin-bottom: 0.5em;
 }
-.export .form-border button img{
+.form-border button img{
     width: 1em;
     height: 1em;
     margin-right: 0.1em;

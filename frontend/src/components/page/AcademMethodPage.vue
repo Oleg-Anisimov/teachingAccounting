@@ -93,3 +93,11 @@ export default{
   },
 }
 </script>
+
+<style>
+  .academic_work_page{
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
+</style>

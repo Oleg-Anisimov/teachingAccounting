@@ -22,7 +22,7 @@
                     <option v-for="specialization in GET_ALL_SPECIALIZATIONS()" :key="specialization" :value="specialization">{{specialization.specialization}}</option>
                 </select>
                 <p>Учебная дисциплина</p>
-                <select v-model="model.discipline">
+                <select v-model="model.academicDiscipline">
                   <option disabled value="">Выберите дисциплину</option>
                   <option v-for="discipline in GET_ALL_ACADEMIC_DISCIPLINES()" :key="discipline" :value="discipline">{{discipline.disciplineNumber}}</option>
                 </select>
@@ -33,11 +33,26 @@
                 </select><br>
                 <p>Кол-во часов по плану:</p>
                 <p>l Семестр</p>
-                <input type="text" v-model.number="model.firstSemPlan" name="first_half">
+                <input type="text" v-bind:class="{'input_edit_mode': model.isEditMode}" v-model.number="model.firstSemPlan" name="first_half">
+                <input type="text" v-if="model.isEditMode" v-bind:class="{'input_edit_mode': model.isEditMode}" v-model.number="model.firstSemFact" name="first_half">
                 <p>ll Семестр</p>
-                <input type="text" v-model.number="model.secondSemPlan" name="last_half">
-                <button @click="addAcademicWork()">Добавить</button>
-            </div>    
+                <input type="text" v-bind:class="{'input_edit_mode': model.isEditMode}" v-model.number="model.secondSemPlan" name="last_half">
+              <input type="text" v-if="model.isEditMode" v-bind:class="{'input_edit_mode': model.isEditMode}" v-model.number="model.secondSemFact" name="first_half">
+
+
+              <p v-if="model.isEditMode">Причина невыполнения</p>
+                <input v-if="model.isEditMode" type="text" v-model="model.incompleteReason" name="last_half">
+
+                <p v-if="model.isEditMode">Абсолютная успеваемость</p>
+                <input v-if="model.isEditMode" type="text" v-model="model.absoluteResults" name="last_half">
+
+                <p v-if="model.isEditMode">Качественная успеваемость</p>
+                <input v-if="model.isEditMode" type="text" v-model="model.qualityResults" name="last_half">
+
+                <button v-if="!model.isEditMode" @click="addAcademicWork()">Добавить</button>
+                <button v-if="model.isEditMode" style="width: 42%" @click="updateAcademicWork()"> <img src="../../../assets/img/save.png">Сохранить</button>
+                <button v-if="model.isEditMode" style="width: 37%; margin-left: 1%" @click=""> <img src="../../../assets/img/cancel.png">Отмена</button>
+            </div>
         </div>
         <div class="export">
             <div class="form-border">
@@ -47,26 +62,17 @@
         </div>
     </div>
 </template>
+
 <script>
 import {mapActions, mapGetters, mapMutations} from 'vuex';
 import AcademicWork from "../../../model/academicWork";
 
 export default{
     name: "AcaWork",
-    props: [
-        'enums'
-    ],
-    data() {
-      return {
-        model: {
-          id: 1,
-          specialization: '',
-          group: '',
-          academicDiscipline: '',
-          firstSemPlan: 0,
-          secondSemPlan: 0,
-        }
-        
+    props: {
+      model: {
+        type: Object,
+        required: false,
       }
     },
 
@@ -78,6 +84,7 @@ export default{
       LOAD_ACADEMIC_DISCIPLINE: 'LOAD_ACADEMIC_DISCIPLINE',
       LOAD_GROUPS: 'LOAD_GROUPS',
       UPLOAD_ACADEMIC_WORK: 'academicWork/UPLOAD_ACADEMIC_WORK',
+      UPDATE_ACADEMIC_WORK: 'academicWork/UPDATE_ACADEMIC_WORK',
       EXPORT_TO_EXCEL: 'academicWork/EXPORT_TO_EXCEL'
     }),
     ...mapMutations({
@@ -100,7 +107,7 @@ export default{
           this.id,
           this.model.specialization,
           this.model.group,
-          this.model.discipline,
+          this.model.academicDiscipline,
           {
             plan: this.model.firstSemPlan,
             fact: 0
@@ -117,8 +124,34 @@ export default{
           0,
           0
       )
-      console.log(work)
       this.UPLOAD_ACADEMIC_WORK(work)
+      this.$emit('dataUpdated')
+    },
+
+    updateAcademicWork(){
+      let work = new AcademicWork(
+          this.model.id,
+          this.model.specialization,
+          this.model.group,
+          this.model.academicDiscipline,
+          {
+            plan: this.model.firstSemPlan,
+            fact: this.model.firstSemFact
+          },
+          {
+            plan: this.model.secondSemPlan,
+            fact: this.model.secondSemFact
+          },
+          {
+            plan: 0,
+            fact: 0
+          },
+          this.model.incompleteReason,
+          this.model.absoluteResults,
+          this.model.qualityResults
+      )
+      console.log(work)
+      this.UPDATE_ACADEMIC_WORK(work)
     },
   },
   mounted(){
@@ -131,4 +164,11 @@ export default{
 }
 
 </script>
+
+<style>
+.input_edit_mode {
+  width: 39% !important;
+  margin: 1%;
+}
+</style>
 

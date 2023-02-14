@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://stg.alov.dev',
+        target: 'http://localhost:8080',
         changeOrigin: true,
       },
     },

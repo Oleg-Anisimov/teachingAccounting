@@ -25,8 +25,18 @@ export const academicWork = {
         ADD_ACADEMIC_WORK: (state, academicWork) => {
             state.academicWork.push(academicWork)
         },
+
+        MARK_WORK_AS_EDITED: (state, id) => {
+            state.academicWork.map((item) => {
+                item.isEdit = (item.id === id)
+            })
+        }
+
     },
     actions: {
+        MARK_WORK_AS_EDITED({commit}, id) {
+          commit('MARK_WORK_AS_EDITED', id)
+        },
         LOAD_ACADEMIC_WORKS({commit}, pageRequest,) {
             let url = '/api/work';
             const options = {

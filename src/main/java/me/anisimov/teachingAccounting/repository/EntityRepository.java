@@ -42,10 +42,10 @@ public class EntityRepository {
 //        }
 //        return entity;
 //    }
-//    public <E extends BaseEntity> void delete(E entity) {
-//        log.debug("Deleting entity {}", entity);
-//        sessionFactory.getCurrentSession().delete(entity);
-//    }
+    public <E extends BaseEntity> void delete(E entity) {
+        log.debug("Deleting entity {}", entity);
+        entityManager.find()
+    }
 //
 //    public <E extends BaseEntity> void merge(E entity) {
 //        log.debug("merging entity {}", entity);

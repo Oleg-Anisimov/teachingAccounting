@@ -1,7 +1,10 @@
 package me.anisimov.teachingAccounting.service;
 
 import lombok.extern.slf4j.Slf4j;
+import me.anisimov.teachingAccounting.domain.AcademicWork;
+import me.anisimov.teachingAccounting.domain.PlanAndFact;
 import me.anisimov.teachingAccounting.domain.Specialization;
+import me.anisimov.teachingAccounting.dto.AcademicWorkDto;
 import me.anisimov.teachingAccounting.dto.SpecializationDto;
 import me.anisimov.teachingAccounting.repository.SpecializationRepository;
 import org.dozer.DozerBeanMapper;
@@ -33,7 +36,11 @@ public class SpecializationService {
         specializationRepository.deleteById(id);
     }
 
-    public void updateSpecialization(Specialization specialization) {
+    public void updateSpecialization(SpecializationDto specializationDto) {
+
+        Specialization specialization = specializationRepository.getReferenceById((specializationDto.getId()));
+        specialization.setSpecialization(specializationDto.getSpecialization());
+        specialization.setSpecializationName(specializationDto.getSpecializationName());
         specializationRepository.save(specialization);
     }
 

@@ -30,8 +30,8 @@ public class GroupController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity update(@RequestBody Group group){
-        groupService.updateGroup(group);
+    public ResponseEntity update(@RequestBody GroupDto groupDto){
+        groupService.updateGroup(groupDto);
         return ResponseEntity.ok().build();
     }
 

@@ -32,8 +32,13 @@ public class GroupService {
         groupRepository.deleteById(id);
     }
 
-    public void updateGroup(Group group) {
+    public void updateGroup(GroupDto groupDto) {
+
+        Group group = groupRepository.getReferenceById(groupDto.getId());
+        group.setGroupName(groupDto.getGroupName());
+
         groupRepository.save(group);
+
     }
 
     public Group getById(Long id) {

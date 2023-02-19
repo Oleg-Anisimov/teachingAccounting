@@ -32,7 +32,11 @@ public class AcademicDisciplineService {
         academicDisciplineRepository.deleteById(id);
     }
 
-    public void updateAcademicDiscipline(AcademicDiscipline academicDiscipline) {
+    public void updateAcademicDiscipline(AcademicDisciplineDto academicDisciplineDto) {
+
+        AcademicDiscipline academicDiscipline = academicDisciplineRepository.getReferenceById((academicDisciplineDto.getId()));
+        academicDiscipline.setDisciplineNumber(academicDisciplineDto.getDisciplineNumber());
+        academicDiscipline.setName(academicDiscipline.getName());
         academicDisciplineRepository.save(academicDiscipline);
     }
 

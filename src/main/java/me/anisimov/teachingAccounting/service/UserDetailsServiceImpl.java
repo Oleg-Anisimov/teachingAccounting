@@ -49,8 +49,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userRepository.deleteById(id);
     }
 
-    public void updateUser(User user) {
+    public void updateUser(UserDto userDto)
+    {
+
+        User user = userRepository.getReferenceById(userDto.getId());
+        user.setLogin(userDto.getLogin());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user.setRole(roleRepository.getReferenceById(userDto.getRoleId()));
         userRepository.save(user);
+
     }
 
     public User getById(Long id) {

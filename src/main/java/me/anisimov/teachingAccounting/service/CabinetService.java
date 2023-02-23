@@ -23,7 +23,7 @@ public class CabinetService {
         Cabinet cabinet = new Cabinet();
         cabinet.setCabinetName(cabinetDto.getCabinetName());
         cabinet.setCabinetType(cabinetDto.getCabinetType());
-        cabinetRepository.save(cabinet);
+        cabinet = cabinetRepository.save(cabinet);
         return mapper.map(cabinet,CabinetDto.class);
     }
 

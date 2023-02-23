@@ -51,7 +51,6 @@ public class AcademicMethodsService {
 
         AcademicMethods academicMethods = new AcademicMethods();
         academicMethods.setUser(user);
-        academicMethods.setId(academicMethodsDto.getId());
         academicMethods.setAcademicDiscipline(academicDisciplineService.getById(academicMethodsDto.getAcademicDisciplineId()));
         academicMethods.setAcademicMethodActivityForm(academicMethodsDto.getAcademicMethodActivityForm());
         academicMethods.setAcademicMethodActivityType(academicMethodsDto.getAcademicMethodActivityType());
@@ -60,7 +59,7 @@ public class AcademicMethodsService {
         academicMethods.setDeadLine(academicMethodsDto.getDeadLine());
         academicMethods.setCompleteInfo(academicMethodsDto.getCompleteInfo());
 
-        academicMethodsRepository.save(academicMethods);
+        academicMethods = academicMethodsRepository.save(academicMethods);
         return mapper.map(academicMethods, AcademicMethodsDto.class);
     }
 

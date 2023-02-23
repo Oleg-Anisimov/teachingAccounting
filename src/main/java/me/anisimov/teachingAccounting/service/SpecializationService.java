@@ -22,10 +22,9 @@ public class SpecializationService {
 
     public SpecializationDto createSpecialization(SpecializationDto specializationDto){
         Specialization specialization = new Specialization();
-        specialization.setId(specializationDto.getId());
         specialization.setSpecialization(specializationDto.getSpecialization());
         specialization.setSpecializationName(specializationDto.getSpecializationName());
-        specializationRepository.save(specialization);
+        specialization = specializationRepository.save(specialization);
         return mapper.map(specialization,SpecializationDto.class);
     }
 

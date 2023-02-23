@@ -49,14 +49,13 @@ public class AcademicProductionService {
 
         AcademicProduction academicProduction = new AcademicProduction();
         academicProduction.setUser(user);
-        academicProduction.setId(academicProductionDto.getId());
         academicProduction.setDate(academicProductionDto.getDate());
         academicProduction.setResult(academicProductionDto.getResult());
         academicProduction.setAcademicProductionActivityForm(academicProductionDto.getAcademicProductionActivityForm());
         academicProduction.setSpecialization(specializationService.getById(academicProductionDto.getSpecializationId()));
         academicProduction.setActivityType(academicProductionDto.getActivityType());
         academicProduction.setCabinet(cabinetService.getById(academicProductionDto.getCabinetId()));
-        academicProductionRepository.save(academicProduction);
+        academicProduction = academicProductionRepository.save(academicProduction);
         return mapper.map(academicProduction, AcademicProductionDto.class);
     }
 

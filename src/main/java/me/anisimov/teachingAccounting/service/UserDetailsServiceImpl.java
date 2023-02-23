@@ -37,11 +37,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public UserDto createUser(UserDto userDto){
         User user = new User();
-        user.setId(userDto.getId());
         user.setLogin(userDto.getLogin());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setRole(roleRepository.getReferenceById(userDto.getRoleId()));
-        userRepository.save(user);
+        user = userRepository.save(user);
         return mapper.map(user, UserDto.class);
     }
 

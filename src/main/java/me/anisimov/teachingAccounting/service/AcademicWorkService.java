@@ -51,7 +51,6 @@ public class AcademicWorkService {
 
         AcademicWork academicWork = new AcademicWork();
         academicWork.setUser(user);
-        academicWork.setId(academicWorkDto.getId());
         academicWork.setGroup(groupService.getById(academicWorkDto.getGroupId()));
         academicWork.setAcademicYear(new PlanAndFact(
                 academicWorkDto.getFirstSemester().getPlan()+academicWorkDto.getSecondSemester().getPlan(),
@@ -64,7 +63,7 @@ public class AcademicWorkService {
         academicWork.setAbsoluteResults(academicWorkDto.getAbsoluteResults());
         academicWork.setQualityResults(academicWorkDto.getQualityResults());
         academicWork.setIncompleteReason(academicWorkDto.getIncompleteReason());
-        academicWorkRepository.save(academicWork);
+        academicWork = academicWorkRepository.save(academicWork);
         return mapper.map(academicWork, AcademicWorkDto.class);
     }
 

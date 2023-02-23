@@ -44,13 +44,12 @@ public class PromotionQualificationLevelService {
 
         PromotionQualificationLevel promotionQualificationLevel = new PromotionQualificationLevel();
         promotionQualificationLevel.setUser(user);
-        promotionQualificationLevel.setId(promotionQualificationLevelDto.getId());
         promotionQualificationLevel.setPromotionForm(promotionQualificationLevelDto.getPromotionForm());
         promotionQualificationLevel.setDate(promotionQualificationLevelDto.getDate());
         promotionQualificationLevel.setTopic(promotionQualificationLevelDto.getTopic());
         promotionQualificationLevel.setPlace(promotionQualificationLevelDto.getPlace());
         promotionQualificationLevel.setDocumentOrResult(promotionQualificationLevelDto.getDocumentOrResult());
-        promotionQualificationLevelRepository.save(promotionQualificationLevel);
+        promotionQualificationLevel = promotionQualificationLevelRepository.save(promotionQualificationLevel);
         return mapper.map(promotionQualificationLevel, PromotionQualificationLevelDto.class);
     }
 

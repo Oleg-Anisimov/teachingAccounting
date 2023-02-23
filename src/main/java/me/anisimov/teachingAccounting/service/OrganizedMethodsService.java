@@ -48,7 +48,6 @@ public class OrganizedMethodsService {
 
         OrganizedMethods organizedMethods = new OrganizedMethods();
         organizedMethods.setUser(user);
-        organizedMethods.setId(organizedMethodsDto.getId());
         organizedMethods.setDate(organizedMethodsDto.getDate());
         organizedMethods.setResult(organizedMethodsDto.getResult());
         organizedMethods.setEventName(organizedMethodsDto.getEventName());
@@ -56,7 +55,7 @@ public class OrganizedMethodsService {
         organizedMethods.setEventType(organizedMethodsDto.getEventType());
         organizedMethods.setStudentInformation(organizedMethodsDto.getStudentInformation());
         organizedMethods.setActivityType(organizedMethodsDto.getActivityType());
-        organizedMethodsRepository.save(organizedMethods);
+        organizedMethods = organizedMethodsRepository.save(organizedMethods);
         return mapper.map(organizedMethods, OrganizedMethodsDto.class);
     }
 

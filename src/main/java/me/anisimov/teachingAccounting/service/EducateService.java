@@ -45,7 +45,6 @@ public class EducateService {
 
         Educate educate = new Educate();
         educate.setUser(user);
-        educate.setId(educateDto.getId());
         educate.setDate(educateDto.getDate());
         educate.setResult(educateDto.getResult());
         educate.setEventType(educateDto.getEventType());
@@ -54,7 +53,7 @@ public class EducateService {
         educate.setActivityType(educateDto.getActivityType());
         educate.setStudentInformation(educateDto.getStudentInformation());
         educate.setWorkVector(educateDto.getWorkVector());
-        educateRepository.save(educate);
+        educate = educateRepository.save(educate);
         return mapper.map(educate, EducateDto.class);
     }
 

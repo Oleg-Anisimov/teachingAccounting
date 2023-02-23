@@ -22,9 +22,8 @@ public class DepartmentService {
 
     public DepartmentDto createDepartment(DepartmentDto departmentDto) {
         Department department = new Department();
-        department.setId(departmentDto.getId());
         department.setName(departmentDto.getName());
-        departmentRepository.save(department);
+        department = departmentRepository.save(department);
         return mapper.map(department, DepartmentDto.class);
     }
 

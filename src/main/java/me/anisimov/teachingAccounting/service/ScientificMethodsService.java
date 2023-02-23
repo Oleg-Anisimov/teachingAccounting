@@ -46,7 +46,6 @@ public class ScientificMethodsService {
 
         ScientificMethods scientificMethods = new ScientificMethods();
         scientificMethods.setUser(user);
-        scientificMethods.setId(scientificMethodsDto.getId());
         scientificMethods.setDate(scientificMethodsDto.getDate());
         scientificMethods.setPlace(scientificMethodsDto.getPlace());
         scientificMethods.setEventName(scientificMethodsDto.getEventName());
@@ -57,7 +56,7 @@ public class ScientificMethodsService {
         scientificMethods.setParticipationType(scientificMethodsDto.getParticipationType());
         scientificMethods.setStudentInformation(scientificMethodsDto.getStudentInformation());
 
-        scientificMethodsRepository.save(scientificMethods);
+        scientificMethods = scientificMethodsRepository.save(scientificMethods);
         return mapper.map(scientificMethods, ScientificMethodsDto.class);
     }
 

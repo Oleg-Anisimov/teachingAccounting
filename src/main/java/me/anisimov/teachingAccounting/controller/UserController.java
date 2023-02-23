@@ -30,8 +30,8 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity update(@RequestBody User user) {
-        userDetailsServiceImpl.updateUser(user);
+    public ResponseEntity update(@RequestBody UserDto userDto) {
+        userDetailsServiceImpl.updateUser(userDto);
         return ResponseEntity.ok().build();
     }
 

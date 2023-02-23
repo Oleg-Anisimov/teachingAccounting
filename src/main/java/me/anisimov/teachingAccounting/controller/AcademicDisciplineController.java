@@ -30,8 +30,8 @@ public class AcademicDisciplineController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity update(@RequestBody AcademicDiscipline academicDiscipline) {
-        academicDisciplineService.updateAcademicDiscipline(academicDiscipline);
+    public ResponseEntity update(@RequestBody AcademicDisciplineDto academicDisciplineDto) {
+        academicDisciplineService.updateAcademicDiscipline(academicDisciplineDto);
         return ResponseEntity.ok().build();
     }
 

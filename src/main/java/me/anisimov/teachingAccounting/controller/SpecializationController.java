@@ -30,8 +30,8 @@ public class SpecializationController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity update(@RequestBody Specialization specialization) {
-        specializationService.updateSpecialization(specialization);
+    public ResponseEntity update(@RequestBody SpecializationDto specializationDto) {
+        specializationService.updateSpecialization(specializationDto);
         return ResponseEntity.ok().build();
     }
 

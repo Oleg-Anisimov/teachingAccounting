@@ -22,9 +22,8 @@ public class GroupService {
 
     public GroupDto createGroup(GroupDto groupDto){
         Group group = new Group();
-        group.setId(groupDto.getId());
         group.setGroupName(groupDto.getGroupName());
-        groupRepository.save(group);
+        group = groupRepository.save(group);
         return mapper.map(group, GroupDto.class);
     }
 

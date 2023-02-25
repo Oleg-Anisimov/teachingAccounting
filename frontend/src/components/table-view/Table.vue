@@ -1,76 +1,45 @@
 <template>
-  <div class="table-wrapper">
-    <div class="table">
-      <div class="table-head" :style="{'grid-template-columns': columnTemplate}">
-        <div
-            class="table-head__name"
-            v-for="(element, i) of head"
-            :key="i"
-        >
-          {{element}}
-        </div>
-      </div>
-      <table-row
-          :key="item.id"
-          v-for="item in items"
-          :column-template="columnTemplate"
-          :item="item"
-      />
-    </div>
-  </div>
+  <table>
+    <tr>
+      <td v-for="header in headers"> {{ header }}</td>
+    </tr>
+    <tr v-for="item in values" :key="item.id">
+      <td v-for="cell in item" :key="cell.toString()"> {{ cell }}</td>
+    </tr>
+  </table>
 </template>
 
 <script>
 import {defineComponent} from "vue";
-import TableRow from "./TableRow.vue";
 
 export default defineComponent({
-  name: "BaseTable",
-  components: {TableRow},
+  name: "Table",
   props: {
-    head: {
-      type: Array,
-      required: false
+    headers: {
+      type: Object,
+      required: true
     },
-    columnTemplate: {
-      type: String,
-      required: false
-    },
-    items: {
+    values: {
       type: Array,
       required: true
     }
-  }
+  },
 })
 </script>
 
-<style lang="scss" scoped>
-.table {
-  background-color: #fff;
-  width: 100%;
-  margin-bottom: 40px;
-  margin-top: 15px;
-  &-wrapper {
-    display: flex;
-    justify-content: center;
-  }
-  &-head {
-    padding: 5px 16px;
-    display: grid;
-    column-gap: 10px;
-    align-items: center;
-    border-bottom: 2px solid #EEEFF4;
-    background: #fff;
-    &__name {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      color: #999;
-      cursor: pointer;
-    }
-    @media screen and (max-width: 767px) {
-      display: none;
-    }
-  }
+<style scoped>
+
+table td{
+  border: 0.2em solid royalblue;
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+  padding: 0.5em;
+}
+table th{
+  border: 0.2em solid royalblue;
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
 }
 </style>

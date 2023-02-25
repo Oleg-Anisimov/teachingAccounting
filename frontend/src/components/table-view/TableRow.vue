@@ -3,7 +3,8 @@
       class="table-row"
       :style="{'grid-template-columns':columnTemplate}"
   >
-    <slot></slot>
+    <table-column>{{item.id}}</table-column>
+    <table-column>{{item.groupName}}</table-column>
   </div>
 </template>
 
@@ -14,6 +15,10 @@ export default {
     columnTemplate: {
       type: String,
       required: false
+    },
+    item: {
+      type: Object,
+      required: true
     }
   }
 }

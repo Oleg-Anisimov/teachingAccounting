@@ -3,8 +3,7 @@
     <CatalogForm grid-area="filling-form" @addItem="onAddItem">
       <GroupEditForm/>
     </CatalogForm>
-    <Table :values="groupList()" :layout="layout"/>
-    {{groupList()}}
+    <Table :values="groupList()" :headers="headers"/>
   </div>
 </template>
 
@@ -13,7 +12,6 @@ import CatalogForm from "./fillingForms/CatalogForm.vue";
 import Table from "../table-view/Table.vue";
 import GroupEditForm from "../form/GroupEditForm.vue";
 import DisciplineEditForm from "../form/DisciplineEditForm.vue";
-import * as layout from '../table-view/layout.json'
 import {mapActions, mapGetters} from "vuex";
 
 export default {
@@ -21,28 +19,7 @@ export default {
   components: {DisciplineEditForm, Table, CatalogForm, GroupEditForm},
   data() {
     return {
-      layout: layout,
-      values: [
-        {id: 1, groupName: 'ПКС-206'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'}
-      ]
+      headers: ['id', 'Название группы']
     }
   },
   methods: {

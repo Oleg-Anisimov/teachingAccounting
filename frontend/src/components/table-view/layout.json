@@ -1,0 +1,14 @@
+{
+  "columns": [
+    {
+      "name": "id",
+      "header": "id",
+      "valueRef": "id"
+    },
+    {
+      "name": "group_name",
+      "header": "Название группы",
+      "valueRef": "groupName"
+    }
+  ]
+}

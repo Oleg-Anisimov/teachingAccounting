@@ -29,7 +29,8 @@ let store = createStore({
         specializations: [],
         academicDisciplines: [],
         departments: [],
-        cabinets: []
+        cabinets: [],
+        groups: []
     },
     mutations: {
         SET_TEACHER: (state, teacher) => {
@@ -49,6 +50,10 @@ let store = createStore({
         },
         SET_CABINETS: (state, cabinets) => {
             state.cabinets = cabinets;
+        },
+
+        ADD_GROUP: (state, group) => {
+            state.groups.values.push(group)
         }
     },
     actions: {
@@ -134,6 +139,24 @@ let store = createStore({
                 console.log(error)
             })
         },
+
+        CREATE_GROUP({commit, getters}, groupName) {
+            let url = '/api/group/create'
+            let data = {
+                id: 0,
+                groupName: groupName
+            }
+            return axios.post(url, data)
+                .then((res) => {
+                    console.log(res)
+                    commit('ADD_GROUP', res.data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+
+
         LOAD_CABINETS({commit}) {
             const url = '/api/cabinet/all';
             return axios(url, {method: 'GET'})

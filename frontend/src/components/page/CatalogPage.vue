@@ -3,46 +3,37 @@
     <CatalogForm grid-area="filling-form" @addItem="onAddItem">
       <GroupEditForm/>
     </CatalogForm>
-    <Table :values="groupList()" :layout="layout"/>
-    {{groupList()}}
+    <base-table :head="tableHeads" :column-template="columnsTemplate">
+      <table-row
+          :key="item.id"
+          v-for="item in groupList()"
+          :column-template="columnsTemplate"
+      >
+        <table-column>{{item.id}}</table-column>
+        <table-column>{{item.groupName}}</table-column>
+      </table-row>
+    </base-table>
   </div>
 </template>
 
 <script>
 import CatalogForm from "./fillingForms/CatalogForm.vue";
-import Table from "../table-view/Table.vue";
+import BaseTable from "../table-view/Table.vue";
 import GroupEditForm from "../form/GroupEditForm.vue";
 import DisciplineEditForm from "../form/DisciplineEditForm.vue";
 import * as layout from '../table-view/layout.json'
 import {mapActions, mapGetters} from "vuex";
+import TableRow from "../table-view/TableRow.vue";
+import {ref} from "vue";
+import TableColumn from "../table-view/TableColumn.vue";
 
 export default {
   name: "CatalogPage",
-  components: {DisciplineEditForm, Table, CatalogForm, GroupEditForm},
+  components: {TableColumn, TableRow, DisciplineEditForm, BaseTable, CatalogForm, GroupEditForm},
   data() {
     return {
-      layout: layout,
-      values: [
-        {id: 1, groupName: 'ПКС-206'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'},
-        {id: 2, groupName: 'ИС-31(д)'}
-      ]
+      tableHeads: ['id', 'groupName'],
+      columnsTemplate: '50px 1fr',
     }
   },
   methods: {
@@ -65,7 +56,7 @@ export default {
   grid-template-columns: 270px 1fr;
   grid-gap: 1em;
 }
-Table {
+BaseTable {
   justify-self: start;
 }
 </style>

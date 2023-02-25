@@ -3,15 +3,8 @@
     <CatalogForm grid-area="filling-form" @addItem="onAddItem">
       <GroupEditForm/>
     </CatalogForm>
-    <base-table :head="tableHeads" :column-template="columnsTemplate">
-      <table-row
-          :key="item.id"
-          v-for="item in groupList()"
-          :column-template="columnsTemplate"
-      >
-        <table-column>{{item.id}}</table-column>
-        <table-column>{{item.groupName}}</table-column>
-      </table-row>
+    <base-table :head="tableHeads" :column-template="columnsTemplate" :items="groupList()">
+
     </base-table>
   </div>
 </template>

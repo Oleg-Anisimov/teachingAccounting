@@ -10,16 +10,23 @@
           {{element}}
         </div>
       </div>
-      <slot></slot>
+      <table-row
+          :key="item.id"
+          v-for="item in items"
+          :column-template="columnTemplate"
+          :item="item"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import {defineComponent} from "vue";
+import TableRow from "./TableRow.vue";
 
 export default defineComponent({
   name: "BaseTable",
+  components: {TableRow},
   props: {
     head: {
       type: Array,
@@ -28,6 +35,10 @@ export default defineComponent({
     columnTemplate: {
       type: String,
       required: false
+    },
+    items: {
+      type: Array,
+      required: true
     }
   }
 })

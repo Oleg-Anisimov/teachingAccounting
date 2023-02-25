@@ -1,51 +1,65 @@
 <template>
-  <table>
-    <tr>
-      <td v-for="header in headers"> {{header}}</td>
-    </tr>
-    <tr v-for="row in rows">
-      <td v-for="cell in row"> {{cell}} </td>
-    </tr>
-  </table>
+  <div class="table-wrapper">
+    <div class="table">
+      <div class="table-head" :style="{'grid-template-columns': columnTemplate}">
+        <div
+            class="table-head__name"
+            v-for="(element, i) of head"
+            :key="i"
+        >
+          {{element}}
+        </div>
+      </div>
+      <slot></slot>
+    </div>
+  </div>
 </template>
 
 <script>
 import {defineComponent} from "vue";
 
 export default defineComponent({
-  name: "Table",
-  props: ['layout', 'values'],
-  data() {
-    let headers = this.layout.columns.map(item => item.header)
-    console.log(this.values)
-    let rows = this.values.map((object) => {
-      let row = []
-      this.layout.columns.forEach(colunm => {
-        row.push(object[colunm.valueRef])
-      })
-      return row
-    })
-    return {
-      headers: headers,
-      rows: rows
+  name: "BaseTable",
+  props: {
+    head: {
+      type: Array,
+      required: false
+    },
+    columnTemplate: {
+      type: String,
+      required: false
     }
   }
 })
 </script>
 
-<style scoped>
-
-table td{
-  border: 0.2em solid royalblue;
-  text-align: center;
-  justify-content: center;
-  vertical-align: middle;
-  padding: 0.5em;
-}
-table th{
-  border: 0.2em solid royalblue;
-  text-align: center;
-  justify-content: center;
-  vertical-align: middle;
+<style lang="scss" scoped>
+.table {
+  background-color: #fff;
+  width: 100%;
+  margin-bottom: 40px;
+  margin-top: 15px;
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  &-head {
+    padding: 5px 16px;
+    display: grid;
+    column-gap: 10px;
+    align-items: center;
+    border-bottom: 2px solid #EEEFF4;
+    background: #fff;
+    &__name {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      color: #999;
+      cursor: pointer;
+    }
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
 }
 </style>

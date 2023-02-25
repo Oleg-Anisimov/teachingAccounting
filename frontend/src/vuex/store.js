@@ -53,7 +53,7 @@ let store = createStore({
         },
 
         ADD_GROUP: (state, group) => {
-            state.groups.values.push(group)
+            state.groups.push(group)
         }
     },
     actions: {

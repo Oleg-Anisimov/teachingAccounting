@@ -8,6 +8,7 @@
     <p><router-link to="/academic-product-work">Учебно-производственная работа</router-link></p>
     <p><router-link to="/educate-work">Воспитательная работа</router-link></p>
     <p><router-link to="/promotion-qualific-lvl">Повышение уровня квалификации</router-link></p>
+    <p><router-link to="/catalog">Справочники</router-link></p>
   </div>
 </template>
 

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import TitlePage from "../components/page/TitlePage.vue";
 import HomePage from "../components/page/HomePage.vue";
 import AcademicWorkPage from "../components/page/AcademicWorkPage.vue";
@@ -11,7 +11,7 @@ import PromotionQualificLVLPage from "../components/page/PromotionQualificLVLPag
 import AuthorizationPage from "../components/page/AuthorizationPage.vue";
 import RegistrationPage from "../components/page/RegistrationPage.vue";
 import store from "../vuex/store";
-import Teacher from "../model/teacher";
+import CatalogPage from "../components/page/CatalogPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -30,6 +30,11 @@ const router = createRouter({
       props: {
         teacher: store.getters.GET_TEACHER
       }
+    },
+    {
+      path: '/catalog',
+      name: 'catalog',
+      component: CatalogPage,
     },
     {
       path: '/academic-work',

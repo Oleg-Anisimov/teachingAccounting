@@ -3,10 +3,10 @@
         <div class="academ-year">
             <p class="main-p">Справочники</p>
             <div class="form-border">
-                <select name="year">
-                    <option value="option0">Группы</option>
-                    <option value="option1">Специальности</option>
-                    <option value="option2">Ак. дисциплины</option>
+                <select name="year" @change="(e) => this.$emit('catalogSelected', e)">
+                    <option value="group">Группы</option>
+                    <option value="specialization">Специальности</option>
+                    <option value="discipline">Ак. дисциплины</option>
                 </select>
             </div>
         </div>

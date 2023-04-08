@@ -143,6 +143,14 @@ const i18n = createI18n({
                     MAGISTRATURE: "Магистратура",
                     PROFESSIONAL_RETRAINING: "Профессиональная переподготовка"
                 }
+            },
+            catalog: {
+                id: "id",
+                groupName: "Название группы",
+                specialization: "Номер специальности",
+                specializationName: "Название специальности",
+                disciplineNumber: "Номер дисциплины",
+                name: "Название"
             }
         }
     }

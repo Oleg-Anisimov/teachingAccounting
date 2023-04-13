@@ -34,6 +34,8 @@ public class EducateService {
     @Autowired
     private ExportToExcelService exportToExcelService;
     @Autowired
+    private EventService eventService;
+    @Autowired
     private EntityRepository entityRepository;
 
     public EducateDto createEducate(EducateDto educateDto) {
@@ -47,9 +49,7 @@ public class EducateService {
         educate.setUser(user);
         educate.setDate(educateDto.getDate());
         educate.setResult(educateDto.getResult());
-        educate.setEventType(educateDto.getEventType());
-        educate.setEventName(educateDto.getEventName());
-        educate.setEventLevel(educateDto.getEventLevel());
+        educate.setEvent(eventService.getById(educateDto.getEventId()));
         educate.setActivityType(educateDto.getActivityType());
         educate.setStudentInformation(educateDto.getStudentInformation());
         educate.setWorkVector(educateDto.getWorkVector());

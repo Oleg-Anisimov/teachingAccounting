@@ -29,7 +29,8 @@ public class ScientificMethodsService {
     private ScientificMethodsRepository scientificMethodsRepository;
     @Autowired
     private ModelMapper mapper;
-
+    @Autowired
+    private EventService eventService;
     @Autowired
     private UserDetailsServiceImpl userDetailsServiceImpl;
     @Autowired
@@ -48,11 +49,9 @@ public class ScientificMethodsService {
         scientificMethods.setUser(user);
         scientificMethods.setDate(scientificMethodsDto.getDate());
         scientificMethods.setPlace(scientificMethodsDto.getPlace());
-        scientificMethods.setEventName(scientificMethodsDto.getEventName());
-        scientificMethods.setEventType(scientificMethodsDto.getEventType());
+        scientificMethods.setEvent(eventService.getById(scientificMethodsDto.getEventId()));
         scientificMethods.setResult(scientificMethodsDto.getResult());
         scientificMethods.setActivityType(scientificMethodsDto.getActivityType());
-        scientificMethods.setEventLevel(scientificMethodsDto.getEventLevel());
         scientificMethods.setParticipationType(scientificMethodsDto.getParticipationType());
         scientificMethods.setStudentInformation(scientificMethodsDto.getStudentInformation());
 

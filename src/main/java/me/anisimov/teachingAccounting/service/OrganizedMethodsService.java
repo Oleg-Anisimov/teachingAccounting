@@ -36,6 +36,8 @@ public class OrganizedMethodsService {
     @Autowired
     private ExportToExcelService exportToExcelService;
     @Autowired
+    private EventService eventService;
+    @Autowired
     private EntityRepository entityRepository;
 
 
@@ -50,9 +52,7 @@ public class OrganizedMethodsService {
         organizedMethods.setUser(user);
         organizedMethods.setDate(organizedMethodsDto.getDate());
         organizedMethods.setResult(organizedMethodsDto.getResult());
-        organizedMethods.setEventName(organizedMethodsDto.getEventName());
-        organizedMethods.setEventLevel(organizedMethodsDto.getEventLevel());
-        organizedMethods.setEventType(organizedMethodsDto.getEventType());
+        organizedMethods.setEvent(eventService.getById(organizedMethodsDto.getEventId()));
         organizedMethods.setStudentInformation(organizedMethodsDto.getStudentInformation());
         organizedMethods.setActivityType(organizedMethodsDto.getActivityType());
         organizedMethods = organizedMethodsRepository.save(organizedMethods);

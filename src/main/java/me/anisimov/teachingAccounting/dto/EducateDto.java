@@ -21,11 +21,9 @@ public class EducateDto {
     private Long id;
     private LocalDate date;
     private String result;
-    private EventType eventType;
-    private String eventName;
     private String studentInformation;
-    private EventLevel eventLevel;
     private ActivityType activityType;
     private WorkVector workVector;
+    private Long eventId;
     private Long userId;
 }

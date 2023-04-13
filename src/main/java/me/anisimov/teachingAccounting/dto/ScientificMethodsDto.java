@@ -19,11 +19,9 @@ public class ScientificMethodsDto {
     private LocalDate date;
     private String place;
     private String result;
-    private EventType eventType;
-    private String eventName;
     private String studentInformation;
-    private EventLevel eventLevel;
     private ActivityType activityType;
     private ParticipationType participationType;
+    private Long eventId;
     private Long userId;
 }

@@ -55,8 +55,7 @@ public class AcademicWorkController {
     @PostMapping()
     public Page<AcademicWorkDto> getCurrent(@RequestParam(defaultValue = "0") int page,
                                             @RequestParam(defaultValue = "10") int size) {
-        PageRequest pageRequest = PageRequest.of(page, size);
-        pageRequest.withSort(Sort.Direction.ASC, "id");
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "id"));
         return academicWorkService.getCurrentAcademicWork(pageRequest);
     }
 

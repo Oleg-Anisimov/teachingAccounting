@@ -1,5 +1,5 @@
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters, mapMutations} from "vuex";
 import pog from "../pogination/pog.vue";
 import AcaWork from "./fillingForms/AcaWork.vue";
 
@@ -34,6 +34,15 @@ export default {
       totalPages: 0,
       offset: 0,
       pageNumber: 0,
+      defaultModel: {
+        id: 1,
+        specialization: '',
+        group: '',
+        academicDiscipline: '',
+        firstSemPlan: 0,
+        secondSemPlan: 0,
+        isEditMode: false
+      },
       model: {
         id: 1,
         specialization: '',
@@ -48,7 +57,7 @@ export default {
   methods: {
     ...mapActions({
       LOAD_ACADEMIC_WORKS: 'academicWork/LOAD_ACADEMIC_WORKS',
-
+      MARK_WORK_AS_EDITED: 'academicWork/MARK_WORK_AS_EDITED'
     }),
     ...mapGetters({
       GET_ACADEMIC_WORK: 'academicWork/GET_ACADEMIC_WORK',
@@ -58,7 +67,9 @@ export default {
     }),
     REDACTION_STATE_TURN(work){
       this.model.isEditMode = true
-      console.log(work.academicDiscipline.disciplineNumber)
+
+      this.MARK_WORK_AS_EDITED(work.id)
+
       this.model.id = work.id
       this.model.specialization = work.specialization;
       this.model.academicDiscipline = work.academicDiscipline;
@@ -72,8 +83,17 @@ export default {
       this.model.absoluteResults = work.absoluteResults;
       this.model.qualityResults = work.qualityResults;
     },
+
     onDataUpdated() {
-      console.log('data updated')
+      this.LOAD_ACADEMIC_WORKS(this.pageRequest).then((data) => {
+        this.totalElements = data.totalElements;
+        this.totalPages = data.totalPages;
+        this.pageNumber = data.pageable.pageNumber + 1;
+      });
+    },
+
+    onCancelUpdate() {
+      this.model = {...this.defaultModel};
     }
   },
   mounted() {
@@ -90,7 +110,7 @@ export default {
 
 <template>
   <div class="academic_work_page">
-    <AcaWork grid-area="filling-form" :model="this.model" @dataUpdated="onDataUpdated()"></AcaWork>
+    <AcaWork grid-area="filling-form" :model="this.model" @dataUpdated="onDataUpdated" @cancelUpdate="onCancelUpdate"></AcaWork>
     <table>
       <thead>
         <tr>
@@ -123,7 +143,7 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <tr v-for="work in GET_ACADEMIC_WORK()" :key="work.id" v-on:click="REDACTION_STATE_TURN(work)">
+        <tr v-for="work in GET_ACADEMIC_WORK()" v-bind:class="{'selected_row': work.isEdit}" :key="work.id" v-on:click="REDACTION_STATE_TURN(work)">
           <td>{{ work.id }}</td>
           <td>{{ work.specialization.specialization }}</td>
           <td>{{ work.academicDiscipline.disciplineNumber }}</td>
@@ -156,5 +176,8 @@ export default {
 
 table input, table select{
   width: 80px;
+}
+.selected_row {
+  background-color: #e1e1e1;
 }
 </style>

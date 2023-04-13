@@ -1,8 +1,6 @@
 package me.anisimov.teachingAccounting.controller;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.Authorization;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import me.anisimov.teachingAccounting.domain.AcademicWork;
 import me.anisimov.teachingAccounting.dto.AcademicWorkDto;
 import me.anisimov.teachingAccounting.service.AcademicWorkService;
@@ -10,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,6 +56,7 @@ public class AcademicWorkController {
     public Page<AcademicWorkDto> getCurrent(@RequestParam(defaultValue = "0") int page,
                                             @RequestParam(defaultValue = "10") int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
+        pageRequest.withSort(Sort.Direction.ASC, "id");
         return academicWorkService.getCurrentAcademicWork(pageRequest);
     }
 

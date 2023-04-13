@@ -29,7 +29,8 @@ let store = createStore({
         specializations: [],
         academicDisciplines: [],
         departments: [],
-        cabinets: []
+        cabinets: [],
+        groups: []
     },
     mutations: {
         SET_TEACHER: (state, teacher) => {
@@ -49,6 +50,16 @@ let store = createStore({
         },
         SET_CABINETS: (state, cabinets) => {
             state.cabinets = cabinets;
+        },
+
+        ADD_GROUP: (state, group) => {
+            state.groups.push(group)
+        },
+        ADD_SPEC: (state, spec) => {
+            state.specializations.push(spec)
+        },
+        ADD_DISCIPLINE: (state, disc) => {
+            state.academicDisciplines.push(disc)
         }
     },
     actions: {
@@ -134,6 +145,58 @@ let store = createStore({
                 console.log(error)
             })
         },
+
+        CREATE_GROUP({commit, getters}, groupName) {
+            let url = '/api/group/create'
+            let data = {
+                id: 0,
+                groupName: groupName
+            }
+            return axios.post(url, data)
+                .then((res) => {
+                    console.log(res)
+                    commit('ADD_GROUP', res.data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+
+        CREATE_SPECIALIZATION({commit, getters}, spec) {
+            let url = '/api/specialization/create'
+            let data = {
+                id: 0,
+                specialization: spec.specialization,
+                specializationName: spec.specializationName
+            }
+            return axios.post(url, data)
+                .then((res) => {
+                    console.log(res)
+                    commit('ADD_SPEC', res.data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+
+        CREATE_DISCIPLINE({commit, getters}, disc) {
+            let url = '/api/discipline/create'
+            let data = {
+                id: 0,
+                disciplineNumber: disc.disciplineNumber,
+                name: disc.disciplineName
+            }
+            return axios.post(url, data)
+                .then((res) => {
+                    console.log(res)
+                    commit('ADD_DISCIPLINE', res.data)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        },
+
+
         LOAD_CABINETS({commit}) {
             const url = '/api/cabinet/all';
             return axios(url, {method: 'GET'})

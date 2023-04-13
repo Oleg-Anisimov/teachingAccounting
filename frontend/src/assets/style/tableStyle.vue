@@ -11,7 +11,7 @@
         grid-gap: 1em;
     }
     table{
-        grid-area: table;
+        /*grid-area: table;*/
         max-height: 50px;
         max-width: 94em;
         border: 0.2em solid royalblue;
